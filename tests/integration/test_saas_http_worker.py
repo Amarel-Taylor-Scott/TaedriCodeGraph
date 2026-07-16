@@ -16,6 +16,7 @@ from taedri_codegraph.primitive_capsules import decode_primitive_pack
 from taedri_codegraph.primitives.bundle import load_primitive_directory
 from taedri_codegraph.portal import SubscriptionState
 from taedri_codegraph.saas import GraphMount, SQLiteControlPlane, Tenant, utc_now
+from tests.primitive_fixtures import runtime_native_bundle
 from tests.unit.test_acquisition import FakeTransport, github_archive_bytes, valid_wheel_bytes
 
 
@@ -546,8 +547,8 @@ class SaaSHTTPWorkerIntegrationTests(unittest.TestCase):
     @staticmethod
     def _primitive_body() -> dict[str, Any]:
         root = Path(__file__).resolve().parents[2]
-        bundle = load_primitive_directory(
-            root / "examples/primitives/normalize-text"
+        bundle = runtime_native_bundle(
+            load_primitive_directory(root / "examples/primitives/normalize-text")
         )
         return {
             "namespace": bundle.namespace,

@@ -179,6 +179,8 @@ class ExactPrimitiveWirePlanner:
             and producer.network == consumer.network == "denied"
             and producer.purity in {"pure", "read_only"}
             and consumer.purity in {"pure", "read_only"}
+            and not producer.effects
+            and not consumer.effects
         )
         dimensions.append(
             WireDimensionAssessment(
@@ -357,6 +359,27 @@ class LocalDeterministicPythonPipelineExecutor:
         packs = tuple(encoded_packs)
         if len(packs) != len(plan.interfaces):
             raise PrimitiveWiringError("pipeline requires one full pack per interface")
+        expected_runtime = f"{sys.version_info.major}.{sys.version_info.minor}"
+        for interface in plan.interfaces:
+            if interface.language != "python":
+                raise PrimitiveWiringError(
+                    f"local Python executor cannot run {interface.language!r}"
+                )
+            if interface.runtime_version != expected_runtime:
+                raise PrimitiveWiringError(
+                    f"pipeline pins Python {interface.runtime_version}; "
+                    f"executor runs {expected_runtime}"
+                )
+            if (
+                not interface.deterministic
+                or interface.execution_model != "in_process_call"
+                or interface.network != "denied"
+                or interface.purity not in {"pure", "read_only"}
+                or interface.effects
+            ):
+                raise PrimitiveWiringError(
+                    "pipeline interface does not satisfy deterministic local execution policy"
+                )
         canonical_json_bytes(input_value)
         pack_digests: list[str] = []
         with tempfile.TemporaryDirectory(prefix="taedri-deterministic-pipeline-") as temporary:

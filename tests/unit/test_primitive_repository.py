@@ -23,6 +23,7 @@ from taedri_codegraph.primitives.acceptance import (
 from taedri_codegraph.primitives.bundle import load_primitive_directory
 from taedri_codegraph.primitives.release import AssuranceLevel, PrimitiveReleaseError
 from taedri_codegraph.saas import SQLiteControlPlane, Tenant
+from tests.primitive_fixtures import runtime_native_bundle
 
 
 class PrimitiveRepositoryTests(unittest.TestCase):
@@ -39,8 +40,8 @@ class PrimitiveRepositoryTests(unittest.TestCase):
         )
         self.repository = SQLitePrimitiveRepository(self.control)
         root = Path(__file__).resolve().parents[2]
-        self.bundle = load_primitive_directory(
-            root / "examples/primitives/normalize-text"
+        self.bundle = runtime_native_bundle(
+            load_primitive_directory(root / "examples/primitives/normalize-text")
         )
 
     def tearDown(self) -> None:

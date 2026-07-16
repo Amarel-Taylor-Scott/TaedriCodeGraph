@@ -1,9 +1,10 @@
 """Executable acceptance worker for complete Python primitive capsules.
 
-The bootstrap verifier is intentionally narrow and real: Python 3.12, JSON-vector
-examples/tests, a pinned dependency lock, no declared network, bounded subprocess time,
-pack download, safe materialization, and exact output/error checks.  Other language and
-runtime verifiers register alongside it; they do not weaken the release contract.
+The bootstrap verifier is intentionally narrow and real: an exact match to the local
+Python major/minor, JSON-vector examples/tests, a pinned dependency lock, no declared
+network, bounded subprocess time, pack download, safe materialization, and exact
+output/error checks. Other language and runtime verifiers register alongside it; they
+do not weaken the release contract.
 """
 
 from __future__ import annotations

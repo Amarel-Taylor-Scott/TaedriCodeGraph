@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import sys
 import unittest
 from dataclasses import replace
 from pathlib import Path
@@ -61,11 +62,28 @@ class DeterministicPrimitiveWiringTests(unittest.TestCase):
             (RESULTS / "casefold-text.tcgpack").read_bytes(),
         )
         executor = LocalDeterministicPythonPipelineExecutor()
+        expected_runtime = f"{sys.version_info.major}.{sys.version_info.minor}"
+        if self.normalize.runtime_version != expected_runtime:
+            with self.assertRaisesRegex(PrimitiveWiringError, "pipeline pins Python"):
+                executor.execute(plan, packs, "  Straße  ")
+            return
         first = executor.execute(plan, packs, "  Straße  ")
         second = executor.execute(plan, packs, "  Straße  ")
         self.assertEqual(first.output, "strasse")
         self.assertEqual(first.receipt, second.receipt)
         self.assertEqual(first.receipt.executed_stage_count, 2)
+
+    def test_executor_rejects_a_plan_for_another_python_minor(self) -> None:
+        expected_runtime = f"{sys.version_info.major}.{sys.version_info.minor}"
+        other_runtime = "99.99" if expected_runtime != "99.99" else "98.98"
+        incompatible = replace(self.normalize, runtime_version=other_runtime)
+        plan = ExactPrimitiveWirePlanner().pipeline((incompatible,))
+        with self.assertRaisesRegex(PrimitiveWiringError, "pipeline pins Python"):
+            LocalDeterministicPythonPipelineExecutor().execute(
+                plan,
+                ((RESULTS / "normalize-text.tcgpack").read_bytes(),),
+                " value ",
+            )
 
     def test_executor_rejects_interface_fields_not_bound_by_the_pack_graph(self) -> None:
         forged = replace(self.normalize, entrypoint="not_the_bound_symbol")

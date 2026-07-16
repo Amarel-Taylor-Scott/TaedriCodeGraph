@@ -10,6 +10,7 @@ from pathlib import Path
 from taedri_codegraph.cli import main
 from taedri_codegraph.primitive_repository import SQLitePrimitiveRepository
 from taedri_codegraph.saas import SQLiteControlPlane, Tenant
+from tests.primitive_fixtures import copy_runtime_native_primitive
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -35,7 +36,12 @@ class PrimitiveCLIIntegrationTests(unittest.TestCase):
 
     def test_release_local_processes_exactly_one_complete_primitive(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
-            control_path = Path(temporary) / "control.sqlite"
+            temporary_path = Path(temporary)
+            primitive_path = copy_runtime_native_primitive(
+                ROOT / "examples/primitives/casefold-text",
+                temporary_path / "casefold-text",
+            )
+            control_path = temporary_path / "control.sqlite"
             control = SQLiteControlPlane(control_path)
             tenant = control.create_tenant(
                 Tenant.create(
@@ -50,7 +56,7 @@ class PrimitiveCLIIntegrationTests(unittest.TestCase):
                     [
                         "primitive",
                         "release-local",
-                        str(ROOT / "examples/primitives/casefold-text"),
+                        str(primitive_path),
                         "--control",
                         str(control_path),
                         "--tenant",
