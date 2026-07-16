@@ -1,0 +1,43 @@
+flowchart TD
+    n0["wheel._commands.tags.tags.info"]
+    n1["wheel._commands.tags.tags"]
+    n2["parsebytes"]
+    n3["wheel._commands.tags.os"]
+    n4["wheel._commands.tags.tags.wheel"]
+    n5["email.parser.BytesParser"]
+    n6["wheelfile.WheelFile"]
+    n7["wheel._commands.tags.tags.namever"]
+    n8["wheel._commands.tags.tags.wheel_info"]
+    n9["f.read"]
+    n10["wheel._commands.tags.WheelFile"]
+    n11["wheel._commands.tags.BytesParser"]
+    n12["wheel._commands.tags.tags.original_wheel_name"]
+    n13["wheel._commands.tags.email"]
+    n14["os.path.basename"]
+    n15["wheel._commands.tags.tags.build"]
+    n16["wheel._commands.tags.tags.f"]
+    n17["f.parsed_filename.group"]
+    n1 -->|calls_may| n6
+    n1 -->|reads| n10
+    n1 -->|reads| n4
+    n1 -->|writes| n16
+    n1 -->|reads| n16
+    n1 -->|reads| n16
+    n1 -->|writes| n8
+    n1 -->|calls_may| n9
+    n1 -->|reads| n16
+    n1 -->|reads| n16
+    n1 -->|writes| n0
+    n1 -->|calls_may| n2
+    n1 -->|calls_may| n5
+    n1 -->|reads| n11
+    n1 -->|reads| n13
+    n1 -->|reads| n8
+    n1 -->|writes| n12
+    n1 -->|calls_may| n14
+    n1 -->|reads| n3
+    n1 -->|reads| n16
+    n1 -->|writes| n7
+    n1 -->|calls_may| n17
+    n1 -->|reads| n16
+    n1 -->|writes| n15

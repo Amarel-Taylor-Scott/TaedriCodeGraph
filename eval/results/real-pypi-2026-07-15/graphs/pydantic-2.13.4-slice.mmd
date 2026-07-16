@@ -1,0 +1,36 @@
+flowchart TD
+    n0["pydantic.v1.utils.lenient_issubclass"]
+    n1["pydantic.v1.fields.ModelField.prepare"]
+    n2["isinstance"]
+    n3["pydantic.v1.fields.JsonWrapper"]
+    n4["pydantic.v1.fields.ModelField.type_"]
+    n5["pydantic.v1.fields.ModelField.parse_json"]
+    n6["pydantic.v1.fields.Any"]
+    n7["pydantic.v1.fields.lenient_issubclass"]
+    n8["pydantic.v1.fields.ModelField._type_analysis.self"]
+    n9["pydantic.v1.fields.Json"]
+    n10["pydantic.v1.fields.ModelField._type_analysis"]
+    n1 -->|calls_may| n10
+    n1 -->|reads| n10
+    n10 -->|calls_may| n0
+    n10 -->|reads| n7
+    n10 -->|reads| n4
+    n10 -->|reads| n8
+    n10 -->|reads| n3
+    n10 -->|writes| n4
+    n10 -->|reads| n8
+    n10 -->|reads| n4
+    n10 -->|reads| n8
+    n10 -->|writes| n5
+    n10 -->|reads| n8
+    n10 -->|calls_may| n0
+    n10 -->|reads| n7
+    n10 -->|reads| n4
+    n10 -->|reads| n8
+    n10 -->|reads| n9
+    n10 -->|writes| n4
+    n10 -->|reads| n8
+    n10 -->|reads| n6
+    n10 -->|writes| n5
+    n10 -->|reads| n8
+    n10 -->|calls_may| n2

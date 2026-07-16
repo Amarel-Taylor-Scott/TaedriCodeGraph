@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "taedri-codegraph"
+version = "0.1.0a0"
+description = "Evidence-backed graphs over existing code"
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [{name = "Taylor Amarel"}]
+keywords = ["code-graph", "static-analysis", "retrieval", "agents", "uceg"]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development :: Libraries",
+]
+dependencies = []
+
+[project.optional-dependencies]
+research = ["matplotlib>=3.8"]
+
+[project.scripts]
+tcg = "taedri_codegraph.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+taedri_codegraph = ["py.typed"]

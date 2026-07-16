@@ -1,0 +1,38 @@
+flowchart TD
+    n0["str"]
+    n1["packaging.metadata._MetadataVersion"]
+    n2["classmethod"]
+    n3["packaging.metadata.Metadata.dynamic"]
+    n4["packaging.metadata.RawMetadata"]
+    n5["packaging.metadata._Validator"]
+    n6["packaging.metadata.Metadata.name"]
+    n7["packaging.metadata.version_module"]
+    n8["packaging.metadata.Metadata.version"]
+    n9["packaging.metadata.Metadata.metadata_version"]
+    n10["packaging.metadata.Metadata"]
+    n11["list"]
+    n12["packaging.metadata.Metadata._raw"]
+    n10 -->|writes| n12
+    n10 -->|reads| n4
+    n10 -->|reads| n2
+    n10 -->|reads| n10
+    n10 -->|reads| n2
+    n10 -->|reads| n10
+    n10 -->|writes| n9
+    n10 -->|reads| n5
+    n10 -->|reads| n1
+    n10 -->|calls_may| n5
+    n10 -->|reads| n5
+    n10 -->|writes| n6
+    n10 -->|reads| n5
+    n10 -->|reads| n0
+    n10 -->|calls_may| n5
+    n10 -->|reads| n5
+    n10 -->|writes| n8
+    n10 -->|reads| n5
+    n10 -->|reads| n7
+    n10 -->|calls_may| n5
+    n10 -->|reads| n5
+    n10 -->|writes| n3
+    n10 -->|reads| n5
+    n10 -->|reads| n11

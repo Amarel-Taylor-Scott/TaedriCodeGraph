@@ -1,0 +1,351 @@
+{
+  "analysis_manifest_id": "uceg:v1:analysis_manifest:pizh2i7mm3p6kietltv2zhja5nfmnpfe4ijqvoswowi7mdiz3e6a",
+  "edges": [
+    {
+      "assertion_id": "uceg:v1:edge_assertion:vo3v2kkiqeojpfwit6a45jqhblahaaymvbhu2ovic4hdtvvczqja",
+      "evidence_ids": [
+        "uceg:v1:evidence:bd2tr6zzbilami2j27jnkk5i36etrb4fmbhg4nfcd2cv2yxuyyfq"
+      ],
+      "modality": "inferred",
+      "predicate": "uceg.predicate.calls_may",
+      "quantifier": "may",
+      "source": "uceg:v1:entity:6yllw3gidinja4psuyocy6urnuryr6k6wyrnh6lvtkesixmvjota",
+      "target": "uceg:v1:entity:zpuvrnzie7n7kkwoopunusmsaivf4drzee62c44vtl3xjv4ym7fa"
+    },
+    {
+      "assertion_id": "uceg:v1:edge_assertion:utlnca3he7e3uqgdgbacfkbeuziibwz5mnse5ztbhqjo4w2qzv2q",
+      "evidence_ids": [
+        "uceg:v1:evidence:x2toiaiwengm36zghxjqlvzylwgjpyds7b5rueppfrbgbtpboptq"
+      ],
+      "modality": "extracted",
+      "predicate": "uceg.predicate.reads",
+      "quantifier": "must",
+      "source": "uceg:v1:entity:6yllw3gidinja4psuyocy6urnuryr6k6wyrnh6lvtkesixmvjota",
+      "target": "uceg:v1:entity:zpuvrnzie7n7kkwoopunusmsaivf4drzee62c44vtl3xjv4ym7fa"
+    },
+    {
+      "assertion_id": "uceg:v1:edge_assertion:bib5r2fur6eflsxtatum3qko3vasedpz6paviueu5llhllf35utq",
+      "evidence_ids": [
+        "uceg:v1:evidence:l42hbutildobqtmw6ukqiwdgk4y5lwjkj5okb2u54xdpzt6soteq"
+      ],
+      "modality": "inferred",
+      "predicate": "uceg.predicate.calls_may",
+      "quantifier": "may",
+      "source": "uceg:v1:entity:zpuvrnzie7n7kkwoopunusmsaivf4drzee62c44vtl3xjv4ym7fa",
+      "target": "uceg:v1:entity:5deyaooh622j63m75zelp2evcvdsazft5wki3slrqkif6x32z7la"
+    },
+    {
+      "assertion_id": "uceg:v1:edge_assertion:ewbhevtbxz57yzo67wuiucsfjmncsyffagn4amxtbdx4h2u3p6gq",
+      "evidence_ids": [
+        "uceg:v1:evidence:jlds2qt7okq7phd2qjjqai7mc6bi3gklgcmnadfts6irfrkslkfa"
+      ],
+      "modality": "extracted",
+      "predicate": "uceg.predicate.reads",
+      "quantifier": "must",
+      "source": "uceg:v1:entity:zpuvrnzie7n7kkwoopunusmsaivf4drzee62c44vtl3xjv4ym7fa",
+      "target": "uceg:v1:entity:ml7neabv4jvpiddpep2q43qhpv5jgdkwhvtvhfmqwypi3ctenoeq"
+    },
+    {
+      "assertion_id": "uceg:v1:edge_assertion:wvmqd6577zabi5symetffrabivboos7plqrvkn6l2admq2kba46q",
+      "evidence_ids": [
+        "uceg:v1:evidence:6izqv6i6xf45phii2h5dduzjbyhdqxpukj7dgtjuekn7p6f3vrsa"
+      ],
+      "modality": "extracted",
+      "predicate": "uceg.predicate.reads",
+      "quantifier": "must",
+      "source": "uceg:v1:entity:zpuvrnzie7n7kkwoopunusmsaivf4drzee62c44vtl3xjv4ym7fa",
+      "target": "uceg:v1:entity:hk7wxsey5tm4kdakaf5pkahy76sny7mvnpgaahkar6plhnjbenka"
+    },
+    {
+      "assertion_id": "uceg:v1:edge_assertion:2snpyq4bhq6eifxjn3c6ii43epcls3363ctnvmxuudc7lgst2k7q",
+      "evidence_ids": [
+        "uceg:v1:evidence:mtqpgyt6pvbgafvnwa7ahttn253gvx3fdexv4qbu4763ki6dv25q"
+      ],
+      "modality": "extracted",
+      "predicate": "uceg.predicate.reads",
+      "quantifier": "must",
+      "source": "uceg:v1:entity:zpuvrnzie7n7kkwoopunusmsaivf4drzee62c44vtl3xjv4ym7fa",
+      "target": "uceg:v1:entity:upvee6j5b5fqkltsmo3ejqbuglaggd5avghb5q5mgfausai5isdq"
+    },
+    {
+      "assertion_id": "uceg:v1:edge_assertion:ngdaz66vaa43dw6mxlovgs4cmzjhsox4ftnjazgfevm7iucx6vga",
+      "evidence_ids": [
+        "uceg:v1:evidence:tevj6wj62ks6ohz4afq7udaah3weejssrhb4woi55z7fvgpzaica"
+      ],
+      "modality": "extracted",
+      "predicate": "uceg.predicate.reads",
+      "quantifier": "must",
+      "source": "uceg:v1:entity:zpuvrnzie7n7kkwoopunusmsaivf4drzee62c44vtl3xjv4ym7fa",
+      "target": "uceg:v1:entity:dlql7i732f66d2zlmuimsbgluoiloe4wgtww4ev77hwl63z5jz3a"
+    },
+    {
+      "assertion_id": "uceg:v1:edge_assertion:yrojoy6szynalorpbcdmwnn3tgfalwdf3eh5dbfp3apkvazmjg2a",
+      "evidence_ids": [
+        "uceg:v1:evidence:y46pbliipxb6cp252pwjkuzjiwcwauqt7py4ywqtdtbkhqthevpq"
+      ],
+      "modality": "extracted",
+      "predicate": "uceg.predicate.writes",
+      "quantifier": "must",
+      "source": "uceg:v1:entity:zpuvrnzie7n7kkwoopunusmsaivf4drzee62c44vtl3xjv4ym7fa",
+      "target": "uceg:v1:entity:hk7wxsey5tm4kdakaf5pkahy76sny7mvnpgaahkar6plhnjbenka"
+    },
+    {
+      "assertion_id": "uceg:v1:edge_assertion:jwswipc3hqch2m73lct6ujni7hp2vhgjik3m67l776viuhwb3zja",
+      "evidence_ids": [
+        "uceg:v1:evidence:azkmqueqeewshfylbg743m5qxpmxaikgw4s4ubqscbjdobpjm2uq"
+      ],
+      "modality": "extracted",
+      "predicate": "uceg.predicate.reads",
+      "quantifier": "must",
+      "source": "uceg:v1:entity:zpuvrnzie7n7kkwoopunusmsaivf4drzee62c44vtl3xjv4ym7fa",
+      "target": "uceg:v1:entity:upvee6j5b5fqkltsmo3ejqbuglaggd5avghb5q5mgfausai5isdq"
+    },
+    {
+      "assertion_id": "uceg:v1:edge_assertion:q2wzcl55mledecd6f6zzylwwbumdxmoltkqikshpeh64j5tdcmna",
+      "evidence_ids": [
+        "uceg:v1:evidence:2djrb2hylk3syqrjqmc3fvqcsoqav3p7jme6ms3jb22ejhxxwxda"
+      ],
+      "modality": "extracted",
+      "predicate": "uceg.predicate.reads",
+      "quantifier": "must",
+      "source": "uceg:v1:entity:zpuvrnzie7n7kkwoopunusmsaivf4drzee62c44vtl3xjv4ym7fa",
+      "target": "uceg:v1:entity:hk7wxsey5tm4kdakaf5pkahy76sny7mvnpgaahkar6plhnjbenka"
+    },
+    {
+      "assertion_id": "uceg:v1:edge_assertion:bmgvai47nyup7bf5zm6hqiukmqoaj5fk76aohl6sqkgjmvrsaoea",
+      "evidence_ids": [
+        "uceg:v1:evidence:qkgrvp5h4pud7ibmak3kczm3ev4xta54edvizvpnxde4m3eguqeq"
+      ],
+      "modality": "extracted",
+      "predicate": "uceg.predicate.reads",
+      "quantifier": "must",
+      "source": "uceg:v1:entity:zpuvrnzie7n7kkwoopunusmsaivf4drzee62c44vtl3xjv4ym7fa",
+      "target": "uceg:v1:entity:upvee6j5b5fqkltsmo3ejqbuglaggd5avghb5q5mgfausai5isdq"
+    },
+    {
+      "assertion_id": "uceg:v1:edge_assertion:6zrvnkmaxbixrvoiwmroiq7izy3h64nprjmwtk6tsqbk2wxr6hnq",
+      "evidence_ids": [
+        "uceg:v1:evidence:5utia4gg554xoqyvyi2qmxjtz4xrjj5hxmtpctvargatm6bvt2ma"
+      ],
+      "modality": "extracted",
+      "predicate": "uceg.predicate.writes",
+      "quantifier": "must",
+      "source": "uceg:v1:entity:zpuvrnzie7n7kkwoopunusmsaivf4drzee62c44vtl3xjv4ym7fa",
+      "target": "uceg:v1:entity:ie3e5gmlir5ezmgkf46irn55l2z3o5gdz6btq75pdl3kjzpj6iyq"
+    },
+    {
+      "assertion_id": "uceg:v1:edge_assertion:5hv6vnsfprjajx4sf2syluhg2fypiaqvg5fjyduplo6knrl6mycq",
+      "evidence_ids": [
+        "uceg:v1:evidence:4ihalyite4gpokrd5cmm7kjctjdejhaocf4lzxeho7rtsyib5xsq"
+      ],
+      "modality": "extracted",
+      "predicate": "uceg.predicate.reads",
+      "quantifier": "must",
+      "source": "uceg:v1:entity:zpuvrnzie7n7kkwoopunusmsaivf4drzee62c44vtl3xjv4ym7fa",
+      "target": "uceg:v1:entity:upvee6j5b5fqkltsmo3ejqbuglaggd5avghb5q5mgfausai5isdq"
+    },
+    {
+      "assertion_id": "uceg:v1:edge_assertion:ouxac4dreghuuylqhkjxmolm52h4sweoc7jugowbvrgfy3ikkyqa",
+      "evidence_ids": [
+        "uceg:v1:evidence:ylm3hrp2p7msqbgi2jgq2rvaghxzcl7lsvml2m52qwwzy7ginhzq"
+      ],
+      "modality": "inferred",
+      "predicate": "uceg.predicate.calls_may",
+      "quantifier": "may",
+      "source": "uceg:v1:entity:zpuvrnzie7n7kkwoopunusmsaivf4drzee62c44vtl3xjv4ym7fa",
+      "target": "uceg:v1:entity:5deyaooh622j63m75zelp2evcvdsazft5wki3slrqkif6x32z7la"
+    },
+    {
+      "assertion_id": "uceg:v1:edge_assertion:42jvenxwpammlcjzowr45stzsug6isyjiwvzdrm36pg7vm4x6xlq",
+      "evidence_ids": [
+        "uceg:v1:evidence:32bekc4ktcodhbuhp3ype2jodhugg47d2arg32lbbhoauhpbfgba"
+      ],
+      "modality": "extracted",
+      "predicate": "uceg.predicate.reads",
+      "quantifier": "must",
+      "source": "uceg:v1:entity:zpuvrnzie7n7kkwoopunusmsaivf4drzee62c44vtl3xjv4ym7fa",
+      "target": "uceg:v1:entity:ml7neabv4jvpiddpep2q43qhpv5jgdkwhvtvhfmqwypi3ctenoeq"
+    },
+    {
+      "assertion_id": "uceg:v1:edge_assertion:kozjqjiibjv7opvy73tz25bktlxsng627mka3elq6sf4zcuqa4wa",
+      "evidence_ids": [
+        "uceg:v1:evidence:ru5hbf6ux6fz7yzzct3dfb6c5ovteahskikxw3hhbt32zapr4a3a"
+      ],
+      "modality": "extracted",
+      "predicate": "uceg.predicate.reads",
+      "quantifier": "must",
+      "source": "uceg:v1:entity:zpuvrnzie7n7kkwoopunusmsaivf4drzee62c44vtl3xjv4ym7fa",
+      "target": "uceg:v1:entity:hk7wxsey5tm4kdakaf5pkahy76sny7mvnpgaahkar6plhnjbenka"
+    },
+    {
+      "assertion_id": "uceg:v1:edge_assertion:sidlwrjzn4ih2kfscpdajj5gulwv3ki7kex7nbdriamqjoedttbq",
+      "evidence_ids": [
+        "uceg:v1:evidence:bnccvpur7x7copiuqjhfg3lzj7f5s7lulv5y75saltjfzfct34za"
+      ],
+      "modality": "extracted",
+      "predicate": "uceg.predicate.reads",
+      "quantifier": "must",
+      "source": "uceg:v1:entity:zpuvrnzie7n7kkwoopunusmsaivf4drzee62c44vtl3xjv4ym7fa",
+      "target": "uceg:v1:entity:upvee6j5b5fqkltsmo3ejqbuglaggd5avghb5q5mgfausai5isdq"
+    },
+    {
+      "assertion_id": "uceg:v1:edge_assertion:kyw6muew26jt4c5zqvj6rjn326wu5wqepql6azhncv6psf45dcua",
+      "evidence_ids": [
+        "uceg:v1:evidence:j2mt6aoeu6d4y37bzah42f2vhu3qzazsvjzm4z6jucc46op4eerq"
+      ],
+      "modality": "extracted",
+      "predicate": "uceg.predicate.reads",
+      "quantifier": "must",
+      "source": "uceg:v1:entity:zpuvrnzie7n7kkwoopunusmsaivf4drzee62c44vtl3xjv4ym7fa",
+      "target": "uceg:v1:entity:zcuolvv3u4izmllosw2tvd4sk672yd2c25facjtvt2feps4czr3a"
+    },
+    {
+      "assertion_id": "uceg:v1:edge_assertion:mwhull37w6g5ugv6jruphy2dyl4edfxuuaruy5b6bs4ccb4fryla",
+      "evidence_ids": [
+        "uceg:v1:evidence:j6zhq5q6b7fkifhqntpff2hxvlx5qa5ipcywgdaskegdkyrqxxfa"
+      ],
+      "modality": "extracted",
+      "predicate": "uceg.predicate.writes",
+      "quantifier": "must",
+      "source": "uceg:v1:entity:zpuvrnzie7n7kkwoopunusmsaivf4drzee62c44vtl3xjv4ym7fa",
+      "target": "uceg:v1:entity:hk7wxsey5tm4kdakaf5pkahy76sny7mvnpgaahkar6plhnjbenka"
+    },
+    {
+      "assertion_id": "uceg:v1:edge_assertion:ocqqu6nrupefqb6yeq2wqer7pyg6qy4jt7yhht66pesnbeevhusa",
+      "evidence_ids": [
+        "uceg:v1:evidence:ovnuknjfwlnuefuklnb76tjgawyxheir7pnpjmmmhjh4xack2z5a"
+      ],
+      "modality": "extracted",
+      "predicate": "uceg.predicate.reads",
+      "quantifier": "must",
+      "source": "uceg:v1:entity:zpuvrnzie7n7kkwoopunusmsaivf4drzee62c44vtl3xjv4ym7fa",
+      "target": "uceg:v1:entity:upvee6j5b5fqkltsmo3ejqbuglaggd5avghb5q5mgfausai5isdq"
+    },
+    {
+      "assertion_id": "uceg:v1:edge_assertion:ioymvk5coatmu3u37fzrpjf5j5iei6cevvqonej7ilvywqwnifja",
+      "evidence_ids": [
+        "uceg:v1:evidence:4exwosr56vojx3dskgef3nlfk6yvsjqpv3taul274tnjlj7tacga"
+      ],
+      "modality": "extracted",
+      "predicate": "uceg.predicate.reads",
+      "quantifier": "must",
+      "source": "uceg:v1:entity:zpuvrnzie7n7kkwoopunusmsaivf4drzee62c44vtl3xjv4ym7fa",
+      "target": "uceg:v1:entity:jfq3tk57wn6phnk2i3xxeu5xwx3naqmy5dmh7oq2tmacv4p63qbq"
+    },
+    {
+      "assertion_id": "uceg:v1:edge_assertion:xlwe7xxycsimbzu3malsqpryogbxbzttee73j6xwdm6cxk7rlrla",
+      "evidence_ids": [
+        "uceg:v1:evidence:s2pancktwmqo6n57vpa3spo3yjo2fikbhmnmb5zjpt6i74cbnfcq"
+      ],
+      "modality": "extracted",
+      "predicate": "uceg.predicate.writes",
+      "quantifier": "must",
+      "source": "uceg:v1:entity:zpuvrnzie7n7kkwoopunusmsaivf4drzee62c44vtl3xjv4ym7fa",
+      "target": "uceg:v1:entity:ie3e5gmlir5ezmgkf46irn55l2z3o5gdz6btq75pdl3kjzpj6iyq"
+    },
+    {
+      "assertion_id": "uceg:v1:edge_assertion:b5gpwui4bh22xtx75ltxk4hqc2u6hspfvk4qq6mhf34s7iz6ebla",
+      "evidence_ids": [
+        "uceg:v1:evidence:aih53jmdadx223b6ohrunwov4agynn2r4lfo7zczkohsxds7prna"
+      ],
+      "modality": "extracted",
+      "predicate": "uceg.predicate.reads",
+      "quantifier": "must",
+      "source": "uceg:v1:entity:zpuvrnzie7n7kkwoopunusmsaivf4drzee62c44vtl3xjv4ym7fa",
+      "target": "uceg:v1:entity:upvee6j5b5fqkltsmo3ejqbuglaggd5avghb5q5mgfausai5isdq"
+    },
+    {
+      "assertion_id": "uceg:v1:edge_assertion:z565uox2kxnssv7gpr5hhrsk5d3uc3o27egjty65qi3hhc732e4q",
+      "evidence_ids": [
+        "uceg:v1:evidence:6l4ivkxwmky33hsawvixqonubbr7encb3kgdiguoiutm3aqbfanq"
+      ],
+      "modality": "inferred",
+      "predicate": "uceg.predicate.calls_may",
+      "quantifier": "may",
+      "source": "uceg:v1:entity:zpuvrnzie7n7kkwoopunusmsaivf4drzee62c44vtl3xjv4ym7fa",
+      "target": "uceg:v1:entity:asxvvugwspvptznbkguuuzi2vuqky3fysmtoukhn3jjbf3d552hq"
+    }
+  ],
+  "nodes": [
+    {
+      "entity_kind": "uceg.entity.external_symbol",
+      "id": "uceg:v1:entity:5deyaooh622j63m75zelp2evcvdsazft5wki3slrqkif6x32z7la",
+      "lifecycle": "L1_candidate",
+      "qualified_name": "pydantic.v1.utils.lenient_issubclass",
+      "root": false
+    },
+    {
+      "entity_kind": "uceg.entity.python.method",
+      "id": "uceg:v1:entity:6yllw3gidinja4psuyocy6urnuryr6k6wyrnh6lvtkesixmvjota",
+      "lifecycle": "L3_source_backed",
+      "qualified_name": "pydantic.v1.fields.ModelField.prepare",
+      "root": false
+    },
+    {
+      "entity_kind": "uceg.entity.external_symbol",
+      "id": "uceg:v1:entity:asxvvugwspvptznbkguuuzi2vuqky3fysmtoukhn3jjbf3d552hq",
+      "lifecycle": "L1_candidate",
+      "qualified_name": "isinstance",
+      "root": false
+    },
+    {
+      "entity_kind": "uceg.entity.python.import_binding",
+      "id": "uceg:v1:entity:dlql7i732f66d2zlmuimsbgluoiloe4wgtww4ev77hwl63z5jz3a",
+      "lifecycle": "L3_source_backed",
+      "qualified_name": "pydantic.v1.fields.JsonWrapper",
+      "root": false
+    },
+    {
+      "entity_kind": "uceg.entity.python.instance_field",
+      "id": "uceg:v1:entity:hk7wxsey5tm4kdakaf5pkahy76sny7mvnpgaahkar6plhnjbenka",
+      "lifecycle": "L3_source_backed",
+      "qualified_name": "pydantic.v1.fields.ModelField.type_",
+      "root": false
+    },
+    {
+      "entity_kind": "uceg.entity.python.instance_field",
+      "id": "uceg:v1:entity:ie3e5gmlir5ezmgkf46irn55l2z3o5gdz6btq75pdl3kjzpj6iyq",
+      "lifecycle": "L3_source_backed",
+      "qualified_name": "pydantic.v1.fields.ModelField.parse_json",
+      "root": false
+    },
+    {
+      "entity_kind": "uceg.entity.python.import_binding",
+      "id": "uceg:v1:entity:jfq3tk57wn6phnk2i3xxeu5xwx3naqmy5dmh7oq2tmacv4p63qbq",
+      "lifecycle": "L3_source_backed",
+      "qualified_name": "pydantic.v1.fields.Any",
+      "root": false
+    },
+    {
+      "entity_kind": "uceg.entity.python.import_binding",
+      "id": "uceg:v1:entity:ml7neabv4jvpiddpep2q43qhpv5jgdkwhvtvhfmqwypi3ctenoeq",
+      "lifecycle": "L3_source_backed",
+      "qualified_name": "pydantic.v1.fields.lenient_issubclass",
+      "root": false
+    },
+    {
+      "entity_kind": "uceg.entity.python.parameter",
+      "id": "uceg:v1:entity:upvee6j5b5fqkltsmo3ejqbuglaggd5avghb5q5mgfausai5isdq",
+      "lifecycle": "L3_source_backed",
+      "qualified_name": "pydantic.v1.fields.ModelField._type_analysis.self",
+      "root": false
+    },
+    {
+      "entity_kind": "uceg.entity.python.import_binding",
+      "id": "uceg:v1:entity:zcuolvv3u4izmllosw2tvd4sk672yd2c25facjtvt2feps4czr3a",
+      "lifecycle": "L3_source_backed",
+      "qualified_name": "pydantic.v1.fields.Json",
+      "root": false
+    },
+    {
+      "entity_kind": "uceg.entity.python.method",
+      "id": "uceg:v1:entity:zpuvrnzie7n7kkwoopunusmsaivf4drzee62c44vtl3xjv4ym7fa",
+      "lifecycle": "L3_source_backed",
+      "qualified_name": "pydantic.v1.fields.ModelField._type_analysis",
+      "root": true
+    }
+  ],
+  "root_entity_id": "uceg:v1:entity:zpuvrnzie7n7kkwoopunusmsaivf4drzee62c44vtl3xjv4ym7fa",
+  "snapshot_id": "uceg:v1:package_snapshot:6shidai77djr5njxdya7mhe4qnt73r64ibcjxmoenwce76m2uhna",
+  "truncated": true
+}
