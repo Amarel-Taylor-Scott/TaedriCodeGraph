@@ -36,6 +36,7 @@ class PrimitiveRegistryError(ValueError):
 class CapsuleRole(str, Enum):
     SOURCE = "source"
     CONTRACT = "contract"
+    DESCRIPTOR = "descriptor"
     TEST = "test"
     VERIFIER = "verifier"
     DEPENDENCY_LOCK = "dependency_lock"

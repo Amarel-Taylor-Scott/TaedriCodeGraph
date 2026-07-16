@@ -1,0 +1,148 @@
+{
+  "artifacts": {
+    "call_graph_graphml": "graphs/primitive-candidates.graphml",
+    "call_graph_mermaid": "graphs/primitive-candidates.mmd",
+    "candidate_csv": "candidate-summary.csv",
+    "candidate_jsonl": "candidates.jsonl",
+    "console_data": "registry-console-data.json",
+    "harness_session": "harness-session.json",
+    "intake_event_jsonl": "intake-events.jsonl",
+    "search_index_jsonl": "search-index.jsonl",
+    "selected_pack": "selected-candidate.tcgpack",
+    "submission_jsonl": "submissions.jsonl",
+    "worker_receipts": "worker-receipts.json"
+  },
+  "evidence_class": "real-source-static-candidate-poc-not-production-authorization",
+  "factory": {
+    "call_edge_count": 1812,
+    "candidate_count": 347,
+    "candidate_kinds": {
+      "function": 85,
+      "method": 248,
+      "nested_function": 14
+    },
+    "diagnostic_count": 0,
+    "factory_run_id": "uceg:v1:primitive_factory_result:2y3635i7i4iwnk2n2c3vmznaxpfbfy5rnsg4batdxdj52hfsfpcq",
+    "generation_run_id": "uceg:v1:generation_run:ge2nmvpx2s4k3oz4ka6sarscns37qskwjvuaxenugk2lc5t3nxlq",
+    "intake_states": [
+      "indexed_candidate"
+    ],
+    "root_digest": "sha256:7fbde34501b4efa030b7d5c32dc49e9c2f043bcee91c6b3ad539a81610825cee",
+    "scanned_source_bytes": 371909,
+    "source_files": 24,
+    "unique_blob_bytes": 2246166,
+    "unique_blob_count": 1435
+  },
+  "harness_session": {
+    "event_kinds": [
+      "session_started",
+      "request_captured",
+      "search_receipt",
+      "candidate_selected",
+      "materialization_receipt",
+      "abstained",
+      "session_closed"
+    ],
+    "model_calls": 0,
+    "privacy_mode": "digest_only",
+    "session_id": "uceg:v1:prompt_session:6bm4qfmc77hfxhuxub2geyml6wgjz7aohu4h2nnrmuc5j7yqu6ra",
+    "terminal_outcome": "abstained",
+    "verification_calls": 0
+  },
+  "intake": {
+    "event_count": 1388,
+    "promoted_count": 0,
+    "states": [
+      "indexed_candidate"
+    ],
+    "submission_count": 347
+  },
+  "schema_version": "1.0.0",
+  "selected_candidate": {
+    "call_labels": [
+      "json.dumps",
+      "json.dumps.encode",
+      "to_primitive"
+    ],
+    "contract_digest": "sha256:8ce6b787c8acaa204a274f3a1254a994166dab1f55d0b7438b7e22681ca10486",
+    "descriptor_digest": "sha256:46640800a09b16ffeace4262656c3ca19146b40db3f93409004f1147be9d9715",
+    "doc_summary": "Return deterministic UTF-8 JSON for persisted human-inspectable records.",
+    "end_line": 115,
+    "entity_kind": "function",
+    "fragment_digest": "sha256:e3e6d877704087ab9c7d6253a91e4651bacea0f47d976222e0f96138c2fe393e",
+    "generation_run_id": "uceg:v1:generation_run:ge2nmvpx2s4k3oz4ka6sarscns37qskwjvuaxenugk2lc5t3nxlq",
+    "graph_digest": "sha256:d1b2f9fb348e13fb5dcb9ff1e036396feb26243adc93865210a651a4f2fda386",
+    "identity": {
+      "canonical_key": {
+        "descriptor_digest": "sha256:46640800a09b16ffeace4262656c3ca19146b40db3f93409004f1147be9d9715",
+        "generation_run_id": "uceg:v1:generation_run:ge2nmvpx2s4k3oz4ka6sarscns37qskwjvuaxenugk2lc5t3nxlq",
+        "primitive_id": "uceg:v1:primitive:kgsr6hcsfldn6odiblnqlf3yycr5a2zlz2v3mckl2q35wg655uiq",
+        "revision_id": "uceg:v1:primitive_revision:33ufwqkg2oubxsbgxwr3522pw7q5rhqhajet2g2mrznaoxlras6a"
+      },
+      "id": "uceg:v1:function_primitive_candidate:xsfvdcydhdgqmmxrjusdicd76d2lmqxo2arfsywvc5z6tcnz4lpa",
+      "kind": "function_primitive_candidate"
+    },
+    "intake_state": "indexed_candidate",
+    "lexical_tokens": [
+      "bytes",
+      "canonical",
+      "codegraph",
+      "deterministic",
+      "dumps",
+      "encode",
+      "for",
+      "human",
+      "inspectable",
+      "json",
+      "persisted",
+      "primitive",
+      "records",
+      "return",
+      "taedri",
+      "to",
+      "utf"
+    ],
+    "module": "taedri_codegraph.canonical",
+    "original_file_digest": "sha256:0244c199e706b925683c91efb8974a59e11320e3794d87cb5841f6b0d7a9f2e1",
+    "positional_arity": 1,
+    "primitive": {
+      "identity": {
+        "canonical_key": {
+          "name": "taedri_codegraph-canonical-canonical_json_bytes-04380e32be",
+          "namespace": "taedri.candidates"
+        },
+        "id": "uceg:v1:primitive:kgsr6hcsfldn6odiblnqlf3yycr5a2zlz2v3mckl2q35wg655uiq",
+        "kind": "primitive"
+      },
+      "name": "taedri_codegraph-canonical-canonical_json_bytes-04380e32be",
+      "namespace": "taedri.candidates"
+    },
+    "qualified_name": "canonical_json_bytes",
+    "revision_id": "uceg:v1:primitive_revision:33ufwqkg2oubxsbgxwr3522pw7q5rhqhajet2g2mrznaoxlras6a",
+    "source_path": "canonical.py",
+    "start_line": 100,
+    "submission_id": "uceg:v1:candidate_submission:p3tyg3sdmp627iqgxfsrfnwbjzzgfmdpyj4mmfk7r6c72dy5y6ya",
+    "tree_id": "uceg:v1:primitive_tree:k6vvq6cvskwua54dtsit5l6uojkmgyewqtrcrniyzownqiszzhta"
+  },
+  "selected_pack": {
+    "digest": "sha256:f3c7fe868b7fa4950736df64fcdd8b915beb25779583c07f5213ba041e8009c6",
+    "identity": "uceg:v1:primitive_pack:nui7uqqlsllrsrt76ne3wrzf7vvd34lr2ftgtnlvgjftlbhzbd6q",
+    "size_bytes": 3424
+  },
+  "source": {
+    "content_root_digest": "sha256:7fbde34501b4efa030b7d5c32dc49e9c2f043bcee91c6b3ad539a81610825cee",
+    "license_evidence_state": "unknown",
+    "license_expression": null,
+    "local_scope": "src/taedri_codegraph",
+    "source_revision": null,
+    "uri": "https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/tree/agent/initial-vertical-slice/src/taedri_codegraph"
+  },
+  "worker": {
+    "event_count": 6,
+    "job_count": 2,
+    "states": {
+      "uceg:v1:worker_job:hutfgtiayttaxjt2u4tokclphwa3hnwcv7pcu4loyjvvhlxnn7rq": "succeeded",
+      "uceg:v1:worker_job:nhzibmgnnixcyog2itrt6usxcwl32ml2s47xbogkf3lw66ludjbq": "succeeded"
+    }
+  }
+}

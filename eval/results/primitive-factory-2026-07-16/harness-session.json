@@ -1,0 +1,291 @@
+{
+  "events": [
+    {
+      "actor": "local-coding-harness",
+      "attributes": {
+        "privacy_mode": "digest_only"
+      },
+      "event_kind": "session_started",
+      "identity": {
+        "canonical_key": {
+          "actor": "local-coding-harness",
+          "attributes": {
+            "privacy_mode": "digest_only"
+          },
+          "event_kind": "session_started",
+          "input_refs": [],
+          "occurred_at": "2026-07-16T12:01:00Z",
+          "output_refs": [
+            "uceg:v1:prompt_session:6bm4qfmc77hfxhuxub2geyml6wgjz7aohu4h2nnrmuc5j7yqu6ra"
+          ],
+          "sequence": 1,
+          "session_id": "uceg:v1:prompt_session:6bm4qfmc77hfxhuxub2geyml6wgjz7aohu4h2nnrmuc5j7yqu6ra"
+        },
+        "id": "uceg:v1:prompt_session_event:xt3uqshglssonqzwjhus4w7p3ynfgjly7xa4ymciovjql74akt3q",
+        "kind": "prompt_session_event"
+      },
+      "input_refs": [],
+      "occurred_at": "2026-07-16T12:01:00Z",
+      "output_refs": [
+        "uceg:v1:prompt_session:6bm4qfmc77hfxhuxub2geyml6wgjz7aohu4h2nnrmuc5j7yqu6ra"
+      ],
+      "sequence": 1,
+      "session_id": "uceg:v1:prompt_session:6bm4qfmc77hfxhuxub2geyml6wgjz7aohu4h2nnrmuc5j7yqu6ra"
+    },
+    {
+      "actor": "local-coding-harness",
+      "attributes": {
+        "capture": "digest_only",
+        "intent": "reuse_search"
+      },
+      "event_kind": "request_captured",
+      "identity": {
+        "canonical_key": {
+          "actor": "local-coding-harness",
+          "attributes": {
+            "capture": "digest_only",
+            "intent": "reuse_search"
+          },
+          "event_kind": "request_captured",
+          "input_refs": [
+            "sha256:120b2213f681f74aed15752376c68bec16f991eaa5e3f720a16bdba0c215736e"
+          ],
+          "occurred_at": "2026-07-16T12:01:01Z",
+          "output_refs": [],
+          "sequence": 2,
+          "session_id": "uceg:v1:prompt_session:6bm4qfmc77hfxhuxub2geyml6wgjz7aohu4h2nnrmuc5j7yqu6ra"
+        },
+        "id": "uceg:v1:prompt_session_event:b7356isscwxbo7ma7fvy2my2txse3hiidjz5u75z4u2vpwuhe2vq",
+        "kind": "prompt_session_event"
+      },
+      "input_refs": [
+        "sha256:120b2213f681f74aed15752376c68bec16f991eaa5e3f720a16bdba0c215736e"
+      ],
+      "occurred_at": "2026-07-16T12:01:01Z",
+      "output_refs": [],
+      "sequence": 2,
+      "session_id": "uceg:v1:prompt_session:6bm4qfmc77hfxhuxub2geyml6wgjz7aohu4h2nnrmuc5j7yqu6ra"
+    },
+    {
+      "actor": "local-candidate-index",
+      "attributes": {
+        "candidate_count": 347,
+        "disclosure_depth": "D1",
+        "lanes": [
+          "exact",
+          "lexical",
+          "blocking",
+          "lsh-input"
+        ]
+      },
+      "event_kind": "search_receipt",
+      "identity": {
+        "canonical_key": {
+          "actor": "local-candidate-index",
+          "attributes": {
+            "candidate_count": 347,
+            "disclosure_depth": "D1",
+            "lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "lsh-input"
+            ]
+          },
+          "event_kind": "search_receipt",
+          "input_refs": [
+            "sha256:120b2213f681f74aed15752376c68bec16f991eaa5e3f720a16bdba0c215736e",
+            "sha256:4fdf06e3cbd64f0c3d9b6fb8be30b72bdf9142e0dad1858cabed52f4c2d1270b"
+          ],
+          "occurred_at": "2026-07-16T12:01:02Z",
+          "output_refs": [
+            "sha256:23f433a6b6c75075df351a868676687a92d35da58b69fb641fe9a57af9540137"
+          ],
+          "sequence": 3,
+          "session_id": "uceg:v1:prompt_session:6bm4qfmc77hfxhuxub2geyml6wgjz7aohu4h2nnrmuc5j7yqu6ra"
+        },
+        "id": "uceg:v1:prompt_session_event:xme2bbvraduydlzqlwo3mlxel3v6rzvfwqi4kye3fvwxts73jbuq",
+        "kind": "prompt_session_event"
+      },
+      "input_refs": [
+        "sha256:120b2213f681f74aed15752376c68bec16f991eaa5e3f720a16bdba0c215736e",
+        "sha256:4fdf06e3cbd64f0c3d9b6fb8be30b72bdf9142e0dad1858cabed52f4c2d1270b"
+      ],
+      "occurred_at": "2026-07-16T12:01:02Z",
+      "output_refs": [
+        "sha256:23f433a6b6c75075df351a868676687a92d35da58b69fb641fe9a57af9540137"
+      ],
+      "sequence": 3,
+      "session_id": "uceg:v1:prompt_session:6bm4qfmc77hfxhuxub2geyml6wgjz7aohu4h2nnrmuc5j7yqu6ra"
+    },
+    {
+      "actor": "local-coding-harness",
+      "attributes": {
+        "selection_reason": "exact qualified-name and lexical descriptor match"
+      },
+      "event_kind": "candidate_selected",
+      "identity": {
+        "canonical_key": {
+          "actor": "local-coding-harness",
+          "attributes": {
+            "selection_reason": "exact qualified-name and lexical descriptor match"
+          },
+          "event_kind": "candidate_selected",
+          "input_refs": [],
+          "occurred_at": "2026-07-16T12:01:03Z",
+          "output_refs": [
+            "uceg:v1:primitive_revision:33ufwqkg2oubxsbgxwr3522pw7q5rhqhajet2g2mrznaoxlras6a"
+          ],
+          "sequence": 4,
+          "session_id": "uceg:v1:prompt_session:6bm4qfmc77hfxhuxub2geyml6wgjz7aohu4h2nnrmuc5j7yqu6ra"
+        },
+        "id": "uceg:v1:prompt_session_event:geyoqqnxstzfwlmpo4cpjzbcvpzzztw2bjiqyutnerrezarrumsq",
+        "kind": "prompt_session_event"
+      },
+      "input_refs": [],
+      "occurred_at": "2026-07-16T12:01:03Z",
+      "output_refs": [
+        "uceg:v1:primitive_revision:33ufwqkg2oubxsbgxwr3522pw7q5rhqhajet2g2mrznaoxlras6a"
+      ],
+      "sequence": 4,
+      "session_id": "uceg:v1:prompt_session:6bm4qfmc77hfxhuxub2geyml6wgjz7aohu4h2nnrmuc5j7yqu6ra"
+    },
+    {
+      "actor": "local-primitive-registry",
+      "attributes": {
+        "disclosure_depth": "D4",
+        "pack_bytes": 3424,
+        "roles": [
+          "source",
+          "contract",
+          "descriptor",
+          "graph_delta"
+        ]
+      },
+      "event_kind": "materialization_receipt",
+      "identity": {
+        "canonical_key": {
+          "actor": "local-primitive-registry",
+          "attributes": {
+            "disclosure_depth": "D4",
+            "pack_bytes": 3424,
+            "roles": [
+              "source",
+              "contract",
+              "descriptor",
+              "graph_delta"
+            ]
+          },
+          "event_kind": "materialization_receipt",
+          "input_refs": [
+            "uceg:v1:primitive_revision:33ufwqkg2oubxsbgxwr3522pw7q5rhqhajet2g2mrznaoxlras6a"
+          ],
+          "occurred_at": "2026-07-16T12:01:04Z",
+          "output_refs": [
+            "sha256:f3c7fe868b7fa4950736df64fcdd8b915beb25779583c07f5213ba041e8009c6"
+          ],
+          "sequence": 5,
+          "session_id": "uceg:v1:prompt_session:6bm4qfmc77hfxhuxub2geyml6wgjz7aohu4h2nnrmuc5j7yqu6ra"
+        },
+        "id": "uceg:v1:prompt_session_event:hzcay6oign64rps2c4t4telwpih6whq4vi3rwipsyqo2nhqlml3q",
+        "kind": "prompt_session_event"
+      },
+      "input_refs": [
+        "uceg:v1:primitive_revision:33ufwqkg2oubxsbgxwr3522pw7q5rhqhajet2g2mrznaoxlras6a"
+      ],
+      "occurred_at": "2026-07-16T12:01:04Z",
+      "output_refs": [
+        "sha256:f3c7fe868b7fa4950736df64fcdd8b915beb25779583c07f5213ba041e8009c6"
+      ],
+      "sequence": 5,
+      "session_id": "uceg:v1:prompt_session:6bm4qfmc77hfxhuxub2geyml6wgjz7aohu4h2nnrmuc5j7yqu6ra"
+    },
+    {
+      "actor": "local-coding-harness",
+      "attributes": {
+        "reason_code": "model_and_independent_verifier_not_configured"
+      },
+      "event_kind": "abstained",
+      "identity": {
+        "canonical_key": {
+          "actor": "local-coding-harness",
+          "attributes": {
+            "reason_code": "model_and_independent_verifier_not_configured"
+          },
+          "event_kind": "abstained",
+          "input_refs": [],
+          "occurred_at": "2026-07-16T12:01:05Z",
+          "output_refs": [],
+          "sequence": 6,
+          "session_id": "uceg:v1:prompt_session:6bm4qfmc77hfxhuxub2geyml6wgjz7aohu4h2nnrmuc5j7yqu6ra"
+        },
+        "id": "uceg:v1:prompt_session_event:3wzgqvm7qtl7nekqycvk6oewtla4hc3zerlkvy4o6u6c6in55hja",
+        "kind": "prompt_session_event"
+      },
+      "input_refs": [],
+      "occurred_at": "2026-07-16T12:01:05Z",
+      "output_refs": [],
+      "sequence": 6,
+      "session_id": "uceg:v1:prompt_session:6bm4qfmc77hfxhuxub2geyml6wgjz7aohu4h2nnrmuc5j7yqu6ra"
+    },
+    {
+      "actor": "local-coding-harness",
+      "attributes": {},
+      "event_kind": "session_closed",
+      "identity": {
+        "canonical_key": {
+          "actor": "local-coding-harness",
+          "attributes": {},
+          "event_kind": "session_closed",
+          "input_refs": [],
+          "occurred_at": "2026-07-16T12:01:06Z",
+          "output_refs": [],
+          "sequence": 7,
+          "session_id": "uceg:v1:prompt_session:6bm4qfmc77hfxhuxub2geyml6wgjz7aohu4h2nnrmuc5j7yqu6ra"
+        },
+        "id": "uceg:v1:prompt_session_event:fywy3ts6l2l452tq7krlfn56o6z3acjrbizln2en4gyjhisvfxna",
+        "kind": "prompt_session_event"
+      },
+      "input_refs": [],
+      "occurred_at": "2026-07-16T12:01:06Z",
+      "output_refs": [],
+      "sequence": 7,
+      "session_id": "uceg:v1:prompt_session:6bm4qfmc77hfxhuxub2geyml6wgjz7aohu4h2nnrmuc5j7yqu6ra"
+    }
+  ],
+  "schema_version": "1.0.0",
+  "session": {
+    "format_version": "1.0.0",
+    "harness": {
+      "config_digest": "sha256:3ed84d3f9384b0e80e70ce230f7094818656b67974b6733707be525dcd229f25",
+      "id": "taedri.local-search-first-harness",
+      "interface": "mcp-compatible-reference",
+      "version": "1.0.0"
+    },
+    "identity": {
+      "canonical_key": {
+        "format_version": "1.0.0",
+        "harness": {
+          "config_digest": "sha256:3ed84d3f9384b0e80e70ce230f7094818656b67974b6733707be525dcd229f25",
+          "id": "taedri.local-search-first-harness",
+          "interface": "mcp-compatible-reference",
+          "version": "1.0.0"
+        },
+        "policy_digest": "sha256:e1ffa446582e8fe6d3a731d8676743eaddc722e478e02ce22cf7f0c9c7f05f3c",
+        "privacy_mode": "digest_only",
+        "repository_snapshot_id": "uceg:v1:generation_run:ge2nmvpx2s4k3oz4ka6sarscns37qskwjvuaxenugk2lc5t3nxlq",
+        "started_at": "2026-07-16T12:01:00Z",
+        "tenant_id": "taedri-poc",
+        "workspace_id": "taedri-codegraph-real-source"
+      },
+      "id": "uceg:v1:prompt_session:6bm4qfmc77hfxhuxub2geyml6wgjz7aohu4h2nnrmuc5j7yqu6ra",
+      "kind": "prompt_session"
+    },
+    "policy_digest": "sha256:e1ffa446582e8fe6d3a731d8676743eaddc722e478e02ce22cf7f0c9c7f05f3c",
+    "privacy_mode": "digest_only",
+    "repository_snapshot_id": "uceg:v1:generation_run:ge2nmvpx2s4k3oz4ka6sarscns37qskwjvuaxenugk2lc5t3nxlq",
+    "started_at": "2026-07-16T12:01:00Z",
+    "tenant_id": "taedri-poc",
+    "workspace_id": "taedri-codegraph-real-source"
+  }
+}

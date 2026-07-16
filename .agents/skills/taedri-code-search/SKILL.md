@@ -24,6 +24,9 @@ proof of compatibility, correctness, licensing suitability, or safe execution.
 6. Only then request bounded implementation text with
    `tcg context "<intent>" --store .tcg --limit 3 --source`.
 7. Verify the selected code's contract, version, evidence, and license before reuse.
+8. When the harness supports Taedri session receipts, retain request digests, search and
+   materialization receipts, model attempts, verification, and acceptance or abstention.
+   Do not persist raw prompts or source bodies unless an explicit capture policy allows it.
 
 For MCP-capable harnesses, use `search_code`, `get_code_context`, `get_entity`,
 `get_neighbors`, `list_representations`, `search_metadata`, and

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.taedri.dev/codegraph/worker-job.v1.schema.json",
+  "title": "Taedri worker job v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["identity", "format_version", "queue", "kind", "subject_id", "payload_ref", "idempotency_key", "priority", "max_attempts", "created_at", "required_capabilities"],
+  "properties": {
+    "identity": {"type": "object"},
+    "format_version": {"const": "1.0.0"},
+    "queue": {"type": "string", "minLength": 1},
+    "kind": {"enum": ["acquire", "extract", "describe", "embed", "index", "verify", "materialize", "render"]},
+    "subject_id": {"type": "string", "minLength": 1},
+    "payload_ref": {"type": "string", "pattern": "^(sha256:|uceg:v1:).+"},
+    "idempotency_key": {"type": "string", "minLength": 1},
+    "priority": {"type": "integer", "minimum": 0, "maximum": 100},
+    "max_attempts": {"type": "integer", "minimum": 1},
+    "created_at": {"type": "string", "format": "date-time"},
+    "required_capabilities": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+  }
+}

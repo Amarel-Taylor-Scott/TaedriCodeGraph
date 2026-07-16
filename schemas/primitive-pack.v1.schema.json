@@ -85,6 +85,7 @@
       "enum": [
         "source",
         "contract",
+        "descriptor",
         "test",
         "verifier",
         "dependency_lock",

@@ -51,6 +51,14 @@
       "depends_on": ["shared-kernel", "shared-schemas"]
     },
     {
+      "id": "primitive-factory",
+      "path": "packages/primitive-factory",
+      "kind": "library",
+      "status": "active",
+      "owns": ["source-backed primitive candidate extraction", "candidate contracts", "search descriptors", "candidate graph neighborhoods"],
+      "depends_on": ["shared-kernel", "shared-schemas", "primitive-capsules", "analyzer-python"]
+    },
+    {
       "id": "ingestion-pypi",
       "path": "packages/ingestion-pypi",
       "kind": "library",
@@ -107,12 +115,28 @@
       "depends_on": ["shared-kernel", "shared-schemas"]
     },
     {
+      "id": "session-ledger",
+      "path": "packages/session-ledger",
+      "kind": "library",
+      "status": "active",
+      "owns": ["prompt privacy modes", "harness session events", "acceptance and abstention receipts"],
+      "depends_on": ["shared-kernel", "shared-schemas"]
+    },
+    {
+      "id": "worker-runtime",
+      "path": "services/worker-runtime",
+      "kind": "service",
+      "status": "active",
+      "owns": ["idempotent jobs", "capability-aware leases", "attempt receipts", "retry and dead-letter policy"],
+      "depends_on": ["shared-kernel", "shared-schemas", "primitive-factory", "storage"]
+    },
+    {
       "id": "indexer-service",
       "path": "services/indexer",
       "kind": "service",
       "status": "scaffolded",
       "owns": ["ingestion orchestration", "projection builds", "invalidation scheduling"],
-      "depends_on": ["ingestion-pypi", "ingestion-git", "analyzer-python", "analyzer-polyglot", "storage", "retrieval"]
+      "depends_on": ["ingestion-pypi", "ingestion-git", "analyzer-python", "analyzer-polyglot", "primitive-factory", "worker-runtime", "storage", "retrieval"]
     },
     {
       "id": "query-api",
@@ -144,7 +168,7 @@
       "kind": "integration",
       "status": "scaffolded",
       "owns": ["Codex and Claude instructions", "skills", "hooks", "harness policies"],
-      "depends_on": ["shared-schemas", "mcp-integration"]
+      "depends_on": ["shared-schemas", "mcp-integration", "session-ledger"]
     },
     {
       "id": "explorer-app",
@@ -152,7 +176,7 @@
       "kind": "application",
       "status": "scaffolded",
       "owns": ["human graph explorer", "provenance and search explanation UI"],
-      "depends_on": ["query-api"]
+      "depends_on": ["query-api", "registry-api", "session-ledger"]
     },
     {
       "id": "deployment",

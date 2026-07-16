@@ -1,0 +1,267 @@
+{
+  "events": [
+    {
+      "attempt": 0,
+      "detail": "job accepted under its queue-scoped idempotency key",
+      "event_kind": "enqueued",
+      "identity": {
+        "canonical_key": {
+          "attempt": 0,
+          "detail": "job accepted under its queue-scoped idempotency key",
+          "event_kind": "enqueued",
+          "job_id": "uceg:v1:worker_job:nhzibmgnnixcyog2itrt6usxcwl32ml2s47xbogkf3lw66ludjbq",
+          "lease_id": null,
+          "metrics": {},
+          "occurred_at": "2026-07-16T12:00:00Z",
+          "output_refs": [],
+          "sequence": 1,
+          "worker_id": null
+        },
+        "id": "uceg:v1:worker_event:zbc2i2mh2alvt7ssfcdyg2nniev5at4prisu265uid3qxnu7a5nq",
+        "kind": "worker_event"
+      },
+      "job_id": "uceg:v1:worker_job:nhzibmgnnixcyog2itrt6usxcwl32ml2s47xbogkf3lw66ludjbq",
+      "lease_id": null,
+      "metrics": {},
+      "occurred_at": "2026-07-16T12:00:00Z",
+      "output_refs": [],
+      "sequence": 1,
+      "worker_id": null
+    },
+    {
+      "attempt": 1,
+      "detail": "worker acquired an exclusive time-bounded lease",
+      "event_kind": "leased",
+      "identity": {
+        "canonical_key": {
+          "attempt": 1,
+          "detail": "worker acquired an exclusive time-bounded lease",
+          "event_kind": "leased",
+          "job_id": "uceg:v1:worker_job:nhzibmgnnixcyog2itrt6usxcwl32ml2s47xbogkf3lw66ludjbq",
+          "lease_id": "uceg:v1:worker_lease:etyuk2j5gta7qppan6v6lfqeuo5idjnslq7k2tfazmd4cc5kjmua",
+          "metrics": {},
+          "occurred_at": "2026-07-16T12:00:01Z",
+          "output_refs": [],
+          "sequence": 2,
+          "worker_id": "local-static-worker"
+        },
+        "id": "uceg:v1:worker_event:pe5g7zg5r74bxybnvkatvcr6627sq2acq2xlzhgw3dhocg2psaoa",
+        "kind": "worker_event"
+      },
+      "job_id": "uceg:v1:worker_job:nhzibmgnnixcyog2itrt6usxcwl32ml2s47xbogkf3lw66ludjbq",
+      "lease_id": "uceg:v1:worker_lease:etyuk2j5gta7qppan6v6lfqeuo5idjnslq7k2tfazmd4cc5kjmua",
+      "metrics": {},
+      "occurred_at": "2026-07-16T12:00:01Z",
+      "output_refs": [],
+      "sequence": 2,
+      "worker_id": "local-static-worker"
+    },
+    {
+      "attempt": 1,
+      "detail": "worker completed the leased job",
+      "event_kind": "succeeded",
+      "identity": {
+        "canonical_key": {
+          "attempt": 1,
+          "detail": "worker completed the leased job",
+          "event_kind": "succeeded",
+          "job_id": "uceg:v1:worker_job:nhzibmgnnixcyog2itrt6usxcwl32ml2s47xbogkf3lw66ludjbq",
+          "lease_id": "uceg:v1:worker_lease:etyuk2j5gta7qppan6v6lfqeuo5idjnslq7k2tfazmd4cc5kjmua",
+          "metrics": {
+            "candidate_count": 347,
+            "diagnostic_count": 0,
+            "source_bytes": 371909,
+            "source_files": 24
+          },
+          "occurred_at": "2026-07-16T12:00:05Z",
+          "output_refs": [
+            "uceg:v1:primitive_factory_result:2y3635i7i4iwnk2n2c3vmznaxpfbfy5rnsg4batdxdj52hfsfpcq"
+          ],
+          "sequence": 3,
+          "worker_id": "local-static-worker"
+        },
+        "id": "uceg:v1:worker_event:2uimoqxadnvdfeb2givioy454nd266rbj6keauhr6obqzcg5h4vq",
+        "kind": "worker_event"
+      },
+      "job_id": "uceg:v1:worker_job:nhzibmgnnixcyog2itrt6usxcwl32ml2s47xbogkf3lw66ludjbq",
+      "lease_id": "uceg:v1:worker_lease:etyuk2j5gta7qppan6v6lfqeuo5idjnslq7k2tfazmd4cc5kjmua",
+      "metrics": {
+        "candidate_count": 347,
+        "diagnostic_count": 0,
+        "source_bytes": 371909,
+        "source_files": 24
+      },
+      "occurred_at": "2026-07-16T12:00:05Z",
+      "output_refs": [
+        "uceg:v1:primitive_factory_result:2y3635i7i4iwnk2n2c3vmznaxpfbfy5rnsg4batdxdj52hfsfpcq"
+      ],
+      "sequence": 3,
+      "worker_id": "local-static-worker"
+    },
+    {
+      "attempt": 0,
+      "detail": "job accepted under its queue-scoped idempotency key",
+      "event_kind": "enqueued",
+      "identity": {
+        "canonical_key": {
+          "attempt": 0,
+          "detail": "job accepted under its queue-scoped idempotency key",
+          "event_kind": "enqueued",
+          "job_id": "uceg:v1:worker_job:hutfgtiayttaxjt2u4tokclphwa3hnwcv7pcu4loyjvvhlxnn7rq",
+          "lease_id": null,
+          "metrics": {},
+          "occurred_at": "2026-07-16T12:00:06Z",
+          "output_refs": [],
+          "sequence": 4,
+          "worker_id": null
+        },
+        "id": "uceg:v1:worker_event:fg5ugpgonsra4ql7gwjemns4odkktrv2el4ul4733vsxv3tjlgnq",
+        "kind": "worker_event"
+      },
+      "job_id": "uceg:v1:worker_job:hutfgtiayttaxjt2u4tokclphwa3hnwcv7pcu4loyjvvhlxnn7rq",
+      "lease_id": null,
+      "metrics": {},
+      "occurred_at": "2026-07-16T12:00:06Z",
+      "output_refs": [],
+      "sequence": 4,
+      "worker_id": null
+    },
+    {
+      "attempt": 1,
+      "detail": "worker acquired an exclusive time-bounded lease",
+      "event_kind": "leased",
+      "identity": {
+        "canonical_key": {
+          "attempt": 1,
+          "detail": "worker acquired an exclusive time-bounded lease",
+          "event_kind": "leased",
+          "job_id": "uceg:v1:worker_job:hutfgtiayttaxjt2u4tokclphwa3hnwcv7pcu4loyjvvhlxnn7rq",
+          "lease_id": "uceg:v1:worker_lease:2dk6apbgl45ox37us7iegpa3rn2duj74j37hmzjyepzb7cgsy55q",
+          "metrics": {},
+          "occurred_at": "2026-07-16T12:00:07Z",
+          "output_refs": [],
+          "sequence": 5,
+          "worker_id": "local-index-worker"
+        },
+        "id": "uceg:v1:worker_event:oj2fcki5lm7y6wmyizopsjxrpcm7klrkp5m52ln5h2l4mdspbotq",
+        "kind": "worker_event"
+      },
+      "job_id": "uceg:v1:worker_job:hutfgtiayttaxjt2u4tokclphwa3hnwcv7pcu4loyjvvhlxnn7rq",
+      "lease_id": "uceg:v1:worker_lease:2dk6apbgl45ox37us7iegpa3rn2duj74j37hmzjyepzb7cgsy55q",
+      "metrics": {},
+      "occurred_at": "2026-07-16T12:00:07Z",
+      "output_refs": [],
+      "sequence": 5,
+      "worker_id": "local-index-worker"
+    },
+    {
+      "attempt": 1,
+      "detail": "worker completed the leased job",
+      "event_kind": "succeeded",
+      "identity": {
+        "canonical_key": {
+          "attempt": 1,
+          "detail": "worker completed the leased job",
+          "event_kind": "succeeded",
+          "job_id": "uceg:v1:worker_job:hutfgtiayttaxjt2u4tokclphwa3hnwcv7pcu4loyjvvhlxnn7rq",
+          "lease_id": "uceg:v1:worker_lease:2dk6apbgl45ox37us7iegpa3rn2duj74j37hmzjyepzb7cgsy55q",
+          "metrics": {
+            "descriptor_count": 347,
+            "embedding_calls": 0,
+            "lsh_input_families": 3
+          },
+          "occurred_at": "2026-07-16T12:00:09Z",
+          "output_refs": [
+            "sha256:4fdf06e3cbd64f0c3d9b6fb8be30b72bdf9142e0dad1858cabed52f4c2d1270b"
+          ],
+          "sequence": 6,
+          "worker_id": "local-index-worker"
+        },
+        "id": "uceg:v1:worker_event:u6pqng55kudk6tvufjone6jhe4ymfenddmxdrcdlstzhdnbazqqa",
+        "kind": "worker_event"
+      },
+      "job_id": "uceg:v1:worker_job:hutfgtiayttaxjt2u4tokclphwa3hnwcv7pcu4loyjvvhlxnn7rq",
+      "lease_id": "uceg:v1:worker_lease:2dk6apbgl45ox37us7iegpa3rn2duj74j37hmzjyepzb7cgsy55q",
+      "metrics": {
+        "descriptor_count": 347,
+        "embedding_calls": 0,
+        "lsh_input_families": 3
+      },
+      "occurred_at": "2026-07-16T12:00:09Z",
+      "output_refs": [
+        "sha256:4fdf06e3cbd64f0c3d9b6fb8be30b72bdf9142e0dad1858cabed52f4c2d1270b"
+      ],
+      "sequence": 6,
+      "worker_id": "local-index-worker"
+    }
+  ],
+  "jobs": [
+    {
+      "created_at": "2026-07-16T12:00:00Z",
+      "format_version": "1.0.0",
+      "idempotency_key": "extract:sha256:b9701e7c1f16183fffb0c7a17f1d701e9e29852d018a8b7f05641a0ac82b2708",
+      "identity": {
+        "canonical_key": {
+          "created_at": "2026-07-16T12:00:00Z",
+          "format_version": "1.0.0",
+          "idempotency_key": "extract:sha256:b9701e7c1f16183fffb0c7a17f1d701e9e29852d018a8b7f05641a0ac82b2708",
+          "kind": "extract",
+          "max_attempts": 3,
+          "payload_ref": "sha256:b9701e7c1f16183fffb0c7a17f1d701e9e29852d018a8b7f05641a0ac82b2708",
+          "priority": 90,
+          "queue": "indexing",
+          "required_capabilities": [
+            "primitive-capsule-v1",
+            "python-ast"
+          ],
+          "subject_id": "repository:taedri-codegraph:working-tree"
+        },
+        "id": "uceg:v1:worker_job:nhzibmgnnixcyog2itrt6usxcwl32ml2s47xbogkf3lw66ludjbq",
+        "kind": "worker_job"
+      },
+      "kind": "extract",
+      "max_attempts": 3,
+      "payload_ref": "sha256:b9701e7c1f16183fffb0c7a17f1d701e9e29852d018a8b7f05641a0ac82b2708",
+      "priority": 90,
+      "queue": "indexing",
+      "required_capabilities": [
+        "primitive-capsule-v1",
+        "python-ast"
+      ],
+      "subject_id": "repository:taedri-codegraph:working-tree"
+    },
+    {
+      "created_at": "2026-07-16T12:00:06Z",
+      "format_version": "1.0.0",
+      "idempotency_key": "index:uceg:v1:primitive_factory_result:2y3635i7i4iwnk2n2c3vmznaxpfbfy5rnsg4batdxdj52hfsfpcq",
+      "identity": {
+        "canonical_key": {
+          "created_at": "2026-07-16T12:00:06Z",
+          "format_version": "1.0.0",
+          "idempotency_key": "index:uceg:v1:primitive_factory_result:2y3635i7i4iwnk2n2c3vmznaxpfbfy5rnsg4batdxdj52hfsfpcq",
+          "kind": "index",
+          "max_attempts": 3,
+          "payload_ref": "uceg:v1:primitive_factory_result:2y3635i7i4iwnk2n2c3vmznaxpfbfy5rnsg4batdxdj52hfsfpcq",
+          "priority": 80,
+          "queue": "indexing",
+          "required_capabilities": [
+            "candidate-descriptor-v1"
+          ],
+          "subject_id": "uceg:v1:primitive_factory_result:2y3635i7i4iwnk2n2c3vmznaxpfbfy5rnsg4batdxdj52hfsfpcq"
+        },
+        "id": "uceg:v1:worker_job:hutfgtiayttaxjt2u4tokclphwa3hnwcv7pcu4loyjvvhlxnn7rq",
+        "kind": "worker_job"
+      },
+      "kind": "index",
+      "max_attempts": 3,
+      "payload_ref": "uceg:v1:primitive_factory_result:2y3635i7i4iwnk2n2c3vmznaxpfbfy5rnsg4batdxdj52hfsfpcq",
+      "priority": 80,
+      "queue": "indexing",
+      "required_capabilities": [
+        "candidate-descriptor-v1"
+      ],
+      "subject_id": "uceg:v1:primitive_factory_result:2y3635i7i4iwnk2n2c3vmznaxpfbfy5rnsg4batdxdj52hfsfpcq"
+    }
+  ],
+  "schema_version": "1.0.0"
+}

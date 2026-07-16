@@ -22,6 +22,10 @@ This repository currently contains the first executable vertical slice:
   namespace separation;
 - registry-native primitive capsules with content-addressed trees, immutable revision
   DAGs, compare-and-swap branches, forks/merges, and selective thin downloads;
+- an AST-only primitive factory that turns real functions and methods into candidate
+  capsules, contracts, graph neighborhoods, and exact/lexical/blocking/LSH search data;
+- append-only candidate intake, worker lease, and privacy-aware prompt-session ledgers
+  that prevent generated code from self-promoting;
 - a polyglot inventory adapter boundary plus optional MCP, Codex, and Claude harnesses.
 
 The implementation deliberately separates canonical graph truth from disposable
@@ -39,6 +43,10 @@ tcg analyze path ./src --store .tcg --publish
 tcg search "extension registry" --store .tcg
 tcg context "find an extension registry" --store .tcg
 tcg edge search --predicate uceg.predicate.calls_may --store .tcg
+
+# Generate real-source primitive candidates and the product console.
+PYTHONPATH=src python tools/populate_primitive_candidates.py
+python tools/generate_registry_console.py
 ```
 
 No third-party runtime dependency is required for the graph core. Install
@@ -121,11 +129,39 @@ or inspect the machine-readable [deployment topology](deploy/topology.v1.json). 
 [validation report](docs/reports/PRIMITIVE_CAPSULE_VALIDATION_2026-07-16.md) links the
 real-source capsule receipt and downloadable pack.
 
+## Primitive factory, product console, and business model
+
+The next vertical slice runs the primitive factory over Taedri's own implementation. It
+produced 347 real-source function/method candidates, 1,812 syntax-derived call edges,
+1,388 append-only intake events, two successful leased worker jobs, and a digest-only
+coding-harness trace. No model or verifier was configured, so the sample session
+abstained and zero candidates were promoted.
+
+![Real-source primitive candidate distribution](docs/visuals/assets/primitive-candidate-kinds.svg)
+
+![Taedri product and operating model](docs/visuals/assets/product-operating-model.svg)
+
+Read the [business model and product vertical-slice decision](docs/product/BUSINESS_MODEL_AND_PRODUCT_VERTICAL_SLICE.md),
+inspect the [validation report](docs/reports/PRIMITIVE_FACTORY_PRODUCT_SLICE_2026-07-16.md),
+or open the [interactive registry console](apps/explorer/registry-console.html). Raw
+CSV, JSONL, GraphML, Mermaid, pack, receipt, and console data live in
+[`eval/results/primitive-factory-2026-07-16`](eval/results/primitive-factory-2026-07-16/).
+
+The commercial hypothesis is a private capability registry plus coding-harness wedge,
+followed by team subscription, metered managed verification, and enterprise deployment.
+The governing value unit is an independently accepted, policy-compliant outcome.
+Currency prices and ROI claims remain unset pending customer, cost, quality, and
+retention evidence; the current absence of a project license also blocks describing a
+community tier as open source.
+
 ## Project status
 
 Pre-alpha. The current slice proves the identity/evidence/ingestion/publication/query
-spine and the universal representation extension mechanism. Remote PyPI/Git acquisition,
-semantic cross-language analyzers, production capsule storage, real model embeddings,
-calibrated fusion, and compatibility routing remain explicit later milestones.
+spine, the universal representation extension mechanism, real-source primitive
+candidate generation, append-only operational receipts, and a self-contained frontend.
+Remote PyPI/Git acquisition for the factory, semantic cross-language analyzers,
+production databases/queues/object storage, real model and embedding providers,
+independent sandbox verification, calibrated fusion, tenant authorization, billing, and
+compatibility routing remain explicit later milestones.
 
 No project license has been selected yet; all rights are reserved until one is added.

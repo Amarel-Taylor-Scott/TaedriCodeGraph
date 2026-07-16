@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.taedri.dev/codegraph/prompt-session-event.v1.schema.json",
+  "title": "Taedri prompt session event v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["identity", "session_id", "sequence", "event_kind", "actor", "occurred_at", "input_refs", "output_refs", "attributes"],
+  "properties": {
+    "identity": {"type": "object"},
+    "session_id": {"type": "string", "minLength": 1},
+    "sequence": {"type": "integer", "minimum": 1},
+    "event_kind": {"enum": ["session_started", "request_captured", "search_receipt", "candidate_selected", "materialization_receipt", "model_attempt", "verification_receipt", "result_accepted", "abstained", "session_closed"]},
+    "actor": {"type": "string", "minLength": 1},
+    "occurred_at": {"type": "string", "format": "date-time"},
+    "input_refs": {"type": "array", "items": {"type": "string"}},
+    "output_refs": {"type": "array", "items": {"type": "string"}},
+    "attributes": {"type": "object"}
+  }
+}

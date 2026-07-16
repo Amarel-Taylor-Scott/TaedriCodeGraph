@@ -1,0 +1,141 @@
+{
+  "schema_version": "1.0.0",
+  "status": "commercial-hypothesis-requiring-customer-and-unit-economic-validation",
+  "category": "verified-code-capability-registry-and-agent-control-plane",
+  "core_value_unit": {
+    "name": "independently-accepted-policy-compliant-outcome",
+    "definition": "A coding or reuse outcome accepted only after retrieval, provenance, contract, policy, and verification receipts satisfy the caller's declared gate.",
+    "billing_rule": "A rejected, abstained, timed-out, unverified, or policy-blocked attempt is never counted as a successful outcome. Infrastructure and third-party provider usage may be metered separately only when disclosed in advance."
+  },
+  "initial_wedge": {
+    "product": "private-capability-registry-plus-coding-harness-integration",
+    "job_to_be_done": "Let a coding agent find and selectively materialize organization-approved implementations without rereading whole repositories or trusting similarity as proof.",
+    "buyer": "engineering platform, developer productivity, application security, or AI enablement leader",
+    "daily_user": "developer or coding agent operating through an IDE, CLI, CI, MCP, hook, or skill",
+    "adoption_path": [
+      "index one existing private repository or package portfolio",
+      "connect a search-first coding harness in advisory mode",
+      "measure retrieval, abstention, verification, latency, and accepted outcomes",
+      "enable policy-gated reuse for proven primitive families",
+      "expand to more languages, teams, and managed orchestration"
+    ]
+  },
+  "offers": [
+    {
+      "id": "local-evaluator",
+      "commercial_state": "available-as-pre-alpha-source; redistribution terms pending project-license decision",
+      "target": "individual evaluators and open design collaborators",
+      "deployment": "local process and local immutable store",
+      "value": ["AST-only ingestion", "hybrid search", "primitive capsules", "local MCP and CLI"],
+      "revenue_model": "none during validation"
+    },
+    {
+      "id": "team-private-registry",
+      "commercial_state": "planned",
+      "target": "one engineering organization",
+      "deployment": "managed or customer-controlled modular service",
+      "value": ["private namespaces", "ACL and policy", "candidate review", "shared search", "audit receipts"],
+      "revenue_model": "base subscription plus declared storage and active-index capacity tiers"
+    },
+    {
+      "id": "managed-verification-control-plane",
+      "commercial_state": "planned-after-real-workload-gates",
+      "target": "multi-team organizations using several coding models and harnesses",
+      "deployment": "managed control plane with isolated workers",
+      "value": ["router and provider policy", "verification jobs", "progressive disclosure", "usage and quality analytics"],
+      "revenue_model": "platform subscription plus metered verified execution and third-party provider pass-through"
+    },
+    {
+      "id": "enterprise-self-hosted",
+      "commercial_state": "planned",
+      "target": "regulated, high-security, residency-sensitive, or very large organizations",
+      "deployment": "private cloud, dedicated region, or customer infrastructure",
+      "value": ["SSO and SCIM", "residency", "policy packs", "support", "assurance evidence", "private model adapters"],
+      "revenue_model": "annual platform agreement plus support and capacity"
+    },
+    {
+      "id": "capability-marketplace",
+      "commercial_state": "later-option-not-an-initial-dependency",
+      "target": "verified primitive publishers and consumers",
+      "deployment": "federated public and private registries",
+      "value": ["signed releases", "portable evidence", "fork lineage", "policy-scoped reputation"],
+      "revenue_model": "transaction take rate or publisher services only after supply, demand, and licensing validation"
+    }
+  ],
+  "meters": [
+    {
+      "id": "active-private-entity-capacity",
+      "unit": "entity-month",
+      "applies_to": ["team-private-registry", "enterprise-self-hosted"],
+      "anti_abuse_rule": "Deduplicated immutable entities count once per declared tenant scope and active projection epoch."
+    },
+    {
+      "id": "retained-evidence-storage",
+      "unit": "compressed-byte-month",
+      "applies_to": ["team-private-registry", "managed-verification-control-plane"],
+      "anti_abuse_rule": "Content-addressed duplicates are not charged repeatedly within the contracted deduplication scope."
+    },
+    {
+      "id": "verified-execution",
+      "unit": "completed-verification-job",
+      "applies_to": ["managed-verification-control-plane"],
+      "anti_abuse_rule": "The receipt must disclose environment, policy, verifier, outcome, resource class, and whether the job contributed to an accepted result."
+    },
+    {
+      "id": "accepted-outcome",
+      "unit": "accepted-outcome-receipt",
+      "applies_to": ["managed-verification-control-plane"],
+      "anti_abuse_rule": "Only independently verified and policy-accepted results qualify; retries and failed attempts never count as successful outcomes."
+    },
+    {
+      "id": "third-party-model-and-embedding-usage",
+      "unit": "provider-native-usage-with-receipt",
+      "applies_to": ["managed-verification-control-plane"],
+      "anti_abuse_rule": "Provider charges and any Taedri orchestration fee are separately visible; cached or skipped calls are not represented as provider usage."
+    }
+  ],
+  "non_billable_successes": [
+    "candidate submissions",
+    "rejected candidates",
+    "abstentions",
+    "failed or expired worker attempts",
+    "similarity-only nominations",
+    "unverified model outputs",
+    "policy-denied results"
+  ],
+  "differentiation": [
+    "Exact identity and provenance remain independent of model-generated representations.",
+    "Search nominates; typed contracts, policy, evidence, and verification decide.",
+    "Primitive source and evidence are selectively downloadable through content-addressed thin packs.",
+    "Multiple LLMs, deterministic labelers, embeddings, sparse features, LSH families, and graph projections can compete without becoming canonical truth.",
+    "Prompt and worker receipts make quality, privacy, cost, and failure measurable across harnesses."
+  ],
+  "claim_policy": {
+    "currency_prices": "unset-until-customer-discovery-and-cost-measurement",
+    "roi_or_savings_claims": "prohibited-without-controlled-baseline-and-receipts",
+    "quality_claims": "must name corpus, workload, policy, metric, sample size, failures, and evaluation run",
+    "security_claims": "must name threat model, enforcement boundary, and test evidence"
+  },
+  "validation_gates": [
+    {
+      "id": "wedge-retention",
+      "question": "Do at least three design partners repeatedly use search-first private capability retrieval on real work?",
+      "required_receipts": ["weekly active harness sessions", "repeat queries", "accepted and abstained outcomes", "qualitative workflow interviews"]
+    },
+    {
+      "id": "retrieval-value",
+      "question": "Does the system improve decision-preserving retrieval over repository search and baseline semantic search?",
+      "required_receipts": ["real query set", "relevance judgments", "latency", "token disclosure", "ablation results", "retained failures"]
+    },
+    {
+      "id": "verification-economics",
+      "question": "Can verification deliver useful accepted outcomes within a sustainable latency and resource envelope?",
+      "required_receipts": ["worker attempts", "resource units", "provider usage", "acceptance rate", "retry rate", "failure classes"]
+    },
+    {
+      "id": "managed-service-boundary",
+      "question": "Which workload actually requires an independently scaled or isolated service?",
+      "required_receipts": ["queue depth", "CPU and memory", "latency SLO", "failure injection", "security and residency requirements"]
+    }
+  ]
+}

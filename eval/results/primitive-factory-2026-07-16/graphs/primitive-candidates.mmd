@@ -1,0 +1,407 @@
+flowchart LR
+  %% Real Taedri source candidates; capped for GitHub rendering.
+  %% Call targets are unresolved labels, not compatibility proof.
+  c0["taedri_codegraph.analyzers.python_syntax:Scope.bind"]
+  x0(["self.bindings.setdefault"])
+  c0 -->|calls may| x0
+  x1(["values.append"])
+  c0 -->|calls may| x1
+  c1["taedri_codegraph.analyzers.python_syntax:Scope.binding_scope"]
+  c2["taedri_codegraph.analyzers.python_syntax:Scope.resolve"]
+  x2(["scope.bindings.get"])
+  c2 -->|calls may| x2
+  c3["taedri_codegraph.analyzers.python_syntax:FileContext.snapshot_id"]
+  c4["taedri_codegraph.analyzers.python_syntax:FileContext.analysis_id"]
+  c5["taedri_codegraph.analyzers.python_syntax:FileContext.node_range"]
+  x3(["getattr"])
+  c5 -->|calls may| x3
+  x4(["hasattr"])
+  c5 -->|calls may| x4
+  x5(["int"])
+  c5 -->|calls may| x5
+  x6(["len"])
+  c5 -->|calls may| x6
+  x7(["max"])
+  c5 -->|calls may| x7
+  x8(["min"])
+  c5 -->|calls may| x8
+  c6["taedri_codegraph.analyzers.python_syntax:FileContext.line_columns"]
+  x3(["getattr"])
+  c6 -->|calls may| x3
+  x5(["int"])
+  c6 -->|calls may| x5
+  c7["taedri_codegraph.analyzers.python_syntax:FileContext.evidence_for"]
+  x9(["EvidenceRecord.create"])
+  c7 -->|calls may| x9
+  x10(["self.evidence_by_range.get"])
+  c7 -->|calls may| x10
+  x11(["self.node_range"])
+  c7 -->|calls may| x11
+  x12(["sha256_digest"])
+  c7 -->|calls may| x12
+  c8["taedri_codegraph.analyzers.python_syntax:FileContext.add_occurrence"]
+  x13(["OccurrenceRecord.create"])
+  c8 -->|calls may| x13
+  x14(["self.line_columns"])
+  c8 -->|calls may| x14
+  x11(["self.node_range"])
+  c8 -->|calls may| x11
+  x15(["self.syntax_paths.get"])
+  c8 -->|calls may| x15
+  x16(["type"])
+  c8 -->|calls may| x16
+  c9["taedri_codegraph.analyzers.python_syntax:FileContext.add_entity"]
+  x17(["EntityRecord.create"])
+  c9 -->|calls may| x17
+  x18(["replace"])
+  c9 -->|calls may| x18
+  x19(["self.add_occurrence"])
+  c9 -->|calls may| x19
+  x20(["self.evidence_for"])
+  c9 -->|calls may| x20
+  x11(["self.node_range"])
+  c9 -->|calls may| x11
+  x15(["self.syntax_paths.get"])
+  c9 -->|calls may| x15
+  x16(["type"])
+  c9 -->|calls may| x16
+  c10["taedri_codegraph.analyzers.python_syntax:FileContext.add_relation"]
+  x21(["ParticipantRef"])
+  c10 -->|calls may| x21
+  x22(["RelationAssertion.create"])
+  c10 -->|calls may| x22
+  x23(["SubjectRef"])
+  c10 -->|calls may| x23
+  x20(["self.evidence_for"])
+  c10 -->|calls may| x20
+  c11["taedri_codegraph.analyzers.python_syntax:FileContext.add_feature"]
+  x24(["FeatureAssertion.create"])
+  c11 -->|calls may| x24
+  x23(["SubjectRef"])
+  c11 -->|calls may| x23
+  x20(["self.evidence_for"])
+  c11 -->|calls may| x20
+  x25(["self.registry.validate_feature"])
+  c11 -->|calls may| x25
+  c12["taedri_codegraph.analyzers.python_syntax:FileContext.add_projection"]
+  x26(["ProjectionRecord.create"])
+  c12 -->|calls may| x26
+  x23(["SubjectRef"])
+  c12 -->|calls may| x23
+  x20(["self.evidence_for"])
+  c12 -->|calls may| x20
+  c13["taedri_codegraph.analyzers.python_syntax:FileContext.enrich_entity"]
+  x27(["ast.get_docstring"])
+  c13 -->|calls may| x27
+  x28(["ast.get_source_segment"])
+  c13 -->|calls may| x28
+  x29(["ast_sha256"])
+  c13 -->|calls may| x29
+  x30(["entity.entity_kind_key.removeprefix"])
+  c13 -->|calls may| x30
+  x31(["entity.entity_kind_key.removeprefix.replace"])
+  c13 -->|calls may| x31
+  x32(["function_signature"])
+  c13 -->|calls may| x32
+  x33(["isinstance"])
+  c13 -->|calls may| x33
+  x34(["minhash_signature"])
+  c13 -->|calls may| x34
+  c14["taedri_codegraph.analyzers.python_syntax:FileContext.external_entity"]
+  x17(["EntityRecord.create"])
+  c14 -->|calls may| x17
+  x35(["qualified_name.rsplit"])
+  c14 -->|calls may| x35
+  x36(["self.external_entities.get"])
+  c14 -->|calls may| x36
+  c15["taedri_codegraph.analyzers.python_syntax:DefinitionCollector.__init__"]
+  c16["taedri_codegraph.analyzers.python_syntax:DefinitionCollector._qualify"]
+  c17["taedri_codegraph.analyzers.python_syntax:DefinitionCollector._contain"]
+  x37(["self.context.add_relation"])
+  c17 -->|calls may| x37
+  c18["taedri_codegraph.analyzers.python_syntax:DefinitionCollector._new_binding"]
+  x38(["binding_scope"])
+  c18 -->|calls may| x38
+  x39(["safe_unparse"])
+  c18 -->|calls may| x39
+  x40(["self._contain"])
+  c18 -->|calls may| x40
+  x41(["self.context.add_entity"])
+  c18 -->|calls may| x41
+  x42(["self.context.add_feature"])
+  c18 -->|calls may| x42
+  x43(["self.context.enrich_entity"])
+  c18 -->|calls may| x43
+  x44(["target_scope.bind"])
+  c18 -->|calls may| x44
+  x45(["target_scope.bindings.get"])
+  c18 -->|calls may| x45
+  c19["taedri_codegraph.analyzers.python_syntax:DefinitionCollector._collect_target"]
+  x46(["get"])
+  c19 -->|calls may| x46
+  x33(["isinstance"])
+  c19 -->|calls may| x33
+  x47(["self._collect_target"])
+  c19 -->|calls may| x47
+  x48(["self._new_binding"])
+  c19 -->|calls may| x48
+  c20["taedri_codegraph.analyzers.python_syntax:DefinitionCollector._collect_arguments"]
+  x49(["self._parameter"])
+  c20 -->|calls may| x49
+  c21["taedri_codegraph.analyzers.python_syntax:DefinitionCollector._parameter"]
+  x39(["safe_unparse"])
+  c21 -->|calls may| x39
+  x50(["scope.bind"])
+  c21 -->|calls may| x50
+  x40(["self._contain"])
+  c21 -->|calls may| x40
+  x41(["self.context.add_entity"])
+  c21 -->|calls may| x41
+  x42(["self.context.add_feature"])
+  c21 -->|calls may| x42
+  x43(["self.context.enrich_entity"])
+  c21 -->|calls may| x43
+  c22["taedri_codegraph.analyzers.python_syntax:DefinitionCollector._function"]
+  x51(["Scope"])
+  c22 -->|calls may| x51
+  x52(["child.global_names.update"])
+  c22 -->|calls may| x52
+  x53(["child.nonlocal_names.update"])
+  c22 -->|calls may| x53
+  x33(["isinstance"])
+  c22 -->|calls may| x33
+  x54(["self._collect_arguments"])
+  c22 -->|calls may| x54
+  x40(["self._contain"])
+  c22 -->|calls may| x40
+  x55(["self._qualify"])
+  c22 -->|calls may| x55
+  x41(["self.context.add_entity"])
+  c22 -->|calls may| x41
+  c23["taedri_codegraph.analyzers.python_syntax:DefinitionCollector.visit_FunctionDef"]
+  x56(["self._function"])
+  c23 -->|calls may| x56
+  c24["taedri_codegraph.analyzers.python_syntax:DefinitionCollector.visit_AsyncFunctionDef"]
+  x56(["self._function"])
+  c24 -->|calls may| x56
+  c25["taedri_codegraph.analyzers.python_syntax:DefinitionCollector.visit_ClassDef"]
+  x51(["Scope"])
+  c25 -->|calls may| x51
+  x40(["self._contain"])
+  c25 -->|calls may| x40
+  x55(["self._qualify"])
+  c25 -->|calls may| x55
+  x41(["self.context.add_entity"])
+  c25 -->|calls may| x41
+  x43(["self.context.enrich_entity"])
+  c25 -->|calls may| x43
+  x57(["self.scope.bind"])
+  c25 -->|calls may| x57
+  x58(["self.visit"])
+  c25 -->|calls may| x58
+  c26["taedri_codegraph.analyzers.python_syntax:DefinitionCollector.visit_Lambda"]
+  x51(["Scope"])
+  c26 -->|calls may| x51
+  x3(["getattr"])
+  c26 -->|calls may| x3
+  x54(["self._collect_arguments"])
+  c26 -->|calls may| x54
+  x40(["self._contain"])
+  c26 -->|calls may| x40
+  x55(["self._qualify"])
+  c26 -->|calls may| x55
+  x41(["self.context.add_entity"])
+  c26 -->|calls may| x41
+  x43(["self.context.enrich_entity"])
+  c26 -->|calls may| x43
+  x58(["self.visit"])
+  c26 -->|calls may| x58
+  c27["taedri_codegraph.analyzers.python_syntax:DefinitionCollector.visit_Assign"]
+  x47(["self._collect_target"])
+  c27 -->|calls may| x47
+  x58(["self.visit"])
+  c27 -->|calls may| x58
+  c28["taedri_codegraph.analyzers.python_syntax:DefinitionCollector.visit_AnnAssign"]
+  x47(["self._collect_target"])
+  c28 -->|calls may| x47
+  x58(["self.visit"])
+  c28 -->|calls may| x58
+  c29["taedri_codegraph.analyzers.python_syntax:DefinitionCollector.visit_AugAssign"]
+  x47(["self._collect_target"])
+  c29 -->|calls may| x47
+  x58(["self.visit"])
+  c29 -->|calls may| x58
+  c30["taedri_codegraph.analyzers.python_syntax:DefinitionCollector.visit_NamedExpr"]
+  x47(["self._collect_target"])
+  c30 -->|calls may| x47
+  x58(["self.visit"])
+  c30 -->|calls may| x58
+  c31["taedri_codegraph.analyzers.python_syntax:DefinitionCollector.visit_For"]
+  x47(["self._collect_target"])
+  c31 -->|calls may| x47
+  x59(["self.generic_visit"])
+  c31 -->|calls may| x59
+  c32["taedri_codegraph.analyzers.python_syntax:DefinitionCollector.visit_With"]
+  x47(["self._collect_target"])
+  c32 -->|calls may| x47
+  x59(["self.generic_visit"])
+  c32 -->|calls may| x59
+  c33["taedri_codegraph.analyzers.python_syntax:DefinitionCollector.visit_ExceptHandler"]
+  x48(["self._new_binding"])
+  c33 -->|calls may| x48
+  x59(["self.generic_visit"])
+  c33 -->|calls may| x59
+  c34["taedri_codegraph.analyzers.python_syntax:DefinitionCollector.visit_Import"]
+  x60(["alias.name.split"])
+  c34 -->|calls may| x60
+  x48(["self._new_binding"])
+  c34 -->|calls may| x48
+  c35["taedri_codegraph.analyzers.python_syntax:DefinitionCollector.visit_ImportFrom"]
+  x48(["self._new_binding"])
+  c35 -->|calls may| x48
+  x61(["strip"])
+  c35 -->|calls may| x61
+  c36["taedri_codegraph.analyzers.python_syntax:DefinitionCollector._comprehension"]
+  x51(["Scope"])
+  c36 -->|calls may| x51
+  x3(["getattr"])
+  c36 -->|calls may| x3
+  x47(["self._collect_target"])
+  c36 -->|calls may| x47
+  x40(["self._contain"])
+  c36 -->|calls may| x40
+  x55(["self._qualify"])
+  c36 -->|calls may| x55
+  x41(["self.context.add_entity"])
+  c36 -->|calls may| x41
+  x58(["self.visit"])
+  c36 -->|calls may| x58
+  c37["taedri_codegraph.analyzers.python_syntax:DefinitionCollector.visit_ListComp"]
+  x62(["self._comprehension"])
+  c37 -->|calls may| x62
+  c38["taedri_codegraph.analyzers.python_syntax:DefinitionCollector.visit_DictComp"]
+  x62(["self._comprehension"])
+  c38 -->|calls may| x62
+  c39["taedri_codegraph.analyzers.python_syntax:DefinitionCollector.visit_MatchAs"]
+  x48(["self._new_binding"])
+  c39 -->|calls may| x48
+  x58(["self.visit"])
+  c39 -->|calls may| x58
+  c40["taedri_codegraph.analyzers.python_syntax:DefinitionCollector.visit_MatchStar"]
+  x48(["self._new_binding"])
+  c40 -->|calls may| x48
+  c41["taedri_codegraph.analyzers.python_syntax:DefinitionCollector.visit_MatchMapping"]
+  x48(["self._new_binding"])
+  c41 -->|calls may| x48
+  x58(["self.visit"])
+  c41 -->|calls may| x58
+  c42["taedri_codegraph.analyzers.python_syntax:OccurrenceCollector.__init__"]
+  c43["taedri_codegraph.analyzers.python_syntax:OccurrenceCollector._current_entity"]
+  c44["taedri_codegraph.analyzers.python_syntax:OccurrenceCollector._occurrence"]
+  x63(["self._current_entity"])
+  c44 -->|calls may| x63
+  x64(["self.context.add_occurrence"])
+  c44 -->|calls may| x64
+  x65(["self.context.defining_occurrence_by_node.get"])
+  c44 -->|calls may| x65
+  c45["taedri_codegraph.analyzers.python_syntax:OccurrenceCollector._access"]
+  x63(["self._current_entity"])
+  c45 -->|calls may| x63
+  x66(["self._occurrence"])
+  c45 -->|calls may| x66
+  x37(["self.context.add_relation"])
+  c45 -->|calls may| x37
+  c46["taedri_codegraph.analyzers.python_syntax:OccurrenceCollector._enter"]
+  c47["taedri_codegraph.analyzers.python_syntax:OccurrenceCollector.visit_FunctionDef"]
+  x67(["self._enter"])
+  c47 -->|calls may| x67
+  x58(["self.visit"])
+  c47 -->|calls may| x58
+  c48["taedri_codegraph.analyzers.python_syntax:OccurrenceCollector.visit_ClassDef"]
+  x67(["self._enter"])
+  c48 -->|calls may| x67
+  x68(["self._resolve_expression"])
+  c48 -->|calls may| x68
+  x37(["self.context.add_relation"])
+  c48 -->|calls may| x37
+  x58(["self.visit"])
+  c48 -->|calls may| x58
+  c49["taedri_codegraph.analyzers.python_syntax:OccurrenceCollector.visit_Lambda"]
+  x67(["self._enter"])
+  c49 -->|calls may| x67
+  x58(["self.visit"])
+  c49 -->|calls may| x58
+  c50["taedri_codegraph.analyzers.python_syntax:OccurrenceCollector.visit_Name"]
+  x33(["isinstance"])
+  c50 -->|calls may| x33
+  x69(["self._access"])
+  c50 -->|calls may| x69
+  x70(["self.context.binding_by_node.get"])
+  c50 -->|calls may| x70
+  x71(["self.context.external_entity"])
+  c50 -->|calls may| x71
+  x72(["self.scope.resolve"])
+  c50 -->|calls may| x72
+  c51["taedri_codegraph.analyzers.python_syntax:OccurrenceCollector.visit_Attribute"]
+  x33(["isinstance"])
+  c51 -->|calls may| x33
+  x73(["owner.bindings.get"])
+  c51 -->|calls may| x73
+  x69(["self._access"])
+  c51 -->|calls may| x69
+  x70(["self.context.binding_by_node.get"])
+  c51 -->|calls may| x70
+  x58(["self.visit"])
+  c51 -->|calls may| x58
+  c52["taedri_codegraph.analyzers.python_syntax:OccurrenceCollector.visit_Call"]
+  x63(["self._current_entity"])
+  c52 -->|calls may| x63
+  x68(["self._resolve_expression"])
+  c52 -->|calls may| x68
+  x64(["self.context.add_occurrence"])
+  c52 -->|calls may| x64
+  x37(["self.context.add_relation"])
+  c52 -->|calls may| x37
+  x59(["self.generic_visit"])
+  c52 -->|calls may| x59
+  c53["taedri_codegraph.analyzers.python_syntax:OccurrenceCollector.visit_Import"]
+  x74(["self._import"])
+  c53 -->|calls may| x74
+  c54["taedri_codegraph.analyzers.python_syntax:OccurrenceCollector.visit_ImportFrom"]
+  x74(["self._import"])
+  c54 -->|calls may| x74
+  c55["taedri_codegraph.analyzers.python_syntax:OccurrenceCollector._import"]
+  x63(["self._current_entity"])
+  c55 -->|calls may| x63
+  x37(["self.context.add_relation"])
+  c55 -->|calls may| x37
+  x70(["self.context.binding_by_node.get"])
+  c55 -->|calls may| x70
+  x71(["self.context.external_entity"])
+  c55 -->|calls may| x71
+  c56["taedri_codegraph.analyzers.python_syntax:OccurrenceCollector._comprehension"]
+  x3(["getattr"])
+  c56 -->|calls may| x3
+  x67(["self._enter"])
+  c56 -->|calls may| x67
+  x58(["self.visit"])
+  c56 -->|calls may| x58
+  c57["taedri_codegraph.analyzers.python_syntax:OccurrenceCollector.visit_ExceptHandler"]
+  x69(["self._access"])
+  c57 -->|calls may| x69
+  x70(["self.context.binding_by_node.get"])
+  c57 -->|calls may| x70
+  x58(["self.visit"])
+  c57 -->|calls may| x58
+  c58["taedri_codegraph.analyzers.python_syntax:OccurrenceCollector.visit_MatchAs"]
+  x69(["self._access"])
+  c58 -->|calls may| x69
+  x70(["self.context.binding_by_node.get"])
+  c58 -->|calls may| x70
+  x58(["self.visit"])
+  c58 -->|calls may| x58
+  c59["taedri_codegraph.analyzers.python_syntax:OccurrenceCollector.visit_MatchStar"]
+  x69(["self._access"])
+  c59 -->|calls may| x69
+  x70(["self.context.binding_by_node.get"])
+  c59 -->|calls may| x70

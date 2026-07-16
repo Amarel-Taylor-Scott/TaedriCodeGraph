@@ -11,6 +11,17 @@ GitHub without scripts.
 
 GitHub renders the static SVG previews directly:
 
+## Real-source primitive factory and product model
+
+The [registry console](../../apps/explorer/registry-console.html) filters the generated
+candidate corpus and explores worker, harness, and commercial records. Use the
+[interactive branch preview](https://htmlpreview.github.io/?https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/blob/agent/initial-vertical-slice/apps/explorer/registry-console.html)
+or open it locally.
+
+![Real-source primitive candidates](assets/primitive-candidate-kinds.svg)
+
+![Taedri product and operating model](assets/product-operating-model.svg)
+
 ## Typed long-table model
 
 ![Typed long-table model](assets/typed-long-table-model.svg)

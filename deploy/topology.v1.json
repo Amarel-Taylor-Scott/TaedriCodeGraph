@@ -34,8 +34,8 @@
         },
         {
           "name": "indexer",
-          "component_ids": ["indexer-service"],
-          "state": "queue-driven acquisition, analysis, and projection builds"
+          "component_ids": ["indexer-service", "worker-runtime"],
+          "state": "queue-driven acquisition, candidate generation, analysis, verification, and projection builds"
         }
       ],
       "storage": [
@@ -77,8 +77,8 @@
         },
         {
           "name": "indexer",
-          "component_ids": ["indexer-service"],
-          "state": "resource-heavy asynchronous extraction and projection publication"
+          "component_ids": ["indexer-service", "worker-runtime"],
+          "state": "resource-heavy asynchronous extraction, candidate generation, verification, and projection publication"
         }
       ],
       "storage": [

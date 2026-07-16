@@ -15,3 +15,6 @@ Search package/license metadata with `tcg representation search "<text>"
 --subject-kind snapshot --store .tcg`.
 Similarity proposes candidates; it does not prove compatibility, correctness,
 license suitability, or safety. Preserve parallel and contradictory assertions.
+When session recording is configured, retain digest-only search, selection,
+materialization, model-attempt, verification, and acceptance/abstention receipts; do not
+persist raw prompts or source bodies without explicit policy.

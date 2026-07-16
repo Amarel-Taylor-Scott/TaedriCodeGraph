@@ -117,6 +117,31 @@ depends on harness-specific tool names, and project-local hooks are executable c
 the hook in a separately reviewed policy package, pin it by digest, and have it emit a
 router/policy receipt when the harness supports that path.
 
+## Prompt-session receipts
+
+`taedri_codegraph.sessions` provides the reference wire/state contract for harness
+recorders. The default `DIGEST_ONLY` mode stores a request digest or secure content
+reference rather than raw prompts and rejects attributes named `prompt`, `prompt_text`,
+`raw_prompt`, `message_text`, or `source_body`, including nested occurrences.
+
+A conforming adapter records:
+
+1. `session_started` with repository snapshot, harness version/configuration, policy
+   digest, tenant/workspace scope, and privacy mode;
+2. `request_captured`, then any `search_receipt`, `candidate_selected`, and
+   `materialization_receipt` events;
+3. each actual `model_attempt` separately, including router/provider receipts and
+   integer or decimal-string usage—not mutable aggregate state;
+4. `verification_receipt` from the isolated verifier;
+5. `result_accepted` only after verification, or `abstained` with a reason code;
+6. `session_closed` after either terminal decision.
+
+The real-source POC trace is
+[`harness-session.json`](../../eval/results/primitive-factory-2026-07-16/harness-session.json).
+It demonstrates search and selective capsule resolution, then abstains because no model
+or independent verifier was configured. Production adapters still need encryption,
+retention, deletion-policy events, tenant authorization, and transactional persistence.
+
 ## Provider integration
 
 The Python API supports deterministic labelers, NLP pipelines, local models, remote LLMs,

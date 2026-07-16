@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.taedri.dev/codegraph/candidate-submission.v1.schema.json",
+  "title": "Taedri candidate submission v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["identity", "format_version", "primitive_id", "revision_id", "origin", "producer", "submitted_by", "submitted_at", "source_uri", "source_revision", "license_expression", "license_evidence_state", "visibility", "production_run_id", "evidence_ids"],
+  "properties": {
+    "identity": {"type": "object"},
+    "format_version": {"const": "1.0.0"},
+    "primitive_id": {"type": "string", "minLength": 1},
+    "revision_id": {"type": "string", "minLength": 1},
+    "origin": {"enum": ["extracted", "generated", "imported", "human_authored"]},
+    "producer": {"type": "object"},
+    "submitted_by": {"type": "string", "minLength": 1},
+    "submitted_at": {"type": "string", "format": "date-time"},
+    "source_uri": {"type": "string", "minLength": 1},
+    "source_revision": {"type": ["string", "null"]},
+    "license_expression": {"type": ["string", "null"]},
+    "license_evidence_state": {"enum": ["unknown", "declared", "verified", "conflicting"]},
+    "visibility": {"enum": ["private", "organization", "public"]},
+    "production_run_id": {"type": "string", "minLength": 1},
+    "evidence_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+  }
+}
