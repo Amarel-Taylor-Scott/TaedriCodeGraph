@@ -7,6 +7,7 @@
     "schemas and the kernel do not depend on services, integrations, or apps",
     "ingestion does not import or execute analyzed target code",
     "similarity candidates never become compatibility proof",
+    "sealed benchmark tasks, tests, gold outputs, and answer-derived features never enter production retrieval",
     "primitive revisions are immutable and branch refs never participate in content identity"
   ],
   "components": [
@@ -123,12 +124,28 @@
       "depends_on": ["shared-kernel", "shared-schemas"]
     },
     {
+      "id": "benchmarking",
+      "path": "packages/benchmarking",
+      "kind": "library",
+      "status": "active",
+      "owns": ["matched-lane experiments", "sealed task references", "run receipts", "contamination strata", "paired metrics", "claim eligibility"],
+      "depends_on": ["shared-kernel", "shared-schemas"]
+    },
+    {
       "id": "worker-runtime",
       "path": "services/worker-runtime",
       "kind": "service",
       "status": "active",
       "owns": ["idempotent jobs", "capability-aware leases", "attempt receipts", "retry and dead-letter policy"],
       "depends_on": ["shared-kernel", "shared-schemas", "primitive-factory", "storage"]
+    },
+    {
+      "id": "benchmark-worker",
+      "path": "services/benchmark-worker",
+      "kind": "service",
+      "status": "active",
+      "owns": ["isolated evaluation controller", "lane context enforcement", "provider and sandbox adapters", "sealed-oracle handoff", "benchmark job receipts"],
+      "depends_on": ["benchmarking", "worker-runtime", "query-api", "registry-api", "session-ledger"]
     },
     {
       "id": "indexer-service",
@@ -192,7 +209,7 @@
       "kind": "evaluation",
       "status": "active",
       "owns": ["real-package corpora", "ablation receipts", "promotion gates", "reports"],
-      "depends_on": ["indexer-service", "query-api", "registry-api", "agent-integrations"]
+      "depends_on": ["indexer-service", "query-api", "registry-api", "agent-integrations", "benchmark-worker"]
     }
   ]
 }

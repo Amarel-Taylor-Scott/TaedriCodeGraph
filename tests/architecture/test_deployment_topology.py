@@ -46,10 +46,23 @@ class DeploymentTopologyTests(unittest.TestCase):
             for storage in stage.get("storage", [])
             if storage["source_of_truth"]
         }
-        self.assertEqual(
-            production_ports,
-            {"postgresql", "s3-compatible-object-storage"},
+        self.assertTrue(
+            {"postgresql", "s3-compatible-object-storage"}.issubset(production_ports)
         )
+        evaluation_stores = [
+            storage
+            for stage in self.topology["stages"][1:]
+            for storage in stage.get("storage", [])
+            if storage["role"] == "sealed-evaluation"
+        ]
+        self.assertEqual(len(evaluation_stores), 2)
+        self.assertTrue(all(store["source_of_truth"] for store in evaluation_stores))
+
+    def test_evaluator_is_a_separate_process_and_credential_boundary(self) -> None:
+        for stage in self.topology["stages"][1:]:
+            processes = {process["name"]: process for process in stage["processes"]}
+            self.assertIn("evaluator", processes)
+            self.assertEqual(processes["evaluator"]["component_ids"], ["benchmark-worker"])
 
     def test_every_service_split_gate_requires_evidence(self) -> None:
         gates = self.topology["split_gates"]

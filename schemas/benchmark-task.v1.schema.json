@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.taedri.dev/codegraph/benchmark-task.v1.schema.json",
+  "title": "Taedri benchmark task v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "identity",
+    "format_version",
+    "source_task_id",
+    "source_family",
+    "corpus_partition",
+    "request_ref",
+    "repository_snapshot_ref",
+    "sealed_oracle_ref",
+    "runtime_digest",
+    "policy_digest",
+    "forbidden_retrieval_refs",
+    "strata",
+    "declared_value_microunits",
+    "value_provenance_ref"
+  ],
+  "properties": {
+    "identity": {"type": "object"},
+    "format_version": {"const": "1.0.0"},
+    "source_task_id": {"type": "string", "minLength": 1},
+    "source_family": {"type": "string", "minLength": 1},
+    "corpus_partition": {
+      "enum": ["mining_and_training", "validation_and_tuning", "public_benchmark", "sealed_cold_holdout"]
+    },
+    "request_ref": {"$ref": "#/$defs/contentRef"},
+    "repository_snapshot_ref": {"$ref": "#/$defs/contentRef"},
+    "sealed_oracle_ref": {"type": "string", "pattern": "^sealed:.+"},
+    "runtime_digest": {"$ref": "#/$defs/digest"},
+    "policy_digest": {"$ref": "#/$defs/digest"},
+    "forbidden_retrieval_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/anyRef"}
+    },
+    "strata": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "declared_value_microunits": {"type": ["integer", "null"], "minimum": 0},
+    "value_provenance_ref": {
+      "oneOf": [{"$ref": "#/$defs/contentRef"}, {"type": "null"}]
+    }
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "contentRef": {"type": "string", "pattern": "^(sha256:|uceg:v1:|registry:).+"},
+    "anyRef": {"type": "string", "pattern": "^(sha256:|uceg:v1:|registry:|sealed:).+"}
+  }
+}

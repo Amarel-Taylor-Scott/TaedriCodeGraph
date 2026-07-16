@@ -1,0 +1,4 @@
+baseline_lane,treatment_lane,matched_pair_count,claimable_clean_pair_count,both_accepted_count,baseline_only_accepted_count,treatment_only_accepted_count,neither_accepted_count,discordant_pair_count,exact_paired_sign_test_p_ppm,paired_success_gain_ppm,model_token_savings_ppm,wall_time_savings_ppm,cost_savings_ppm,baseline_accepted_count,treatment_accepted_count,treatment_reused_source_bytes
+bare_model,search_context,4,0,4,0,0,0,0,1000000,0,0,0,0,4,4,0
+bare_model,primitive_plan,4,0,4,0,0,0,0,1000000,0,0,0,0,4,4,0
+bare_model,primitive_materialized,4,0,4,0,0,0,0,1000000,0,0,0,0,4,4,4140

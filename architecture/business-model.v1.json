@@ -30,6 +30,14 @@
       "revenue_model": "none during validation"
     },
     {
+      "id": "benchmark-and-assurance-pilot",
+      "commercial_state": "design-partner-offer-after-first-real-provider-adapter",
+      "target": "engineering organizations deciding whether retrieval and primitive reuse improve their coding agents",
+      "deployment": "customer-controlled task store plus isolated Taedri evaluation workers",
+      "value": ["matched bare-model versus assisted lanes", "sealed private tasks", "failure-inclusive token/time/cost accounting", "contamination checks", "independent verification", "decision-ready evidence bundle"],
+      "revenue_model": "fixed-scope evaluation engagement with separately disclosed provider and infrastructure usage; pricing remains unset until delivery cost and willingness-to-pay are measured"
+    },
+    {
       "id": "team-private-registry",
       "commercial_state": "planned",
       "target": "one engineering organization",
@@ -92,6 +100,12 @@
       "unit": "provider-native-usage-with-receipt",
       "applies_to": ["managed-verification-control-plane"],
       "anti_abuse_rule": "Provider charges and any Taedri orchestration fee are separately visible; cached or skipped calls are not represented as provider usage."
+    },
+    {
+      "id": "isolated-benchmark-attempt",
+      "unit": "terminal benchmark run receipt",
+      "applies_to": ["benchmark-and-assurance-pilot", "managed-verification-control-plane"],
+      "anti_abuse_rule": "Every scheduled task/lane/repetition remains in the report, including failures, abstentions, policy blocks, timeouts, infrastructure errors, and contaminated or unknown-overlap runs."
     }
   ],
   "non_billable_successes": [
@@ -108,7 +122,8 @@
     "Search nominates; typed contracts, policy, evidence, and verification decide.",
     "Primitive source and evidence are selectively downloadable through content-addressed thin packs.",
     "Multiple LLMs, deterministic labelers, embeddings, sparse features, LSH families, and graph projections can compete without becoming canonical truth.",
-    "Prompt and worker receipts make quality, privacy, cost, and failure measurable across harnesses."
+    "Prompt and worker receipts make quality, privacy, cost, and failure measurable across harnesses.",
+    "A sealed matched-lane evaluator can establish whether the registry creates real marginal value before a customer adopts the managed control plane."
   ],
   "claim_policy": {
     "currency_prices": "unset-until-customer-discovery-and-cost-measurement",
@@ -136,6 +151,11 @@
       "id": "managed-service-boundary",
       "question": "Which workload actually requires an independently scaled or isolated service?",
       "required_receipts": ["queue depth", "CPU and memory", "latency SLO", "failure injection", "security and residency requirements"]
+    },
+    {
+      "id": "agent-productivity-economics",
+      "question": "At fixed model and task difficulty, do assisted lanes improve verified outcomes per token, second, and total cost on uncontaminated real work?",
+      "required_receipts": ["frozen paired experiment", "provider usage", "retrieval and materialization", "tool invocations", "independent build and test", "contamination stratum", "retained failures", "matched uncertainty analysis"]
     }
   ]
 }

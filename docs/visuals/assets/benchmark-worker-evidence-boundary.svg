@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="920" viewBox="0 0 1600 920" role="img" aria-labelledby="title desc">
+  <title id="title">Taedri matched-lane benchmark worker and sealed evidence boundary</title>
+  <desc id="desc">Four progressively assisted model lanes share frozen inputs and feed an independent verifier. Hidden tests remain isolated from production retrieval and model context.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07111f"/>
+      <stop offset="1" stop-color="#101a2e"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1d4ed8"/>
+      <stop offset="1" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="purple" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6d28d9"/>
+      <stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#047857"/>
+      <stop offset="1" stop-color="#10b981"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#000" flood-opacity=".28"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8aa4c8"/>
+    </marker>
+    <marker id="redArrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#f87171"/>
+    </marker>
+    <style>
+      .title{font:700 35px ui-sans-serif,system-ui;fill:#f8fafc}.sub{font:400 17px ui-sans-serif,system-ui;fill:#9fb2cc}
+      .h{font:700 18px ui-sans-serif,system-ui;fill:#f8fafc}.b{font:500 14px ui-sans-serif,system-ui;fill:#d7e2f2}
+      .small{font:500 12px ui-sans-serif,system-ui;fill:#9fb2cc}.mono{font:600 12px ui-monospace,SFMono-Regular,monospace;fill:#dbeafe}
+      .line{fill:none;stroke:#8aa4c8;stroke-width:2.2;marker-end:url(#arrow)}.dash{stroke-dasharray:8 8}
+    </style>
+  </defs>
+  <rect width="1600" height="920" rx="24" fill="url(#bg)"/>
+  <text x="64" y="66" class="title">Matched evidence, not a better-model story</text>
+  <text x="64" y="98" class="sub">Same task · same model · same harness · same budget · different Taedri disclosure rights</text>
+
+  <g filter="url(#shadow)">
+    <rect x="62" y="145" width="300" height="150" rx="18" fill="#14233b" stroke="#34506f"/>
+    <text x="88" y="180" class="h">Frozen experiment block</text>
+    <text x="88" y="210" class="b">Task + repository snapshot</text>
+    <text x="88" y="235" class="b">Provider/model + harness digests</text>
+    <text x="88" y="260" class="b">Seeds + token/tool/time budgets</text>
+    <rect x="88" y="272" width="246" height="7" rx="4" fill="#38bdf8"/>
+  </g>
+
+  <path d="M362 220 H430" class="line"/>
+  <path d="M395 220 V690" fill="none" stroke="#536c8b" stroke-width="2"/>
+
+  <g filter="url(#shadow)">
+    <rect x="450" y="140" width="360" height="118" rx="18" fill="#172238" stroke="#45566f"/>
+    <circle cx="485" cy="176" r="17" fill="#475569"/><text x="480" y="182" class="h">0</text>
+    <text x="516" y="180" class="h">Bare model</text>
+    <text x="480" y="210" class="b">Task, repository, ordinary fixed tools</text>
+    <text x="480" y="235" class="mono">Taedri access: none</text>
+  </g>
+  <path d="M395 199 H450" class="line"/>
+
+  <g filter="url(#shadow)">
+    <rect x="450" y="284" width="360" height="118" rx="18" fill="url(#blue)" stroke="#60a5fa"/>
+    <circle cx="485" cy="320" r="17" fill="#0b2c72"/><text x="480" y="326" class="h">1</text>
+    <text x="516" y="324" class="h">Search context</text>
+    <text x="480" y="354" class="b">Ranked D0–D2 cards + explanations</text>
+    <text x="480" y="379" class="mono">Source bodies: prohibited</text>
+  </g>
+  <path d="M395 343 H450" class="line"/>
+
+  <g filter="url(#shadow)">
+    <rect x="450" y="428" width="360" height="118" rx="18" fill="url(#purple)" stroke="#c4b5fd"/>
+    <circle cx="485" cy="464" r="17" fill="#3b176e"/><text x="480" y="470" class="h">2</text>
+    <text x="516" y="468" class="h">Primitive plan</text>
+    <text x="480" y="498" class="b">Contracts + ports + edges + route IR</text>
+    <text x="480" y="523" class="mono">Source bodies: prohibited</text>
+  </g>
+  <path d="M395 487 H450" class="line"/>
+
+  <g filter="url(#shadow)">
+    <rect x="450" y="572" width="360" height="118" rx="18" fill="url(#green)" stroke="#6ee7b7"/>
+    <circle cx="485" cy="608" r="17" fill="#064e3b"/><text x="480" y="614" class="h">3</text>
+    <text x="516" y="612" class="h">Primitive materialized</text>
+    <text x="480" y="642" class="b">Authorized thin packs + deterministic stitch</text>
+    <text x="480" y="667" class="mono">Bounded model repair + receipts</text>
+  </g>
+  <path d="M395 631 H450" class="line"/>
+
+  <g filter="url(#shadow)">
+    <rect x="62" y="352" width="300" height="170" rx="18" fill="#0d2840" stroke="#0ea5e9"/>
+    <text x="88" y="388" class="h">Read-only product snapshots</text>
+    <text x="88" y="419" class="b">Sparse / LSH / vector / graph</text>
+    <text x="88" y="446" class="b">Primitive cards, contracts, revisions</text>
+    <text x="88" y="473" class="b">Policy and provenance views</text>
+    <text x="88" y="500" class="small">No evaluation answer flow back in</text>
+  </g>
+  <path d="M362 410 H420 V343 H450" class="line"/>
+  <path d="M362 437 H430 V487 H450" class="line"/>
+  <path d="M362 464 H418 V631 H450" class="line"/>
+
+  <path d="M810 199 H935" class="line"/>
+  <path d="M810 343 H900 V300 H935" class="line"/>
+  <path d="M810 487 H900 V400 H935" class="line"/>
+  <path d="M810 631 H900 V500 H935" class="line"/>
+
+  <g filter="url(#shadow)">
+    <rect x="935" y="188" width="300" height="365" rx="20" fill="#172238" stroke="#64748b"/>
+    <text x="968" y="228" class="h">Independent sandbox verifier</text>
+    <text x="968" y="264" class="b">Build / compile</text>
+    <text x="968" y="295" class="b">Unit + integration + hidden tests</text>
+    <text x="968" y="326" class="b">Static / security / license policy</text>
+    <text x="968" y="357" class="b">Artifact + behavior fingerprints</text>
+    <text x="968" y="388" class="b">Resource and environment receipt</text>
+    <rect x="968" y="421" width="234" height="94" rx="13" fill="#0c1728" stroke="#334155"/>
+    <text x="988" y="448" class="mono">accept iff:</text>
+    <text x="988" y="475" class="small">build ∧ tests ∧ policy</text>
+    <text x="988" y="497" class="small">∧ verifier receipt ∧ no leak</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1290" y="190" width="248" height="186" rx="20" fill="#3a151d" stroke="#f87171"/>
+    <text x="1318" y="228" class="h">Sealed evaluation store</text>
+    <text x="1318" y="261" class="b">Hidden tests / graders</text>
+    <text x="1318" y="289" class="b">Gold patches / solutions</text>
+    <text x="1318" y="317" class="b">Cold holdout + fingerprints</text>
+    <text x="1318" y="350" class="mono">verifier-only credentials</text>
+  </g>
+  <path d="M1290 285 H1235" fill="none" stroke="#f87171" stroke-width="2.4" marker-end="url(#redArrow)"/>
+  <path d="M1414 376 V720 H220 V522" fill="none" stroke="#f87171" stroke-width="3" stroke-dasharray="10 9"/>
+  <rect x="790" y="700" width="390" height="34" rx="17" fill="#3a151d" stroke="#f87171"/>
+  <text x="817" y="722" class="mono">PROHIBITED: oracle → retrieval / embedding / training</text>
+
+  <g filter="url(#shadow)">
+    <rect x="935" y="604" width="603" height="170" rx="20" fill="#12273a" stroke="#22d3ee"/>
+    <text x="968" y="644" class="h">Append-only evidence and claim compiler</text>
+    <text x="968" y="678" class="b">All scheduled runs: pass · fail · abstain · policy block · infra error</text>
+    <text x="968" y="709" class="b">Tokens · latency · total cost · reuse · exact/behavior consistency</text>
+    <text x="968" y="740" class="mono">claimable = complete ∧ real usage ∧ clean contamination stratum</text>
+  </g>
+  <path d="M1085 553 V604" class="line"/>
+
+  <rect x="62" y="814" width="1476" height="58" rx="16" fill="#0c1728" stroke="#273b55"/>
+  <circle cx="94" cy="843" r="7" fill="#60a5fa"/><text x="112" y="848" class="small">model-facing intervention</text>
+  <circle cx="321" cy="843" r="7" fill="#10b981"/><text x="339" y="848" class="small">authorized reuse</text>
+  <circle cx="508" cy="843" r="7" fill="#f87171"/><text x="526" y="848" class="small">sealed / prohibited path</text>
+  <text x="820" y="848" class="small">Conformance bundle: 2 real-source tasks × 4 lanes × 2 seeds = 16 receipts · efficacy claim disabled</text>
+</svg>

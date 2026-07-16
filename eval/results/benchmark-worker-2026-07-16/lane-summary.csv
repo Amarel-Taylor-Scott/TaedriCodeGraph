@@ -1,0 +1,5 @@
+lane,run_count,accepted_count,success_rate_ppm,mean_model_tokens,mean_wall_ms,cost_per_accepted_microunits,verified_reuse_fraction_ppm,outcome_consistency_ppm,exact_output_consistency_ppm,behavior_consistency_ppm
+bare_model,4,4,1000000,100,1000,100,0,1000000,1000000,1000000
+search_context,4,4,1000000,100,1000,100,0,1000000,1000000,1000000
+primitive_plan,4,4,1000000,100,1000,100,0,1000000,1000000,1000000
+primitive_materialized,4,4,1000000,100,1000,100,981042,1000000,1000000,1000000

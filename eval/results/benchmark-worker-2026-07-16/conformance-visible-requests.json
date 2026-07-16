@@ -1,0 +1,12 @@
+[
+  {
+    "request": "Build a deterministic JSON-byte encoding component and prove stable map ordering and non-finite rejection.",
+    "request_ref": "sha256:23df111c43502b230fc17dd13a6bd309551021416cc10e635afc0496c5f1c7ee",
+    "source_task_id": "taedri-conformance:canonical-json-composition"
+  },
+  {
+    "request": "Build an idempotent lease-based worker queue with capability matching, retries, expiry, and terminal receipts.",
+    "request_ref": "sha256:956272e118423c7d30c0445bff510967e4f04bd8d40494119e85bdf321841fff",
+    "source_task_id": "taedri-conformance:leased-worker-queue"
+  }
+]

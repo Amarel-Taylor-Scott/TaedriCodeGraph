@@ -9,7 +9,7 @@
     "identity": {"type": "object"},
     "format_version": {"const": "1.0.0"},
     "queue": {"type": "string", "minLength": 1},
-    "kind": {"enum": ["acquire", "extract", "describe", "embed", "index", "verify", "materialize", "render"]},
+    "kind": {"enum": ["acquire", "extract", "describe", "embed", "index", "verify", "materialize", "render", "benchmark"]},
     "subject_id": {"type": "string", "minLength": 1},
     "payload_ref": {"type": "string", "pattern": "^(sha256:|uceg:v1:).+"},
     "idempotency_key": {"type": "string", "minLength": 1},

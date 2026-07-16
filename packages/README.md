@@ -7,6 +7,7 @@ allowed dependencies. Primitive capsules are registry-native objects; they are n
 automatically separate Python packages or Git repositories.
 
 The current extraction targets include `primitive-factory` for source-backed candidate
-creation and `session-ledger` for coding-harness receipts. Their tested reference code
-remains in the transitional `src/taedri_codegraph` package until package boundaries are
+creation, `session-ledger` for coding-harness receipts, and `benchmarking` for frozen
+matched-lane experiments and claim-aware reports. Their tested reference code remains
+in the transitional `src/taedri_codegraph` package until package boundaries are
 published independently.

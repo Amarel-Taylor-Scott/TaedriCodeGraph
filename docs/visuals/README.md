@@ -11,6 +11,15 @@ GitHub without scripts.
 
 GitHub renders the static SVG previews directly:
 
+## Matched benchmark worker and evidence boundary
+
+The [benchmark evidence console](../../apps/explorer/benchmark-console.html) explores
+lane rights, frozen inputs, claim gates, campaign tracks, and unit economics. Use the
+[interactive branch preview](https://htmlpreview.github.io/?https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/blob/agent/initial-vertical-slice/apps/explorer/benchmark-console.html)
+or open it locally. The checked-in data is a conformance fixture, not model efficacy.
+
+![Matched benchmark worker and sealed evidence boundary](assets/benchmark-worker-evidence-boundary.svg)
+
 ## Real-source primitive factory and product model
 
 The [registry console](../../apps/explorer/registry-console.html) filters the generated

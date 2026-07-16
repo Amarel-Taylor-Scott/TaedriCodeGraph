@@ -1,0 +1,157 @@
+{
+  "evaluation_tracks": [
+    {
+      "id": "private-product-tasks",
+      "pilot": "start with real accepted/rejected tasks across at least three teams; use pilot discordance to power the next paired run",
+      "purpose": "closest measure of design-partner value and retention",
+      "source_policy": "sealed_cold_holdout"
+    },
+    {
+      "adapter_state": "planned",
+      "id": "swe-skills-bench-adapter",
+      "purpose": "paired reusable-context and token/duration comparison",
+      "source_policy": "eval_only"
+    },
+    {
+      "adapter_state": "planned",
+      "id": "swe-bench-adapter",
+      "purpose": "repository issue repair with containerized tests",
+      "source_policy": "eval_only"
+    },
+    {
+      "adapter_state": "planned",
+      "id": "terminal-bench-harbor-adapter",
+      "purpose": "DevOps and long-horizon terminal work",
+      "source_policy": "eval_only"
+    },
+    {
+      "adapter_state": "planned",
+      "id": "swe-lancer-adapter",
+      "purpose": "sourced economic-value analysis for real freelance software tasks",
+      "source_policy": "eval_only"
+    }
+  ],
+  "external_harnesses": [
+    "https://github.com/GeniusHTX/SWE-Skills-Bench",
+    "https://github.com/SWE-bench/SWE-bench",
+    "https://github.com/harbor-framework/terminal-bench",
+    "https://github.com/openai/frontier-evals/tree/main/project/swelancer"
+  ],
+  "lanes": [
+    {
+      "id": "bare_model",
+      "model_visible": [
+        "task request",
+        "repository snapshot",
+        "fixed tool schema"
+      ],
+      "taedri_access": []
+    },
+    {
+      "id": "search_context",
+      "model_visible": [
+        "ranked D0-D2 cards",
+        "search explanations",
+        "provenance summaries"
+      ],
+      "taedri_access": [
+        "search"
+      ]
+    },
+    {
+      "id": "primitive_plan",
+      "model_visible": [
+        "typed contracts",
+        "ports",
+        "compatibility edges",
+        "candidate route handles"
+      ],
+      "taedri_access": [
+        "search",
+        "plan IR"
+      ]
+    },
+    {
+      "id": "primitive_materialized",
+      "model_visible": [
+        "selected source bodies",
+        "examples",
+        "tests",
+        "adapter witnesses"
+      ],
+      "taedri_access": [
+        "search",
+        "plan IR",
+        "authorized thin packs",
+        "deterministic composer"
+      ]
+    }
+  ],
+  "matched_controls": [
+    "same provider and exact model revision",
+    "same harness, system policy, task snapshot, sandbox image, and verifier",
+    "same prompt/completion/tool/wall/verification budgets",
+    "same repetition seeds and task order randomization block",
+    "all retrieval, body resolution, tool, model, build, test, policy, and cost receipts retained"
+  ],
+  "metric_families": {
+    "consistency": [
+      "outcome agreement across repetitions",
+      "exact artifact agreement",
+      "behavioral agreement under independent tests",
+      "flake and retry rates"
+    ],
+    "correctness": [
+      "accepted outcome rate",
+      "build/test/policy/verification pass rates",
+      "failure and abstention classes",
+      "clean versus contaminated versus unknown strata"
+    ],
+    "devops": [
+      "sandbox build reproducibility",
+      "dependency-lock and SBOM completeness",
+      "deployment acceptance and rollback verification",
+      "resource limits, queue latency, and failure-domain incidents"
+    ],
+    "efficiency": [
+      "provider-billable prompt/completion/cached/tool tokens",
+      "disclosed context and materialized bytes",
+      "model/retrieval/verification/wall time",
+      "provider and infrastructure cost per attempted and accepted outcome",
+      "repair turns, tool calls, and human interventions"
+    ],
+    "finance": [
+      "failure-inclusive cost per independently accepted outcome",
+      "matched baseline cost delta",
+      "sourced task value only when an external value receipt exists",
+      "human-time value only when a declared study captures actual time"
+    ],
+    "reuse": [
+      "selected and materialized primitive refs",
+      "verified reused source bytes",
+      "newly authored source bytes",
+      "route and adapter verification receipts",
+      "body-resolution rate after selection"
+    ]
+  },
+  "primary_question": "Does Taedri assistance improve independently verified working-code outcomes per token, second, and total cost while increasing attributable reuse?",
+  "promotion_gate": {
+    "forbidden_claims": [
+      "fixture or replay data presented as model efficacy",
+      "token savings without retrieval/tool/verification overhead",
+      "economic value inferred from unsourced task labels",
+      "pass rate that excludes retries, failures, policy blocks, or timeouts"
+    ],
+    "required": [
+      "complete paired blocks",
+      "real provider/runtime usage receipts",
+      "independent execution verification",
+      "zero detected contamination in the promoted stratum",
+      "reported uncertainty and retained failures",
+      "success is non-inferior and at least one material efficiency metric improves"
+    ]
+  },
+  "schema_version": "1.0.0",
+  "status": "ready-for-provider-and-sealed-suite-adapters-no-efficacy-data-yet",
+  "value_unit": "independently-accepted-policy-compliant-outcome"
+}

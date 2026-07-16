@@ -25,6 +25,7 @@ class JobKind(str, Enum):
     VERIFY = "verify"
     MATERIALIZE = "materialize"
     RENDER = "render"
+    BENCHMARK = "benchmark"
 
 
 class JobState(str, Enum):
@@ -443,4 +444,3 @@ class WorkerQueue:
         )
         self.events.append(event)
         return event
-

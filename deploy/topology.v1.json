@@ -36,6 +36,11 @@
           "name": "indexer",
           "component_ids": ["indexer-service", "worker-runtime"],
           "state": "queue-driven acquisition, candidate generation, analysis, verification, and projection builds"
+        },
+        {
+          "name": "evaluator",
+          "component_ids": ["benchmark-worker"],
+          "state": "isolated sealed-task controller, frozen model harness, sandbox execution, and immutable evaluation receipts"
         }
       ],
       "storage": [
@@ -56,6 +61,13 @@
           "port": "ephemeral-filesystem",
           "source_of_truth": false,
           "stores": ["hot packs", "decoded source", "temporary index builds"]
+        },
+        {
+          "role": "sealed-evaluation",
+          "port": "separate-credential-object-and-control-store",
+          "source_of_truth": true,
+          "stores": ["holdout task bodies", "hidden tests", "gold patches", "contamination fingerprints", "evaluation receipts"],
+          "must_not_feed": ["ingestion", "retrieval", "embedding", "training", "primitive generation"]
         }
       ],
       "exit_gate": "a declared split gate remains violated after vertical and process-group scaling"
@@ -79,6 +91,11 @@
           "name": "indexer",
           "component_ids": ["indexer-service", "worker-runtime"],
           "state": "resource-heavy asynchronous extraction, candidate generation, verification, and projection publication"
+        },
+        {
+          "name": "evaluator",
+          "component_ids": ["benchmark-worker"],
+          "state": "separately credentialed benchmark scheduler, model adapter, sandbox verifier, and claim report compiler"
         }
       ],
       "storage": [
@@ -96,6 +113,12 @@
           "role": "serving-projections",
           "port": "replaceable-search-vector-graph-adapters",
           "source_of_truth": false
+        },
+        {
+          "role": "sealed-evaluation",
+          "port": "isolated-object-and-metadata-store",
+          "source_of_truth": true,
+          "network_reachability": "evaluator-and-independent-verifier-only"
         }
       ],
       "exit_gate": "only add another service for an independently measured boundary"

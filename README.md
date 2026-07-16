@@ -26,6 +26,8 @@ This repository currently contains the first executable vertical slice:
   capsules, contracts, graph neighborhoods, and exact/lexical/blocking/LSH search data;
 - append-only candidate intake, worker lease, and privacy-aware prompt-session ledgers
   that prevent generated code from self-promoting;
+- a sealed matched-lane benchmark worker that compares bare-model, search-context,
+  primitive-plan, and materialized-composition runs with failure-inclusive receipts;
 - a polyglot inventory adapter boundary plus optional MCP, Codex, and Claude harnesses.
 
 The implementation deliberately separates canonical graph truth from disposable
@@ -47,6 +49,10 @@ tcg edge search --predicate uceg.predicate.calls_may --store .tcg
 # Generate real-source primitive candidates and the product console.
 PYTHONPATH=src python tools/populate_primitive_candidates.py
 python tools/generate_registry_console.py
+
+# Generate the no-model benchmark-worker conformance evidence and console.
+PYTHONPATH=src python tools/run_benchmark_worker_conformance.py
+python tools/generate_benchmark_console.py
 ```
 
 No third-party runtime dependency is required for the graph core. Install
@@ -70,6 +76,8 @@ python -m compileall -q src tests
 6. Candidate compatibility is not canonical graph adjacency.
 7. Build or runtime execution is always a separate, explicit, receipt-producing step.
 8. Published epochs are immutable; indexes can be rebuilt from their manifests.
+9. Sealed evaluation tasks, hidden tests, gold outputs, and answer-derived features
+   never feed production retrieval, embeddings, primitive generation, or training.
 
 See [docs/spec/FIRST_VERTICAL_SLICE.md](docs/spec/FIRST_VERTICAL_SLICE.md) for the
 implemented boundary and the next gates.
@@ -153,6 +161,23 @@ The governing value unit is an independently accepted, policy-compliant outcome.
 Currency prices and ROI claims remain unset pending customer, cost, quality, and
 retention evidence; the current absence of a project license also blocks describing a
 community tier as open source.
+
+## SaaS benchmark worker
+
+Taedri now has an executable controller for testing the product hypothesis at fixed
+model quality. It schedules identical real coding tasks through bare-model,
+search-context, primitive-plan, and primitive-materialized lanes, while an isolated
+verifier retains build/test/policy outcomes, provider and tool usage, tokens, latency,
+cost, component reuse, consistency, failures, and contamination strata.
+
+![Matched benchmark worker and sealed evidence boundary](docs/visuals/assets/benchmark-worker-evidence-boundary.svg)
+
+Read the [architecture and real campaign design](docs/architecture/SAAS_BENCHMARK_WORKER.md),
+inspect the [POC report](docs/reports/SAAS_BENCHMARK_WORKER_POC_2026-07-16.md), or open
+the [benchmark evidence console](apps/explorer/benchmark-console.html). The checked-in
+16-run bundle uses two real Taedri source tasks and real primitive/search snapshot
+identities, but deterministic fixture receipts and no model call. Its report therefore
+sets `efficacy_claimable` to `false`; it validates the worker, not the SaaS benefit.
 
 ## Project status
 

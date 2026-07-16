@@ -7,5 +7,12 @@ no network requests and can be opened directly after cloning the repository.
 
 The broader architecture simulator remains at
 [`docs/visuals/architecture-explorer.html`](../../docs/visuals/architecture-explorer.html).
+
+The self-contained [`benchmark-console.html`](benchmark-console.html) shows the
+four matched assistance lanes, sealed-evaluation boundary, claim gate, conformance
+receipts, real campaign tracks, and failure-inclusive unit-economics contract. Its
+embedded run is explicitly a no-model conformance fixture and cannot be read as a
+product-quality result.
+
 Production UI work still needs authenticated APIs, pagination, virtualized graphs,
 tenant policy, accessibility testing, and deployment.

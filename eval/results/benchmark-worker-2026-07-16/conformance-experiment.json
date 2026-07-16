@@ -1,0 +1,76 @@
+{
+  "budget": {
+    "max_completion_tokens": 1000,
+    "max_prompt_tokens": 2000,
+    "max_tool_calls": 8,
+    "max_verifier_cpu_ms": 30000,
+    "max_wall_ms": 60000
+  },
+  "created_at": "2026-07-16T15:00:00Z",
+  "evidence_class": "conformance_fixture",
+  "format_version": "1.0.0",
+  "harness_digest": "sha256:86496d2d400f270813b90c6972f09191b2d5c3705e616d8b895fdcb44373ffb3",
+  "identity": {
+    "canonical_key": {
+      "budget": {
+        "max_completion_tokens": 1000,
+        "max_prompt_tokens": 2000,
+        "max_tool_calls": 8,
+        "max_verifier_cpu_ms": 30000,
+        "max_wall_ms": 60000
+      },
+      "created_at": "2026-07-16T15:00:00Z",
+      "evidence_class": "conformance_fixture",
+      "format_version": "1.0.0",
+      "harness_digest": "sha256:86496d2d400f270813b90c6972f09191b2d5c3705e616d8b895fdcb44373ffb3",
+      "lanes": [
+        "bare_model",
+        "search_context",
+        "primitive_plan",
+        "primitive_materialized"
+      ],
+      "model_config_digest": "sha256:6a1378e861a3d80416707af52857d98ecedf25a23aa1c5fa5cf89affc711dc94",
+      "model_id": "not-a-model",
+      "name": "benchmark worker progressive-disclosure conformance",
+      "network_policy": "disabled",
+      "policy_digest": "sha256:b9061a6eee6a8bb75194e749267f52724fdf4e20172f3964ce8c70ec86458a04",
+      "primitive_registry_snapshot_ref": "sha256:f10374c4bc7deb40fe4cef4c1b4c75b3b6eb8a5985cfe1a0fb46da7f23be03b6",
+      "provider_id": "deterministic-contract-fixture",
+      "retrieval_snapshot_ref": "sha256:3f9c331a31089ddbdf4a7c883e5f24c98987d65bca6348cc31249c100e79286e",
+      "sandbox_image_digest": "sha256:365fcb3d8c710462c098725aa387467ade571c865ac5d4d1a8a90b8300ff0609",
+      "seeds": [
+        101,
+        202
+      ],
+      "task_ids": [
+        "uceg:v1:benchmark_task:hpchsybbzoyj4ysifuwxclj6poibjco7qqny2d7dwfnjpx56jjxq",
+        "uceg:v1:benchmark_task:jddqb6box7jbc2rbhdlwtxpcimefz3m32adozzan7edbksz5zyka"
+      ]
+    },
+    "id": "uceg:v1:benchmark_experiment:2x3q5zjdl5tiam7ltyeldefdk7ollufjak6rn7ub62u4zabmjluq",
+    "kind": "benchmark_experiment"
+  },
+  "lanes": [
+    "bare_model",
+    "search_context",
+    "primitive_plan",
+    "primitive_materialized"
+  ],
+  "model_config_digest": "sha256:6a1378e861a3d80416707af52857d98ecedf25a23aa1c5fa5cf89affc711dc94",
+  "model_id": "not-a-model",
+  "name": "benchmark worker progressive-disclosure conformance",
+  "network_policy": "disabled",
+  "policy_digest": "sha256:b9061a6eee6a8bb75194e749267f52724fdf4e20172f3964ce8c70ec86458a04",
+  "primitive_registry_snapshot_ref": "sha256:f10374c4bc7deb40fe4cef4c1b4c75b3b6eb8a5985cfe1a0fb46da7f23be03b6",
+  "provider_id": "deterministic-contract-fixture",
+  "retrieval_snapshot_ref": "sha256:3f9c331a31089ddbdf4a7c883e5f24c98987d65bca6348cc31249c100e79286e",
+  "sandbox_image_digest": "sha256:365fcb3d8c710462c098725aa387467ade571c865ac5d4d1a8a90b8300ff0609",
+  "seeds": [
+    101,
+    202
+  ],
+  "task_ids": [
+    "uceg:v1:benchmark_task:hpchsybbzoyj4ysifuwxclj6poibjco7qqny2d7dwfnjpx56jjxq",
+    "uceg:v1:benchmark_task:jddqb6box7jbc2rbhdlwtxpcimefz3m32adozzan7edbksz5zyka"
+  ]
+}

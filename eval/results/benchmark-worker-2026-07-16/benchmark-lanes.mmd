@@ -1,0 +1,17 @@
+flowchart LR
+  T[Sealed evaluation controller] --> B[Bare model]
+  T --> S[Search context]
+  T --> P[Primitive plan]
+  T --> M[Primitive materialized]
+  R[(Production retrieval snapshot)] --> S
+  R --> P
+  R --> M
+  G[(Primitive registry snapshot)] --> P
+  G --> M
+  B --> V[Independent verifier]
+  S --> V
+  P --> V
+  M --> V
+  O[(Sealed oracle / hidden tests)] --> V
+  V --> E[Immutable run receipts + paired report]
+  O -. prohibited .-> R
