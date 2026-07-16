@@ -1,0 +1,40 @@
+flowchart TD
+    n0["requests.adapters.HTTPAdapter.send.proxies"]
+    n1["requests.adapters.HTTPAdapter.cert_verify"]
+    n2["requests.adapters.InvalidURL"]
+    n3["_types.is_prepared"]
+    n4["exceptions.InvalidURL"]
+    n5["requests.adapters.HTTPAdapter.send.conn"]
+    n6["requests.adapters.HTTPAdapter.send.verify"]
+    n7["requests.adapters._is_prepared"]
+    n8["requests.adapters.HTTPAdapter.get_connection_with_tls_context"]
+    n9["requests.adapters.HTTPAdapter.send.cert"]
+    n10["requests.adapters.HTTPAdapter.send.e"]
+    n11["requests.adapters.HTTPAdapter.send.self"]
+    n12["requests.adapters.LocationValueError"]
+    n13["requests.adapters.HTTPAdapter.send"]
+    n14["requests.adapters.HTTPAdapter.send.request"]
+    n13 -->|calls_may| n3
+    n13 -->|reads| n7
+    n13 -->|reads| n14
+    n13 -->|writes| n5
+    n13 -->|calls_may| n8
+    n13 -->|reads| n8
+    n13 -->|reads| n11
+    n13 -->|reads| n14
+    n13 -->|reads| n6
+    n13 -->|reads| n0
+    n13 -->|reads| n9
+    n13 -->|reads| n12
+    n13 -->|writes| n10
+    n13 -->|calls_may| n4
+    n13 -->|reads| n2
+    n13 -->|reads| n10
+    n13 -->|reads| n14
+    n13 -->|calls_may| n1
+    n13 -->|reads| n1
+    n13 -->|reads| n11
+    n13 -->|reads| n5
+    n13 -->|reads| n14
+    n13 -->|reads| n6
+    n13 -->|reads| n9

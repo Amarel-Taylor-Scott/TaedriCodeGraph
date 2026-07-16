@@ -1,0 +1,36 @@
+flowchart TD
+    n0["pypdf._reader.PdfReader.get_object"]
+    n1["pypdf._reader.PdfReader.root_object"]
+    n2["pypdf._reader.PdfReader.get_object.retval"]
+    n3["int"]
+    n4["pypdf._reader.PdfReader.get_object.indirect_reference"]
+    n5["pypdf._reader.IndirectObject"]
+    n6["generic.IndirectObject"]
+    n7["pypdf._reader.PdfReader.xref_objStm"]
+    n8["pypdf._reader.PdfReader.get_object.self"]
+    n9["isinstance"]
+    n10["pypdf._reader.PdfReader.cache_get_indirect_object"]
+    n1 -->|calls_may| n0
+    n1 -->|reads| n0
+    n0 -->|calls_may| n9
+    n0 -->|reads| n9
+    n0 -->|reads| n4
+    n0 -->|reads| n3
+    n0 -->|writes| n4
+    n0 -->|calls_may| n6
+    n0 -->|reads| n5
+    n0 -->|reads| n4
+    n0 -->|reads| n8
+    n0 -->|writes| n2
+    n0 -->|calls_may| n10
+    n0 -->|reads| n10
+    n0 -->|reads| n8
+    n0 -->|reads| n4
+    n0 -->|reads| n4
+    n0 -->|reads| n2
+    n0 -->|reads| n2
+    n0 -->|reads| n4
+    n0 -->|reads| n4
+    n0 -->|reads| n7
+    n0 -->|reads| n8
+    n0 -->|writes| n2

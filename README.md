@@ -14,6 +14,13 @@ This repository currently contains the first executable vertical slice:
 - immutable candidate epochs and atomic publication with rollback-friendly history;
 - replaceable SQLite exact, FTS5, and forward/reverse adjacency projections;
 - compact CLI operations for analysis, entity search/show, and edge search/neighbors.
+- typed, unlimited representation variants that separate reusable content, subject
+  assertions, generation attempts, and role-labeled lineage;
+- explainable hybrid retrieval over exact, FTS5, facet, scalar, blocking/LSH, bounded
+  vector, and graph lanes;
+- verified local-wheel ingestion with declared license provenance and distribution/import
+  namespace separation;
+- a polyglot inventory adapter boundary plus optional MCP, Codex, and Claude harnesses.
 
 The implementation deliberately separates canonical graph truth from disposable
 search projections. Similarity can nominate candidates; it never proves that code
@@ -28,10 +35,13 @@ python -m pip install -e .
 
 tcg analyze path ./src --store .tcg --publish
 tcg search "extension registry" --store .tcg
+tcg context "find an extension registry" --store .tcg
 tcg edge search --predicate uceg.predicate.calls_may --store .tcg
 ```
 
-No third-party runtime dependency is required. The supported baseline is Python 3.12.
+No third-party runtime dependency is required for the graph core. Install
+`taedri-codegraph[agents]` for the optional MCP server. The supported baseline is
+Python 3.12.
 
 ## Verify
 
@@ -66,10 +76,17 @@ occurrences, and 123,342 evidence-bearing relations without importing package co
 Read the [full real-PyPI benchmark report](docs/reports/REAL_PYPI_BENCHMARK_2026-07-15.md)
 or inspect the [raw CSV and JSON results](eval/results/real-pypi-2026-07-15/).
 
+The follow-up [architecture challenge](docs/architecture/UNIVERSAL_REPRESENTATION_ARCHITECTURE.md)
+tests unlimited typed/provenanced variants, verified wheels, polyglot inventory, hybrid
+retrieval, provider/router contracts, and agent harnesses. Its
+[real-package report](docs/reports/HYBRID_ARCHITECTURE_CHALLENGE_2026-07-15.md) retains
+both successful and failed retrieval cases with raw query receipts.
+
 ## Project status
 
 Pre-alpha. The current slice proves the identity/evidence/ingestion/publication/query
-spine. PyPI artifact resolution, semantic type analysis, compatibility routing,
-multi-model embeddings, and deterministic changes remain explicit later milestones.
+spine and the universal representation extension mechanism. Remote PyPI/Git acquisition,
+semantic cross-language analyzers, production storage, real model embeddings, calibrated
+fusion, and compatibility routing remain explicit later milestones.
 
 No project license has been selected yet; all rights are reserved until one is added.

@@ -16,6 +16,7 @@ from .contracts import GraphBundle, RecordMixin
 from .identity import IdentityRecord
 from .query import GraphIndex, build_index
 from .registry import ExtensionRegistry, core_registry
+from .representations import RepresentationRegistry, core_representation_registry
 
 
 class EpochValidationError(ValueError):
@@ -29,6 +30,7 @@ class GraphEpochManifest(RecordMixin):
     snapshot_id: str
     analysis_manifest_id: str
     registry_digest: str
+    representation_registry_digest: str
     shard_digests: Mapping[str, str]
     record_counts: Mapping[str, int]
     index_manifest: Mapping[str, Any]
@@ -40,25 +42,28 @@ class GraphEpochManifest(RecordMixin):
         snapshot_id: str,
         analysis_manifest_id: str,
         registry_digest: str,
+        representation_registry_digest: str,
         shard_digests: Mapping[str, str],
         record_counts: Mapping[str, int],
         index_manifest: Mapping[str, Any],
     ) -> "GraphEpochManifest":
         key = {
-            "format_version": "1.0.0",
+            "format_version": "2.0.0",
             "snapshot_id": snapshot_id,
             "analysis_manifest_id": analysis_manifest_id,
             "registry_digest": registry_digest,
+            "representation_registry_digest": representation_registry_digest,
             "shard_digests": dict(sorted(shard_digests.items())),
             "record_counts": dict(sorted(record_counts.items())),
             "index_manifest": dict(index_manifest),
         }
         return cls(
             IdentityRecord.create("graph_epoch", key),
-            "1.0.0",
+            "2.0.0",
             snapshot_id,
             analysis_manifest_id,
             registry_digest,
+            representation_registry_digest,
             dict(sorted(shard_digests.items())),
             dict(sorted(record_counts.items())),
             dict(index_manifest),
@@ -112,9 +117,11 @@ class GraphStore:
         self,
         bundle: GraphBundle,
         registry: ExtensionRegistry | None = None,
+        representation_registry: RepresentationRegistry | None = None,
     ) -> str:
         registry = registry or core_registry()
-        bundle.validate(registry.resolve)
+        representation_registry = representation_registry or core_representation_registry()
+        bundle.validate(registry.resolve, representation_registry.resolve)
         self._ensure_layout()
         for digest, content in bundle.source_blobs.items():
             self._write_cas(digest, content)
@@ -146,6 +153,17 @@ class GraphStore:
             registry_digest = sha256_digest(registry_bytes)
             shard_digests["registry.json"] = registry_digest
             record_counts["registry_descriptors"] = len(registry.descriptors())
+            representation_registry_bytes = (
+                canonical_json_bytes(representation_registry.manifest()) + b"\n"
+            )
+            (stage / "representation_registry.json").write_bytes(
+                representation_registry_bytes
+            )
+            representation_registry_digest = sha256_digest(representation_registry_bytes)
+            shard_digests["representation_registry.json"] = representation_registry_digest
+            record_counts["representation_registry_descriptors"] = len(
+                representation_registry.descriptors()
+            )
 
             index_manifest = build_index(bundle, stage / "index.sqlite")
             index_manifest["logical_config_digest"] = canonical_digest(index_manifest)
@@ -153,6 +171,7 @@ class GraphStore:
                 snapshot_id=bundle.snapshot.identity.id,
                 analysis_manifest_id=bundle.analysis.identity.id,
                 registry_digest=registry_digest,
+                representation_registry_digest=representation_registry_digest,
                 shard_digests=shard_digests,
                 record_counts=record_counts,
                 index_manifest=index_manifest,

@@ -1,0 +1,362 @@
+[
+  {
+    "expected": "usaddress.parse",
+    "hit_rank": 1,
+    "latency_ms": 1.6806,
+    "package": "usaddress",
+    "profile": "hybrid",
+    "query": "parse a street address into labeled components",
+    "top_result": "usaddress.parse",
+    "top_result_lanes": "lexical,blocking,vector"
+  },
+  {
+    "expected": "usaddress.parse",
+    "hit_rank": 1,
+    "latency_ms": 0.5799,
+    "package": "usaddress",
+    "profile": "lexical",
+    "query": "parse a street address into labeled components",
+    "top_result": "usaddress.parse",
+    "top_result_lanes": "lexical"
+  },
+  {
+    "expected": "usaddress.parse",
+    "hit_rank": 2,
+    "latency_ms": 0.663,
+    "package": "usaddress",
+    "profile": "blocking",
+    "query": "parse a street address into labeled components",
+    "top_result": "usaddress.RepeatedLabelError",
+    "top_result_lanes": "blocking"
+  },
+  {
+    "expected": "usaddress.parse",
+    "hit_rank": 1,
+    "latency_ms": 1.6237,
+    "package": "usaddress",
+    "profile": "vector",
+    "query": "parse a street address into labeled components",
+    "top_result": "usaddress.parse",
+    "top_result_lanes": "vector"
+  },
+  {
+    "expected": "usaddress.tag",
+    "hit_rank": 1,
+    "latency_ms": 1.5342,
+    "package": "usaddress",
+    "profile": "hybrid",
+    "query": "tag address components and determine address type",
+    "top_result": "usaddress.tag",
+    "top_result_lanes": "lexical,blocking,vector"
+  },
+  {
+    "expected": "usaddress.tag",
+    "hit_rank": 1,
+    "latency_ms": 0.6146,
+    "package": "usaddress",
+    "profile": "lexical",
+    "query": "tag address components and determine address type",
+    "top_result": "usaddress.tag",
+    "top_result_lanes": "lexical"
+  },
+  {
+    "expected": "usaddress.tag",
+    "hit_rank": 3,
+    "latency_ms": 0.5995,
+    "package": "usaddress",
+    "profile": "blocking",
+    "query": "tag address components and determine address type",
+    "top_result": "usaddress.tokenFeatures",
+    "top_result_lanes": "blocking"
+  },
+  {
+    "expected": "usaddress.tag",
+    "hit_rank": 1,
+    "latency_ms": 1.6764,
+    "package": "usaddress",
+    "profile": "vector",
+    "query": "tag address components and determine address type",
+    "top_result": "usaddress.tag",
+    "top_result_lanes": "vector"
+  },
+  {
+    "expected": "usaddress.tokenize",
+    "hit_rank": 1,
+    "latency_ms": 1.6538,
+    "package": "usaddress",
+    "profile": "hybrid",
+    "query": "tokenize an address string",
+    "top_result": "usaddress.tokenize",
+    "top_result_lanes": "lexical,blocking,vector"
+  },
+  {
+    "expected": "usaddress.tokenize",
+    "hit_rank": 1,
+    "latency_ms": 0.5472,
+    "package": "usaddress",
+    "profile": "lexical",
+    "query": "tokenize an address string",
+    "top_result": "usaddress.tokenize",
+    "top_result_lanes": "lexical"
+  },
+  {
+    "expected": "usaddress.tokenize",
+    "hit_rank": 1,
+    "latency_ms": 0.8398,
+    "package": "usaddress",
+    "profile": "blocking",
+    "query": "tokenize an address string",
+    "top_result": "usaddress.tokenize",
+    "top_result_lanes": "blocking"
+  },
+  {
+    "expected": "usaddress.tokenize",
+    "hit_rank": 1,
+    "latency_ms": 1.5806,
+    "package": "usaddress",
+    "profile": "vector",
+    "query": "tokenize an address string",
+    "top_result": "usaddress.tokenize",
+    "top_result_lanes": "vector"
+  },
+  {
+    "expected": "requests.api.get",
+    "hit_rank": 10,
+    "latency_ms": 29.8519,
+    "package": "requests",
+    "profile": "hybrid",
+    "query": "send an HTTP GET request",
+    "top_result": "requests.models.Request",
+    "top_result_lanes": "lexical,blocking,vector"
+  },
+  {
+    "expected": "requests.api.get",
+    "hit_rank": 2,
+    "latency_ms": 15.2561,
+    "package": "requests",
+    "profile": "lexical",
+    "query": "send an HTTP GET request",
+    "top_result": "requests.models.PreparedRequest",
+    "top_result_lanes": "lexical"
+  },
+  {
+    "expected": "requests.api.get",
+    "hit_rank": null,
+    "latency_ms": 3.2093,
+    "package": "requests",
+    "profile": "blocking",
+    "query": "send an HTTP GET request",
+    "top_result": "requests._types._ValidatedRequest",
+    "top_result_lanes": "blocking"
+  },
+  {
+    "expected": "requests.api.get",
+    "hit_rank": null,
+    "latency_ms": 42.8697,
+    "package": "requests",
+    "profile": "vector",
+    "query": "send an HTTP GET request",
+    "top_result": "requests.cookies.MockRequest.get_full_url",
+    "top_result_lanes": "vector"
+  },
+  {
+    "expected": "requests.sessions.Session.request",
+    "hit_rank": 8,
+    "latency_ms": 35.2106,
+    "package": "requests",
+    "profile": "hybrid",
+    "query": "send a request with a persistent HTTP session",
+    "top_result": "requests.sessions.Session.send",
+    "top_result_lanes": "lexical,blocking,vector"
+  },
+  {
+    "expected": "requests.sessions.Session.request",
+    "hit_rank": null,
+    "latency_ms": 11.3474,
+    "package": "requests",
+    "profile": "lexical",
+    "query": "send a request with a persistent HTTP session",
+    "top_result": "requests.sessions.Session.send",
+    "top_result_lanes": "lexical"
+  },
+  {
+    "expected": "requests.sessions.Session.request",
+    "hit_rank": null,
+    "latency_ms": 4.5574,
+    "package": "requests",
+    "profile": "blocking",
+    "query": "send a request with a persistent HTTP session",
+    "top_result": "requests.models.RequestEncodingMixin",
+    "top_result_lanes": "blocking"
+  },
+  {
+    "expected": "requests.sessions.Session.request",
+    "hit_rank": null,
+    "latency_ms": 42.2553,
+    "package": "requests",
+    "profile": "vector",
+    "query": "send a request with a persistent HTTP session",
+    "top_result": "requests.models.Response",
+    "top_result_lanes": "vector"
+  },
+  {
+    "expected": "requests.models.Response.json",
+    "hit_rank": 4,
+    "latency_ms": 19.6295,
+    "package": "requests",
+    "profile": "hybrid",
+    "query": "decode an HTTP response body as JSON",
+    "top_result": "requests.utils.stream_decode_response_unicode",
+    "top_result_lanes": "lexical,blocking,vector"
+  },
+  {
+    "expected": "requests.models.Response.json",
+    "hit_rank": 1,
+    "latency_ms": 5.1901,
+    "package": "requests",
+    "profile": "lexical",
+    "query": "decode an HTTP response body as JSON",
+    "top_result": "requests.models.Response.json",
+    "top_result_lanes": "lexical"
+  },
+  {
+    "expected": "requests.models.Response.json",
+    "hit_rank": null,
+    "latency_ms": 3.196,
+    "package": "requests",
+    "profile": "blocking",
+    "query": "decode an HTTP response body as JSON",
+    "top_result": "requests.utils.stream_decode_response_unicode",
+    "top_result_lanes": "blocking"
+  },
+  {
+    "expected": "requests.models.Response.json",
+    "hit_rank": null,
+    "latency_ms": 40.6653,
+    "package": "requests",
+    "profile": "vector",
+    "query": "decode an HTTP response body as JSON",
+    "top_result": "requests.models.Response.__iter__",
+    "top_result_lanes": "vector"
+  },
+  {
+    "expected": "pypdf._reader.PdfReader",
+    "hit_rank": null,
+    "latency_ms": 46.1815,
+    "package": "pypdf",
+    "profile": "hybrid",
+    "query": "read an existing PDF document",
+    "top_result": "pypdf._writer.PdfWriter.clone_document_from_reader",
+    "top_result_lanes": "lexical,blocking,vector"
+  },
+  {
+    "expected": "pypdf._reader.PdfReader",
+    "hit_rank": null,
+    "latency_ms": 11.0359,
+    "package": "pypdf",
+    "profile": "lexical",
+    "query": "read an existing PDF document",
+    "top_result": "pypdf._writer.PdfWriter.clone_document_from_reader",
+    "top_result_lanes": "lexical"
+  },
+  {
+    "expected": "pypdf._reader.PdfReader",
+    "hit_rank": null,
+    "latency_ms": 7.8232,
+    "package": "pypdf",
+    "profile": "blocking",
+    "query": "read an existing PDF document",
+    "top_result": "pypdf._writer.PdfWriter.clone_reader_document_root",
+    "top_result_lanes": "blocking"
+  },
+  {
+    "expected": "pypdf._reader.PdfReader",
+    "hit_rank": null,
+    "latency_ms": 128.2731,
+    "package": "pypdf",
+    "profile": "vector",
+    "query": "read an existing PDF document",
+    "top_result": "pypdf._protocols.PdfObjectProtocol.hash_value",
+    "top_result_lanes": "vector"
+  },
+  {
+    "expected": "pypdf._page.PageObject.extract_text",
+    "hit_rank": null,
+    "latency_ms": 48.3879,
+    "package": "pypdf",
+    "profile": "hybrid",
+    "query": "extract text from a PDF page",
+    "top_result": "pypdf._text_extraction._text_extractor.TextExtraction",
+    "top_result_lanes": "lexical,blocking,vector"
+  },
+  {
+    "expected": "pypdf._page.PageObject.extract_text",
+    "hit_rank": null,
+    "latency_ms": 14.959,
+    "package": "pypdf",
+    "profile": "lexical",
+    "query": "extract text from a PDF page",
+    "top_result": "pypdf._text_extraction._text_extractor.TextExtraction",
+    "top_result_lanes": "lexical"
+  },
+  {
+    "expected": "pypdf._page.PageObject.extract_text",
+    "hit_rank": 1,
+    "latency_ms": 7.955,
+    "package": "pypdf",
+    "profile": "blocking",
+    "query": "extract text from a PDF page",
+    "top_result": "pypdf._page.PageObject.extract_text",
+    "top_result_lanes": "blocking"
+  },
+  {
+    "expected": "pypdf._page.PageObject.extract_text",
+    "hit_rank": null,
+    "latency_ms": 132.976,
+    "package": "pypdf",
+    "profile": "vector",
+    "query": "extract text from a PDF page",
+    "top_result": "pypdf._doc_common.DocumentInformation.creator",
+    "top_result_lanes": "vector"
+  },
+  {
+    "expected": "pypdf._writer.PdfWriter.write",
+    "hit_rank": null,
+    "latency_ms": 46.253,
+    "package": "pypdf",
+    "profile": "hybrid",
+    "query": "write a PDF document to a stream",
+    "top_result": "pypdf._writer.PdfWriter.clone_document_from_reader",
+    "top_result_lanes": "lexical,blocking,vector"
+  },
+  {
+    "expected": "pypdf._writer.PdfWriter.write",
+    "hit_rank": null,
+    "latency_ms": 12.2577,
+    "package": "pypdf",
+    "profile": "lexical",
+    "query": "write a PDF document to a stream",
+    "top_result": "pypdf._writer.PdfWriter.metadata",
+    "top_result_lanes": "lexical"
+  },
+  {
+    "expected": "pypdf._writer.PdfWriter.write",
+    "hit_rank": null,
+    "latency_ms": 8.3121,
+    "package": "pypdf",
+    "profile": "blocking",
+    "query": "write a PDF document to a stream",
+    "top_result": "pypdf.generic._data_structures.ArrayObject.write_to_stream",
+    "top_result_lanes": "blocking"
+  },
+  {
+    "expected": "pypdf._writer.PdfWriter.write",
+    "hit_rank": null,
+    "latency_ms": 134.1051,
+    "package": "pypdf",
+    "profile": "vector",
+    "query": "write a PDF document to a stream",
+    "top_result": "pypdf._protocols.PdfObjectProtocol.write_to_stream",
+    "top_result_lanes": "vector"
+  }
+]

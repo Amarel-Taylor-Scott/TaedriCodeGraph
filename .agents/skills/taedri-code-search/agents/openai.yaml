@@ -1,0 +1,6 @@
+interface:
+  display_name: "Taedri Code Search"
+  short_description: "Search code graphs before reading source"
+  default_prompt: "Use $taedri-code-search to find and verify reusable code for this task."
+policy:
+  allow_implicit_invocation: true

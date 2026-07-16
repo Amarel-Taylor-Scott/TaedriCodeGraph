@@ -20,6 +20,7 @@ dependencies = []
 
 [project.optional-dependencies]
 research = ["matplotlib>=3.8"]
+agents = ["mcp>=1.2,<2"]
 
 [project.scripts]
 tcg = "taedri_codegraph.cli:main"

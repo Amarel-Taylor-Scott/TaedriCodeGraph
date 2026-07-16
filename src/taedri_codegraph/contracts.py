@@ -61,6 +61,29 @@ class EvidenceLevel(str, Enum):
     PREFERRED = "L6_preferred"
 
 
+class ValueKind(str, Enum):
+    """Stable wire families for independently governed representations.
+
+    Physical stores may promote these values into native columns or external
+    indexes.  The canonical ledger keeps the declared wire kind and value
+    together so an experimental representation never changes a kernel table.
+    """
+
+    TEXT = "text"
+    KEYWORD = "keyword"
+    BOOLEAN = "boolean"
+    INTEGER = "integer"
+    DECIMAL = "decimal"
+    TIMESTAMP = "timestamp"
+    URI = "uri"
+    DIGEST = "digest"
+    JSON = "json"
+    DENSE_VECTOR = "dense_vector"
+    SPARSE_VECTOR = "sparse_vector"
+    DISTRIBUTION = "distribution"
+    BYTES_REF = "bytes_ref"
+
+
 class GraphValidationError(ValueError):
     def __init__(self, errors: Iterable[str]):
         self.errors = tuple(errors)
@@ -99,6 +122,96 @@ class SubjectRef(RecordMixin):
 
 
 @dataclass(frozen=True, slots=True)
+class TypedValue(RecordMixin):
+    """A canonical value with an explicit logical wire family.
+
+    Decimal and floating-point-like values use decimal strings. Dense vector
+    payloads may either contain deterministic integer/decimal-string values or
+    a content-addressed external data reference. This avoids platform float
+    encodings leaking into exact identities.
+    """
+
+    kind: ValueKind
+    value: Any
+
+    def __post_init__(self) -> None:
+        value = to_primitive(self.value)
+        object.__setattr__(self, "value", value)
+        valid = False
+        if self.kind in {ValueKind.TEXT, ValueKind.KEYWORD, ValueKind.TIMESTAMP, ValueKind.URI}:
+            valid = isinstance(value, str)
+        elif self.kind is ValueKind.BOOLEAN:
+            valid = isinstance(value, bool)
+        elif self.kind is ValueKind.INTEGER:
+            valid = isinstance(value, int) and not isinstance(value, bool)
+        elif self.kind is ValueKind.DECIMAL:
+            valid = isinstance(value, str) and bool(
+                re.fullmatch(r"-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?", value)
+            )
+        elif self.kind is ValueKind.DIGEST:
+            valid = isinstance(value, str) and value.startswith("sha256:")
+        elif self.kind in {ValueKind.JSON, ValueKind.DISTRIBUTION}:
+            valid = isinstance(value, dict | list)
+        elif self.kind is ValueKind.BYTES_REF:
+            valid = (
+                isinstance(value, dict)
+                and isinstance(value.get("digest"), str)
+                and value["digest"].startswith("sha256:")
+                and isinstance(value.get("size_bytes"), int)
+                and value["size_bytes"] >= 0
+            )
+        elif self.kind is ValueKind.DENSE_VECTOR:
+            valid = _valid_dense_vector(value)
+        elif self.kind is ValueKind.SPARSE_VECTOR:
+            valid = _valid_sparse_vector(value)
+        if not valid:
+            raise ValueError(f"value does not conform to {self.kind.value}")
+
+
+def _valid_dense_vector(value: Any) -> bool:
+    if not isinstance(value, dict) or not isinstance(value.get("dimensions"), int):
+        return False
+    dimensions = value["dimensions"]
+    if dimensions <= 0:
+        return False
+    if "data_ref" in value:
+        ref = value["data_ref"]
+        return (
+            isinstance(ref, dict)
+            and isinstance(ref.get("digest"), str)
+            and ref["digest"].startswith("sha256:")
+        )
+    values = value.get("values")
+    return (
+        isinstance(values, list)
+        and len(values) == dimensions
+        and all(
+            (isinstance(item, int) and not isinstance(item, bool))
+            or (isinstance(item, str) and bool(re.fullmatch(r"-?[0-9]+(?:\.[0-9]+)?", item)))
+            for item in values
+        )
+    )
+
+
+def _valid_sparse_vector(value: Any) -> bool:
+    if not isinstance(value, dict) or not isinstance(value.get("dimensions"), int):
+        return False
+    entries = value.get("entries")
+    if value["dimensions"] <= 0 or not isinstance(entries, list):
+        return False
+    return all(
+        isinstance(entry, dict)
+        and isinstance(entry.get("index"), int)
+        and 0 <= entry["index"] < value["dimensions"]
+        and (
+            (isinstance(entry.get("value"), int) and not isinstance(entry["value"], bool))
+            or isinstance(entry.get("value"), str)
+        )
+        for entry in entries
+    )
+
+
+@dataclass(frozen=True, slots=True)
 class ParticipantRef(RecordMixin):
     role_key: str
     subject: SubjectRef
@@ -121,7 +234,12 @@ class SourceFileRecord(RecordMixin):
     media_type: str = "text/x-python"
 
     @classmethod
-    def create(cls, relative_path: str, content: bytes) -> "SourceFileRecord":
+    def create(
+        cls,
+        relative_path: str,
+        content: bytes,
+        media_type: str = "text/x-python",
+    ) -> "SourceFileRecord":
         if relative_path.startswith("/") or ".." in relative_path.split("/"):
             raise ValueError(f"source path must be normalized and relative: {relative_path}")
         digest = sha256_digest(content)
@@ -136,7 +254,7 @@ class SourceFileRecord(RecordMixin):
                 "file_content_id": content_identity.id,
             },
         )
-        return cls(identity, content_identity, relative_path, digest, len(content))
+        return cls(identity, content_identity, relative_path, digest, len(content), media_type)
 
 
 @dataclass(frozen=True, slots=True)
@@ -565,6 +683,245 @@ class ProjectionRecord(RecordMixin):
 
 
 @dataclass(frozen=True, slots=True)
+class RepresentationContent(RecordMixin):
+    """Subject-independent, content-addressed representation output."""
+
+    identity: IdentityRecord
+    family_key: str
+    representation_key: str
+    schema_version: str
+    typed_value: TypedValue
+    payload_digest: str
+
+    @classmethod
+    def create(
+        cls,
+        *,
+        family_key: str,
+        representation_key: str,
+        schema_version: str,
+        typed_value: TypedValue,
+    ) -> "RepresentationContent":
+        if not _KEY.fullmatch(family_key) or not _KEY.fullmatch(representation_key):
+            raise ValueError("representation family and key must be namespaced")
+        if not _VERSION.fullmatch(schema_version):
+            raise ValueError("invalid representation schema version")
+        payload_digest = canonical_digest(typed_value.to_dict())
+        key = {
+            "family_key": family_key,
+            "representation_key": representation_key,
+            "schema_version": schema_version,
+            "value_kind": typed_value.kind.value,
+            "payload_digest": payload_digest,
+        }
+        return cls(
+            IdentityRecord.create("representation_content", key),
+            family_key,
+            representation_key,
+            schema_version,
+            typed_value,
+            payload_digest,
+        )
+
+
+@dataclass(frozen=True, slots=True)
+class GenerationRun(RecordMixin):
+    """A receipt for one production attempt, including failures and retries."""
+
+    identity: IdentityRecord
+    snapshot_id: str
+    attempt_key: str
+    producer: ProducerRef
+    input_refs: tuple[str, ...]
+    output_content_ids: tuple[str, ...]
+    output_digest: str
+    status: str
+    started_at: str | None
+    completed_at: str | None
+    environment: Any
+
+    @classmethod
+    def create(
+        cls,
+        *,
+        snapshot_id: str,
+        attempt_key: str,
+        producer: ProducerRef,
+        input_refs: Iterable[str],
+        output_content_ids: Iterable[str],
+        status: str = "succeeded",
+        started_at: str | None = None,
+        completed_at: str | None = None,
+        environment: Any = None,
+    ) -> "GenerationRun":
+        if status not in {"planned", "running", "succeeded", "failed", "cancelled"}:
+            raise ValueError("unsupported generation-run status")
+        inputs = tuple(sorted(set(input_refs)))
+        outputs = tuple(sorted(set(output_content_ids)))
+        output_digest = canonical_digest(outputs)
+        primitive_environment = to_primitive(environment if environment is not None else {})
+        key = {
+            "snapshot_id": snapshot_id,
+            "attempt_key": attempt_key,
+            "producer": producer.to_dict(),
+            "input_refs": inputs,
+            "output_digest": output_digest,
+            "status": status,
+            "started_at": started_at,
+            "completed_at": completed_at,
+            "environment": primitive_environment,
+        }
+        return cls(
+            IdentityRecord.create("generation_run", key),
+            snapshot_id,
+            attempt_key,
+            producer,
+            inputs,
+            outputs,
+            output_digest,
+            status,
+            started_at,
+            completed_at,
+            primitive_environment,
+        )
+
+
+@dataclass(frozen=True, slots=True)
+class RepresentationAssertion(RecordMixin):
+    """A provenance-bearing claim that representation content describes a subject."""
+
+    identity: IdentityRecord
+    snapshot_id: str
+    subject: SubjectRef
+    content_id: str
+    modality: Modality
+    polarity: Polarity
+    producer: ProducerRef
+    generation_run_id: str
+    evidence_ids: tuple[str, ...]
+    confidence_ppm: int | None
+    scope: Any
+    valid_from: str | None
+    valid_to: str | None
+    lifecycle: EvidenceLevel
+
+    @classmethod
+    def create(
+        cls,
+        *,
+        snapshot_id: str,
+        subject: SubjectRef,
+        content_id: str,
+        modality: Modality,
+        polarity: Polarity,
+        producer: ProducerRef,
+        generation_run_id: str,
+        evidence_ids: Iterable[str] = (),
+        confidence_ppm: int | None = None,
+        scope: Any = None,
+        valid_from: str | None = None,
+        valid_to: str | None = None,
+        lifecycle: EvidenceLevel = EvidenceLevel.STRUCTURED,
+    ) -> "RepresentationAssertion":
+        if confidence_ppm is not None and not 0 <= confidence_ppm <= 1_000_000:
+            raise ValueError("confidence_ppm must be within [0, 1000000]")
+        evidence = tuple(sorted(set(evidence_ids)))
+        primitive_scope = to_primitive(scope if scope is not None else {})
+        key = {
+            "snapshot_id": snapshot_id,
+            "subject": subject.to_dict(),
+            "content_id": content_id,
+            "modality": modality.value,
+            "polarity": polarity.value,
+            "producer": producer.to_dict(),
+            "generation_run_id": generation_run_id,
+            "evidence_ids": evidence,
+            "confidence_ppm": confidence_ppm,
+            "scope": primitive_scope,
+            "valid_from": valid_from,
+            "valid_to": valid_to,
+            "lifecycle": lifecycle.value,
+        }
+        return cls(
+            IdentityRecord.create("representation_assertion", key),
+            snapshot_id,
+            subject,
+            content_id,
+            modality,
+            polarity,
+            producer,
+            generation_run_id,
+            evidence,
+            confidence_ppm,
+            primitive_scope,
+            valid_from,
+            valid_to,
+            lifecycle,
+        )
+
+
+@dataclass(frozen=True, slots=True)
+class LineageAssertion(RecordMixin):
+    """Versioned, evidence-bearing lineage between arbitrary graph subjects."""
+
+    identity: IdentityRecord
+    snapshot_id: str
+    predicate_key: str
+    source: SubjectRef
+    target: SubjectRef
+    role_key: str | None
+    ordinal: int | None
+    producer: ProducerRef
+    generation_run_id: str | None
+    evidence_ids: tuple[str, ...]
+
+    @classmethod
+    def create(
+        cls,
+        *,
+        snapshot_id: str,
+        predicate_key: str,
+        source: SubjectRef,
+        target: SubjectRef,
+        producer: ProducerRef,
+        generation_run_id: str | None = None,
+        evidence_ids: Iterable[str] = (),
+        role_key: str | None = None,
+        ordinal: int | None = None,
+    ) -> "LineageAssertion":
+        if not _KEY.fullmatch(predicate_key):
+            raise ValueError("lineage predicate must be namespaced")
+        if ordinal is not None and ordinal < 0:
+            raise ValueError("lineage ordinal cannot be negative")
+        if role_key is not None and not _KEY.fullmatch(role_key):
+            raise ValueError("lineage role must be namespaced")
+        evidence = tuple(sorted(set(evidence_ids)))
+        key = {
+            "snapshot_id": snapshot_id,
+            "predicate_key": predicate_key,
+            "source": source.to_dict(),
+            "target": target.to_dict(),
+            "role_key": role_key,
+            "ordinal": ordinal,
+            "producer": producer.to_dict(),
+            "generation_run_id": generation_run_id,
+            "evidence_ids": evidence,
+        }
+        return cls(
+            IdentityRecord.create("lineage_assertion", key),
+            snapshot_id,
+            predicate_key,
+            source,
+            target,
+            role_key,
+            ordinal,
+            producer,
+            generation_run_id,
+            evidence,
+        )
+
+
+@dataclass(frozen=True, slots=True)
 class CoverageLedger(RecordMixin):
     identity: IdentityRecord
     snapshot_id: str
@@ -666,6 +1023,10 @@ class GraphBundle(RecordMixin):
     relations: dict[str, RelationAssertion] = field(default_factory=dict)
     features: dict[str, FeatureAssertion] = field(default_factory=dict)
     projections: dict[str, ProjectionRecord] = field(default_factory=dict)
+    representation_contents: dict[str, RepresentationContent] = field(default_factory=dict)
+    representation_assertions: dict[str, RepresentationAssertion] = field(default_factory=dict)
+    generation_runs: dict[str, GenerationRun] = field(default_factory=dict)
+    lineage: dict[str, LineageAssertion] = field(default_factory=dict)
     coverage: dict[str, CoverageLedger] = field(default_factory=dict)
     source_blobs: dict[str, bytes] = field(default_factory=dict, repr=False)
 
@@ -680,6 +1041,10 @@ class GraphBundle(RecordMixin):
             "evidence": len(self.evidence),
             "features": len(self.features),
             "projections": len(self.projections),
+            "representation_contents": len(self.representation_contents),
+            "representation_assertions": len(self.representation_assertions),
+            "generation_runs": len(self.generation_runs),
+            "lineage_assertions": len(self.lineage),
             "coverage_ledgers": len(self.coverage),
         }
 
@@ -692,12 +1057,17 @@ class GraphBundle(RecordMixin):
             "relations": self.relations,
             "features": self.features,
             "projections": self.projections,
+            "representation_contents": self.representation_contents,
+            "representation_assertions": self.representation_assertions,
+            "generation_runs": self.generation_runs,
+            "lineage": self.lineage,
             "coverage": self.coverage,
         }
 
     def validate(
         self,
         descriptor_lookup: Callable[[str, str], ExtensionDescriptor] | None = None,
+        representation_descriptor_lookup: Callable[[str, str], Any] | None = None,
     ) -> None:
         errors: list[str] = []
         try:
@@ -737,9 +1107,15 @@ class GraphBundle(RecordMixin):
         occurrence_ids = set(self.occurrences)
         evidence_ids = set(self.evidence)
         relation_ids = set(self.relations)
+        content_ids = set(self.representation_contents)
+        assertion_ids = set(self.representation_assertions)
+        run_ids = set(self.generation_runs)
 
         if set(self.snapshot.file_ids) != file_ids:
             errors.append("snapshot file ID inventory does not equal graph file records")
+        for digest, blob in self.source_blobs.items():
+            if sha256_digest(blob) != digest:
+                errors.append(f"source/CAS blob digest mismatch for {digest}")
         for file_id, record in self.files.items():
             try:
                 record.content_identity.validate()
@@ -783,6 +1159,13 @@ class GraphBundle(RecordMixin):
             "snapshot": {snapshot_id},
             "file": file_ids,
             "file_content": file_content_ids,
+            "feature": set(self.features),
+            "projection": set(self.projections),
+            "representation_content": content_ids,
+            "representation_assertion": assertion_ids,
+            "generation_run": run_ids,
+            "analysis": {self.analysis.identity.id},
+            "evidence": evidence_ids,
         }
         for relation in self.relations.values():
             if not relation.evidence_ids:
@@ -824,6 +1207,70 @@ class GraphBundle(RecordMixin):
                 errors.append(f"projection {projection.identity.id} references unknown entity")
             if projection.subject.subject_kind == "relation" and projection.subject.id not in relation_ids:
                 errors.append(f"projection {projection.identity.id} references unknown relation")
+
+        for content in self.representation_contents.values():
+            if canonical_digest(content.typed_value.to_dict()) != content.payload_digest:
+                errors.append(f"representation content {content.identity.id} has a payload mismatch")
+            if representation_descriptor_lookup:
+                try:
+                    descriptor = representation_descriptor_lookup(
+                        content.representation_key, content.schema_version
+                    )
+                except KeyError:
+                    errors.append(
+                        f"representation content {content.identity.id} uses unregistered descriptor "
+                        f"{content.representation_key}@{content.schema_version}"
+                    )
+                else:
+                    if descriptor.family_key != content.family_key:
+                        errors.append(
+                            f"representation content {content.identity.id} has the wrong family"
+                        )
+                    if content.typed_value.kind not in descriptor.allowed_value_kinds:
+                        errors.append(
+                            f"representation content {content.identity.id} has a disallowed value kind"
+                        )
+        for run in self.generation_runs.values():
+            if canonical_digest(run.output_content_ids) != run.output_digest:
+                errors.append(f"generation run {run.identity.id} has an output-set mismatch")
+            for content_id in run.output_content_ids:
+                if content_id not in content_ids:
+                    errors.append(f"generation run {run.identity.id} has unknown output content")
+        for assertion in self.representation_assertions.values():
+            allowed = known_by_kind.get(assertion.subject.subject_kind)
+            if allowed is None or assertion.subject.id not in allowed:
+                errors.append(f"representation assertion {assertion.identity.id} has unknown subject")
+            if assertion.content_id not in content_ids:
+                errors.append(f"representation assertion {assertion.identity.id} has unknown content")
+            if assertion.generation_run_id not in run_ids:
+                errors.append(f"representation assertion {assertion.identity.id} has unknown run")
+            if representation_descriptor_lookup and assertion.content_id in self.representation_contents:
+                content = self.representation_contents[assertion.content_id]
+                try:
+                    descriptor = representation_descriptor_lookup(
+                        content.representation_key, content.schema_version
+                    )
+                except KeyError:
+                    pass
+                else:
+                    if assertion.subject.subject_kind not in descriptor.applies_to:
+                        errors.append(
+                            f"representation {content.representation_key} does not apply to "
+                            f"{assertion.subject.subject_kind}"
+                        )
+            for evidence_id in assertion.evidence_ids:
+                if evidence_id not in evidence_ids:
+                    errors.append(f"representation assertion {assertion.identity.id} has unknown evidence")
+        for item in self.lineage.values():
+            for label, reference in (("source", item.source), ("target", item.target)):
+                allowed = known_by_kind.get(reference.subject_kind)
+                if allowed is None or reference.id not in allowed:
+                    errors.append(f"lineage {item.identity.id} has unknown {label}")
+            if item.generation_run_id and item.generation_run_id not in run_ids:
+                errors.append(f"lineage {item.identity.id} has unknown run")
+            for evidence_id in item.evidence_ids:
+                if evidence_id not in evidence_ids:
+                    errors.append(f"lineage {item.identity.id} has unknown evidence")
 
         if errors:
             raise GraphValidationError(errors)

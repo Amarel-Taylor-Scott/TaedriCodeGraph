@@ -1,0 +1,16 @@
+{
+  "analysis_manifest_id": "uceg:v1:analysis_manifest:lzfi52lyhtyat6jnhuyrs5iq2pcunhphdrvw3twfida6wnsaayba",
+  "edges": [],
+  "nodes": [
+    {
+      "entity_kind": "uceg.entity.source_root",
+      "id": "uceg:v1:entity:hnsb5rzk6vwm4zhlu5clryegmimkszbyohzll6viileztnkz3gwa",
+      "lifecycle": "L3_source_backed",
+      "qualified_name": "pandas",
+      "root": true
+    }
+  ],
+  "root_entity_id": "uceg:v1:entity:hnsb5rzk6vwm4zhlu5clryegmimkszbyohzll6viileztnkz3gwa",
+  "snapshot_id": "uceg:v1:package_snapshot:a3phn2uwey7y4hrdrihmzd7unih5awtdmrpbxcl6q37vxb3axw2q",
+  "truncated": false
+}

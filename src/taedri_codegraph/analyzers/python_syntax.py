@@ -43,6 +43,7 @@ from ..fingerprints import (
     token_shingles,
 )
 from ..registry import ExtensionRegistry, core_registry
+from ..representations import core_representation_registry, enrich_bundle_representations
 
 ANALYZER_ID = "taedri.python-syntax"
 ANALYZER_VERSION = "0.1.0"
@@ -262,23 +263,6 @@ class FileContext:
             confidence=confidence,
         )
         self.bundle.relations[relation.edge_assertion_id] = relation
-        synopsis = ProjectionRecord.create(
-            subject=SubjectRef("relation", relation.edge_assertion_id),
-            projection_key="uceg.description.deterministic.edge_synopsis",
-            projection_schema_version="1.0.0",
-            input_refs=relation.evidence_ids,
-            generator=self.producer,
-            payload={
-                "text": predicate
-                + " "
-                + " ".join(
-                    f"{participant.role_key}={participant.subject.id}"
-                    for participant in relation.participants
-                )
-            },
-            snapshot_id=self.snapshot_id,
-        )
-        self.bundle.projections[synopsis.identity.id] = synopsis
         return relation
 
     def add_feature(
@@ -1096,6 +1080,9 @@ class PythonSyntaxAnalyzer:
         *,
         package_name: str | None = None,
         release: str | None = None,
+        source_kind: str = "local_python_tree",
+        source_uri: str | None = None,
+        module_roots: Iterable[str] | None = None,
     ) -> GraphBundle:
         root_path = Path(root).resolve(strict=True)
         if not root_path.is_dir():
@@ -1119,10 +1106,10 @@ class PythonSyntaxAnalyzer:
             ]
         )
         snapshot = PackageSnapshot.create(
-            source_kind="local_python_tree",
+            source_kind=source_kind,
             # The mutable checkout location is deliberately not part of the graph
             # fact shard. Exact origin receipts will be added by source adapters.
-            source_uri=f"local-tree:{package_name or root_path.name}",
+            source_uri=source_uri or f"local-tree:{package_name or root_path.name}",
             package_name=package_name or root_path.name,
             release=release,
             language_key=LANGUAGE_KEY,
@@ -1158,7 +1145,9 @@ class PythonSyntaxAnalyzer:
             except (UnicodeDecodeError, SyntaxError) as exc:
                 unsupported.append(f"{file_record.relative_path}:{type(exc).__name__}")
                 continue
-            module_name = module_name_for(file_record.relative_path, snapshot.package_name)
+            module_name = module_name_for(
+                file_record.relative_path, snapshot.package_name, module_roots
+            )
             paths = syntax_paths(tree)
             context = FileContext(
                 bundle,
@@ -1190,7 +1179,8 @@ class PythonSyntaxAnalyzer:
             extractor_versions=(f"{ANALYZER_ID}@{ANALYZER_VERSION}",),
         )
         bundle.coverage[coverage.identity.id] = coverage
-        bundle.validate(self.registry.resolve)
+        enrich_bundle_representations(bundle)
+        bundle.validate(self.registry.resolve, core_representation_registry().resolve)
         return bundle
 
     def _analyze_file(self, context: FileContext, tree: ast.Module) -> None:
@@ -1253,14 +1243,19 @@ def discover_python_files(root: Path) -> tuple[tuple[str, bytes], ...]:
     return tuple(sorted(discovered, key=lambda item: item[0]))
 
 
-def module_name_for(relative_path: str, package_name: str) -> str:
+def module_name_for(
+    relative_path: str,
+    package_name: str,
+    module_roots: Iterable[str] | None = None,
+) -> str:
     parts = relative_path.split("/")
     filename = parts.pop()
     stem = filename[:-3]
     if stem != "__init__":
         parts.append(stem)
     normalized_package = package_name.replace("-", "_")
-    if parts and parts[0] == normalized_package:
+    declared_roots = {item.replace("-", "_") for item in (module_roots or ())}
+    if parts and (parts[0] == normalized_package or parts[0] in declared_roots):
         return ".".join(parts) or normalized_package
     return ".".join((normalized_package, *parts)) if parts else normalized_package
 

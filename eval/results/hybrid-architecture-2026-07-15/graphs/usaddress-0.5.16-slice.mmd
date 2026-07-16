@@ -1,0 +1,40 @@
+flowchart TD
+    n0["usaddress.tag.last_label"]
+    n1["usaddress.tag.tag_mapping"]
+    n2["usaddress.tag.tagged_components"]
+    n3["str"]
+    n4["dict"]
+    n5["usaddress.tag.address_string"]
+    n6["list"]
+    n7["usaddress.tag.token"]
+    n8["usaddress.tag"]
+    n9["tag_mapping.get"]
+    n10["usaddress.tag.og_labels"]
+    n11["og_labels.append"]
+    n12["usaddress.tag.is_intersection"]
+    n13["usaddress.tag.label"]
+    n14["usaddress.parse"]
+    n8 -->|writes| n2
+    n8 -->|reads| n4
+    n8 -->|reads| n3
+    n8 -->|reads| n6
+    n8 -->|writes| n0
+    n8 -->|writes| n12
+    n8 -->|writes| n10
+    n8 -->|writes| n7
+    n8 -->|writes| n13
+    n8 -->|calls_may| n14
+    n8 -->|reads| n14
+    n8 -->|reads| n5
+    n8 -->|reads| n13
+    n8 -->|writes| n12
+    n8 -->|reads| n13
+    n8 -->|reads| n12
+    n8 -->|writes| n13
+    n8 -->|reads| n13
+    n8 -->|calls_may| n11
+    n8 -->|reads| n10
+    n8 -->|reads| n13
+    n8 -->|reads| n1
+    n8 -->|calls_may| n9
+    n8 -->|reads| n1

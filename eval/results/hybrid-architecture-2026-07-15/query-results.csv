@@ -1,0 +1,37 @@
+expected,hit_rank,latency_ms,package,profile,query,top_result,top_result_lanes
+usaddress.parse,1,1.6806,usaddress,hybrid,parse a street address into labeled components,usaddress.parse,"lexical,blocking,vector"
+usaddress.parse,1,0.5799,usaddress,lexical,parse a street address into labeled components,usaddress.parse,lexical
+usaddress.parse,2,0.663,usaddress,blocking,parse a street address into labeled components,usaddress.RepeatedLabelError,blocking
+usaddress.parse,1,1.6237,usaddress,vector,parse a street address into labeled components,usaddress.parse,vector
+usaddress.tag,1,1.5342,usaddress,hybrid,tag address components and determine address type,usaddress.tag,"lexical,blocking,vector"
+usaddress.tag,1,0.6146,usaddress,lexical,tag address components and determine address type,usaddress.tag,lexical
+usaddress.tag,3,0.5995,usaddress,blocking,tag address components and determine address type,usaddress.tokenFeatures,blocking
+usaddress.tag,1,1.6764,usaddress,vector,tag address components and determine address type,usaddress.tag,vector
+usaddress.tokenize,1,1.6538,usaddress,hybrid,tokenize an address string,usaddress.tokenize,"lexical,blocking,vector"
+usaddress.tokenize,1,0.5472,usaddress,lexical,tokenize an address string,usaddress.tokenize,lexical
+usaddress.tokenize,1,0.8398,usaddress,blocking,tokenize an address string,usaddress.tokenize,blocking
+usaddress.tokenize,1,1.5806,usaddress,vector,tokenize an address string,usaddress.tokenize,vector
+requests.api.get,10,29.8519,requests,hybrid,send an HTTP GET request,requests.models.Request,"lexical,blocking,vector"
+requests.api.get,2,15.2561,requests,lexical,send an HTTP GET request,requests.models.PreparedRequest,lexical
+requests.api.get,,3.2093,requests,blocking,send an HTTP GET request,requests._types._ValidatedRequest,blocking
+requests.api.get,,42.8697,requests,vector,send an HTTP GET request,requests.cookies.MockRequest.get_full_url,vector
+requests.sessions.Session.request,8,35.2106,requests,hybrid,send a request with a persistent HTTP session,requests.sessions.Session.send,"lexical,blocking,vector"
+requests.sessions.Session.request,,11.3474,requests,lexical,send a request with a persistent HTTP session,requests.sessions.Session.send,lexical
+requests.sessions.Session.request,,4.5574,requests,blocking,send a request with a persistent HTTP session,requests.models.RequestEncodingMixin,blocking
+requests.sessions.Session.request,,42.2553,requests,vector,send a request with a persistent HTTP session,requests.models.Response,vector
+requests.models.Response.json,4,19.6295,requests,hybrid,decode an HTTP response body as JSON,requests.utils.stream_decode_response_unicode,"lexical,blocking,vector"
+requests.models.Response.json,1,5.1901,requests,lexical,decode an HTTP response body as JSON,requests.models.Response.json,lexical
+requests.models.Response.json,,3.196,requests,blocking,decode an HTTP response body as JSON,requests.utils.stream_decode_response_unicode,blocking
+requests.models.Response.json,,40.6653,requests,vector,decode an HTTP response body as JSON,requests.models.Response.__iter__,vector
+pypdf._reader.PdfReader,,46.1815,pypdf,hybrid,read an existing PDF document,pypdf._writer.PdfWriter.clone_document_from_reader,"lexical,blocking,vector"
+pypdf._reader.PdfReader,,11.0359,pypdf,lexical,read an existing PDF document,pypdf._writer.PdfWriter.clone_document_from_reader,lexical
+pypdf._reader.PdfReader,,7.8232,pypdf,blocking,read an existing PDF document,pypdf._writer.PdfWriter.clone_reader_document_root,blocking
+pypdf._reader.PdfReader,,128.2731,pypdf,vector,read an existing PDF document,pypdf._protocols.PdfObjectProtocol.hash_value,vector
+pypdf._page.PageObject.extract_text,,48.3879,pypdf,hybrid,extract text from a PDF page,pypdf._text_extraction._text_extractor.TextExtraction,"lexical,blocking,vector"
+pypdf._page.PageObject.extract_text,,14.959,pypdf,lexical,extract text from a PDF page,pypdf._text_extraction._text_extractor.TextExtraction,lexical
+pypdf._page.PageObject.extract_text,1,7.955,pypdf,blocking,extract text from a PDF page,pypdf._page.PageObject.extract_text,blocking
+pypdf._page.PageObject.extract_text,,132.976,pypdf,vector,extract text from a PDF page,pypdf._doc_common.DocumentInformation.creator,vector
+pypdf._writer.PdfWriter.write,,46.253,pypdf,hybrid,write a PDF document to a stream,pypdf._writer.PdfWriter.clone_document_from_reader,"lexical,blocking,vector"
+pypdf._writer.PdfWriter.write,,12.2577,pypdf,lexical,write a PDF document to a stream,pypdf._writer.PdfWriter.metadata,lexical
+pypdf._writer.PdfWriter.write,,8.3121,pypdf,blocking,write a PDF document to a stream,pypdf.generic._data_structures.ArrayObject.write_to_stream,blocking
+pypdf._writer.PdfWriter.write,,134.1051,pypdf,vector,write a PDF document to a stream,pypdf._protocols.PdfObjectProtocol.write_to_stream,vector

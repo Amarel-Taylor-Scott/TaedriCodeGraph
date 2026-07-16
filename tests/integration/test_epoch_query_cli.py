@@ -52,6 +52,42 @@ class EpochQueryIntegrationTests(unittest.TestCase):
         neighbors = index.neighbors(entity_id, direction="out", limit=100)
         self.assertTrue(neighbors)
 
+    def test_hybrid_search_facets_receipts_and_progressive_context(self) -> None:
+        epoch = self.store.write_candidate(self.bundle, self.analyzer.registry)
+        self.store.publish_epoch(epoch)
+        index = self.store.index()
+        results = index.hybrid_search(
+            "stateful example",
+            facets={"uceg.label.language": "uceg.language.python"},
+            limit=10,
+        )
+        self.assertTrue(results)
+        self.assertIn("query_receipt", results[0])
+        self.assertIn("lexical", results[0]["query_receipt"]["contributing_lanes"])
+        selection = index.context("stateful example", limit=1)
+        self.assertEqual(selection["disclosure_level"], "selection")
+        implementation = index.context("stateful example", limit=1, include_source=True)
+        self.assertEqual(implementation["disclosure_level"], "implementation")
+        self.assertIn("source_text", implementation["items"][0]["source"])
+
+    def test_variant_provenance_is_queryable(self) -> None:
+        epoch = self.store.write_candidate(self.bundle, self.analyzer.registry)
+        self.store.publish_epoch(epoch)
+        index = self.store.index()
+        widget = index.resolve_entity("pkg.model.Widget")
+        variants = index.representations("entity", widget["identity"]["id"])
+        self.assertTrue(variants)
+        self.assertTrue(all(item["generation_run_id"] for item in variants))
+        self.assertTrue(any(item["representation_key"] == "uceg.name.qualified" for item in variants))
+
+    def test_lsh_candidates_are_indexed_and_explicitly_non_proving(self) -> None:
+        epoch = self.store.write_candidate(self.bundle, self.analyzer.registry)
+        self.store.publish_epoch(epoch)
+        candidates = self.store.index().structurally_similar("pkg.model.Widget", limit=5)
+        self.assertTrue(candidates)
+        self.assertTrue(candidates[0]["candidate_only"])
+        self.assertIn("does not prove", candidates[0]["receipt"]["warning"])
+
     def test_tampered_fact_shard_fails_closed(self) -> None:
         epoch = self.store.write_candidate(self.bundle, self.analyzer.registry)
         shard = self.store.candidates / epoch / "entities.jsonl"
