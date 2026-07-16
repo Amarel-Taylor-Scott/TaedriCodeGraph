@@ -1,0 +1,125 @@
+from __future__ import annotations
+
+import json
+import base64
+import unittest
+from typing import Mapping
+
+from taedri_codegraph.api_client import APIResponseError, TaedriClient
+
+
+class FakeTransport:
+    def __init__(self, status: int = 200, payload: object | None = None):
+        self.status = status
+        self.payload = {"items": []} if payload is None else payload
+        self.calls: list[tuple[str, str, Mapping[str, str], bytes | None]] = []
+
+    def request(
+        self,
+        method: str,
+        url: str,
+        headers: Mapping[str, str],
+        body: bytes | None,
+        *,
+        timeout_seconds: float,
+        max_response_bytes: int,
+    ) -> tuple[int, bytes]:
+        self.calls.append((method, url, headers, body))
+        return self.status, json.dumps(self.payload).encode("utf-8")
+
+
+class APIClientTests(unittest.TestCase):
+    def test_search_encodes_graph_filters_and_redacts_token(self) -> None:
+        transport = FakeTransport(payload={"items": [{"native_name": "normalize"}]})
+        client = TaedriClient(
+            "https://api.example.test/base/",
+            "tcg_secret_fixture",
+            graph="all",
+            transport=transport,
+        )
+        result = client.search(
+            "normalize address",
+            entity_kind="function",
+            facet_filters={"license": "MIT", "runtime": "python"},
+        )
+        self.assertEqual(result["items"][0]["native_name"], "normalize")
+        _, url, headers, _ = transport.calls[0]
+        self.assertIn("/base/v1/search?", url)
+        self.assertIn("graph=all", url)
+        self.assertIn("filter=license%3DMIT", url)
+        self.assertEqual(headers["Authorization"], "Bearer tcg_secret_fixture")
+        self.assertNotIn("tcg_secret_fixture", repr(client))
+
+    def test_structured_api_error_does_not_leak_token(self) -> None:
+        transport = FakeTransport(
+            status=403,
+            payload={"error": {"code": "forbidden", "message": "missing scope"}},
+        )
+        client = TaedriClient(
+            "https://api.example.test", "highly-secret", transport=transport
+        )
+        with self.assertRaises(APIResponseError) as captured:
+            client.me()
+        self.assertEqual(captured.exception.status, 403)
+        self.assertNotIn("highly-secret", str(captured.exception))
+
+    def test_base_url_rejects_embedded_credentials(self) -> None:
+        with self.assertRaisesRegex(Exception, "without credentials"):
+            TaedriClient("https://user:password@example.test", "token")
+
+    def test_usage_and_limit_methods_keep_policy_fields_explicit(self) -> None:
+        transport = FakeTransport(payload={"items": []})
+        client = TaedriClient(
+            "https://api.example.test", "secret", transport=transport
+        )
+        client.usage(metric="api.request", limit=25)
+        self.assertIn("/v1/usage?", transport.calls[0][1])
+        self.assertIn("metric=api.request", transport.calls[0][1])
+        client.set_limit(
+            metric="api.request",
+            window_seconds=60,
+            hard_limit=100,
+            reason="approved trial",
+            effective_at="2026-07-16T12:00:00Z",
+        )
+        method, url, _, body = transport.calls[1]
+        self.assertEqual((method, url), ("POST", "https://api.example.test/v1/limits"))
+        assert body is not None
+        request = json.loads(body)
+        self.assertEqual(request["hard_limit"], 100)
+        self.assertEqual(request["reason"], "approved trial")
+
+    def test_primitive_and_portal_methods_keep_refs_and_redirects_explicit(self) -> None:
+        transport = FakeTransport(payload={"items": []})
+        client = TaedriClient(
+            "https://api.example.test", "secret", transport=transport
+        )
+        client.primitive_pack(
+            "acme.tools",
+            "parse address",
+            roles=("source", "contract"),
+            have_digests=("sha256:abc",),
+            include_history=True,
+        )
+        url = transport.calls[0][1]
+        self.assertIn("/v1/primitives/acme.tools/parse%20address/pack?", url)
+        self.assertIn("role=source", url)
+        self.assertIn("have=sha256%3Aabc", url)
+        client.create_checkout(
+            plan_ref="taedri.plan.team@1.0.0",
+            return_url="https://portal.example.test/account",
+        )
+        self.assertEqual(transport.calls[1][0], "POST")
+        body = json.loads(transport.calls[1][3] or b"{}")
+        self.assertEqual(body["plan_ref"], "taedri.plan.team@1.0.0")
+
+    def test_pack_decoder_rejects_declared_size_mismatch(self) -> None:
+        content = base64.b64encode(b"pack").decode("ascii")
+        with self.assertRaisesRegex(Exception, "size"):
+            TaedriClient._pack_bytes(
+                {"content_base64": content, "encoded_size_bytes": 999}
+            )
+
+
+if __name__ == "__main__":
+    unittest.main()

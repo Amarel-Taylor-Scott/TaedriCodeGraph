@@ -110,11 +110,13 @@ Each candidate submission should bind:
    applicability conditions;
 6. tests, properties, differential checks, independent oracles, and counterexamples;
 7. visibility, tenant, retention, review, and execution policy;
-8. lifecycle state and every promotion, rejection, supersession, or revocation event.
+8. lifecycle state and every curation, release, rejection, supersession, or revocation event.
 
-The candidate may become searchable before its implementation is authorized or public.
-Search results must retain `candidate`, `tested`, `promoted`, `revoked`, and explicit
-unknown states rather than collapsing them into one Boolean.
+The candidate may appear only in an authorized candidate-review index before its
+implementation is released. Public primitive search reads active releases only.
+Internal review results retain `indexed_candidate`, `curated_candidate`, `released`,
+`rejected`, `revoked`, and explicit unknown states rather than collapsing them into one
+Boolean.
 
 ## 4. Code, edges, and representations
 
@@ -132,7 +134,7 @@ one row or one download.
 
 A primitive revision names the graph epoch that describes its exact tree. A small
 `graph_delta` blob can travel with the capsule for offline inspection, but centralized
-search uses promoted adjacency and retrieval projections. This keeps the common search
+search uses active-release adjacency and retrieval projections. This keeps the common search
 path body-free and prevents every query from downloading source or an entire graph.
 
 ## 5. Git-like history without one Git repository per primitive
@@ -219,7 +221,7 @@ Use normalized typed tables for:
 - trees and tree entries by digest reference;
 - revision rows and ordered revision parents;
 - branch heads, immutable release tags, and append-only ref updates;
-- candidate state, review, promotion, revocation, and authorization;
+- candidate state, review, release, revocation, and authorization;
 - tenancy, ACLs, visibility, retention, deletion requests, and legal holds;
 - jobs, leases, idempotency keys, transactional outbox events, and projection epochs;
 - hot exact, lexical, facet, scalar, and relational adjacency projections.

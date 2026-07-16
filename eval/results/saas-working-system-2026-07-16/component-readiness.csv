@@ -1,0 +1,27 @@
+component_id,status,scope
+vertical-slice,working,local modular monolith
+shared-kernel,working,transitional package
+shared-schemas,partial,JSON Schema registry
+schema-artifacts,partial,JSON Schema and SQL DDL
+primitive-capsules,working,durable tenant-scoped SQLite registry with immutable packs
+primitive-factory,working,safe Python source candidates
+ingestion-pypi,working,bounded public PyPI wheel acquisition and AST-only worker ingestion
+ingestion-git,working,bounded public GitHub immutable-commit archives
+analyzer-python,working,AST-only syntax and relation extraction
+analyzer-polyglot,partial,language-neutral file inventory
+storage,working,local immutable CAS atomic epochs portable backup/restore and S3 client conformance
+retrieval,working,local exact FTS5 facet LSH bounded-vector metadata and graph retrieval
+compatibility,partial,exact directional dimension evaluator
+session-ledger,working,durable tenant-scoped privacy-aware SQLite ledger and API
+benchmarking,conformance_only,matched-lane contracts reporting and bounded Ollama protocol adapter
+saas-control-plane,working,single-node SQLite tenants keys mounts jobs audit quotas and immutable usage receipts
+worker-runtime,working,persistent local leases automatic heartbeats cooperative cancellation and source jobs
+benchmark-worker,conformance_only,deterministic non-claimable fixture
+indexer-service,working,local Python and polyglot source-mounted jobs
+query-api,working,authenticated WSGI API with tenant quota admission
+registry-api,working,authenticated single-node registry and candidate-review API
+mcp-integration,working,optional local or authenticated-remote stdio server
+agent-integrations,partial,instructions and local search skill
+explorer-app,working,static authenticated local browser console
+deployment,poc_only,Docker Compose and one-Machine Fly.io design
+evaluation,partial,real-package static evaluation plus deterministic benchmark conformance

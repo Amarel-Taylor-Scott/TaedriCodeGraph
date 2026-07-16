@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.taedri.dev/codegraph/search-trigger-signal.v1.schema.json",
+  "title": "Taedri privacy-aware search trigger signal v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["event_id", "session_id", "kind", "intent_digest", "occurred_at", "labels", "attributes"],
+  "properties": {
+    "event_id": {"type": "string", "minLength": 1},
+    "session_id": {"type": "string", "minLength": 1},
+    "kind": {"enum": ["user_explicit", "tool_explicit", "missing_symbol", "dependency_failure", "repeated_boilerplate", "context_pressure", "pre_edit", "classifier_suggestion", "model_suggestion"]},
+    "intent_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "occurred_at": {"type": "string", "format": "date-time"},
+    "language": {"type": ["string", "null"]},
+    "labels": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "confidence_ppm": {"type": ["integer", "null"], "minimum": 0, "maximum": 1000000},
+    "attributes": {
+      "type": "object",
+      "description": "Digest-safe routing metadata only. Implementations recursively reject raw prompt, message, source, code, query text, authorization, and token keys."
+    }
+  }
+}

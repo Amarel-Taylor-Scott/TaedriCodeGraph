@@ -46,9 +46,26 @@ Start the optional stdio server with:
 tcg mcp --store .tcg
 ```
 
+For the authenticated SaaS API, keep the token in an environment variable and point
+the same stdio bridge at a graph mount:
+
+```bash
+export TAEDRI_API_TOKEN='set-this-through-your-secret-manager'
+tcg mcp --api-url https://api.example.invalid --graph default
+```
+
+To retain fail-closed digest-only search/context evidence in an existing session, also
+set `TAEDRI_PROMPT_SESSION_ID` or pass its non-secret ID with `--session-id`. The token
+must carry `sessions:read` and `sessions:write` in addition to graph scopes.
+
+There is intentionally no `--token` argument: command lines are commonly retained in
+shell history and process listings. `--token-env` can name a different injected
+environment variable.
+
 It exposes:
 
 - `search_code`;
+- `search_primitives` (adaptive waterfall with stage receipts);
 - `get_code_context`;
 - `get_entity`;
 - `get_neighbors`;
@@ -76,7 +93,8 @@ tool_timeout_sec = 60.0
 ```
 
 Project configuration is loaded only for trusted repositories. Keep credentials out of
-the file; the current server needs none. The repository skill lives at
+the file. Local-store mode needs none; remote mode reads an injected environment
+variable. The repository skill lives at
 `.agents/skills/taedri-code-search/SKILL.md`, and `AGENTS.md` contains the durable rule to
 use it before broad source reads.
 
@@ -139,8 +157,10 @@ A conforming adapter records:
 The real-source POC trace is
 [`harness-session.json`](../../eval/results/primitive-factory-2026-07-16/harness-session.json).
 It demonstrates search and selective capsule resolution, then abstains because no model
-or independent verifier was configured. Production adapters still need encryption,
-retention, deletion-policy events, tenant authorization, and transactional persistence.
+or independent verifier was configured. The remote MCP path now appends request/search
+receipts with sequence compare-and-swap and never persists the raw query. Production
+still needs encrypted-capture operations, retention/deletion policy events, OIDC harness
+identity, and the PostgreSQL repository adapter.
 
 ## Provider integration
 

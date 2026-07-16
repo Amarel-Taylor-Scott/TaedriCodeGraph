@@ -61,7 +61,8 @@ importing or executing it. It produced 347 function/method candidates, 1,812
 syntax-derived `calls_may` edges, one search descriptor and candidate contract per
 primitive, 1,388 intake events, two successful worker jobs, a selectively materialized
 pack, and one digest-only harness session. That session abstained because no model or
-independent verifier was configured; zero candidates were promoted.
+independent verifier was configured; all records remained candidate-only and zero were
+released.
 
 This is an important product behavior, not a missing success badge: the system can
 retrieve and materialize useful code while still refusing to claim it is approved.
@@ -181,5 +182,5 @@ gate remains violated after vertical and process-group scaling.
   implementations, not transactional production adapters.
 - No real LLM, sandbox verifier, tenant authorization, signing service, billing system,
   or Fly deployment was invoked.
-- Project and source licensing remain unknown; public promotion is blocked by contract.
+- Project and source licensing remain unknown; public release is blocked by contract.
 - Business pricing, ROI, and marketplace demand remain hypotheses requiring evidence.

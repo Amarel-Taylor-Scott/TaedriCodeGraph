@@ -1,0 +1,25 @@
+{
+  "examples": [
+    {
+      "kind": "positive",
+      "args": [
+        "  Ada Lovelace  "
+      ],
+      "expected": "Ada Lovelace"
+    },
+    {
+      "kind": "boundary",
+      "args": [
+        ""
+      ],
+      "expected": ""
+    },
+    {
+      "kind": "negative",
+      "args": [
+        42
+      ],
+      "expected_error": "TypeError"
+    }
+  ]
+}

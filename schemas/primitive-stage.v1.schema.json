@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.taedri.dev/codegraph/primitive-stage.v1.schema.json",
+  "title": "Taedri complete-primitive staging and release-verification request v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["namespace", "name", "contract_path", "message", "policy_decision_id", "files"],
+  "properties": {
+    "namespace": {"$ref": "#/$defs/handlePart"},
+    "name": {"$ref": "#/$defs/handlePart"},
+    "contract_path": {"$ref": "#/$defs/path"},
+    "message": {"type": "string", "minLength": 1, "maxLength": 4096},
+    "policy_decision_id": {"type": "string", "minLength": 1, "maxLength": 512},
+    "assurance_level": {
+      "enum": ["bootstrap", "standard", "high_assurance"],
+      "default": "bootstrap"
+    },
+    "ref_kind": {"enum": ["branch", "tag"], "default": "branch"},
+    "ref_name": {"type": "string", "minLength": 1, "maxLength": 255, "default": "main"},
+    "expected_revision_id": {
+      "type": ["string", "null"],
+      "pattern": "^uceg:v1:primitive_revision:[a-z2-7]{52}$"
+    },
+    "parent_revision_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^uceg:v1:primitive_revision:[a-z2-7]{52}$"}
+    },
+    "graph_epoch_id": {"type": "string", "minLength": 1},
+    "generation_run_id": {"type": "string", "minLength": 1},
+    "evidence_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "files": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 256,
+      "items": {"$ref": "#/$defs/file"}
+    }
+  },
+  "$defs": {
+    "handlePart": {
+      "type": "string",
+      "pattern": "^[a-z0-9](?:[a-z0-9._-]{0,62}[a-z0-9])?$"
+    },
+    "path": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1024,
+      "not": {"pattern": "(^/|\\\\|(^|/)\\.\\.(/|$))"}
+    },
+    "file": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "role", "media_type", "content_base64"],
+      "properties": {
+        "path": {"$ref": "#/$defs/path"},
+        "role": {
+          "enum": [
+            "source",
+            "contract",
+            "descriptor",
+            "test",
+            "verifier",
+            "dependency_lock",
+            "graph_delta",
+            "documentation",
+            "runtime",
+            "example",
+            "license",
+            "provenance"
+          ]
+        },
+        "media_type": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9!#$&^_.+-]+/[A-Za-z0-9!#$&^_.+-]+(?:\\+[A-Za-z0-9._-]+)?$"
+        },
+        "mode": {"enum": ["100644", "100755"], "default": "100644"},
+        "content_base64": {"type": "string", "minLength": 1, "contentEncoding": "base64"}
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "cases": [
+    {
+      "kind": "positive",
+      "args": [
+        "\tTaedri\n"
+      ],
+      "expected": "Taedri"
+    },
+    {
+      "kind": "boundary",
+      "args": [
+        "already-clean"
+      ],
+      "expected": "already-clean"
+    },
+    {
+      "kind": "negative",
+      "args": [
+        null
+      ],
+      "expected_error": "TypeError"
+    }
+  ]
+}

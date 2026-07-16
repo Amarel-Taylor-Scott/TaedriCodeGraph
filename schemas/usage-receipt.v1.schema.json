@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.taedri.dev/codegraph/usage-receipt.v1.schema.json",
+  "title": "Taedri immutable usage receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format_version", "tenant_id", "metric", "quantity", "occurred_at", "window_start", "window_end", "idempotency_key", "resource_id", "dimensions", "applied_limit_id"],
+  "properties": {
+    "format_version": {"const": "1.0.0"},
+    "tenant_id": {"type": "string", "minLength": 1},
+    "metric": {"type": "string", "pattern": "^[a-z][a-z0-9_]*(?:\\.[a-z][a-z0-9_]*)*$"},
+    "quantity": {"type": "integer", "minimum": 1},
+    "occurred_at": {"type": "string", "format": "date-time"},
+    "window_start": {"type": "string", "format": "date-time"},
+    "window_end": {"type": "string", "format": "date-time"},
+    "idempotency_key": {"type": "string", "minLength": 1},
+    "resource_id": {"type": "string", "minLength": 1},
+    "dimensions": {"type": "object"},
+    "applied_limit_id": {"type": ["string", "null"]}
+  }
+}

@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Taedri CodeGraph · Live Explorer</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #071012;
+      --panel: #0d1a1d;
+      --panel-2: #112327;
+      --line: #244146;
+      --ink: #eef9f6;
+      --muted: #9bb4b2;
+      --mint: #73f2c2;
+      --cyan: #6dd9ff;
+      --amber: #ffcb6b;
+      --red: #ff7b86;
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% -10%, rgba(109, 217, 255, .15), transparent 32rem),
+        radial-gradient(circle at 95% 5%, rgba(115, 242, 194, .12), transparent 30rem),
+        var(--bg);
+    }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    .shell { width: min(1480px, calc(100% - 32px)); margin: 0 auto; padding: 28px 0 64px; }
+    header { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; margin-bottom: 20px; }
+    .eyebrow { color: var(--mint); font-size: .75rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
+    h1 { margin: 7px 0 6px; font-size: clamp(1.8rem, 4vw, 3.4rem); line-height: .98; letter-spacing: -.045em; }
+    header p { margin: 0; color: var(--muted); max-width: 760px; }
+    .badge { border: 1px solid var(--line); border-radius: 999px; padding: 8px 12px; color: var(--muted); background: rgba(13, 26, 29, .8); white-space: nowrap; }
+    .badge.ok { border-color: rgba(115, 242, 194, .45); color: var(--mint); }
+    .badge.error { border-color: rgba(255, 123, 134, .5); color: var(--red); }
+    .panel { border: 1px solid var(--line); border-radius: var(--radius); background: rgba(13, 26, 29, .92); box-shadow: 0 22px 70px rgba(0,0,0,.28); }
+    .connection { display: grid; grid-template-columns: minmax(210px, 1fr) minmax(260px, 1.3fr) minmax(150px, .6fr) auto; gap: 12px; padding: 14px; margin-bottom: 18px; }
+    label { display: grid; gap: 6px; color: var(--muted); font-size: .78rem; font-weight: 700; }
+    input, select {
+      width: 100%; border: 1px solid var(--line); border-radius: 10px; padding: 11px 12px;
+      color: var(--ink); background: #081416; outline: none;
+    }
+    input:focus, select:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(109,217,255,.12); }
+    .button {
+      align-self: end; border: 1px solid rgba(115,242,194,.45); border-radius: 10px; padding: 11px 16px;
+      color: #031311; background: linear-gradient(135deg, var(--mint), #9cf9dc); font-weight: 850;
+    }
+    .button.secondary { color: var(--ink); border-color: var(--line); background: var(--panel-2); }
+    .button:disabled { opacity: .5; cursor: wait; }
+    .layout { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(320px, .8fr); gap: 18px; }
+    .workspace { padding: 18px; min-width: 0; }
+    .tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+    .tab { border: 1px solid var(--line); border-radius: 999px; padding: 8px 13px; color: var(--muted); background: transparent; }
+    .tab.active { color: var(--ink); border-color: rgba(109,217,255,.5); background: rgba(109,217,255,.11); }
+    .view[hidden] { display: none; }
+    .form-grid { display: grid; grid-template-columns: minmax(180px, 1fr) 110px auto; gap: 10px; align-items: end; }
+    .form-grid.ingest { grid-template-columns: 1fr 1fr; }
+    .span-2 { grid-column: 1 / -1; }
+    .check { display: flex; align-items: center; gap: 8px; height: 43px; }
+    .check input { width: auto; }
+    .section-title { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 22px 0 10px; }
+    h2, h3 { margin: 0; }
+    .count { color: var(--muted); font-variant-numeric: tabular-nums; }
+    .results { display: grid; gap: 10px; }
+    .result { border: 1px solid var(--line); border-radius: 12px; padding: 14px; background: #0a1719; }
+    .result-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+    .name { color: var(--cyan); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; overflow-wrap: anywhere; }
+    .kind { color: var(--mint); font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; }
+    .result p { color: var(--muted); margin: 8px 0 0; line-height: 1.45; }
+    .score { color: var(--amber); font-variant-numeric: tabular-nums; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .chip { border: 1px solid var(--line); border-radius: 999px; padding: 4px 8px; color: var(--muted); font-size: .7rem; }
+    aside { display: grid; gap: 18px; align-content: start; }
+    .side { padding: 16px; }
+    .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 14px; }
+    .metric { border: 1px solid var(--line); border-radius: 11px; padding: 11px; background: #091517; }
+    .metric strong { display: block; color: var(--mint); font-size: 1.35rem; font-variant-numeric: tabular-nums; }
+    .metric span { color: var(--muted); font-size: .72rem; }
+    pre { max-height: 420px; overflow: auto; margin: 12px 0 0; padding: 12px; border: 1px solid var(--line); border-radius: 10px; color: #cde7e2; background: #061012; font: .75rem/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .jobs { display: grid; gap: 8px; margin-top: 12px; }
+    .job { display: grid; grid-template-columns: 1fr auto; gap: 5px 10px; padding: 10px; border: 1px solid var(--line); border-radius: 10px; }
+    .job small { color: var(--muted); overflow-wrap: anywhere; }
+    .state { color: var(--amber); font-size: .72rem; font-weight: 800; text-transform: uppercase; }
+    .state.succeeded { color: var(--mint); }
+    .state.dead_letter { color: var(--red); }
+    .state.cancelled { color: var(--muted); }
+    .empty { padding: 30px 10px; color: var(--muted); text-align: center; border: 1px dashed var(--line); border-radius: 12px; }
+    .note { margin-top: 12px; color: var(--muted); font-size: .75rem; line-height: 1.5; }
+    a { color: var(--cyan); }
+    @media (max-width: 900px) {
+      .connection, .layout { grid-template-columns: 1fr; }
+      .button { width: 100%; }
+      aside { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 650px) {
+      .shell { width: min(100% - 20px, 1480px); padding-top: 18px; }
+      header { display: block; }
+      header .badge { display: inline-block; margin-top: 14px; }
+      .form-grid, .form-grid.ingest, aside { grid-template-columns: 1fr; }
+      .span-2 { grid-column: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div>
+        <div class="eyebrow">Live SaaS vertical slice</div>
+        <h1>Taedri CodeGraph</h1>
+        <p>Submit a safe source-analysis job, watch the persistent worker state, then search the newly published immutable graph with explainable hybrid retrieval.</p>
+      </div>
+      <div id="status" class="badge">Disconnected</div>
+    </header>
+
+    <section class="panel connection" aria-label="API connection">
+      <label>API base URL
+        <input id="apiBase" value="http://localhost:8000" spellcheck="false">
+      </label>
+      <label>Tenant API token
+        <input id="apiToken" type="password" autocomplete="off" placeholder="tcg_…">
+      </label>
+      <label>Graph mount
+        <select id="graph"><option value="default">default</option></select>
+      </label>
+      <button id="connect" class="button">Connect</button>
+    </section>
+
+    <main class="layout">
+      <section class="panel workspace">
+        <nav class="tabs" aria-label="Explorer modes">
+          <button class="tab active" data-view="searchView">Search</button>
+          <button class="tab" data-view="ingestView">Ingest source</button>
+          <button class="tab" data-view="candidateView">Generate primitives</button>
+          <button class="tab" data-view="operationsView">Usage & limits</button>
+        </nav>
+
+        <div id="searchView" class="view">
+          <form id="searchForm" class="form-grid">
+            <label>Intent or symbol
+              <input id="query" value="normalize address" required>
+            </label>
+            <label>Results
+              <select id="limit"><option>5</option><option selected>10</option><option>20</option><option>50</option></select>
+            </label>
+            <button class="button" type="submit">Search</button>
+            <label class="check span-2"><input id="source" type="checkbox"> Resolve bounded source only for authorized finalists</label>
+          </form>
+          <div class="section-title"><h2>Ranked candidates</h2><span id="resultCount" class="count">0 results</span></div>
+          <div id="results" class="results"><div class="empty">Connect to an API and run a query.</div></div>
+          <button id="nextResults" class="button secondary" type="button" hidden>Next immutable page</button>
+        </div>
+
+        <div id="ingestView" class="view" hidden>
+          <form id="ingestForm" class="form-grid ingest">
+            <label>Mounted relative source path
+              <input id="sourcePath" value="taedri-codegraph" required>
+            </label>
+            <label>Package name
+              <input id="packageName" value="taedri_codegraph" required>
+            </label>
+            <label>Release/source revision
+              <input id="release" value="working-tree" required>
+            </label>
+            <label>Idempotency key
+              <input id="idempotency" value="taedri-codegraph:working-tree:python-v1" required>
+            </label>
+            <label class="check span-2"><input id="publish" type="checkbox" checked> Validate and atomically publish the completed epoch</label>
+            <button class="button span-2" type="submit">Queue safe AST analysis</button>
+          </form>
+          <p class="note">Paths are resolved beneath the operator-configured worker source mount. The job cannot request an absolute path or escape with <code>..</code>, and analyzed Python is never imported or executed.</p>
+        </div>
+
+        <div id="candidateView" class="view" hidden>
+          <form id="candidateForm" class="form-grid ingest">
+            <label>Mounted relative source path
+              <input id="candidatePath" value="taedri-codegraph" required>
+            </label>
+            <label>Primitive namespace
+              <input id="candidateNamespace" value="local.candidates" required>
+            </label>
+            <label>Package name
+              <input id="candidatePackage" value="taedri_codegraph" required>
+            </label>
+            <label>Source revision
+              <input id="candidateRevision" value="working-tree" required>
+            </label>
+            <label>Candidate limit
+              <input id="candidateLimit" type="number" min="1" max="5000" value="500" required>
+            </label>
+            <label>Idempotency key
+              <input id="candidateIdempotency" value="taedri-codegraph:working-tree:candidates-v1" required>
+            </label>
+            <button class="button span-2" type="submit">Queue AST-only primitive generation</button>
+          </form>
+          <p class="note">Generated capsules remain indexed candidates. Promotion is a separate, append-only review action requiring evidence and a policy decision; generation never claims behavioral correctness.</p>
+          <div class="section-title"><h2>Candidate intake</h2><button id="candidateRefresh" class="button secondary" type="button">Refresh</button></div>
+          <div id="candidates" class="results"><div class="empty">No candidates loaded.</div></div>
+        </div>
+
+        <div id="operationsView" class="view" hidden>
+          <form id="limitForm" class="form-grid ingest">
+            <label>Metric
+              <input id="limitMetric" value="api.request" required>
+            </label>
+            <label>Fixed window seconds
+              <input id="limitWindow" type="number" min="1" max="31536000" value="60" required>
+            </label>
+            <label>Hard limit
+              <input id="hardLimit" type="number" min="1" value="600" required>
+            </label>
+            <label>Auditable reason
+              <input id="limitReason" value="approved tenant allocation" required>
+            </label>
+            <button class="button span-2" type="submit">Append limit revision</button>
+          </form>
+          <p class="note">Limit changes never overwrite history. Admission and usage receipts are tenant-scoped and idempotent; this ledger can feed billing reconciliation without pretending to be an invoice.</p>
+          <div class="section-title"><h2>Current usage windows</h2><button id="usageRefresh" class="button secondary" type="button">Refresh</button></div>
+          <div id="usage" class="results"><div class="empty">No usage loaded.</div></div>
+        </div>
+      </section>
+
+      <aside>
+        <section class="panel side">
+          <div class="section-title"><h3>Tenant</h3><button id="refresh" class="button secondary">Refresh</button></div>
+          <div class="metrics">
+            <div class="metric"><strong id="scopeCount">–</strong><span>granted scopes</span></div>
+            <div class="metric"><strong id="jobCount">–</strong><span>visible jobs</span></div>
+            <div class="metric"><strong id="primitiveCount">–</strong><span>primitive revisions</span></div>
+            <div class="metric"><strong id="usageReceiptCount">–</strong><span>usage receipts</span></div>
+          </div>
+          <pre id="principal">No authenticated principal.</pre>
+        </section>
+        <section class="panel side">
+          <h3>Worker jobs</h3>
+          <div id="jobs" class="jobs"><div class="empty">No jobs loaded.</div></div>
+        </section>
+        <section class="panel side">
+          <h3>Last receipt</h3>
+          <pre id="receipt">No request yet.</pre>
+        </section>
+      </aside>
+    </main>
+  </div>
+
+  <script>
+    "use strict";
+    const $ = (id) => document.getElementById(id);
+    let connected = false;
+    let nextSearchCursor = null;
+
+    function base() { return $("apiBase").value.replace(/\/$/, ""); }
+    function token() { return $("apiToken").value.trim(); }
+    function showReceipt(value) { $("receipt").textContent = JSON.stringify(value, null, 2); }
+    function setStatus(text, kind = "") {
+      const status = $("status"); status.textContent = text; status.className = `badge ${kind}`;
+    }
+    async function request(path, options = {}) {
+      const headers = {"Authorization": `Bearer ${token()}`, ...(options.headers || {})};
+      if (options.body) headers["Content-Type"] = "application/json";
+      const response = await fetch(`${base()}${path}`, {...options, headers});
+      const value = await response.json();
+      showReceipt(value);
+      if (!response.ok) throw new Error(value?.error?.message || `${response.status} ${response.statusText}`);
+      return value;
+    }
+    async function connect() {
+      setStatus("Connecting…");
+      try {
+        const principal = await request("/v1/me");
+        connected = true; setStatus("Connected", "ok");
+        $("principal").textContent = JSON.stringify(principal, null, 2);
+        $("scopeCount").textContent = principal.scopes.length;
+        await loadGraphs();
+        await loadJobs();
+        if (principal.scopes.includes("registry:read")) await loadCandidates();
+        if (principal.scopes.includes("usage:read")) await loadUsage();
+        if (principal.scopes.includes("metrics:read")) await loadMetrics();
+      } catch (error) {
+        connected = false; setStatus(error.message, "error");
+      }
+    }
+    function ensureConnected() {
+      if (!connected) throw new Error("Connect with a tenant API token first.");
+    }
+    function element(tag, text, className = "") {
+      const node = document.createElement(tag); node.textContent = text; if (className) node.className = className; return node;
+    }
+    async function loadGraphs() {
+      const payload = await request("/v1/graphs");
+      const selector = $("graph"); selector.replaceChildren();
+      for (const graph of payload.items) {
+        const option = element("option", `${graph.name}${graph.ready ? "" : " (not ready)"}`);
+        option.value = graph.name; selector.append(option);
+      }
+      if (payload.items.length > 1) {
+        const all = element("option", "all mounted graphs"); all.value = "all"; selector.prepend(all);
+      }
+    }
+    function renderResults(payload) {
+      const root = $("results"); root.replaceChildren();
+      const items = payload.items || [];
+      nextSearchCursor = payload.pagination?.next_cursor || null;
+      $("nextResults").hidden = !nextSearchCursor;
+      $("resultCount").textContent = `${items.length} result${items.length === 1 ? "" : "s"}`;
+      if (!items.length) { root.append(element("div", "No candidates matched this query.", "empty")); return; }
+      for (const item of items) {
+        const card = element("article", "", "result");
+        const top = element("div", "", "result-top");
+        const identity = element("div", "");
+        identity.append(element("div", item.qualified_name || item.match?.qualified_name || "Unknown", "name"));
+        identity.append(element("div", item.entity_kind || item.match?.entity_kind || "entity", "kind"));
+        top.append(identity);
+        const score = item.score ?? item.match?.score;
+        if (score !== undefined) top.append(element("div", Number(score).toFixed(6), "score"));
+        card.append(top);
+        const description = item.description || item.match?.description;
+        if (description) card.append(element("p", description));
+        const lanes = Object.keys(item.lane_ranks || item.match?.lane_ranks || {});
+        if (lanes.length) {
+          const chips = element("div", "", "chips"); lanes.forEach((lane) => chips.append(element("span", lane, "chip"))); card.append(chips);
+        }
+        root.append(card);
+      }
+    }
+    async function runSearch(cursor = null) {
+      try {
+        ensureConnected();
+        const params = new URLSearchParams({q: $("query").value, limit: $("limit").value});
+        params.set("graph", $("graph").value);
+        if (cursor) params.set("cursor", cursor);
+        const includeSource = $("source").checked;
+        if (includeSource) params.set("source", "true");
+        const payload = await request(`${includeSource ? "/v1/context" : "/v1/search"}?${params}`);
+        renderResults(includeSource ? {items: payload.items.map((entry) => entry.match)} : payload);
+      } catch (error) { setStatus(error.message, "error"); }
+    }
+    async function search(event) {
+      event.preventDefault();
+      nextSearchCursor = null;
+      await runSearch();
+    }
+    async function submitJob(event) {
+      event.preventDefault();
+      try {
+        ensureConnected();
+        const body = {
+          kind: "extract",
+          subject_id: `${$("packageName").value}@${$("release").value}`,
+          idempotency_key: $("idempotency").value,
+          required_capabilities: ["python-ast"],
+          payload: {
+            operation: "analyze_python_path",
+            relative_path: $("sourcePath").value,
+            package_name: $("packageName").value,
+            release: $("release").value,
+            graph: $("graph").value === "all" ? "default" : $("graph").value,
+            publish: $("publish").checked
+          }
+        };
+        await request("/v1/jobs", {method: "POST", body: JSON.stringify(body)});
+        setStatus("Job queued", "ok"); await loadJobs();
+      } catch (error) { setStatus(error.message, "error"); }
+    }
+    async function submitCandidateJob(event) {
+      event.preventDefault();
+      try {
+        ensureConnected();
+        const body = {
+          kind: "extract",
+          subject_id: `${$("candidatePackage").value}@${$("candidateRevision").value}:function-candidates`,
+          idempotency_key: $("candidateIdempotency").value,
+          required_capabilities: ["python-ast", "primitive-factory-v1"],
+          payload: {
+            operation: "generate_primitive_candidates",
+            relative_path: $("candidatePath").value,
+            namespace: $("candidateNamespace").value,
+            package_name: $("candidatePackage").value,
+            source_revision: $("candidateRevision").value,
+            source_uri: `mounted:${$("candidatePath").value}`,
+            candidate_limit: Number.parseInt($("candidateLimit").value, 10)
+          }
+        };
+        await request("/v1/jobs", {method: "POST", body: JSON.stringify(body)});
+        setStatus("Primitive factory job queued", "ok"); await loadJobs();
+      } catch (error) { setStatus(error.message, "error"); }
+    }
+    async function loadCandidates() {
+      if (!connected) return;
+      try {
+        const payload = await request("/v1/candidates?limit=100");
+        const root = $("candidates"); root.replaceChildren();
+        if (!payload.items.length) { root.append(element("div", "No candidate submissions for this tenant.", "empty")); return; }
+        for (const item of payload.items) {
+          const card = element("article", "", "result");
+          const top = element("div", "", "result-top");
+          const identity = element("div", "");
+          identity.append(element("div", `${item.namespace}/${item.name}`, "name"));
+          identity.append(element("div", item.current_state, "kind"));
+          const inspect = element("button", "Inspect receipt", "button secondary");
+          inspect.type = "button";
+          inspect.addEventListener("click", async () => {
+            try { await request(`/v1/candidates/${encodeURIComponent(item.submission.identity.id)}`); }
+            catch (error) { setStatus(error.message, "error"); }
+          });
+          top.append(identity, inspect); card.append(top);
+          card.append(element("p", `Revision ${item.submission.revision_id}`));
+          root.append(card);
+        }
+      } catch (error) { setStatus(error.message, "error"); }
+    }
+    async function loadJobs() {
+      if (!connected) return;
+      try {
+        const payload = await request("/v1/jobs?limit=25");
+        $("jobCount").textContent = payload.count;
+        const root = $("jobs"); root.replaceChildren();
+        if (!payload.items.length) { root.append(element("div", "No jobs for this tenant.", "empty")); return; }
+        for (const item of payload.items) {
+          const row = element("div", "", "job");
+          row.append(element("strong", item.job.kind));
+          row.append(element("span", item.state, `state ${item.state}`));
+          row.append(element("small", item.job.identity.id));
+          if (["pending", "leased"].includes(item.state)) {
+            const cancel = element("button", "Cancel", "button secondary");
+            cancel.type = "button";
+            cancel.addEventListener("click", async () => {
+              try {
+                await request(`/v1/jobs/${encodeURIComponent(item.job.identity.id)}/cancel`, {method: "POST", body: "{}"});
+                await loadJobs();
+              } catch (error) { setStatus(error.message, "error"); }
+            });
+            row.append(cancel);
+          }
+          root.append(row);
+        }
+      } catch (error) { setStatus(error.message, "error"); }
+    }
+    async function loadUsage() {
+      if (!connected) return;
+      try {
+        const payload = await request("/v1/usage?limit=100");
+        const root = $("usage"); root.replaceChildren();
+        if (!payload.summary.length) { root.append(element("div", "No usage receipts for this tenant.", "empty")); return; }
+        for (const item of payload.summary) {
+          const card = element("article", "", "result");
+          const top = element("div", "", "result-top");
+          top.append(element("div", item.metric, "name"));
+          top.append(element("div", String(item.quantity), "score"));
+          card.append(top);
+          card.append(element("p", `${item.receipt_count} receipts · ${item.window_start} → ${item.window_end}`));
+          root.append(card);
+        }
+      } catch (error) { setStatus(error.message, "error"); }
+    }
+    async function loadMetrics() {
+      if (!connected) return;
+      try {
+        const payload = await request("/v1/metrics");
+        $("primitiveCount").textContent = payload.counts.primitive_revisions;
+        $("usageReceiptCount").textContent = payload.counts.usage_receipts;
+      } catch (error) { setStatus(error.message, "error"); }
+    }
+    async function setLimit(event) {
+      event.preventDefault();
+      try {
+        ensureConnected();
+        await request("/v1/limits", {
+          method: "POST",
+          body: JSON.stringify({
+            metric: $("limitMetric").value,
+            window_seconds: Number.parseInt($("limitWindow").value, 10),
+            hard_limit: Number.parseInt($("hardLimit").value, 10),
+            reason: $("limitReason").value
+          })
+        });
+        setStatus("Limit revision appended", "ok");
+        await loadUsage();
+      } catch (error) { setStatus(error.message, "error"); }
+    }
+    document.querySelectorAll(".tab").forEach((tab) => tab.addEventListener("click", () => {
+      document.querySelectorAll(".tab").forEach((item) => item.classList.toggle("active", item === tab));
+      document.querySelectorAll(".view").forEach((view) => view.hidden = view.id !== tab.dataset.view);
+    }));
+    $("connect").addEventListener("click", connect);
+    $("refresh").addEventListener("click", async () => { await loadJobs(); await loadMetrics(); });
+    $("candidateRefresh").addEventListener("click", loadCandidates);
+    $("usageRefresh").addEventListener("click", loadUsage);
+    $("nextResults").addEventListener("click", () => runSearch(nextSearchCursor));
+    $("searchForm").addEventListener("submit", search);
+    $("ingestForm").addEventListener("submit", submitJob);
+    $("candidateForm").addEventListener("submit", submitCandidateJob);
+    $("limitForm").addEventListener("submit", setLimit);
+  </script>
+</body>
+</html>

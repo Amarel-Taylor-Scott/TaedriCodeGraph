@@ -1,8 +1,9 @@
-"""Append-only intake and promotion policy for generated primitive candidates.
+"""Append-only intake and curation policy for generated primitive candidates.
 
 The registry stores immutable content and revision history.  This module deliberately
 keeps workflow state outside those identities: the same revision can be received,
-quarantined, indexed, rejected, promoted, or revoked without rewriting its capsule.
+quarantined, indexed, curated, rejected, or revoked without rewriting its capsule.
+Even a curated candidate is not a released primitive and never enters public serving.
 """
 
 from __future__ import annotations
@@ -31,7 +32,7 @@ class CandidateState(str, Enum):
     QUARANTINED = "quarantined"
     STRUCTURALLY_VALID = "structurally_valid"
     INDEXED_CANDIDATE = "indexed_candidate"
-    PROMOTED = "promoted"
+    CURATED_CANDIDATE = "curated_candidate"
     REJECTED = "rejected"
     REVOKED = "revoked"
 
@@ -60,9 +61,9 @@ _ALLOWED_TRANSITIONS: dict[CandidateState, frozenset[CandidateState]] = {
         {CandidateState.INDEXED_CANDIDATE, CandidateState.REJECTED}
     ),
     CandidateState.INDEXED_CANDIDATE: frozenset(
-        {CandidateState.PROMOTED, CandidateState.REJECTED}
+        {CandidateState.CURATED_CANDIDATE, CandidateState.REJECTED}
     ),
-    CandidateState.PROMOTED: frozenset({CandidateState.REVOKED}),
+    CandidateState.CURATED_CANDIDATE: frozenset({CandidateState.REVOKED}),
     CandidateState.REJECTED: frozenset(),
     CandidateState.REVOKED: frozenset(),
 }
@@ -261,21 +262,21 @@ class CandidateIntakeLedger:
                 f"invalid candidate transition: {current.value} -> {to_state.value}"
             )
         evidence = tuple(sorted(set(evidence_ids)))
-        if to_state is CandidateState.PROMOTED:
+        if to_state is CandidateState.CURATED_CANDIDATE:
             if not policy_decision_id or not evidence:
                 raise CandidateIntakeError(
-                    "promotion requires a policy decision and independent verification evidence"
+                    "candidate curation requires a policy decision and review evidence"
                 )
             if actor in {submission.submitted_by, submission.producer.id}:
                 raise CandidateIntakeError(
-                    "the submitting producer cannot promote its own candidate"
+                    "the submitting producer cannot curate its own candidate"
                 )
             if (
                 submission.visibility is CandidateVisibility.PUBLIC
                 and submission.license_evidence_state is not LicenseEvidenceState.VERIFIED
             ):
                 raise CandidateIntakeError(
-                    "public promotion requires verified license evidence"
+                    "public candidate curation requires verified license evidence"
                 )
         sequence = len(self.history(submission_id)) + 1
         event = CandidateStateEvent.create(
@@ -292,4 +293,3 @@ class CandidateIntakeLedger:
         self.events.append(event)
         self._states[submission_id] = to_state
         return event
-

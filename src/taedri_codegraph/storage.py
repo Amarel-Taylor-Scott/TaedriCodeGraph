@@ -165,7 +165,11 @@ class GraphStore:
                 representation_registry.descriptors()
             )
 
-            index_manifest = build_index(bundle, stage / "index.sqlite")
+            index_manifest = build_index(
+                bundle,
+                stage / "index.sqlite",
+                representation_registry=representation_registry,
+            )
             index_manifest["logical_config_digest"] = canonical_digest(index_manifest)
             manifest = GraphEpochManifest.create(
                 snapshot_id=bundle.snapshot.identity.id,

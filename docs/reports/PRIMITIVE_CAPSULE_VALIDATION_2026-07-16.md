@@ -92,6 +92,6 @@ exists.
 - OCI mapping and registry conformance;
 - pack-size and pull-latency benchmarks across real small, medium, and large portfolios;
 - signatures, transparency, SBOM, reproducible build, and vulnerability-policy evidence;
-- generated-candidate mutation, independent verification, promotion, revocation, and
+- generated-candidate mutation, independent verification, release, revocation, and
   deletion exercises;
 - an observed Fly process-group deployment and recovery drill.

@@ -1,0 +1,116 @@
+{
+  "format_version": "1.0.0",
+  "run_date": "2026-07-16",
+  "branch": "agent/initial-vertical-slice",
+  "base_commit": "7877994",
+  "claim_class": "verified-local-and-transitional-not-hosted-production-or-real-model-efficacy",
+  "checks": {
+    "test_suite": {
+      "status": "passed",
+      "tests": 233,
+      "duration_seconds": 34.023,
+      "skipped_optional": 1
+    },
+    "api_catalog": {
+      "status": "passed",
+      "operations": 41,
+      "paths": 37,
+      "openapi_generated_from_catalog": true
+    },
+    "postgresql_ddl_contract": {
+      "status": "passed-conformance",
+      "engine": "PGlite",
+      "schema": "taedri",
+      "migrations": ["001_control_plane.sql", "002_representation_ledger.sql"],
+      "applications": 2,
+      "table_count": 44,
+      "live_postgresql_17_pending": true
+    },
+    "extensible_projection": {
+      "status": "passed",
+      "without_ledger_migration": true,
+      "families": ["spdx-keyword", "integer-scalar", "single-character-keyword", "dense-vector", "multi-parent-lineage"]
+    },
+    "reference_primitive_release": {
+      "status": "passed",
+      "primitive_count": 1,
+      "release_proof_count": 14,
+      "acceptance_proof_count": 12,
+      "executed_case_count": 6,
+      "interface_edge_count": 6,
+      "pack_payload_count": 13
+    },
+    "deterministic_primitive_pipeline": {
+      "status": "passed",
+      "primitive_count": 2,
+      "interface_edge_count": 12,
+      "typed_port_count": 4,
+      "exact_wire_count": 1,
+      "model_calls": 0,
+      "generated_code_bytes": 0,
+      "rewritten_primitive_bytes": 0,
+      "input": "  Straße  ",
+      "output": "strasse",
+      "byte_identical_repeated_generation": true
+    },
+    "mcp_stdio_protocol": {
+      "status": "passed",
+      "operations": ["initialize", "tools/list", "tools/call:search_primitives"]
+    },
+    "production_http_socket": {
+      "status": "passed",
+      "server": "gunicorn",
+      "health": "ok",
+      "ready": "ready",
+      "socket_round_trip": true
+    },
+    "wheel": {
+      "status": "passed",
+      "filename": "taedri_codegraph-0.1.0a0-py3-none-any.whl",
+      "size_bytes": 239973,
+      "sha256": "7910589a6d6012391c6346c86ac1a219832728211be329f8adecdc21d4d7dd31",
+      "clean_environment_install": true,
+      "import": true
+    },
+    "python_compile": {"status": "passed"},
+    "frontend_javascript_parse": {"status": "passed", "html_files": 7, "inline_scripts": 7},
+    "json_syntax": {"status": "passed", "files": 79},
+    "svg_syntax": {"status": "passed", "files": 19},
+    "yaml_syntax": {"status": "passed", "files": 4},
+    "git_diff_check": {"status": "passed"},
+    "container_builds": {
+      "status": "pending-hosted-ci",
+      "local_reason": "docker executable unavailable"
+    },
+    "hosted_ci": {
+      "status": "blocked",
+      "reason": "local branch changes are not published"
+    }
+  },
+  "component_readiness": {
+    "total": 32,
+    "working": 22,
+    "partial": 7,
+    "conformance_only": 2,
+    "poc_only": 1,
+    "working_fraction_ppm": 687500,
+    "source": "architecture/component-readiness.v1.json"
+  },
+  "waterfalls": {
+    "total": 7,
+    "source": "architecture/primitive-platform-waterfalls.v1.json"
+  },
+  "non_synthetic_evidence": {
+    "source": "eval/results/saas-real-acquisition-2026-07-16/run.json",
+    "pypi_subject": "usaddress==0.5.16",
+    "github_subject": "datamade/usaddress@aa7699b53a0843fc443f9e87285b88cbd9eaf50a"
+  },
+  "blocked_external_gates": [
+    "github-publication-and-hosted-ci",
+    "managed-postgresql-and-object-store",
+    "oidc-and-billing-provider-sandbox",
+    "signed-artifacts-and-provenance",
+    "real-model-and-isolated-verifier",
+    "hosted-staging-slos-and-recovery-drills"
+  ]
+}

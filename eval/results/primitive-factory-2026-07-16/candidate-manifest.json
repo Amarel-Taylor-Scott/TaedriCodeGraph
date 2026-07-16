@@ -51,7 +51,7 @@
   },
   "intake": {
     "event_count": 1388,
-    "promoted_count": 0,
+    "released_count": 0,
     "states": [
       "indexed_candidate"
     ],

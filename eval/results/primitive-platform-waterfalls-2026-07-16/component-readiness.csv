@@ -1,0 +1,33 @@
+component_id,status,scope
+vertical-slice,working,local modular monolith
+mechanism-runtime,working,in-process versioned and budgeted waterfall executor
+pipeline-catalog,working,shared API-admission and worker-execution operation catalog
+shared-kernel,working,transitional package
+shared-schemas,partial,JSON Schema registry
+schema-artifacts,partial,JSON Schema and SQL DDL
+primitive-capsules,working,durable tenant-scoped SQLite registry with immutable packs and proof-gated released-primitive serving
+primitive-factory,working,safe Python source candidates
+ingestion-pypi,working,bounded public PyPI wheel acquisition and AST-only worker ingestion
+ingestion-git,working,bounded public GitHub immutable-commit archives
+analyzer-python,working,AST-only syntax and relation extraction
+analyzer-polyglot,partial,language-neutral file inventory
+storage,working,"local immutable CAS, typed long-table assertions, atomic epochs, portable backup/restore, and S3 client conformance"
+retrieval,working,"local adaptive exact, FTS5, facet, blocking, LSH, bounded-vector, metadata, and graph retrieval"
+compatibility,partial,exact directional dimensions plus evidence-backed ports and adapter-free unary planning/execution
+session-ledger,working,durable tenant-scoped privacy-aware SQLite ledger and API
+benchmarking,conformance_only,"matched-lane contracts, reporting, and bounded Ollama protocol adapter"
+saas-control-plane,working,"single-node SQLite tenants, keys, mounts, jobs, audit, quotas, subscriptions, entitlements, and immutable receipts"
+worker-runtime,working,"persistent local leases, automatic heartbeats, cooperative cancellation, source jobs, and a trusted-source Python primitive verifier"
+benchmark-worker,conformance_only,deterministic non-claimable fixture
+discovery-worker,partial,replay-safe allowlisted PyPI and GitHub discovery event routing
+ingestion-worker,working,local source-mounted and bounded public-artifact job execution
+primitive-worker,working,AST-only Python candidate generation plus complete-capsule trusted-source Python release verification
+indexer-service,working,local Python and polyglot source-mounted jobs
+query-api,working,"authenticated WSGI API with declarative routes, generated OpenAPI, and tenant quota admission"
+registry-api,working,"authenticated single-node candidate curation, complete-capsule staging, proof-gated release search, and pack API"
+mcp-integration,working,optional local or authenticated-remote stdio server
+agent-integrations,partial,instructions and local search skill
+explorer-app,working,static authenticated local browser console
+portal-app,working,static public plan and authenticated tenant-account POC
+deployment,poc_only,Docker Compose and one-Machine Fly.io design
+evaluation,partial,"real-package static evaluation, real custom-primitive execution acceptance, deterministic no-model composition, and benchmark conformance"

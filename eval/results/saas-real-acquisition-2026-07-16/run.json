@@ -1,0 +1,534 @@
+{
+  "acquisitions": [
+    {
+      "acquired_at": "2026-07-16T16:29:35.471Z",
+      "artifact_digest": "sha256:ce2bd73e3a41176fa29f093e9ad153327a87862430f1b0b121f0cb230c182a6a",
+      "artifact_size_bytes": 70562,
+      "format_version": "1.0.0",
+      "identity": {
+        "canonical_key": {
+          "acquired_at": "2026-07-16T16:29:35.471Z",
+          "artifact_digest": "sha256:ce2bd73e3a41176fa29f093e9ad153327a87862430f1b0b121f0cb230c182a6a",
+          "artifact_size_bytes": 70562,
+          "format_version": "1.0.0",
+          "media_type": "application/octet-stream",
+          "metadata": {
+            "filename": "usaddress-0.5.16-py3-none-any.whl",
+            "package": "usaddress",
+            "pypi_metadata_digest": "sha256:84f4511efdd9b059bfb65f9c3374864afd7dc93eb21483a86d6edc6f4a3705d2",
+            "pypi_metadata_size_bytes": 8855,
+            "registry_sha256_verified": true,
+            "registry_size_verified": true,
+            "version": "0.5.16",
+            "yanked": false
+          },
+          "policy_digest": "sha256:dfedeac51e7900322ba14b29eaac885212a448f2b2469c3213be089be8d4c9d4",
+          "request_uri": "https://pypi.org/pypi/usaddress/0.5.16/json",
+          "requested_subject": "usaddress==0.5.16",
+          "resolved_uri": "https://files.pythonhosted.org/packages/b0/4a/ffeb924e9a5d51bdbfff2e2309fb938603dc8bee30b01cd0421e8212c95c/usaddress-0.5.16-py3-none-any.whl",
+          "source_kind": "pypi_wheel"
+        },
+        "id": "uceg:v1:acquisition_receipt:ojtna33tuebwkqrrazr4erfhhvshipca2dzpa7fuuqlebasnowyq",
+        "kind": "acquisition_receipt"
+      },
+      "media_type": "application/octet-stream",
+      "metadata": {
+        "filename": "usaddress-0.5.16-py3-none-any.whl",
+        "package": "usaddress",
+        "pypi_metadata_digest": "sha256:84f4511efdd9b059bfb65f9c3374864afd7dc93eb21483a86d6edc6f4a3705d2",
+        "pypi_metadata_size_bytes": 8855,
+        "registry_sha256_verified": true,
+        "registry_size_verified": true,
+        "version": "0.5.16",
+        "yanked": false
+      },
+      "policy_digest": "sha256:dfedeac51e7900322ba14b29eaac885212a448f2b2469c3213be089be8d4c9d4",
+      "request_uri": "https://pypi.org/pypi/usaddress/0.5.16/json",
+      "requested_subject": "usaddress==0.5.16",
+      "resolved_uri": "https://files.pythonhosted.org/packages/b0/4a/ffeb924e9a5d51bdbfff2e2309fb938603dc8bee30b01cd0421e8212c95c/usaddress-0.5.16-py3-none-any.whl",
+      "source_kind": "pypi_wheel"
+    },
+    {
+      "acquired_at": "2026-07-16T16:29:44.916Z",
+      "artifact_digest": "sha256:987f84bcae675af9ec5d613da80061991b4e0d5d800eb22983b9d25c304a3fc8",
+      "artifact_size_bytes": 4470681,
+      "format_version": "1.0.0",
+      "identity": {
+        "canonical_key": {
+          "acquired_at": "2026-07-16T16:29:44.916Z",
+          "artifact_digest": "sha256:987f84bcae675af9ec5d613da80061991b4e0d5d800eb22983b9d25c304a3fc8",
+          "artifact_size_bytes": 4470681,
+          "format_version": "1.0.0",
+          "media_type": "application/zip",
+          "metadata": {
+            "commit_api_verified": true,
+            "commit_sha": "aa7699b53a0843fc443f9e87285b88cbd9eaf50a",
+            "github_metadata_digest": "sha256:709820d5c5a4af0464fa413b7451a84710a9f48e48929712308c7415ee83abe7",
+            "github_metadata_size_bytes": 2639,
+            "repository": "datamade/usaddress",
+            "tree_sha": "a19dbb9165148e1a4cf0271780ac7ef0c93bde14"
+          },
+          "policy_digest": "sha256:dfedeac51e7900322ba14b29eaac885212a448f2b2469c3213be089be8d4c9d4",
+          "request_uri": "https://api.github.com/repos/datamade/usaddress/git/commits/aa7699b53a0843fc443f9e87285b88cbd9eaf50a",
+          "requested_subject": "datamade/usaddress@aa7699b53a0843fc443f9e87285b88cbd9eaf50a",
+          "resolved_uri": "https://codeload.github.com/datamade/usaddress/zip/aa7699b53a0843fc443f9e87285b88cbd9eaf50a",
+          "source_kind": "github_commit_archive"
+        },
+        "id": "uceg:v1:acquisition_receipt:g4o6xnowvyyt5kh6v2dpnm5guimepccy2cyythzntpnvuhq3srja",
+        "kind": "acquisition_receipt"
+      },
+      "media_type": "application/zip",
+      "metadata": {
+        "commit_api_verified": true,
+        "commit_sha": "aa7699b53a0843fc443f9e87285b88cbd9eaf50a",
+        "github_metadata_digest": "sha256:709820d5c5a4af0464fa413b7451a84710a9f48e48929712308c7415ee83abe7",
+        "github_metadata_size_bytes": 2639,
+        "repository": "datamade/usaddress",
+        "tree_sha": "a19dbb9165148e1a4cf0271780ac7ef0c93bde14"
+      },
+      "policy_digest": "sha256:dfedeac51e7900322ba14b29eaac885212a448f2b2469c3213be089be8d4c9d4",
+      "request_uri": "https://api.github.com/repos/datamade/usaddress/git/commits/aa7699b53a0843fc443f9e87285b88cbd9eaf50a",
+      "requested_subject": "datamade/usaddress@aa7699b53a0843fc443f9e87285b88cbd9eaf50a",
+      "resolved_uri": "https://codeload.github.com/datamade/usaddress/zip/aa7699b53a0843fc443f9e87285b88cbd9eaf50a",
+      "source_kind": "github_commit_archive"
+    }
+  ],
+  "audit_event_count": 4,
+  "backups": [
+    {
+      "backup_id": "uceg:v1:epoch_backup:mvhniqhiiou7cufqh6y7lq3a2y3hvwu5jotvbwexh23d6nprkm4a",
+      "cas_object_count": 2,
+      "epoch_file_count": 18,
+      "graph": "pypi-usaddress",
+      "manifest_object": {
+        "digest": "sha256:371e7d4bd36168aa2359b5be46a37c2a23e361cb3d3b1e16986e395b166336cb",
+        "key": "uceg:v1:tenant:qza3ngxbf3w6ktvth633yfa6wd5lqkcyc7sokuonjograkniilla/blobs/sha256/37/1e7d4bd36168aa2359b5be46a37c2a23e361cb3d3b1e16986e395b166336cb",
+        "media_type": "application/vnd.taedri.epoch-backup+json",
+        "size_bytes": 13324
+      }
+    },
+    {
+      "backup_id": "uceg:v1:epoch_backup:2zoihkum4gokhioypt62d7jwzbllqehwghnzwre4n55f7eswc3nq",
+      "cas_object_count": 11,
+      "epoch_file_count": 18,
+      "graph": "git-usaddress",
+      "manifest_object": {
+        "digest": "sha256:01c478874757b98f9acde7f1a7816460cfebf4c37743bd41e196ea5d6a7d441d",
+        "key": "uceg:v1:tenant:qza3ngxbf3w6ktvth633yfa6wd5lqkcyc7sokuonjograkniilla/blobs/sha256/01/c478874757b98f9acde7f1a7816460cfebf4c37743bd41e196ea5d6a7d441d",
+        "media_type": "application/vnd.taedri.epoch-backup+json",
+        "size_bytes": 20036
+      }
+    }
+  ],
+  "claim_class": "real-artifact-system-conformance-not-llm-efficacy",
+  "context_summary": {
+    "disclosure_level": "selection",
+    "graph_mounts": {
+      "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+      "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+    },
+    "query": "parse a street address into labeled components",
+    "result_count": 3
+  },
+  "format_version": "1.0.0",
+  "graph_api": [
+    {
+      "epochs": {
+        "candidates": [],
+        "current": [
+          "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta"
+        ],
+        "published": [
+          "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta"
+        ]
+      },
+      "name": "git-usaddress",
+      "ready": true
+    },
+    {
+      "epochs": {
+        "candidates": [],
+        "current": [
+          "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+        ],
+        "published": [
+          "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+        ]
+      },
+      "name": "pypi-usaddress",
+      "ready": true
+    }
+  ],
+  "jobs": [
+    {
+      "attempts": 1,
+      "events": [
+        {
+          "attempt": 0,
+          "detail": "job accepted under its tenant and queue-scoped idempotency key",
+          "event_kind": "enqueued",
+          "identity": {
+            "canonical_key": {
+              "attempt": 0,
+              "detail": "job accepted under its tenant and queue-scoped idempotency key",
+              "event_kind": "enqueued",
+              "job_id": "uceg:v1:worker_job:5tawk5sea6d7fh6jm5lmibyrvibcao4np6mnikch4avusp32reya",
+              "lease_id": null,
+              "metrics": {},
+              "occurred_at": "2026-07-16T16:29:35.413Z",
+              "output_refs": [],
+              "sequence": 1,
+              "worker_id": null
+            },
+            "id": "uceg:v1:worker_event:3lxlg3afvogic7xkz6dpc5p7zjjuncfxjny7ncnf7tpjum5h2yrq",
+            "kind": "worker_event"
+          },
+          "job_id": "uceg:v1:worker_job:5tawk5sea6d7fh6jm5lmibyrvibcao4np6mnikch4avusp32reya",
+          "lease_id": null,
+          "metrics": {},
+          "occurred_at": "2026-07-16T16:29:35.413Z",
+          "output_refs": [],
+          "sequence": 1,
+          "worker_id": null
+        },
+        {
+          "attempt": 1,
+          "detail": "worker acquired an exclusive time-bounded lease",
+          "event_kind": "leased",
+          "identity": {
+            "canonical_key": {
+              "attempt": 1,
+              "detail": "worker acquired an exclusive time-bounded lease",
+              "event_kind": "leased",
+              "job_id": "uceg:v1:worker_job:5tawk5sea6d7fh6jm5lmibyrvibcao4np6mnikch4avusp32reya",
+              "lease_id": "uceg:v1:worker_lease:adueslcdooeooenuetkbc4hesl4vxjqpsggzhqt2ea3243ff64yq",
+              "metrics": {},
+              "occurred_at": "2026-07-16T16:29:35.468Z",
+              "output_refs": [],
+              "sequence": 3,
+              "worker_id": "real-acquisition-worker"
+            },
+            "id": "uceg:v1:worker_event:5trlek3omgogish7qnee4curmasizyt6xf3zx7wglp7wwu76phxa",
+            "kind": "worker_event"
+          },
+          "job_id": "uceg:v1:worker_job:5tawk5sea6d7fh6jm5lmibyrvibcao4np6mnikch4avusp32reya",
+          "lease_id": "uceg:v1:worker_lease:adueslcdooeooenuetkbc4hesl4vxjqpsggzhqt2ea3243ff64yq",
+          "metrics": {},
+          "occurred_at": "2026-07-16T16:29:35.468Z",
+          "output_refs": [],
+          "sequence": 3,
+          "worker_id": "real-acquisition-worker"
+        },
+        {
+          "attempt": 1,
+          "detail": "worker completed the leased job",
+          "event_kind": "succeeded",
+          "identity": {
+            "canonical_key": {
+              "attempt": 1,
+              "detail": "worker completed the leased job",
+              "event_kind": "succeeded",
+              "job_id": "uceg:v1:worker_job:5tawk5sea6d7fh6jm5lmibyrvibcao4np6mnikch4avusp32reya",
+              "lease_id": "uceg:v1:worker_lease:adueslcdooeooenuetkbc4hesl4vxjqpsggzhqt2ea3243ff64yq",
+              "metrics": {
+                "artifact_bytes": 70562,
+                "entities": 101,
+                "files": 1,
+                "relations": 614
+              },
+              "occurred_at": "2026-07-16T16:29:44.911Z",
+              "output_refs": [
+                "sha256:69a8fa177a023130b772707677a043fbb6be4d1cdca9a68a68369ca0e1e69857",
+                "sha256:ce2bd73e3a41176fa29f093e9ad153327a87862430f1b0b121f0cb230c182a6a",
+                "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+              ],
+              "sequence": 4,
+              "worker_id": "real-acquisition-worker"
+            },
+            "id": "uceg:v1:worker_event:hpgogqqnzu4hodfupsqzq7g5dfyjqnzqczzed2wr3v7d53jtsrlq",
+            "kind": "worker_event"
+          },
+          "job_id": "uceg:v1:worker_job:5tawk5sea6d7fh6jm5lmibyrvibcao4np6mnikch4avusp32reya",
+          "lease_id": "uceg:v1:worker_lease:adueslcdooeooenuetkbc4hesl4vxjqpsggzhqt2ea3243ff64yq",
+          "metrics": {
+            "artifact_bytes": 70562,
+            "entities": 101,
+            "files": 1,
+            "relations": 614
+          },
+          "occurred_at": "2026-07-16T16:29:44.911Z",
+          "output_refs": [
+            "sha256:69a8fa177a023130b772707677a043fbb6be4d1cdca9a68a68369ca0e1e69857",
+            "sha256:ce2bd73e3a41176fa29f093e9ad153327a87862430f1b0b121f0cb230c182a6a",
+            "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+          ],
+          "sequence": 4,
+          "worker_id": "real-acquisition-worker"
+        }
+      ],
+      "job_id": "uceg:v1:worker_job:5tawk5sea6d7fh6jm5lmibyrvibcao4np6mnikch4avusp32reya",
+      "state": "succeeded",
+      "subject_id": "pypi:usaddress==0.5.16"
+    },
+    {
+      "attempts": 1,
+      "events": [
+        {
+          "attempt": 0,
+          "detail": "job accepted under its tenant and queue-scoped idempotency key",
+          "event_kind": "enqueued",
+          "identity": {
+            "canonical_key": {
+              "attempt": 0,
+              "detail": "job accepted under its tenant and queue-scoped idempotency key",
+              "event_kind": "enqueued",
+              "job_id": "uceg:v1:worker_job:n5mzkm6gle5unm376bb5foxtb4snmgwwifagparvqe6dqy7m2bwa",
+              "lease_id": null,
+              "metrics": {},
+              "occurred_at": "2026-07-16T16:29:35.463Z",
+              "output_refs": [],
+              "sequence": 2,
+              "worker_id": null
+            },
+            "id": "uceg:v1:worker_event:balnkgds2b4bi73gxwkrok53xlwbj3wi5rj6q42iqj4ymhohnraq",
+            "kind": "worker_event"
+          },
+          "job_id": "uceg:v1:worker_job:n5mzkm6gle5unm376bb5foxtb4snmgwwifagparvqe6dqy7m2bwa",
+          "lease_id": null,
+          "metrics": {},
+          "occurred_at": "2026-07-16T16:29:35.463Z",
+          "output_refs": [],
+          "sequence": 2,
+          "worker_id": null
+        },
+        {
+          "attempt": 1,
+          "detail": "worker acquired an exclusive time-bounded lease",
+          "event_kind": "leased",
+          "identity": {
+            "canonical_key": {
+              "attempt": 1,
+              "detail": "worker acquired an exclusive time-bounded lease",
+              "event_kind": "leased",
+              "job_id": "uceg:v1:worker_job:n5mzkm6gle5unm376bb5foxtb4snmgwwifagparvqe6dqy7m2bwa",
+              "lease_id": "uceg:v1:worker_lease:wh3kaox2cm55kvneoo52ynfybgeuhlutkibreiefn74dhhbvlvfa",
+              "metrics": {},
+              "occurred_at": "2026-07-16T16:29:44.913Z",
+              "output_refs": [],
+              "sequence": 5,
+              "worker_id": "real-acquisition-worker"
+            },
+            "id": "uceg:v1:worker_event:mh3tmludmtw3lnbkcf32qtmi6l4ilwkdy6j2zmatz3cqkroeicqa",
+            "kind": "worker_event"
+          },
+          "job_id": "uceg:v1:worker_job:n5mzkm6gle5unm376bb5foxtb4snmgwwifagparvqe6dqy7m2bwa",
+          "lease_id": "uceg:v1:worker_lease:wh3kaox2cm55kvneoo52ynfybgeuhlutkibreiefn74dhhbvlvfa",
+          "metrics": {},
+          "occurred_at": "2026-07-16T16:29:44.913Z",
+          "output_refs": [],
+          "sequence": 5,
+          "worker_id": "real-acquisition-worker"
+        },
+        {
+          "attempt": 1,
+          "detail": "worker completed the leased job",
+          "event_kind": "succeeded",
+          "identity": {
+            "canonical_key": {
+              "attempt": 1,
+              "detail": "worker completed the leased job",
+              "event_kind": "succeeded",
+              "job_id": "uceg:v1:worker_job:n5mzkm6gle5unm376bb5foxtb4snmgwwifagparvqe6dqy7m2bwa",
+              "lease_id": "uceg:v1:worker_lease:wh3kaox2cm55kvneoo52ynfybgeuhlutkibreiefn74dhhbvlvfa",
+              "metrics": {
+                "artifact_bytes": 4470681,
+                "entities": 417,
+                "files": 10,
+                "relations": 2282
+              },
+              "occurred_at": "2026-07-16T16:30:04.521Z",
+              "output_refs": [
+                "sha256:598fd575fd977aecec1d01d838b6a254758b0f7b63fd2df1fb2b3ffe580756e5",
+                "sha256:987f84bcae675af9ec5d613da80061991b4e0d5d800eb22983b9d25c304a3fc8",
+                "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta"
+              ],
+              "sequence": 6,
+              "worker_id": "real-acquisition-worker"
+            },
+            "id": "uceg:v1:worker_event:7nxngk3odtfrxy7vinlgl6h2n3feonpncgazwkx766hwd2f4wgma",
+            "kind": "worker_event"
+          },
+          "job_id": "uceg:v1:worker_job:n5mzkm6gle5unm376bb5foxtb4snmgwwifagparvqe6dqy7m2bwa",
+          "lease_id": "uceg:v1:worker_lease:wh3kaox2cm55kvneoo52ynfybgeuhlutkibreiefn74dhhbvlvfa",
+          "metrics": {
+            "artifact_bytes": 4470681,
+            "entities": 417,
+            "files": 10,
+            "relations": 2282
+          },
+          "occurred_at": "2026-07-16T16:30:04.521Z",
+          "output_refs": [
+            "sha256:598fd575fd977aecec1d01d838b6a254758b0f7b63fd2df1fb2b3ffe580756e5",
+            "sha256:987f84bcae675af9ec5d613da80061991b4e0d5d800eb22983b9d25c304a3fc8",
+            "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta"
+          ],
+          "sequence": 6,
+          "worker_id": "real-acquisition-worker"
+        }
+      ],
+      "job_id": "uceg:v1:worker_job:n5mzkm6gle5unm376bb5foxtb4snmgwwifagparvqe6dqy7m2bwa",
+      "state": "succeeded",
+      "subject_id": "github:datamade/usaddress@aa7699b53a0843fc443f9e87285b88cbd9eaf50a"
+    }
+  ],
+  "mounts": [
+    {
+      "analysis_manifest_id": "uceg:v1:analysis_manifest:wbej6zt2oxwirdi4xg2vygo2ajnt4posvx2pxtfhd2jzkzn2y6ja",
+      "entities": 101,
+      "epoch_id": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq",
+      "files": 1,
+      "generation_runs": 3,
+      "graph": "pypi-usaddress",
+      "index_bytes": 10141696,
+      "occurrences": 296,
+      "relations": 614,
+      "representation_assertions": 1886,
+      "snapshot_id": "uceg:v1:package_snapshot:vnkjjcq36fbzeglgi3d7i2i2xekgx2gpi4qhd44yyfrrvlw4bgca",
+      "store_bytes": 18231398
+    },
+    {
+      "analysis_manifest_id": "uceg:v1:analysis_manifest:nlrdbkqivehnobhnmebdk6uofqvqio2kzifsdpx3komtqldelboq",
+      "entities": 417,
+      "epoch_id": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+      "files": 10,
+      "generation_runs": 2,
+      "graph": "git-usaddress",
+      "index_bytes": 41209856,
+      "occurrences": 1110,
+      "relations": 2282,
+      "representation_assertions": 8075,
+      "snapshot_id": "uceg:v1:package_snapshot:xyxve2nhesumwhgmo2cpfzvtfkqzhrcxrepgh5sloc3c7yza2n5a",
+      "store_bytes": 78543275
+    }
+  ],
+  "query_results": [
+    {
+      "expected": "usaddress.parse",
+      "graph": "pypi-usaddress",
+      "hit_at_10": true,
+      "latency_ms": 58.9027,
+      "query": "parse a street address into labeled components",
+      "query_id": 1,
+      "rank": 1,
+      "reciprocal_rank": 1.0,
+      "result_count": 10
+    },
+    {
+      "expected": "usaddress.tag",
+      "graph": "pypi-usaddress",
+      "hit_at_10": true,
+      "latency_ms": 45.2769,
+      "query": "tag address components and determine address type",
+      "query_id": 2,
+      "rank": 1,
+      "reciprocal_rank": 1.0,
+      "result_count": 10
+    },
+    {
+      "expected": "usaddress.tokenize",
+      "graph": "pypi-usaddress",
+      "hit_at_10": true,
+      "latency_ms": 46.1648,
+      "query": "tokenize an address string",
+      "query_id": 3,
+      "rank": 1,
+      "reciprocal_rank": 1.0,
+      "result_count": 10
+    },
+    {
+      "expected": "usaddress.parse",
+      "graph": "git-usaddress",
+      "hit_at_10": true,
+      "latency_ms": 53.858,
+      "query": "parse a street address into labeled components",
+      "query_id": 1,
+      "rank": 5,
+      "reciprocal_rank": 0.2,
+      "result_count": 10
+    },
+    {
+      "expected": "usaddress.tag",
+      "graph": "git-usaddress",
+      "hit_at_10": true,
+      "latency_ms": 50.2574,
+      "query": "tag address components and determine address type",
+      "query_id": 2,
+      "rank": 2,
+      "reciprocal_rank": 0.5,
+      "result_count": 10
+    },
+    {
+      "expected": "usaddress.tokenize",
+      "graph": "git-usaddress",
+      "hit_at_10": true,
+      "latency_ms": 53.4514,
+      "query": "tokenize an address string",
+      "query_id": 3,
+      "rank": 1,
+      "reciprocal_rank": 1.0,
+      "result_count": 10
+    },
+    {
+      "expected": "usaddress.parse",
+      "graph": "all",
+      "hit_at_10": true,
+      "latency_ms": 57.5644,
+      "query": "parse a street address into labeled components",
+      "query_id": 1,
+      "rank": 1,
+      "reciprocal_rank": 1.0,
+      "result_count": 10
+    },
+    {
+      "expected": "usaddress.tag",
+      "graph": "all",
+      "hit_at_10": true,
+      "latency_ms": 53.6521,
+      "query": "tag address components and determine address type",
+      "query_id": 2,
+      "rank": 1,
+      "reciprocal_rank": 1.0,
+      "result_count": 10
+    },
+    {
+      "expected": "usaddress.tokenize",
+      "graph": "all",
+      "hit_at_10": true,
+      "latency_ms": 51.9126,
+      "query": "tokenize an address string",
+      "query_id": 3,
+      "rank": 1,
+      "reciprocal_rank": 1.0,
+      "result_count": 10
+    }
+  ],
+  "run_date": "2026-07-16",
+  "run_digest": "sha256:2f08242bb1be5c33552cdbc6ff6262dbb0a079ae6aaa57208ab7e9a89389ed9f",
+  "safety": {
+    "network_hosts": [
+      "pypi.org",
+      "files.pythonhosted.org",
+      "api.github.com",
+      "codeload.github.com"
+    ],
+    "target_built": false,
+    "target_executed": false,
+    "target_imported": false,
+    "target_installed": false
+  },
+  "sources": {
+    "expected_git_tree": "a19dbb9165148e1a4cf0271780ac7ef0c93bde14",
+    "github": "datamade/usaddress@aa7699b53a0843fc443f9e87285b88cbd9eaf50a",
+    "pypi": "usaddress==0.5.16"
+  }
+}

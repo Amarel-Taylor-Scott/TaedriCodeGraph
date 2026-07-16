@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.taedri.dev/codegraph/pipeline-definition.v1.schema.json",
+  "title": "Taedri pipeline definition v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["key", "version", "purpose", "trigger_sources", "stages", "tenant_isolated"],
+  "properties": {
+    "key": {"type": "string", "pattern": "^[a-z][a-z0-9_-]*(\\.[a-z0-9_-]+)+$"},
+    "version": {"type": "string", "minLength": 1},
+    "purpose": {"type": "string", "minLength": 1},
+    "trigger_sources": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "tenant_isolated": {"type": "boolean"},
+    "stages": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["key", "ordinal", "mode", "execution_state", "operation_refs", "consumes", "produces", "failure_policy", "optional"],
+        "properties": {
+          "key": {"type": "string", "minLength": 1},
+          "ordinal": {"type": "integer", "minimum": 1},
+          "mode": {"enum": ["sequential", "waterfall", "fan_out", "gate"]},
+          "execution_state": {"enum": ["working", "contract", "planned"]},
+          "operation_refs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+          "consumes": {"type": "array", "items": {"type": "string", "minLength": 1}},
+          "produces": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+          "failure_policy": {"enum": ["fail_closed", "continue", "abstain", "quarantine"]},
+          "optional": {"type": "boolean"}
+        }
+      }
+    }
+  }
+}

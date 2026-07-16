@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.taedri.dev/codegraph/prompt-session-append.v1.schema.json",
+  "title": "Taedri prompt session append request v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["event_kind", "expected_sequence", "occurred_at"],
+  "properties": {
+    "event_kind": {
+      "enum": ["request_captured", "search_receipt", "candidate_selected", "materialization_receipt", "model_attempt", "verification_receipt", "result_accepted", "abstained", "session_closed"]
+    },
+    "expected_sequence": {"type": "integer", "minimum": 2},
+    "occurred_at": {"type": "string", "format": "date-time"},
+    "input_refs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "output_refs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "attributes": {"type": "object"}
+  }
+}

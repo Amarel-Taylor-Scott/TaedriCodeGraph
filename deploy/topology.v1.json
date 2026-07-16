@@ -12,29 +12,59 @@
     {
       "id": "S0-local-vertical-slice",
       "status": "active",
-      "deployment_unit": "one local process and one repository checkout",
+      "deployment_unit": "one repository checkout, runnable as the tcg CLI or a three-container local Compose stack",
       "processes": [
         {
           "name": "tcg",
           "component_ids": ["vertical-slice"],
           "state": "local SQLite, CAS, and immutable graph epochs"
+        },
+        {
+          "name": "api",
+          "component_ids": ["query-api", "saas-control-plane"],
+          "state": "authenticated tenant-scoped WSGI API over published local epochs"
+        },
+        {
+          "name": "worker",
+          "component_ids": ["indexer-service", "ingestion-worker", "primitive-worker", "worker-runtime", "saas-control-plane"],
+          "state": "persistent source-mounted AST and polyglot inventory jobs with leases and receipts"
+        },
+        {
+          "name": "discovery",
+          "component_ids": ["discovery-worker", "pipeline-catalog"],
+          "state": "in-process allowlisted event router; hosted poller and webhook ingress remain gated"
+        },
+        {
+          "name": "frontend",
+          "component_ids": ["explorer-app"],
+          "state": "static live search, ingestion, job, and receipt console"
+        },
+        {
+          "name": "portal",
+          "component_ids": ["portal-app"],
+          "state": "static public plans and tenant subscription/entitlement POC"
         }
       ],
-      "exit_gate": "capsule, query, registry, and projection ports have conformance tests"
+      "exit_gate": "PostgreSQL and S3 epoch adapters pass the same tenant, lease, publication, and retrieval conformance suite"
     },
     {
       "id": "S1-fly-modular-service",
       "status": "planned",
-      "deployment_unit": "one image with independently scaled Fly process groups",
+      "deployment_unit": "monorepo-built Fly apps with independently scaled process groups where trust and secret boundaries permit",
       "processes": [
         {
+          "name": "frontend",
+          "component_ids": ["explorer-app", "portal-app"],
+          "state": "public static or server-rendered application with no database or object-store credential"
+        },
+        {
           "name": "web",
-          "component_ids": ["query-api", "registry-api"],
+          "component_ids": ["query-api", "registry-api", "saas-control-plane"],
           "state": "stateless request serving with bounded caches"
         },
         {
           "name": "indexer",
-          "component_ids": ["indexer-service", "worker-runtime"],
+          "component_ids": ["discovery-worker", "ingestion-worker", "primitive-worker", "indexer-service", "worker-runtime", "saas-control-plane"],
           "state": "queue-driven acquisition, candidate generation, analysis, verification, and projection builds"
         },
         {
@@ -79,17 +109,17 @@
       "processes": [
         {
           "name": "query",
-          "component_ids": ["query-api"],
+          "component_ids": ["query-api", "saas-control-plane"],
           "state": "read-optimized body-free search and progressive disclosure"
         },
         {
           "name": "registry",
-          "component_ids": ["registry-api"],
+          "component_ids": ["registry-api", "saas-control-plane"],
           "state": "transactional submissions, refs, releases, forks, and pack authorization"
         },
         {
           "name": "indexer",
-          "component_ids": ["indexer-service", "worker-runtime"],
+          "component_ids": ["discovery-worker", "ingestion-worker", "primitive-worker", "indexer-service", "worker-runtime", "saas-control-plane"],
           "state": "resource-heavy asynchronous extraction, candidate generation, verification, and projection publication"
         },
         {

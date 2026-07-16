@@ -18,7 +18,10 @@ class MonorepoManifestTests(unittest.TestCase):
         self.assertEqual(len(self.by_id), len(self.components))
         for component in self.components:
             self.assertTrue((ROOT / component["path"]).exists(), component["path"])
-            self.assertIn(component["status"], {"active", "scaffolded", "planned"})
+            self.assertIn(
+                component["status"],
+                {"working", "partial", "conformance_only", "poc_only"},
+            )
             for dependency in component["depends_on"]:
                 self.assertIn(dependency, self.by_id)
 

@@ -84,39 +84,39 @@ class CandidateIntakeTests(unittest.TestCase):
             [1, 2, 3, 4],
         )
 
-    def test_generated_candidate_cannot_self_promote(self) -> None:
+    def test_generated_candidate_cannot_self_curate(self) -> None:
         ledger = CandidateIntakeLedger()
         submission = self.submission()
         self.advance_to_indexed(ledger, submission)
         with self.assertRaises(CandidateIntakeError):
             ledger.transition(
                 submission.identity.id,
-                CandidateState.PROMOTED,
+                CandidateState.CURATED_CANDIDATE,
                 actor="taedri.factory",
                 occurred_at="2026-07-16T12:00:04Z",
                 reason="self approval",
                 evidence_ids=("verify:fixture",),
                 policy_decision_id="policy:fixture",
             )
-        promoted = ledger.transition(
+        curated = ledger.transition(
             submission.identity.id,
-            CandidateState.PROMOTED,
+            CandidateState.CURATED_CANDIDATE,
             actor="independent-verifier",
             occurred_at="2026-07-16T12:00:05Z",
             reason="independent tests and policy passed",
             evidence_ids=("verify:fixture",),
             policy_decision_id="policy:fixture",
         )
-        self.assertEqual(promoted.to_state, CandidateState.PROMOTED)
+        self.assertEqual(curated.to_state, CandidateState.CURATED_CANDIDATE)
 
-    def test_public_promotion_requires_verified_license(self) -> None:
+    def test_public_candidate_curation_requires_verified_license(self) -> None:
         ledger = CandidateIntakeLedger()
         submission = self.submission(visibility=CandidateVisibility.PUBLIC)
         self.advance_to_indexed(ledger, submission)
         with self.assertRaises(CandidateIntakeError):
             ledger.transition(
                 submission.identity.id,
-                CandidateState.PROMOTED,
+                CandidateState.CURATED_CANDIDATE,
                 actor="independent-verifier",
                 occurred_at="2026-07-16T12:00:04Z",
                 reason="license still unknown",
@@ -131,4 +131,3 @@ class CandidateIntakeTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

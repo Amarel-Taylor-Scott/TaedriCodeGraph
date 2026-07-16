@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Taedri primitive-platform waterfall readiness</title>
+  <desc id="desc">Seven waterfalls showing implemented local stages and externally gated stages.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#071522"/><stop offset="1" stop-color="#15233a"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#000" flood-opacity=".32"/>
+    </filter>
+    <style>
+      .label{font:700 17px system-ui,sans-serif;fill:#f4f8ff}.detail{font:13px system-ui,sans-serif;fill:#a8bad0}
+      .num{font:800 14px system-ui,sans-serif;fill:#06251c;text-anchor:middle}.gate{font:800 14px system-ui,sans-serif;fill:#3c2700;text-anchor:middle}
+      .status{font:700 12px ui-monospace,monospace;fill:#88a0bb}.line{stroke:#36506e;stroke-width:4;stroke-linecap:round}
+    </style>
+  </defs>
+  <rect width="1200" height="760" rx="26" fill="url(#bg)"/>
+  <text x="54" y="55" fill="#f8fafc" font-family="system-ui,sans-serif" font-size="29" font-weight="800">Seven policy-specific waterfalls · one receipt contract</text>
+  <text x="54" y="84" fill="#9fb3ca" font-family="system-ui,sans-serif" font-size="15">Green stages have executable local/library evidence. Amber stages require external systems or independent verification.</text>
+
+  <g transform="translate(54 122)" filter="url(#shadow)">
+    <rect width="1092" height="72" rx="14" fill="#112842"/><text class="label" x="20" y="29">Primitive storage</text><text class="detail" x="20" y="51">validate → CAS → assert → stage → accept → release → project</text><text class="status" x="1048" y="43" text-anchor="end">WORKING LOCAL</text>
+    <line class="line" x1="480" y1="36" x2="884" y2="36"/>
+    <g transform="translate(500 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">1</text></g><g transform="translate(560 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">2</text></g><g transform="translate(620 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">3</text></g><g transform="translate(680 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">4</text></g><g transform="translate(740 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">5</text></g><g transform="translate(800 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">6</text></g><g transform="translate(860 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">7</text></g>
+  </g>
+  <g transform="translate(54 204)" filter="url(#shadow)">
+    <rect width="1092" height="72" rx="14" fill="#112842"/><text class="label" x="20" y="29">Primitive search</text><text class="detail" x="20" y="51">exact → sparse → semantic → structural → decision</text><text class="status" x="1048" y="43" text-anchor="end">WORKING LOCAL</text>
+    <line class="line" x1="480" y1="36" x2="884" y2="36"/><g transform="translate(500 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">1</text></g><g transform="translate(590 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">2</text></g><g transform="translate(680 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">3</text></g><g transform="translate(770 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">4</text></g><g transform="translate(860 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">5</text></g>
+  </g>
+  <g transform="translate(54 286)" filter="url(#shadow)">
+    <rect width="1092" height="72" rx="14" fill="#112842"/><text class="label" x="20" y="29">Search trigger</text><text class="detail" x="20" y="51">user → deterministic → classifier → model → recheck</text><text class="status" x="1048" y="43" text-anchor="end">WORKING LIBRARY</text>
+    <line class="line" x1="480" y1="36" x2="884" y2="36"/><g transform="translate(500 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">1</text></g><g transform="translate(590 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">2</text></g><g transform="translate(680 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">3</text></g><g transform="translate(770 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">4</text></g><g transform="translate(860 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">5</text></g>
+  </g>
+  <g transform="translate(54 368)" filter="url(#shadow)">
+    <rect width="1092" height="72" rx="14" fill="#112842"/><text class="label" x="20" y="29">Client digestion</text><text class="detail" x="20" y="51">bound → verify → select → hash → materialize → receipt</text><text class="status" x="1048" y="43" text-anchor="end">WORKING LIBRARY</text>
+    <line class="line" x1="480" y1="36" x2="884" y2="36"/><g transform="translate(490 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">1</text></g><g transform="translate(565 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">2</text></g><g transform="translate(640 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">3</text></g><g transform="translate(715 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">4</text></g><g transform="translate(790 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">5</text></g><g transform="translate(865 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">6</text></g>
+  </g>
+  <g transform="translate(54 450)" filter="url(#shadow)">
+    <rect width="1092" height="72" rx="14" fill="#112842"/><text class="label" x="20" y="29">Public SaaS</text><text class="detail" x="20" y="51">plans → auth → revision → entitlements → redirect → webhook</text><text class="status" x="1048" y="43" text-anchor="end">LOCAL POC + GATES</text>
+    <line class="line" x1="480" y1="36" x2="884" y2="36"/><g transform="translate(490 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">1</text></g><g transform="translate(565 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">2</text></g><g transform="translate(640 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">3</text></g><g transform="translate(715 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">4</text></g><g transform="translate(790 36)"><circle r="18" fill="#f3bc51"/><text class="gate" y="5">5</text></g><g transform="translate(865 36)"><circle r="18" fill="#f3bc51"/><text class="gate" y="5">6</text></g>
+  </g>
+  <g transform="translate(54 532)" filter="url(#shadow)">
+    <rect width="1092" height="72" rx="14" fill="#112842"/><text class="label" x="20" y="29">Source to primitive</text><text class="detail" x="20" y="51">discover → acquire → extract → describe → non-public candidate</text><text class="status" x="1048" y="43" text-anchor="end">WORKING CANDIDATE PATH</text>
+    <line class="line" x1="480" y1="36" x2="884" y2="36"/><g transform="translate(500 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">1</text></g><g transform="translate(590 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">2</text></g><g transform="translate(680 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">3</text></g><g transform="translate(770 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">4</text></g><g transform="translate(860 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">5</text></g>
+  </g>
+  <g transform="translate(54 614)" filter="url(#shadow)">
+    <rect width="1092" height="72" rx="14" fill="#112842"/><text class="label" x="20" y="29">Matched benchmark</text><text class="detail" x="20" y="51">freeze → validate supplied receipts → paired analysis → claim gate</text><text class="status" x="1048" y="43" text-anchor="end">CONFORMANCE ONLY</text>
+    <line class="line" x1="480" y1="36" x2="884" y2="36"/><g transform="translate(520 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">1</text></g><g transform="translate(630 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">2</text></g><g transform="translate(740 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">3</text></g><g transform="translate(850 36)"><circle r="18" fill="#26cf91"/><text class="num" y="5">4</text></g>
+  </g>
+  <g transform="translate(54 718)" font-family="system-ui,sans-serif"><circle cx="8" cy="0" r="8" fill="#26cf91"/><text x="24" y="5" fill="#c9d7e8" font-size="13">executable evidence</text><circle cx="190" cy="0" r="8" fill="#f3bc51"/><text x="206" y="5" fill="#c9d7e8" font-size="13">external gate</text><text x="1092" y="5" text-anchor="end" fill="#7891ae" font-size="12">source: primitive-platform-waterfalls.v1.json</text></g>
+</svg>

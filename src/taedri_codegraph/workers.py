@@ -33,6 +33,7 @@ class JobState(str, Enum):
     LEASED = "leased"
     SUCCEEDED = "succeeded"
     DEAD_LETTER = "dead_letter"
+    CANCELLED = "cancelled"
 
 
 class WorkerEventKind(str, Enum):
@@ -42,6 +43,9 @@ class WorkerEventKind(str, Enum):
     FAILED_RETRYABLE = "failed_retryable"
     DEAD_LETTERED = "dead_lettered"
     LEASE_EXPIRED = "lease_expired"
+    HEARTBEAT = "heartbeat"
+    CANCELLATION_REQUESTED = "cancellation_requested"
+    CANCELLED = "cancelled"
 
 
 def _timestamp(value: str) -> datetime:
@@ -246,6 +250,7 @@ class WorkerQueue:
         self._states: dict[str, JobState] = {}
         self._attempts: dict[str, int] = {}
         self._leases: dict[str, WorkerLease] = {}
+        self._cancellations: set[str] = set()
 
     def enqueue(self, job: WorkerJob) -> WorkerJob:
         key = (job.queue, job.idempotency_key)
@@ -320,6 +325,102 @@ class WorkerQueue:
         )
         return lease
 
+    def heartbeat(
+        self,
+        lease: WorkerLease,
+        *,
+        occurred_at: str,
+        expires_at: str,
+        lease_nonce: str,
+    ) -> WorkerLease:
+        job = self._validate_active_lease(lease, occurred_at)
+        if job.identity.id in self._cancellations:
+            raise WorkerQueueError("worker job cancellation has been requested")
+        replacement = WorkerLease.create(
+            job_id=job.identity.id,
+            attempt=lease.attempt,
+            worker_id=lease.worker_id,
+            leased_at=occurred_at,
+            expires_at=expires_at,
+            lease_nonce=lease_nonce,
+        )
+        self._leases[job.identity.id] = replacement
+        self._append(
+            job,
+            WorkerEventKind.HEARTBEAT,
+            occurred_at=occurred_at,
+            detail="worker renewed its exclusive time-bounded lease",
+            worker_id=lease.worker_id,
+            lease=replacement,
+        )
+        return replacement
+
+    def request_cancel(
+        self, job_id: str, *, occurred_at: str, actor: str
+    ) -> WorkerEvent:
+        job = self.jobs.get(job_id)
+        if job is None:
+            raise WorkerQueueError(f"unknown job: {job_id}")
+        state = self._states[job_id]
+        if state is JobState.CANCELLED:
+            return next(
+                event
+                for event in reversed(self.events)
+                if event.job_id == job_id
+                and event.event_kind is WorkerEventKind.CANCELLED
+            )
+        if state in {JobState.SUCCEEDED, JobState.DEAD_LETTER}:
+            raise WorkerQueueError("a terminal worker job cannot be cancelled")
+        if state is JobState.PENDING:
+            self._states[job_id] = JobState.CANCELLED
+            return self._append(
+                job,
+                WorkerEventKind.CANCELLED,
+                occurred_at=occurred_at,
+                detail=f"{actor} cancelled the pending job before execution",
+            )
+        if job_id in self._cancellations:
+            return next(
+                event
+                for event in reversed(self.events)
+                if event.job_id == job_id
+                and event.event_kind is WorkerEventKind.CANCELLATION_REQUESTED
+            )
+        self._cancellations.add(job_id)
+        lease = self._leases[job_id]
+        return self._append(
+            job,
+            WorkerEventKind.CANCELLATION_REQUESTED,
+            occurred_at=occurred_at,
+            detail=f"{actor} requested cooperative cancellation",
+            worker_id=lease.worker_id,
+            lease=lease,
+        )
+
+    def cancellation_requested(self, lease: WorkerLease) -> bool:
+        self._validate_active_lease(lease, lease.leased_at, allow_cancellation=True)
+        return lease.job_id in self._cancellations
+
+    def acknowledge_cancel(
+        self, lease: WorkerLease, *, occurred_at: str
+    ) -> WorkerEvent:
+        job = self._validate_active_lease(
+            lease, occurred_at, allow_cancellation=True
+        )
+        if job.identity.id not in self._cancellations:
+            raise WorkerQueueError("worker job has no cancellation request")
+        self._states[job.identity.id] = JobState.CANCELLED
+        self._cancellations.remove(job.identity.id)
+        del self._leases[job.identity.id]
+        return self._append(
+            job,
+            WorkerEventKind.CANCELLED,
+            occurred_at=occurred_at,
+            detail="worker acknowledged cooperative cancellation",
+            worker_id=lease.worker_id,
+            lease=lease,
+        )
+
     def complete(
         self,
         lease: WorkerLease,
@@ -386,21 +487,33 @@ class WorkerQueue:
         events: list[WorkerEvent] = []
         for lease in sorted(expired, key=lambda item: item.job_id):
             job = self.jobs[lease.job_id]
+            cancellation_requested = job.identity.id in self._cancellations
             can_retry = lease.attempt < job.max_attempts
             self._states[job.identity.id] = (
-                JobState.PENDING if can_retry else JobState.DEAD_LETTER
+                JobState.CANCELLED
+                if cancellation_requested
+                else (JobState.PENDING if can_retry else JobState.DEAD_LETTER)
             )
+            self._cancellations.discard(job.identity.id)
             del self._leases[job.identity.id]
             events.append(
                 self._append(
                     job,
                     (
-                        WorkerEventKind.LEASE_EXPIRED
-                        if can_retry
-                        else WorkerEventKind.DEAD_LETTERED
+                        WorkerEventKind.CANCELLED
+                        if cancellation_requested
+                        else (
+                            WorkerEventKind.LEASE_EXPIRED
+                            if can_retry
+                            else WorkerEventKind.DEAD_LETTERED
+                        )
                     ),
                     occurred_at=occurred_at,
-                    detail=f"{actor} reclaimed an expired worker lease",
+                    detail=(
+                        f"{actor} finalized cancellation after the lease expired"
+                        if cancellation_requested
+                        else f"{actor} reclaimed an expired worker lease"
+                    ),
                     worker_id=lease.worker_id,
                     lease=lease,
                 )
@@ -408,7 +521,11 @@ class WorkerQueue:
         return tuple(events)
 
     def _validate_active_lease(
-        self, lease: WorkerLease, occurred_at: str
+        self,
+        lease: WorkerLease,
+        occurred_at: str,
+        *,
+        allow_cancellation: bool = False,
     ) -> WorkerJob:
         job = self.jobs.get(lease.job_id)
         active = self._leases.get(lease.job_id)
@@ -416,6 +533,8 @@ class WorkerQueue:
             raise WorkerQueueError("stale or unknown worker lease")
         if _timestamp(occurred_at) > _timestamp(lease.expires_at):
             raise WorkerQueueError("worker lease expired before completion")
+        if lease.job_id in self._cancellations and not allow_cancellation:
+            raise WorkerQueueError("worker job cancellation has been requested")
         return job
 
     def _append(

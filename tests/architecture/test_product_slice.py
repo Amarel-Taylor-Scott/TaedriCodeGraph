@@ -43,7 +43,7 @@ class ProductSliceArchitectureTests(unittest.TestCase):
             self.assertEqual(schema["$schema"], "https://json-schema.org/draft/2020-12/schema")
             self.assertIn("v1", schema["$id"])
 
-    def test_real_candidate_artifacts_reconcile_and_retain_non_promotion(self) -> None:
+    def test_real_candidate_artifacts_reconcile_and_retain_non_release(self) -> None:
         manifest = json.loads((RESULTS / "candidate-manifest.json").read_text("utf-8"))
         candidate_lines = (RESULTS / "candidates.jsonl").read_text("utf-8").splitlines()
         search_lines = (RESULTS / "search-index.jsonl").read_text("utf-8").splitlines()
@@ -52,7 +52,7 @@ class ProductSliceArchitectureTests(unittest.TestCase):
         self.assertEqual(len(search_lines), expected)
         self.assertEqual(manifest["intake"]["submission_count"], expected)
         self.assertEqual(manifest["intake"]["event_count"], expected * 4)
-        self.assertEqual(manifest["intake"]["promoted_count"], 0)
+        self.assertEqual(manifest["intake"]["released_count"], 0)
         self.assertEqual(manifest["factory"]["diagnostic_count"], 0)
         self.assertEqual(manifest["harness_session"]["terminal_outcome"], "abstained")
         self.assertEqual(manifest["harness_session"]["model_calls"], 0)
@@ -82,4 +82,3 @@ class ProductSliceArchitectureTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

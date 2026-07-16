@@ -1,0 +1,72 @@
+{
+  "format_version": "1.0.0",
+  "run_date": "2026-07-16",
+  "branch": "agent/initial-vertical-slice",
+  "base_commit": "7877994",
+  "claim_class": "verified-local-and-transitional-implementation-not-hosted-production-or-real-model-efficacy",
+  "checks": {
+    "test_suite": {
+      "status": "passed",
+      "tests": 175,
+      "duration_seconds": 30.575,
+      "optional_dependencies": ["mcp", "gunicorn"]
+    },
+    "mcp_stdio_protocol": {
+      "status": "passed",
+      "operations": ["initialize", "tools/list", "tools/call:search"]
+    },
+    "production_http_socket": {
+      "status": "passed",
+      "server": "gunicorn",
+      "health": "ok",
+      "ready": "ready"
+    },
+    "postgresql_ddl_contract": {
+      "status": "passed-conformance",
+      "engine": "PGlite",
+      "schema": "taedri",
+      "applications": 2,
+      "table_count": 21,
+      "hosted_postgresql_17_pending": true
+    },
+    "python_compile": {"status": "passed"},
+    "frontend_javascript_parse": {"status": "passed"},
+    "schema_architecture_deploy_json_files": {"status": "passed", "count": 19},
+    "github_actions_yaml": {"status": "passed", "count": 1},
+    "git_diff_check": {"status": "passed"},
+    "hosted_ci": {"status": "blocked", "reason": "branch is not published"},
+    "container_builds": {"status": "pending-hosted-ci"}
+  },
+  "component_readiness": {
+    "total": 26,
+    "working": 17,
+    "partial": 6,
+    "conformance_only": 2,
+    "poc_only": 1,
+    "source": "architecture/component-readiness.v1.json"
+  },
+  "non_synthetic_evidence": {
+    "source": "eval/results/saas-real-acquisition-2026-07-16/run.json",
+    "pypi": {
+      "subject": "usaddress==0.5.16",
+      "files": 1,
+      "entities": 101,
+      "relations": 614,
+      "representation_assertions": 1886
+    },
+    "git": {
+      "subject": "datamade/usaddress@aa7699b53a0843fc443f9e87285b88cbd9eaf50a",
+      "files": 10,
+      "entities": 417,
+      "relations": 2282,
+      "representation_assertions": 8075
+    }
+  },
+  "blocked_external_gates": [
+    "github-publication-and-hosted-ci",
+    "managed-postgresql-and-object-store",
+    "real-model-and-isolated-verifier",
+    "oidc-browser-and-harness-identity",
+    "hosted-staging-and-telemetry"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.taedri.dev/codegraph/usage-limit-revision.v1.schema.json",
+  "title": "Taedri usage limit revision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format_version", "tenant_id", "metric", "window_seconds", "hard_limit", "effective_at", "actor", "reason"],
+  "properties": {
+    "format_version": {"const": "1.0.0"},
+    "tenant_id": {"type": "string", "minLength": 1},
+    "metric": {"type": "string", "pattern": "^[a-z][a-z0-9_]*(?:\\.[a-z][a-z0-9_]*)*$"},
+    "window_seconds": {"type": "integer", "minimum": 1, "maximum": 31536000},
+    "hard_limit": {"type": "integer", "minimum": 1},
+    "effective_at": {"type": "string", "format": "date-time"},
+    "actor": {"type": "string", "minLength": 1},
+    "reason": {"type": "string", "minLength": 1}
+  }
+}

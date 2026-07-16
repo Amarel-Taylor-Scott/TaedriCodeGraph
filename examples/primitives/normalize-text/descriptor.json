@@ -1,0 +1,19 @@
+{
+  "summary": "Remove leading and trailing Unicode whitespace from one text value.",
+  "keywords": [
+    "normalize",
+    "strip",
+    "text",
+    "unicode whitespace"
+  ],
+  "use_cases": [
+    "clean user-entered text",
+    "normalize a field before exact comparison",
+    "remove surrounding whitespace without changing internal spacing"
+  ],
+  "limitations": [
+    "Does not collapse internal whitespace.",
+    "Does not perform Unicode normalization or case folding.",
+    "Accepts strings only."
+  ]
+}

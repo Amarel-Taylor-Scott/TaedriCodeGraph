@@ -198,7 +198,10 @@ class PrimitiveFactory:
         license_evidence_state: LicenseEvidenceState = LicenseEvidenceState.UNKNOWN,
         visibility: CandidateVisibility = CandidateVisibility.PRIVATE,
         intake: CandidateIntakeLedger | None = None,
+        max_candidates: int = 1000,
     ) -> PrimitiveFactoryResult:
+        if not 1 <= max_candidates <= 100_000:
+            raise PrimitiveFactoryError("max_candidates must be between 1 and 100000")
         source_root = Path(root).resolve()
         if not source_root.is_dir():
             raise PrimitiveFactoryError(f"source root is not a directory: {source_root}")
@@ -224,6 +227,8 @@ class PrimitiveFactory:
                 "package_name": package_name,
                 "namespace": normalized_namespace,
                 "factory_contract": "python-function-candidates-v1",
+                "created_at": created_at,
+                "max_candidates": max_candidates,
             },
         ).id
         candidates: list[FunctionPrimitiveCandidate] = []
@@ -249,6 +254,17 @@ class PrimitiveFactory:
             collector.visit(tree)
             original_blob = registry.put_blob(content, "text/x-python")
             for discovered in collector.functions:
+                if len(candidates) >= max_candidates:
+                    diagnostics.append(
+                        PrimitiveFactoryDiagnostic(
+                            relative_path,
+                            "candidate_limit_reached",
+                            f"generation stopped at the configured limit of {max_candidates}",
+                            discovered.node.lineno,
+                            discovered.node.col_offset,
+                        )
+                    )
+                    break
                 candidates.append(
                     self._package_function(
                         registry=registry,
@@ -269,6 +285,8 @@ class PrimitiveFactory:
                         discovered=discovered,
                     )
                 )
+            if len(candidates) >= max_candidates:
+                break
         result_key = {
             "format_version": "1.0.0",
             "generation_run_id": generation_run_id,

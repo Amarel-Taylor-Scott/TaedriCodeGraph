@@ -1,0 +1,20 @@
+{
+  "summary": "Apply Unicode default case folding to one text value for caseless comparison.",
+  "keywords": [
+    "casefold",
+    "caseless comparison",
+    "text",
+    "unicode"
+  ],
+  "use_cases": [
+    "prepare user-entered text for caseless comparison",
+    "normalize Unicode case distinctions before exact matching",
+    "convert German sharp s and other multi-character case folds"
+  ],
+  "limitations": [
+    "Does not normalize Unicode composition forms.",
+    "Does not trim or collapse whitespace.",
+    "Case folding may change string length and is not intended for display casing.",
+    "Accepts strings only."
+  ]
+}

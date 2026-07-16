@@ -1,0 +1,25 @@
+{
+  "cases": [
+    {
+      "kind": "positive",
+      "args": [
+        "TAEDRI"
+      ],
+      "expected": "taedri"
+    },
+    {
+      "kind": "boundary",
+      "args": [
+        "İ"
+      ],
+      "expected": "i̇"
+    },
+    {
+      "kind": "negative",
+      "args": [
+        null
+      ],
+      "expected_error": "TypeError"
+    }
+  ]
+}

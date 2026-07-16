@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0",
+  "implementation_producer_id": "taedri.example.author.casefold-text-v1",
+  "source_uri": "https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/tree/main/examples/primitives/casefold-text",
+  "source_revision": "sha256:5736814d60fb4fc3687298d1009e6b0fb622211b55a72b316411a78f335f001f",
+  "source_digest": "sha256:5736814d60fb4fc3687298d1009e6b0fb622211b55a72b316411a78f335f001f"
+}

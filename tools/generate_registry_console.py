@@ -86,7 +86,7 @@ FULL_TEMPLATE = r'''<!doctype html>
 <body>
   <header>
     <div><h1>Taedri Registry Console</h1><p class="subtitle">Real-source primitive candidates, immutable receipts, search descriptors, and a commercial hypothesis in one inspectable POC.</p></div>
-    <div class="status">Candidate-only · 0 promoted</div>
+    <div class="status">Candidate-only · 0 released</div>
   </header>
   <nav aria-label="Console sections">
     <button type="button" data-tab="registry" aria-selected="true">Registry</button>
@@ -296,7 +296,7 @@ def _kind_svg(data: dict[str, object]) -> str:
 <title id="title">Real-source primitive candidates by entity kind</title>
 <desc id="desc">Distribution of {data['summary']['candidate_count']} candidates extracted from Taedri CodeGraph source without executing it.</desc>
 <style>:root{{--bg:#fff;--fg:#18212f;--muted:#657083;--track:#e9ecf2;--bar:#6656d9}}@media(prefers-color-scheme:dark){{:root{{--bg:#11141a;--fg:#edf1f7;--muted:#a7b0bf;--track:#2a303b;--bar:#a99cff}}}}.bg{{fill:var(--bg)}}text{{font-family:Inter,system-ui,sans-serif;fill:var(--fg)}}.title{{font-size:28px;font-weight:600}}.note{{font-size:16px;fill:var(--muted)}}.label,.value{{font-size:18px}}.value{{font-weight:600}}.track{{fill:var(--track)}}.bar{{fill:var(--bar)}}</style>
-<rect class="bg" width="1200" height="430"/><text x="50" y="58" class="title">Real-source primitive candidates</text><text x="50" y="88" class="note">{data['summary']['source_files']} files · {data['summary']['scanned_source_bytes']:,} source bytes · {data['summary']['diagnostic_count']} parse diagnostics · candidate-only</text>{''.join(rows)}<text x="50" y="397" class="note">Syntax-derived records; none are behaviorally verified or promoted.</text></svg>'''
+<rect class="bg" width="1200" height="430"/><text x="50" y="58" class="title">Real-source primitive candidates</text><text x="50" y="88" class="note">{data['summary']['source_files']} files · {data['summary']['scanned_source_bytes']:,} source bytes · {data['summary']['diagnostic_count']} parse diagnostics · candidate-only</text>{''.join(rows)}<text x="50" y="397" class="note">Syntax-derived records; none are behaviorally verified or released.</text></svg>'''
 
 
 def _operating_model_svg(data: dict[str, object]) -> str:
@@ -309,7 +309,7 @@ def _operating_model_svg(data: dict[str, object]) -> str:
 <rect class="bg" width="1500" height="760"/><text x="55" y="60" class="title">Product and operating model</text><text x="55" y="92" class="subtitle">One immutable evidence spine; replaceable analyzers, indexes, models, workers, harnesses, and commercial packaging.</text>
 <g transform="translate(55 145)"><rect class="box" width="210" height="105" rx="16"/><text x="20" y="35" class="stage">Acquire real source</text><text x="20" y="63" class="small">{summary['source_files']} Python files</text><text x="20" y="84" class="small">No import or execution</text></g>
 <path class="line" d="M265 197H310"/><g transform="translate(310 145)"><rect class="box" width="210" height="105" rx="16"/><text x="20" y="35" class="stage">Extract candidates</text><text x="20" y="63" class="small">{summary['candidate_count']} primitives</text><text x="20" y="84" class="small">{summary['call_edge_count']} call edges</text></g>
-<path class="line" d="M520 197H565"/><g transform="translate(565 145)"><rect class="box" width="210" height="105" rx="16"/><text x="20" y="35" class="stage">Intake ledger</text><text x="20" y="63" class="small">{events} events</text><text x="20" y="84" class="small">0 auto-promoted</text></g>
+<path class="line" d="M520 197H565"/><g transform="translate(565 145)"><rect class="box" width="210" height="105" rx="16"/><text x="20" y="35" class="stage">Intake ledger</text><text x="20" y="63" class="small">{events} events</text><text x="20" y="84" class="small">0 auto-released</text></g>
 <path class="line" d="M775 197H820"/><g transform="translate(820 145)"><rect class="box" width="210" height="105" rx="16"/><text x="20" y="35" class="stage">Build projections</text><text x="20" y="63" class="small">Sparse · blocking · LSH</text><text x="20" y="84" class="small">Embeddings deferred</text></g>
 <path class="line" d="M1030 197H1075"/><g transform="translate(1075 145)"><rect class="box" width="210" height="105" rx="16"/><text x="20" y="35" class="stage">Harness retrieval</text><text x="20" y="63" class="small">Digest-only prompt</text><text x="20" y="84" class="small">Selective D0–D4</text></g>
 <path class="line" d="M1285 197H1330"/><g transform="translate(1330 145)"><rect class="gate" width="115" height="105" rx="16"/><text x="18" y="35" class="stage">Decide</text><text x="18" y="63" class="small">Verify</text><text x="18" y="84" class="small warn">or abstain</text></g>
@@ -337,4 +337,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

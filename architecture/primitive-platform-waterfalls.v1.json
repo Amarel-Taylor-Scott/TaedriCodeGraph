@@ -1,0 +1,112 @@
+{
+  "schema_version": "1.0.0",
+  "as_of": "2026-07-16",
+  "decision": "one versioned mechanism contract, seven policy-specific waterfalls",
+  "invariants": [
+    "exact facts, immutable revisions, evidence, and lineage are authoritative; serving projections are not",
+    "new facets register descriptor versions and append typed long rows instead of widening subject tables",
+    "identical payload bytes deduplicate while production attempts and assertions retain independent provenance",
+    "deterministic low-cost mechanisms run before model-backed or high-disclosure mechanisms",
+    "search similarity proposes candidates and never proves compatibility, licensing, safety, or correctness",
+    "every skip, failure, escalation, abstention, publication, redirect, and verification decision emits a receipt",
+    "model and classifier tiers cannot override explicit user or deterministic trigger tiers",
+    "sealed benchmark artifacts cannot enter production ingestion, retrieval, primitive generation, or training"
+  ],
+  "waterfalls": [
+    {
+      "id": "primitive-storage",
+      "status": "working-local",
+      "code": ["src/taedri_codegraph/primitives/storage.py", "src/taedri_codegraph/primitive_repository.py", "deploy/postgres/002_representation_ledger.sql"],
+      "stages": [
+        {"ordinal": 1, "name": "validate", "policy": "fail_closed", "outputs": ["contract", "content_manifest_digest"]},
+        {"ordinal": 2, "name": "content-address", "policy": "fail_closed", "outputs": ["blobs", "tree", "immutable_revision"]},
+        {"ordinal": 3, "name": "assert", "policy": "retain_parallel", "outputs": ["typed_variants", "evidence_links", "lineage_dag"]},
+        {"ordinal": 4, "name": "stage-ref", "policy": "compare_and_swap_candidate_only", "outputs": ["ref_update"]},
+        {"ordinal": 5, "name": "accept", "policy": "complete_capsule_and_executable_proofs_fail_closed", "outputs": ["acceptance_receipt", "materialization_receipt"]},
+        {"ordinal": 6, "name": "release", "policy": "assurance_tier_separation_dedup_query_and_authorization", "outputs": ["primitive_release"]},
+        {"ordinal": 7, "name": "project", "policy": "active_releases_only_continue_rebuildable", "outputs": ["exact", "lexical", "scalar", "blocking", "vector", "graph", "downloadable_pack"]}
+      ]
+    },
+    {
+      "id": "primitive-search",
+      "status": "working-local",
+      "code": ["src/taedri_codegraph/primitives/search.py", "src/taedri_codegraph/query.py"],
+      "stages": [
+        {"ordinal": 1, "name": "exact", "activation": "always"},
+        {"ordinal": 2, "name": "sparse", "activation": "fast_policy_or_insufficient_exact", "lanes": ["lexical", "blocking"]},
+        {"ordinal": 3, "name": "semantic", "activation": "allowed_and_ambiguous_or_insufficient", "lanes": ["vector"]},
+        {"ordinal": 4, "name": "structural", "activation": "deep_or_still_ambiguous", "lanes": ["simhash", "minhash", "graph"]},
+        {"ordinal": 5, "name": "decision", "activation": "finalists", "lanes": ["typed_contract", "evidence", "policy", "verification"]}
+      ]
+    },
+    {
+      "id": "search-trigger",
+      "status": "working-library",
+      "code": ["src/taedri_codegraph/discovery/triggers.py"],
+      "stages": [
+        {"ordinal": 1, "name": "user", "precedence": 0},
+        {"ordinal": 2, "name": "deterministic", "precedence": 1},
+        {"ordinal": 3, "name": "classifier", "precedence": 2},
+        {"ordinal": 4, "name": "model", "precedence": 3},
+        {"ordinal": 5, "name": "cooldown_and_intent_recheck", "policy": "fail_closed"}
+      ]
+    },
+    {
+      "id": "client-digestion",
+      "status": "working-library",
+      "code": ["src/taedri_codegraph/primitives/digestion.py", "src/taedri_codegraph/api_client.py"],
+      "stages": [
+        {"ordinal": 1, "name": "bound_encoded_pack", "policy": "fail_closed"},
+        {"ordinal": 2, "name": "verify_manifest_and_identity", "policy": "fail_closed"},
+        {"ordinal": 3, "name": "select_roles_and_resolve_thin_blobs", "policy": "allowlist"},
+        {"ordinal": 4, "name": "verify_every_digest_and_size", "policy": "fail_closed"},
+        {"ordinal": 5, "name": "safe_atomic_materialization", "policy": "strip_executable_by_default"},
+        {"ordinal": 6, "name": "receipt", "policy": "digest_only"}
+      ]
+    },
+    {
+      "id": "public-saas",
+      "status": "working-local-poc",
+      "code": ["apps/portal", "src/taedri_codegraph/portal", "src/taedri_codegraph/api", "src/taedri_codegraph/http_api.py"],
+      "stages": [
+        {"ordinal": 1, "name": "public-plan-catalog", "policy": "no_invented_prices"},
+        {"ordinal": 2, "name": "authenticate-and-authorize", "policy": "scoped_token_local_oidc_hosted"},
+        {"ordinal": 3, "name": "resolve-subscription-revision", "policy": "append_only"},
+        {"ordinal": 4, "name": "compute-entitlements", "policy": "active_states_only"},
+        {"ordinal": 5, "name": "provider-redirect", "policy": "allowlisted_return_origin"},
+        {"ordinal": 6, "name": "provider-event", "policy": "signature_and_replay_verification_required"}
+      ]
+    },
+    {
+      "id": "source-to-primitive",
+      "status": "working-with-declared-gates",
+      "code": ["src/taedri_codegraph/pipelines", "src/taedri_codegraph/acquisition.py", "src/taedri_codegraph/job_runner.py", "services/discovery-worker", "services/ingestion-worker", "services/primitive-worker"],
+      "stages": [
+        {"ordinal": 1, "name": "discover", "policy": "allowlisted_source_and_replay_safe_event"},
+        {"ordinal": 2, "name": "acquire", "policy": "immutable_locator_bounded_network"},
+        {"ordinal": 3, "name": "extract", "policy": "no_target_import_or_execution"},
+        {"ordinal": 4, "name": "describe", "policy": "dynamic_depth_and_parallel_variants"},
+        {"ordinal": 5, "name": "candidate", "policy": "terminal_output_never_public_or_auto_released"}
+      ]
+    },
+    {
+      "id": "matched-benchmark",
+      "status": "conformance-only-external-execution-gated",
+      "code": ["src/taedri_codegraph/benchmarking.py", "src/taedri_codegraph/model_providers.py", "services/benchmark-worker", "eval"],
+      "stages": [
+        {"ordinal": 1, "name": "freeze", "status": "working", "policy": "content_address_every_input"},
+        {"ordinal": 2, "name": "validate-supplied-terminal-receipts", "status": "working", "policy": "reject_incomplete_or_identity_mismatched_receipts"},
+        {"ordinal": 3, "name": "paired-analysis", "status": "working", "policy": "report_tokens_time_cost_reuse_and_consistency"},
+        {"ordinal": 4, "name": "claim-gate", "status": "working", "policy": "real_complete_clean_runs_only"}
+      ]
+    }
+  ],
+  "external_gates": [
+    "OIDC application and hosted browser-flow verification",
+    "billing provider test prices, restricted key, and webhook signing secret",
+    "PostgreSQL repository conformance and S3-compatible immutable payload adapter",
+    "resource-isolated execution sandbox and sealed benchmark oracle",
+    "live model or reachable Ollama endpoint for claimable matched-lane runs",
+    "GitHub publication authentication and green Actions execution"
+  ]
+}

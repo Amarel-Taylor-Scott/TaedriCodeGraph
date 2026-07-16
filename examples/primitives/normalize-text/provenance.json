@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0",
+  "implementation_producer_id": "taedri.example.author.normalize-text-v1",
+  "source_uri": "https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/tree/main/examples/primitives/normalize-text",
+  "source_revision": "sha256:504d0c11e0d8b23c058a6b54042b0259bd9a2e7e9ab1bad5addabfd3adf386da",
+  "source_digest": "sha256:504d0c11e0d8b23c058a6b54042b0259bd9a2e7e9ab1bad5addabfd3adf386da"
+}

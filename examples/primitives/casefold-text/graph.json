@@ -1,0 +1,223 @@
+{
+  "schema_version": "1.1.0",
+  "interface_id": "taedri.core.casefold-text.v1",
+  "nodes": [
+    {
+      "id": "implementation.casefold_text",
+      "kind": "implementation",
+      "path": "src/casefold.py",
+      "symbol": "casefold_text"
+    },
+    {
+      "id": "contract.casefold_text",
+      "kind": "contract",
+      "path": "contract.json"
+    },
+    {
+      "id": "port.input.value",
+      "kind": "input_port",
+      "path": "contract.json",
+      "json_pointer": "#/inputs/0"
+    },
+    {
+      "id": "port.output.result",
+      "kind": "output_port",
+      "path": "contract.json",
+      "json_pointer": "#/output"
+    },
+    {
+      "id": "examples.casefold_text",
+      "kind": "example_set",
+      "path": "examples.json"
+    },
+    {
+      "id": "tests.casefold_text",
+      "kind": "test_set",
+      "path": "tests.json"
+    },
+    {
+      "id": "runtime.python312",
+      "kind": "runtime",
+      "path": "runtime.json"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.implements_contract",
+      "source": "implementation.casefold_text",
+      "predicate": "taedri.predicate.implements_contract",
+      "target": "contract.casefold_text",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "src/casefold.py",
+          "digest": "sha256:73d6d5dee4ece7c9c25176007c3ba9f8424fd39ebb7ccaee11fa5a1fb81b8c58"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:91a896dc7c5fb8da3173052551747a4a05029b4444d757fe3a81051abfb8aa53"
+        }
+      ]
+    },
+    {
+      "id": "edge.accepts_value",
+      "source": "implementation.casefold_text",
+      "predicate": "taedri.predicate.accepts_port",
+      "target": "port.input.value",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:91a896dc7c5fb8da3173052551747a4a05029b4444d757fe3a81051abfb8aa53"
+        }
+      ]
+    },
+    {
+      "id": "edge.produces_result",
+      "source": "implementation.casefold_text",
+      "predicate": "taedri.predicate.produces_port",
+      "target": "port.output.result",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:91a896dc7c5fb8da3173052551747a4a05029b4444d757fe3a81051abfb8aa53"
+        }
+      ]
+    },
+    {
+      "id": "edge.demonstrated_by_examples",
+      "source": "examples.casefold_text",
+      "predicate": "taedri.predicate.demonstrates",
+      "target": "implementation.casefold_text",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "examples.json",
+          "digest": "sha256:affe70cc4810c7a19c5b48474aac5b0dc81de95fd4ed8db1cd1fffcb9e0ec7d9"
+        }
+      ]
+    },
+    {
+      "id": "edge.verified_by_tests",
+      "source": "tests.casefold_text",
+      "predicate": "taedri.predicate.verifies",
+      "target": "implementation.casefold_text",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "tests.json",
+          "digest": "sha256:2f77ab1ae6a35783e8bc65f5a6bd0132362749946f3e0bc67a54b36f84fb0c12"
+        }
+      ]
+    },
+    {
+      "id": "edge.runs_on_python312",
+      "source": "implementation.casefold_text",
+      "predicate": "taedri.predicate.runs_on",
+      "target": "runtime.python312",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "runtime.json",
+          "digest": "sha256:276d9a7a766bf93710430bc6ac2c216b4d17b920f6e89c0b3a450423df65afe1"
+        }
+      ]
+    }
+  ],
+  "ports": [
+    {
+      "id": "port.input.value",
+      "owner": "implementation.casefold_text",
+      "direction": "input",
+      "name": "value",
+      "schema": {
+        "type": "string"
+      },
+      "schema_digest": "sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03",
+      "schema_ref": "contract.json#/inputs/0/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native",
+        "text"
+      ]
+    },
+    {
+      "id": "port.output.result",
+      "owner": "implementation.casefold_text",
+      "direction": "output",
+      "name": "result",
+      "schema": {
+        "type": "string"
+      },
+      "schema_digest": "sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03",
+      "schema_ref": "contract.json#/output/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native",
+        "text"
+      ]
+    }
+  ],
+  "compatibility": {
+    "language": "python",
+    "runtime_version": "3.12",
+    "execution_model": "in_process_call",
+    "deterministic": true,
+    "purity": "pure",
+    "network": "denied",
+    "effects": [],
+    "dimensions": {
+      "taedri.compatibility.call_style": "sync",
+      "taedri.compatibility.language": "python",
+      "taedri.compatibility.runtime_major_minor": "3.12",
+      "taedri.compatibility.value_transport": "python_native"
+    },
+    "required_dimensions": [
+      "taedri.compatibility.call_style",
+      "taedri.compatibility.language",
+      "taedri.compatibility.runtime_major_minor",
+      "taedri.compatibility.value_transport"
+    ]
+  },
+  "groups": [
+    {
+      "id": "taedri.group.text_case_normalization",
+      "kind": "capability",
+      "labels": [
+        "caseless matching",
+        "text case normalization",
+        "unicode case folding"
+      ],
+      "member_nodes": [
+        "implementation.casefold_text"
+      ],
+      "evidence": [
+        {
+          "path": "descriptor.json",
+          "digest": "sha256:3c72a69bb150899217cb7e7bd1b6fd81ee9825b72a7d943a79b6969b1d967e66"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:91a896dc7c5fb8da3173052551747a4a05029b4444d757fe3a81051abfb8aa53"
+        }
+      ]
+    }
+  ]
+}

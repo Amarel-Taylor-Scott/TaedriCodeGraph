@@ -1,0 +1,44 @@
+flowchart LR
+  n0["usaddress.parse"]
+  n1["TAGGER.tag"]
+  n2["list"]
+  n3["usaddress.tag"]
+  n4["usaddress.tokenize"]
+  n5["usaddress.tokens2features"]
+  n6["zip"]
+  n7["usaddress"]
+  n8["usaddress.parse.address_string"]
+  n9["usaddress.parse.features"]
+  n10["usaddress.parse.tags"]
+  n11["usaddress.parse.tokens"]
+  n12["usaddress.TAGGER"]
+  n0 -->|calls_may| n1
+  n0 -->|calls_may| n2
+  n3 -->|calls_may| n0
+  n3 -->|calls_may| n0
+  n0 -->|calls_may| n4
+  n0 -->|calls_may| n5
+  n0 -->|calls_may| n6
+  n7 -->|contains| n0
+  n0 -->|contains| n8
+  n0 -->|contains| n9
+  n0 -->|contains| n10
+  n0 -->|contains| n11
+  n7 -->|defines| n0
+  n0 -->|defines| n8
+  n0 -->|defines| n9
+  n0 -->|defines| n10
+  n0 -->|defines| n11
+  n0 -->|reads| n2
+  n0 -->|reads| n12
+  n0 -->|reads| n8
+  n0 -->|reads| n9
+  n0 -->|reads| n10
+  n0 -->|reads| n11
+  n0 -->|reads| n11
+  n0 -->|reads| n11
+  n3 -->|reads| n0
+  n3 -->|reads| n0
+  n0 -->|reads| n4
+  n0 -->|reads| n5
+  n0 -->|reads| n6

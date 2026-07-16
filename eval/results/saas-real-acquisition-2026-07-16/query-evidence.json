@@ -1,0 +1,3860 @@
+[
+  {
+    "expected": "usaddress.parse",
+    "graph": "pypi-usaddress",
+    "query": "parse a street address into labeled components",
+    "query_id": 1,
+    "response": {
+      "count": 10,
+      "epoch_id": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq",
+      "graph": "pypi-usaddress",
+      "items": [
+        {
+          "description": "python function `usaddress.parse` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:zukj7damtofndhc7vl5gmtbyyvpdcr7gkxio4ezlflkwnptzxwwa",
+          "entity_kind": "uceg.entity.python.function",
+          "lane_ranks": {
+            "blocking": 22,
+            "lexical": 4,
+            "vector": 4
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "parse",
+          "qualified_name": "usaddress.parse",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 3.0,
+              "lexical": -6.72664238982619,
+              "vector": 0.14285714285714285
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": 0.00785,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.07082637
+        },
+        {
+          "description": "python parameter `usaddress.parse.address_string` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:m3svnz2xx2woathtlvlnuphyojltfw4juls3vrhbgitsqe7bwa5a",
+          "entity_kind": "uceg.entity.python.parameter",
+          "lane_ranks": {
+            "blocking": 5,
+            "lexical": 1,
+            "vector": 2
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_string",
+          "qualified_name": "usaddress.parse.address_string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 6.0,
+              "lexical": -8.539570715988933,
+              "vector": 0.2519763153394848
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0083,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.06003279
+        },
+        {
+          "description": "python variable `usaddress.tag.tagged_components` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:burv2bglee7zvudrgsegeeru4jo376pqxsfouqakbh3fru45p5ya",
+          "entity_kind": "uceg.entity.python.variable",
+          "lane_ranks": {
+            "blocking": 1,
+            "lexical": 3,
+            "vector": 8
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "tagged_components",
+          "qualified_name": "usaddress.tag.tagged_components",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 11.0,
+              "lexical": -7.392975290629943,
+              "vector": 0.1259881576697424
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0073,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05922183
+        },
+        {
+          "description": "python variable `usaddress.STREET_NAMES` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:ktiwdxpxcd3y2d7udyqrwd3nurpghbeamxspmrnanpmbhej7s6ca",
+          "entity_kind": "uceg.entity.python.variable",
+          "lane_ranks": {
+            "blocking": 12,
+            "lexical": 2,
+            "vector": 5
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "STREET_NAMES",
+          "qualified_name": "usaddress.STREET_NAMES",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 4.0,
+              "lexical": -7.608653662155613,
+              "vector": 0.13363062095621217
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.00715,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05822772
+        },
+        {
+          "description": "python parameter `usaddress.tokenize.address_string` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:5g363sjcobzmkrktt6m6iscuijwqhzkeg4vutshm7b7p3zwb44qa",
+          "entity_kind": "uceg.entity.python.parameter",
+          "lane_ranks": {
+            "blocking": 3,
+            "lexical": 10,
+            "vector": 7
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_string",
+          "qualified_name": "usaddress.tokenize.address_string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 6.0,
+              "lexical": -3.8337541442176764,
+              "vector": 0.1259881576697424
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0083,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05480116
+        },
+        {
+          "description": "python variable `usaddress.tag.address_type` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:yxweneumtipem5vlzj3y4v6y5lyxhl3corxgeootfq6rr6ps5aea",
+          "entity_kind": "uceg.entity.python.variable",
+          "lane_ranks": {
+            "blocking": 10,
+            "lexical": 9,
+            "vector": 11
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_type",
+          "qualified_name": "usaddress.tag.address_type",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 5.0,
+              "lexical": -3.847484262521679,
+              "vector": 0.1259881576697424
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0073,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05357686
+        },
+        {
+          "description": "python variable `usaddress.tag.tagged_address` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:c3dioczitafo6e3wxhqe2aezsle5jhuv4g66uyb6e5whdzrs6lxq",
+          "entity_kind": "uceg.entity.python.variable",
+          "lane_ranks": {
+            "blocking": 7,
+            "lexical": 12,
+            "vector": 9
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "tagged_address",
+          "qualified_name": "usaddress.tag.tagged_address",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 5.0,
+              "lexical": -3.8065858077625903,
+              "vector": 0.1259881576697424
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0073,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05351909
+        },
+        {
+          "description": "python parameter `usaddress.tag.address_string` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:hicasdlqn3ht3xtwgbct5uohr2ovrri3xbswsjrgiudrahshbxbq",
+          "entity_kind": "uceg.entity.python.parameter",
+          "lane_ranks": {
+            "blocking": 4,
+            "lexical": 11,
+            "vector": 10
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_string",
+          "qualified_name": "usaddress.tag.address_string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 6.0,
+              "lexical": -3.8337541442176764,
+              "vector": 0.1259881576697424
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0083,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05335116
+        },
+        {
+          "description": "python variable `usaddress.parse.features` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:veclxlhpkjkqs64fve2dbmbqbiskyz3yy4zuatvmxfhyoh6jhogq",
+          "entity_kind": "uceg.entity.python.variable",
+          "lane_ranks": {
+            "blocking": 36,
+            "lexical": 7,
+            "vector": 6
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "features",
+          "qualified_name": "usaddress.parse.features",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 1.0,
+              "lexical": -4.887003092181702,
+              "vector": 0.13363062095621217
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0073,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05190681
+        },
+        {
+          "description": "python function `usaddress.tokens2features` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:owkjmvwmpusbolwe5ikbigtiyokgegztux5dskdwovmfmtnu7rhq",
+          "entity_kind": "uceg.entity.python.function",
+          "lane_ranks": {
+            "blocking": 34,
+            "lexical": 14
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "tokens2features",
+          "qualified_name": "usaddress.tokens2features",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 1.0,
+              "lexical": -1.7073508655689527
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": 0.00785,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.04551532
+        }
+      ]
+    }
+  },
+  {
+    "expected": "usaddress.tag",
+    "graph": "pypi-usaddress",
+    "query": "tag address components and determine address type",
+    "query_id": 2,
+    "response": {
+      "count": 10,
+      "epoch_id": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq",
+      "graph": "pypi-usaddress",
+      "items": [
+        {
+          "description": "python function `usaddress.tag` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:rn2q73draqawtucm2otihuvv7jw62mfoob2vlet6nvmovlf7oywq",
+          "entity_kind": "uceg.entity.python.function",
+          "lane_ranks": {
+            "blocking": 25,
+            "lexical": 8,
+            "vector": 9
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "tag",
+          "qualified_name": "usaddress.tag",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 1.0,
+              "lexical": -6.165058917626434,
+              "vector": 0.13363062095621217
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": 0.00785,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.06714241
+        },
+        {
+          "description": "python function `usaddress.tokens2features` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:owkjmvwmpusbolwe5ikbigtiyokgegztux5dskdwovmfmtnu7rhq",
+          "entity_kind": "uceg.entity.python.function",
+          "lane_ranks": {
+            "blocking": 23,
+            "lexical": 12,
+            "vector": 18
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "tokens2features",
+          "qualified_name": "usaddress.tokens2features",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 1.0,
+              "lexical": -3.4147017311379053,
+              "vector": 0.1178511301977579
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": 0.00785,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.06370161
+        },
+        {
+          "description": "python variable `usaddress.tag.address_type` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:yxweneumtipem5vlzj3y4v6y5lyxhl3corxgeootfq6rr6ps5aea",
+          "entity_kind": "uceg.entity.python.variable",
+          "lane_ranks": {
+            "blocking": 1,
+            "lexical": 1,
+            "vector": 1
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_type",
+          "qualified_name": "usaddress.tag.address_type",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 10.0,
+              "lexical": -18.133745087767203,
+              "vector": 0.4714045207910316
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0073,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.06237213
+        },
+        {
+          "description": "python variable `usaddress.tag.tagged_components` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:burv2bglee7zvudrgsegeeru4jo376pqxsfouqakbh3fru45p5ya",
+          "entity_kind": "uceg.entity.python.variable",
+          "lane_ranks": {
+            "blocking": 2,
+            "lexical": 4,
+            "vector": 3
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "tagged_components",
+          "qualified_name": "usaddress.tag.tagged_components",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 9.0,
+              "lexical": -10.31848220856829,
+              "vector": 0.2357022603955158
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0073,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.0599203
+        },
+        {
+          "description": "python variable `usaddress.tag.tagged_address` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:c3dioczitafo6e3wxhqe2aezsle5jhuv4g66uyb6e5whdzrs6lxq",
+          "entity_kind": "uceg.entity.python.variable",
+          "lane_ranks": {
+            "blocking": 5,
+            "lexical": 3,
+            "vector": 4
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "tagged_address",
+          "qualified_name": "usaddress.tag.tagged_address",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 6.0,
+              "lexical": -10.538678533463525,
+              "vector": 0.2357022603955158
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0073,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.0593619
+        },
+        {
+          "description": "python parameter `usaddress.tag.address_string` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:hicasdlqn3ht3xtwgbct5uohr2ovrri3xbswsjrgiudrahshbxbq",
+          "entity_kind": "uceg.entity.python.parameter",
+          "lane_ranks": {
+            "blocking": 6,
+            "lexical": 2,
+            "vector": 5
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_string",
+          "qualified_name": "usaddress.tag.address_string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 6.0,
+              "lexical": -10.62013113043286,
+              "vector": 0.2357022603955158
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0083,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05834035
+        },
+        {
+          "description": "python parameter `usaddress.tokens2features.address` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:uf7dtw3wkjd6ngqpkvecmnv5ntvjjxar7mkeuejh6nejukz6w5za",
+          "entity_kind": "uceg.entity.python.parameter",
+          "lane_ranks": {
+            "blocking": 9,
+            "lexical": 5,
+            "vector": 6
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address",
+          "qualified_name": "usaddress.tokens2features.address",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 5.0,
+              "lexical": -7.778542197680594,
+              "vector": 0.22360679774997896
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0083,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05590138
+        },
+        {
+          "description": "python parameter `usaddress.tokenize.address_string` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:5g363sjcobzmkrktt6m6iscuijwqhzkeg4vutshm7b7p3zwb44qa",
+          "entity_kind": "uceg.entity.python.parameter",
+          "lane_ranks": {
+            "blocking": 4,
+            "lexical": 6,
+            "vector": 15
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_string",
+          "qualified_name": "usaddress.tokenize.address_string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 6.0,
+              "lexical": -7.667508288435353,
+              "vector": 0.1178511301977579
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0083,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.0542947
+        },
+        {
+          "description": "python variable `usaddress.tag.component` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:3tgzbv6oqmthbsyz5dudzpfzz5kb4m4pzq2m6aizft2ikqg5nanq",
+          "entity_kind": "uceg.entity.python.variable",
+          "lane_ranks": {
+            "blocking": 3,
+            "lexical": 15,
+            "vector": 11
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "component",
+          "qualified_name": "usaddress.tag.component",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 7.0,
+              "lexical": -3.066306716127892,
+              "vector": 0.12499999999999997
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0073,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05284532
+        },
+        {
+          "description": "python parameter `usaddress.parse.address_string` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:m3svnz2xx2woathtlvlnuphyojltfw4juls3vrhbgitsqe7bwa5a",
+          "entity_kind": "uceg.entity.python.parameter",
+          "lane_ranks": {
+            "blocking": 7,
+            "lexical": 7,
+            "vector": 17
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_string",
+          "qualified_name": "usaddress.parse.address_string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 6.0,
+              "lexical": -7.667508288435353,
+              "vector": 0.1178511301977579
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0083,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05270989
+        }
+      ]
+    }
+  },
+  {
+    "expected": "usaddress.tokenize",
+    "graph": "pypi-usaddress",
+    "query": "tokenize an address string",
+    "query_id": 3,
+    "response": {
+      "count": 10,
+      "epoch_id": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq",
+      "graph": "pypi-usaddress",
+      "items": [
+        {
+          "description": "python function `usaddress.tokenize` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:g2eagdom5lqf5err6vsc5gtiwcrsh2stlqtnmqy5fwvjq44v7v5q",
+          "entity_kind": "uceg.entity.python.function",
+          "lane_ranks": {
+            "blocking": 4,
+            "lexical": 2,
+            "vector": 4
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "tokenize",
+          "qualified_name": "usaddress.tokenize",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 7.0,
+              "lexical": -9.107549553238387,
+              "vector": 0.1889822365046136
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": 0.00785,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.07526431
+        },
+        {
+          "description": "python import_binding `usaddress.string` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:5zqvkbzy7ddvcy3mtpnscyqeffkvk2h5xduairug5tak5hhfmi7q",
+          "entity_kind": "uceg.entity.python.import_binding",
+          "lane_ranks": {
+            "blocking": 7,
+            "lexical": 8,
+            "vector": 5
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "string",
+          "qualified_name": "usaddress.string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 5.0,
+              "lexical": -4.40337182907793,
+              "vector": 0.17677669529663687
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.00015,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.06341791
+        },
+        {
+          "description": "python parameter `usaddress.tokenize.address_string` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:5g363sjcobzmkrktt6m6iscuijwqhzkeg4vutshm7b7p3zwb44qa",
+          "entity_kind": "uceg.entity.python.parameter",
+          "lane_ranks": {
+            "blocking": 1,
+            "lexical": 1,
+            "vector": 1
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_string",
+          "qualified_name": "usaddress.tokenize.address_string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 12.0,
+              "lexical": -13.132367525327904,
+              "vector": 0.5
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0083,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.06137213
+        },
+        {
+          "description": "python parameter `usaddress.tag.address_string` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:hicasdlqn3ht3xtwgbct5uohr2ovrri3xbswsjrgiudrahshbxbq",
+          "entity_kind": "uceg.entity.python.parameter",
+          "lane_ranks": {
+            "blocking": 2,
+            "lexical": 3,
+            "vector": 3
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_string",
+          "qualified_name": "usaddress.tag.address_string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 12.0,
+              "lexical": -8.079987406833665,
+              "vector": 0.3333333333333333
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0083,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05941633
+        },
+        {
+          "description": "python parameter `usaddress.parse.address_string` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:m3svnz2xx2woathtlvlnuphyojltfw4juls3vrhbgitsqe7bwa5a",
+          "entity_kind": "uceg.entity.python.parameter",
+          "lane_ranks": {
+            "blocking": 3,
+            "lexical": 4,
+            "vector": 9
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_string",
+          "qualified_name": "usaddress.parse.address_string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 12.0,
+              "lexical": -8.079987406833665,
+              "vector": 0.16666666666666666
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0083,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05693896
+        },
+        {
+          "description": "",
+          "entity_id": "uceg:v1:entity:uwnzhhw6icwyb4n467pc4nbere5n47qzzek6o5mpmz6q53xgmjcq",
+          "entity_kind": "uceg.entity.external_symbol",
+          "lane_ranks": {
+            "blocking": 10,
+            "lexical": 7,
+            "vector": 2
+          },
+          "lifecycle": "L1_candidate",
+          "module_name": "usaddress",
+          "native_name": "string",
+          "qualified_name": "string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 5.0,
+              "lexical": -4.675602640725429,
+              "vector": 0.5
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.009,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05529775
+        },
+        {
+          "description": "python variable `usaddress.tokenize.tokens` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:efjarvo64aye3vvq7sy6qc3m3zo3677flrxemnlj3scpphanydfa",
+          "entity_kind": "uceg.entity.python.variable",
+          "lane_ranks": {
+            "blocking": 18,
+            "lexical": 5,
+            "vector": 6
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "tokens",
+          "qualified_name": "usaddress.tokenize.tokens",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 3.0,
+              "lexical": -5.246910262094018,
+              "vector": 0.17677669529663687
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0073,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05522914
+        },
+        {
+          "description": "python variable `usaddress.tag.address_type` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:yxweneumtipem5vlzj3y4v6y5lyxhl3corxgeootfq6rr6ps5aea",
+          "entity_kind": "uceg.entity.python.variable",
+          "lane_ranks": {
+            "blocking": 5,
+            "lexical": 10,
+            "vector": 10
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_type",
+          "qualified_name": "usaddress.tag.address_type",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 6.0,
+              "lexical": -3.847484262521679,
+              "vector": 0.16666666666666666
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0073,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05451319
+        },
+        {
+          "description": "python variable `usaddress.tokenize.re_tokens` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:de2lx7qho5uuibybcaor4jf73aa6xbp3puv6etnk62cpxleukbiq",
+          "entity_kind": "uceg.entity.python.variable",
+          "lane_ranks": {
+            "blocking": 17,
+            "lexical": 6,
+            "vector": 8
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "re_tokens",
+          "qualified_name": "usaddress.tokenize.re_tokens",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 3.0,
+              "lexical": -5.075903874865914,
+              "vector": 0.16666666666666666
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0073,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.0543724
+        },
+        {
+          "description": "python variable `usaddress.tag.tagged_address` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:c3dioczitafo6e3wxhqe2aezsle5jhuv4g66uyb6e5whdzrs6lxq",
+          "entity_kind": "uceg.entity.python.variable",
+          "lane_ranks": {
+            "blocking": 8,
+            "lexical": 11,
+            "vector": 7
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "tagged_address",
+          "qualified_name": "usaddress.tag.tagged_address",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 5.0,
+              "lexical": -3.8065858077625903,
+              "vector": 0.16666666666666666
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0073,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05423161
+        }
+      ]
+    }
+  },
+  {
+    "expected": "usaddress.parse",
+    "graph": "git-usaddress",
+    "query": "parse a street address into labeled components",
+    "query_id": 1,
+    "response": {
+      "count": 10,
+      "epoch_id": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+      "graph": "git-usaddress",
+      "items": [
+        {
+          "description": "python variable `usaddress.parse_scripts.parse.osmSyntheticToTraining.components` declared in module `usaddress.parse_scripts.parse`.",
+          "entity_id": "uceg:v1:entity:5exbn5x3xmcex6zgz7ogcrenrh5t65dr6jc3dcre7eij3v6kl5ga",
+          "entity_kind": "uceg.entity.python.variable",
+          "lane_ranks": {
+            "blocking": 2,
+            "lexical": 7,
+            "vector": 15
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress.parse_scripts.parse",
+          "native_name": "components",
+          "qualified_name": "usaddress.parse_scripts.parse.osmSyntheticToTraining.components",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 9.0,
+              "lexical": -7.1834542867531805,
+              "vector": 0.23904572186687872
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0076,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05504645
+        },
+        {
+          "description": "python variable `usaddress.parse_scripts.parse.xmlToAddrList.address` declared in module `usaddress.parse_scripts.parse`.",
+          "entity_id": "uceg:v1:entity:bmh5wlxnfhmzoaxrfz332mutihdhhp7lyl2nl77qzz3ucbedkmha",
+          "entity_kind": "uceg.entity.python.variable",
+          "lane_ranks": {
+            "blocking": 18,
+            "lexical": 13,
+            "vector": 6
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress.parse_scripts.parse",
+          "native_name": "address",
+          "qualified_name": "usaddress.parse_scripts.parse.xmlToAddrList.address",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 5.0,
+              "lexical": -4.931185212422188,
+              "vector": 0.2834733547569204
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0076,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05155717
+        },
+        {
+          "description": "python function `usaddress.tests.test_labeling.test_simple_addresses` declared in module `usaddress.tests.test_labeling`.",
+          "entity_id": "uceg:v1:entity:ic3rbmly5pnik4odywa4vn5dl7uo7e3inequoloqkb4oef62zj5a",
+          "entity_kind": "uceg.entity.python.function",
+          "lane_ranks": {
+            "blocking": 19,
+            "lexical": 5
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress.tests.test_labeling",
+          "native_name": "test_simple_addresses",
+          "qualified_name": "usaddress.tests.test_labeling.test_simple_addresses",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 5.0,
+              "lexical": -8.035430401654152
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": 0.00755,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05097746
+        },
+        {
+          "description": "python parameter `usaddress.parse.address_string` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:uz4re6m4cklgghubyibxf332ypb3lgltuud3j7ddewqwfsycoz6a",
+          "entity_kind": "uceg.entity.python.parameter",
+          "lane_ranks": {
+            "blocking": 13,
+            "lexical": 12,
+            "vector": 14
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_string",
+          "qualified_name": "usaddress.parse.address_string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 6.0,
+              "lexical": -5.083813738459411,
+              "vector": 0.2519763153394848
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0083,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.0500683
+        },
+        {
+          "description": "python function `usaddress.parse` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:4x4jp6olvdjvvtc7jub2eocbhg7nvs45q556jhnjpxr66bpk5zlq",
+          "entity_kind": "uceg.entity.python.function",
+          "lane_ranks": {
+            "blocking": 43,
+            "lexical": 36,
+            "vector": 61
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "parse",
+          "qualified_name": "usaddress.parse",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 3.0,
+              "lexical": -2.966604059314054,
+              "vector": 0.14285714285714285
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": 0.00785,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.04872265
+        },
+        {
+          "description": "python function `usaddress.tests.test_labeling.test_synthetic_addresses` declared in module `usaddress.tests.test_labeling`.",
+          "entity_id": "uceg:v1:entity:zdvs4dya4k766527fbpznul4cqt4luf7hg2zhpnpgfwl64zbpqvq",
+          "entity_kind": "uceg.entity.python.function",
+          "lane_ranks": {
+            "blocking": 32,
+            "lexical": 6
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress.tests.test_labeling",
+          "native_name": "test_synthetic_addresses",
+          "qualified_name": "usaddress.tests.test_labeling.test_synthetic_addresses",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 5.0,
+              "lexical": -7.947447805027794
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": 0.00755,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.0487226
+        },
+        {
+          "description": "python variable `usaddress.parse_scripts.parse.osmSyntheticToTraining.address_list` declared in module `usaddress.parse_scripts.parse`.",
+          "entity_id": "uceg:v1:entity:3bdqrp7asgxzikyyzrjqcjswuqanernhfrpfli245jr3foj4clga",
+          "entity_kind": "uceg.entity.python.variable",
+          "lane_ranks": {
+            "blocking": 14,
+            "lexical": 18,
+            "vector": 13
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress.parse_scripts.parse",
+          "native_name": "address_list",
+          "qualified_name": "usaddress.parse_scripts.parse.osmSyntheticToTraining.address_list",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 5.0,
+              "lexical": -4.861822821659585,
+              "vector": 0.2519763153394848
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0076,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.04867783
+        },
+        {
+          "description": "python variable `usaddress.tag.tagged_components` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:fpm6qcuqfgwk22udgpv7xpf3e2rkjyn2kzmmkx5c34mh7ck6amnq",
+          "entity_kind": "uceg.entity.python.variable",
+          "lane_ranks": {
+            "blocking": 1,
+            "lexical": 8,
+            "vector": 68
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "tagged_components",
+          "qualified_name": "usaddress.tag.tagged_components",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 11.0,
+              "lexical": -6.891250497653464,
+              "vector": 0.1259881576697424
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0073,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.04827083
+        },
+        {
+          "description": "python variable `usaddress.parse_scripts.parse.osmSyntheticToTraining.address_xml` declared in module `usaddress.parse_scripts.parse`.",
+          "entity_id": "uceg:v1:entity:rbwcp2chq6d3jqksj7yaihtl4omfyeuahp37olib7irbdig2vlmq",
+          "entity_kind": "uceg.entity.python.variable",
+          "lane_ranks": {
+            "blocking": 27,
+            "lexical": 20,
+            "vector": 5
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress.parse_scripts.parse",
+          "native_name": "address_xml",
+          "qualified_name": "usaddress.parse_scripts.parse.osmSyntheticToTraining.address_xml",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 5.0,
+              "lexical": -4.861822821659585,
+              "vector": 0.3418817293789138
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0076,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.04812502
+        },
+        {
+          "description": "python parameter `usaddress.tests.test_labeling.test_all.components` declared in module `usaddress.tests.test_labeling`.",
+          "entity_id": "uceg:v1:entity:amne2ygztq5m3jtlensq33qzgwz3f726o4otfi7x56vty6kxkd7a",
+          "entity_kind": "uceg.entity.python.parameter",
+          "lane_ranks": {
+            "blocking": 3,
+            "lexical": 9,
+            "vector": 47
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress.tests.test_labeling",
+          "native_name": "components",
+          "qualified_name": "usaddress.tests.test_labeling.test_all.components",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 9.0,
+              "lexical": -6.576395695659961,
+              "vector": 0.1951800145897066
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0086,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.04794077
+        }
+      ]
+    }
+  },
+  {
+    "expected": "usaddress.tag",
+    "graph": "git-usaddress",
+    "query": "tag address components and determine address type",
+    "query_id": 2,
+    "response": {
+      "count": 10,
+      "epoch_id": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+      "graph": "git-usaddress",
+      "items": [
+        {
+          "description": "python variable `usaddress.tag.address_type` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:uawbhfy5o3avx3gog7tuzbxsajkhrgcrd3qzfxgfhk2fsnhtg5da",
+          "entity_kind": "uceg.entity.python.variable",
+          "lane_ranks": {
+            "blocking": 1,
+            "lexical": 1,
+            "vector": 1
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_type",
+          "qualified_name": "usaddress.tag.address_type",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 10.0,
+              "lexical": -24.070846571190508,
+              "vector": 0.4714045207910316
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0073,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.06237213
+        },
+        {
+          "description": "python function `usaddress.tag` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:plqi72tk2h553n3owq4yblceycfcuk4pwqej42iwunnongkahwiq",
+          "entity_kind": "uceg.entity.python.function",
+          "lane_ranks": {
+            "blocking": 105,
+            "lexical": 10,
+            "vector": 20
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "tag",
+          "qualified_name": "usaddress.tag",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 1.0,
+              "lexical": -9.873095570499586,
+              "vector": 0.13363062095621217
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": 0.00785,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05810703
+        },
+        {
+          "description": "python variable `usaddress.tag.tagged_components` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:fpm6qcuqfgwk22udgpv7xpf3e2rkjyn2kzmmkx5c34mh7ck6amnq",
+          "entity_kind": "uceg.entity.python.variable",
+          "lane_ranks": {
+            "blocking": 2,
+            "lexical": 9,
+            "vector": 8
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "tagged_components",
+          "qualified_name": "usaddress.tag.tagged_components",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 9.0,
+              "lexical": -12.082379340077509,
+              "vector": 0.2357022603955158
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0073,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05619689
+        },
+        {
+          "description": "python variable `usaddress.tag.tagged_address` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:ptxorcav4bgenpjcdovdqbtqrjty7bytdjltx3anuyhb6zfma6tq",
+          "entity_kind": "uceg.entity.python.variable",
+          "lane_ranks": {
+            "blocking": 15,
+            "lexical": 5,
+            "vector": 9
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "tagged_address",
+          "qualified_name": "usaddress.tag.tagged_address",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 6.0,
+              "lexical": -14.26369976887678,
+              "vector": 0.2357022603955158
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0073,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05491851
+        },
+        {
+          "description": "python parameter `usaddress.tag.address_string` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:rab7kxk33chddp2d4l77tdcsrg5m3k6zqkemqe4duyo5zopgea4a",
+          "entity_kind": "uceg.entity.python.parameter",
+          "lane_ranks": {
+            "blocking": 17,
+            "lexical": 4,
+            "vector": 10
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_string",
+          "qualified_name": "usaddress.tag.address_string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 6.0,
+              "lexical": -14.336782254525687,
+              "vector": 0.2357022603955158
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0083,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05379416
+        },
+        {
+          "description": "python variable `usaddress.parse_scripts.parse.osmSyntheticToTraining.tag_type` declared in module `usaddress.parse_scripts.parse`.",
+          "entity_id": "uceg:v1:entity:a3635x4vxegcvxwfmuw7fxodjwknxrrosiyzmaldwquia43nbvwq",
+          "entity_kind": "uceg.entity.python.variable",
+          "lane_ranks": {
+            "blocking": 33,
+            "lexical": 6,
+            "vector": 2
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress.parse_scripts.parse",
+          "native_name": "tag_type",
+          "qualified_name": "usaddress.parse_scripts.parse.osmSyntheticToTraining.tag_type",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 3.0,
+              "lexical": -14.243934293859567,
+              "vector": 0.31980107453341566
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0076,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05361701
+        },
+        {
+          "description": "python function `usaddress.tests.test_labeling.test_simple_addresses` declared in module `usaddress.tests.test_labeling`.",
+          "entity_id": "uceg:v1:entity:ic3rbmly5pnik4odywa4vn5dl7uo7e3inequoloqkb4oef62zj5a",
+          "entity_kind": "uceg.entity.python.function",
+          "lane_ranks": {
+            "blocking": 13,
+            "lexical": 7
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress.tests.test_labeling",
+          "native_name": "test_simple_addresses",
+          "qualified_name": "usaddress.tests.test_labeling.test_simple_addresses",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 6.0,
+              "lexical": -12.338508323848007
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": 0.00755,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05109938
+        },
+        {
+          "description": "python parameter `usaddress.tests.test_labeling.test_simple_addresses.components` declared in module `usaddress.tests.test_labeling`.",
+          "entity_id": "uceg:v1:entity:it2yjcmupu4btyryfvzanbz52iagx53d7hx5xz6nqu5aogirdzfq",
+          "entity_kind": "uceg.entity.python.parameter",
+          "lane_ranks": {
+            "blocking": 5,
+            "lexical": 2,
+            "vector": 44
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress.tests.test_labeling",
+          "native_name": "components",
+          "qualified_name": "usaddress.tests.test_labeling.test_simple_addresses.components",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 8.0,
+              "lexical": -14.460366150361255,
+              "vector": 0.10206207261596574
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0086,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05106191
+        },
+        {
+          "description": "python parameter `usaddress.tests.test_labeling.test_synthetic_addresses.components` declared in module `usaddress.tests.test_labeling`.",
+          "entity_id": "uceg:v1:entity:zbectphyrczacy5h4etw6zzy3pn4ryd4q2wv3zjlahvozi4zqmxq",
+          "entity_kind": "uceg.entity.python.parameter",
+          "lane_ranks": {
+            "blocking": 7,
+            "lexical": 3,
+            "vector": 50
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress.tests.test_labeling",
+          "native_name": "components",
+          "qualified_name": "usaddress.tests.test_labeling.test_synthetic_addresses.components",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 8.0,
+              "lexical": -14.460366150361255,
+              "vector": 0.0944911182523068
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0086,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.04943504
+        },
+        {
+          "description": "python function `usaddress.tests.test_labeling.test_synthetic_addresses` declared in module `usaddress.tests.test_labeling`.",
+          "entity_id": "uceg:v1:entity:zdvs4dya4k766527fbpznul4cqt4luf7hg2zhpnpgfwl64zbpqvq",
+          "entity_kind": "uceg.entity.python.function",
+          "lane_ranks": {
+            "blocking": 31,
+            "lexical": 8
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress.tests.test_labeling",
+          "native_name": "test_synthetic_addresses",
+          "qualified_name": "usaddress.tests.test_labeling.test_synthetic_addresses",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 5.0,
+              "lexical": -12.162543130595292
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": 0.00755,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.04795078
+        }
+      ]
+    }
+  },
+  {
+    "expected": "usaddress.tokenize",
+    "graph": "git-usaddress",
+    "query": "tokenize an address string",
+    "query_id": 3,
+    "response": {
+      "count": 10,
+      "epoch_id": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+      "graph": "git-usaddress",
+      "items": [
+        {
+          "description": "python function `usaddress.tokenize` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:3f2lb4pbsrqf45ik24fgbl74p5ae5feu4wgsj25ef46nnwmitd4a",
+          "entity_kind": "uceg.entity.python.function",
+          "lane_ranks": {
+            "blocking": 4,
+            "lexical": 2,
+            "vector": 8
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "tokenize",
+          "qualified_name": "usaddress.tokenize",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 7.0,
+              "lexical": -13.722345220812244,
+              "vector": 0.1889822365046136
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": 0.00785,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.07411542
+        },
+        {
+          "description": "python parameter `usaddress.tokenize.address_string` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:bh6ffzdups7egxpfgkj7mi7b4wulg2qzlvdcyx3fca4fxufxwyxq",
+          "entity_kind": "uceg.entity.python.parameter",
+          "lane_ranks": {
+            "blocking": 1,
+            "lexical": 1,
+            "vector": 1
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_string",
+          "qualified_name": "usaddress.tokenize.address_string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 12.0,
+              "lexical": -18.83227922579062,
+              "vector": 0.5
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0083,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.06137213
+        },
+        {
+          "description": "python import_binding `usaddress.string` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:6qi53cgr6akv35cmnwgzp2vhif5gdn5wzaguel2w544yd56js6fq",
+          "entity_kind": "uceg.entity.python.import_binding",
+          "lane_ranks": {
+            "blocking": 20,
+            "lexical": 7,
+            "vector": 9
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "string",
+          "qualified_name": "usaddress.string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 5.0,
+              "lexical": -7.503769952952657,
+              "vector": 0.17677669529663687
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.00015,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.06031669
+        },
+        {
+          "description": "python import_binding `usaddress.tests.test_tokenizing.tokenize` declared in module `usaddress.tests.test_tokenizing`.",
+          "entity_id": "uceg:v1:entity:z43i674nlrikgz7qqeakv5yumdiihusa3lkcla2sjbzfqolfeowq",
+          "entity_kind": "uceg.entity.python.import_binding",
+          "lane_ranks": {
+            "blocking": 7,
+            "lexical": 10,
+            "vector": 16
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress.tests.test_tokenizing",
+          "native_name": "tokenize",
+          "qualified_name": "usaddress.tests.test_tokenizing.tokenize",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 7.0,
+              "lexical": -7.0571451041433715,
+              "vector": 0.15075567228888181
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.00045,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05949417
+        },
+        {
+          "description": "python parameter `usaddress.tag.address_string` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:rab7kxk33chddp2d4l77tdcsrg5m3k6zqkemqe4duyo5zopgea4a",
+          "entity_kind": "uceg.entity.python.parameter",
+          "lane_ranks": {
+            "blocking": 2,
+            "lexical": 3,
+            "vector": 7
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_string",
+          "qualified_name": "usaddress.tag.address_string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 12.0,
+              "lexical": -11.888977053310096,
+              "vector": 0.3333333333333333
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0083,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05823178
+        },
+        {
+          "description": "",
+          "entity_id": "uceg:v1:entity:ff5xuux6itucrtqo2xamjayt7dssp2ijud3tr2pldkhb624ewkvq",
+          "entity_kind": "uceg.entity.external_symbol",
+          "lane_ranks": {
+            "blocking": 6,
+            "lexical": 6,
+            "vector": 4
+          },
+          "lifecycle": "L1_candidate",
+          "module_name": "usaddress.tests.test_tokenizing",
+          "native_name": "tokenize",
+          "qualified_name": "usaddress.tokenize",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 7.0,
+              "lexical": -7.513672510780155,
+              "vector": 0.35355339059327373
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.00915,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.0558358
+        },
+        {
+          "description": "python parameter `usaddress.parse.address_string` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:uz4re6m4cklgghubyibxf332ypb3lgltuud3j7ddewqwfsycoz6a",
+          "entity_kind": "uceg.entity.python.parameter",
+          "lane_ranks": {
+            "blocking": 3,
+            "lexical": 4,
+            "vector": 14
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_string",
+          "qualified_name": "usaddress.parse.address_string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 12.0,
+              "lexical": -11.888977053310096,
+              "vector": 0.16666666666666666
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0083,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05571491
+        },
+        {
+          "description": "",
+          "entity_id": "uceg:v1:entity:zilb5wi7yrelx2ybdllg4rctfooabxsg3g6b7yacujwkpkxjdaxa",
+          "entity_kind": "uceg.entity.external_symbol",
+          "lane_ranks": {
+            "blocking": 8,
+            "lexical": 8,
+            "vector": 6
+          },
+          "lifecycle": "L1_candidate",
+          "module_name": "usaddress.parse_scripts.parse_openaddress",
+          "native_name": "tokenize",
+          "qualified_name": "usaddress.tokenize",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 7.0,
+              "lexical": -7.464616934852221,
+              "vector": 0.35355339059327373
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.00915,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05390704
+        },
+        {
+          "description": "",
+          "entity_id": "uceg:v1:entity:w6sehgtgy6copybqukmsq7v2m7pbs2wz6thdpu3an3xvk222w5wq",
+          "entity_kind": "uceg.entity.external_symbol",
+          "lane_ranks": {
+            "blocking": 34,
+            "lexical": 5,
+            "vector": 2
+          },
+          "lifecycle": "L1_candidate",
+          "module_name": "usaddress",
+          "native_name": "string",
+          "qualified_name": "string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 5.0,
+              "lexical": -7.742644678751231,
+              "vector": 0.5
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.009,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05256882
+        },
+        {
+          "description": "python parameter `usaddress.tests.test_labeling.test_simple_addresses.address_text` declared in module `usaddress.tests.test_labeling`.",
+          "entity_id": "uceg:v1:entity:4gkghklv2glabkhegalz6w6ywefg7e66lvvxt2jzwspqlshhdguq",
+          "entity_kind": "uceg.entity.python.parameter",
+          "lane_ranks": {
+            "blocking": 9,
+            "lexical": 15,
+            "vector": 17
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress.tests.test_labeling",
+          "native_name": "address_text",
+          "qualified_name": "usaddress.tests.test_labeling.test_simple_addresses.address_text",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 6.0,
+              "lexical": -4.61027313080824,
+              "vector": 0.1386750490563073
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0086,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.04879319
+        }
+      ]
+    }
+  },
+  {
+    "expected": "usaddress.parse",
+    "graph": "all",
+    "query": "parse a street address into labeled components",
+    "query_id": 1,
+    "response": {
+      "count": 10,
+      "epochs": {
+        "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+        "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+      },
+      "graph": "all",
+      "items": [
+        {
+          "description": "python function `usaddress.parse` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:zukj7damtofndhc7vl5gmtbyyvpdcr7gkxio4ezlflkwnptzxwwa",
+          "entity_kind": "uceg.entity.python.function",
+          "epoch_id": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 1,
+            "score": 0.01639344,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "pypi-usaddress",
+          "lane_ranks": {
+            "blocking": 22,
+            "lexical": 4,
+            "vector": 4
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "parse",
+          "qualified_name": "usaddress.parse",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 3.0,
+              "lexical": -6.72664238982619,
+              "vector": 0.14285714285714285
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": 0.00785,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.07082637
+        },
+        {
+          "description": "python variable `usaddress.parse_scripts.parse.osmSyntheticToTraining.components` declared in module `usaddress.parse_scripts.parse`.",
+          "entity_id": "uceg:v1:entity:5exbn5x3xmcex6zgz7ogcrenrh5t65dr6jc3dcre7eij3v6kl5ga",
+          "entity_kind": "uceg.entity.python.variable",
+          "epoch_id": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 1,
+            "score": 0.01639344,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "git-usaddress",
+          "lane_ranks": {
+            "blocking": 2,
+            "lexical": 7,
+            "vector": 15
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress.parse_scripts.parse",
+          "native_name": "components",
+          "qualified_name": "usaddress.parse_scripts.parse.osmSyntheticToTraining.components",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 9.0,
+              "lexical": -7.1834542867531805,
+              "vector": 0.23904572186687872
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0076,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05504645
+        },
+        {
+          "description": "python parameter `usaddress.parse.address_string` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:m3svnz2xx2woathtlvlnuphyojltfw4juls3vrhbgitsqe7bwa5a",
+          "entity_kind": "uceg.entity.python.parameter",
+          "epoch_id": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 2,
+            "score": 0.01612903,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "pypi-usaddress",
+          "lane_ranks": {
+            "blocking": 5,
+            "lexical": 1,
+            "vector": 2
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_string",
+          "qualified_name": "usaddress.parse.address_string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 6.0,
+              "lexical": -8.539570715988933,
+              "vector": 0.2519763153394848
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0083,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.06003279
+        },
+        {
+          "description": "python variable `usaddress.parse_scripts.parse.xmlToAddrList.address` declared in module `usaddress.parse_scripts.parse`.",
+          "entity_id": "uceg:v1:entity:bmh5wlxnfhmzoaxrfz332mutihdhhp7lyl2nl77qzz3ucbedkmha",
+          "entity_kind": "uceg.entity.python.variable",
+          "epoch_id": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 2,
+            "score": 0.01612903,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "git-usaddress",
+          "lane_ranks": {
+            "blocking": 18,
+            "lexical": 13,
+            "vector": 6
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress.parse_scripts.parse",
+          "native_name": "address",
+          "qualified_name": "usaddress.parse_scripts.parse.xmlToAddrList.address",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 5.0,
+              "lexical": -4.931185212422188,
+              "vector": 0.2834733547569204
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0076,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05155717
+        },
+        {
+          "description": "python variable `usaddress.tag.tagged_components` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:burv2bglee7zvudrgsegeeru4jo376pqxsfouqakbh3fru45p5ya",
+          "entity_kind": "uceg.entity.python.variable",
+          "epoch_id": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 3,
+            "score": 0.01587302,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "pypi-usaddress",
+          "lane_ranks": {
+            "blocking": 1,
+            "lexical": 3,
+            "vector": 8
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "tagged_components",
+          "qualified_name": "usaddress.tag.tagged_components",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 11.0,
+              "lexical": -7.392975290629943,
+              "vector": 0.1259881576697424
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0073,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05922183
+        },
+        {
+          "description": "python function `usaddress.tests.test_labeling.test_simple_addresses` declared in module `usaddress.tests.test_labeling`.",
+          "entity_id": "uceg:v1:entity:ic3rbmly5pnik4odywa4vn5dl7uo7e3inequoloqkb4oef62zj5a",
+          "entity_kind": "uceg.entity.python.function",
+          "epoch_id": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 3,
+            "score": 0.01587302,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "git-usaddress",
+          "lane_ranks": {
+            "blocking": 19,
+            "lexical": 5
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress.tests.test_labeling",
+          "native_name": "test_simple_addresses",
+          "qualified_name": "usaddress.tests.test_labeling.test_simple_addresses",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 5.0,
+              "lexical": -8.035430401654152
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": 0.00755,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05097746
+        },
+        {
+          "description": "python variable `usaddress.STREET_NAMES` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:ktiwdxpxcd3y2d7udyqrwd3nurpghbeamxspmrnanpmbhej7s6ca",
+          "entity_kind": "uceg.entity.python.variable",
+          "epoch_id": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 4,
+            "score": 0.015625,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "pypi-usaddress",
+          "lane_ranks": {
+            "blocking": 12,
+            "lexical": 2,
+            "vector": 5
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "STREET_NAMES",
+          "qualified_name": "usaddress.STREET_NAMES",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 4.0,
+              "lexical": -7.608653662155613,
+              "vector": 0.13363062095621217
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.00715,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05822772
+        },
+        {
+          "description": "python parameter `usaddress.parse.address_string` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:uz4re6m4cklgghubyibxf332ypb3lgltuud3j7ddewqwfsycoz6a",
+          "entity_kind": "uceg.entity.python.parameter",
+          "epoch_id": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 4,
+            "score": 0.015625,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "git-usaddress",
+          "lane_ranks": {
+            "blocking": 13,
+            "lexical": 12,
+            "vector": 14
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_string",
+          "qualified_name": "usaddress.parse.address_string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 6.0,
+              "lexical": -5.083813738459411,
+              "vector": 0.2519763153394848
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0083,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.0500683
+        },
+        {
+          "description": "python parameter `usaddress.tokenize.address_string` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:5g363sjcobzmkrktt6m6iscuijwqhzkeg4vutshm7b7p3zwb44qa",
+          "entity_kind": "uceg.entity.python.parameter",
+          "epoch_id": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 5,
+            "score": 0.01538462,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "pypi-usaddress",
+          "lane_ranks": {
+            "blocking": 3,
+            "lexical": 10,
+            "vector": 7
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_string",
+          "qualified_name": "usaddress.tokenize.address_string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 6.0,
+              "lexical": -3.8337541442176764,
+              "vector": 0.1259881576697424
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0083,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05480116
+        },
+        {
+          "description": "python function `usaddress.parse` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:4x4jp6olvdjvvtc7jub2eocbhg7nvs45q556jhnjpxr66bpk5zlq",
+          "entity_kind": "uceg.entity.python.function",
+          "epoch_id": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 5,
+            "score": 0.01538462,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "git-usaddress",
+          "lane_ranks": {
+            "blocking": 43,
+            "lexical": 36,
+            "vector": 61
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "parse",
+          "qualified_name": "usaddress.parse",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 3.0,
+              "lexical": -2.966604059314054,
+              "vector": 0.14285714285714285
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": 0.00785,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.04872265
+        }
+      ]
+    }
+  },
+  {
+    "expected": "usaddress.tag",
+    "graph": "all",
+    "query": "tag address components and determine address type",
+    "query_id": 2,
+    "response": {
+      "count": 10,
+      "epochs": {
+        "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+        "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+      },
+      "graph": "all",
+      "items": [
+        {
+          "description": "python function `usaddress.tag` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:rn2q73draqawtucm2otihuvv7jw62mfoob2vlet6nvmovlf7oywq",
+          "entity_kind": "uceg.entity.python.function",
+          "epoch_id": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 1,
+            "score": 0.01639344,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "pypi-usaddress",
+          "lane_ranks": {
+            "blocking": 25,
+            "lexical": 8,
+            "vector": 9
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "tag",
+          "qualified_name": "usaddress.tag",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 1.0,
+              "lexical": -6.165058917626434,
+              "vector": 0.13363062095621217
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": 0.00785,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.06714241
+        },
+        {
+          "description": "python variable `usaddress.tag.address_type` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:uawbhfy5o3avx3gog7tuzbxsajkhrgcrd3qzfxgfhk2fsnhtg5da",
+          "entity_kind": "uceg.entity.python.variable",
+          "epoch_id": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 1,
+            "score": 0.01639344,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "git-usaddress",
+          "lane_ranks": {
+            "blocking": 1,
+            "lexical": 1,
+            "vector": 1
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_type",
+          "qualified_name": "usaddress.tag.address_type",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 10.0,
+              "lexical": -24.070846571190508,
+              "vector": 0.4714045207910316
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0073,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.06237213
+        },
+        {
+          "description": "python function `usaddress.tokens2features` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:owkjmvwmpusbolwe5ikbigtiyokgegztux5dskdwovmfmtnu7rhq",
+          "entity_kind": "uceg.entity.python.function",
+          "epoch_id": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 2,
+            "score": 0.01612903,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "pypi-usaddress",
+          "lane_ranks": {
+            "blocking": 23,
+            "lexical": 12,
+            "vector": 18
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "tokens2features",
+          "qualified_name": "usaddress.tokens2features",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 1.0,
+              "lexical": -3.4147017311379053,
+              "vector": 0.1178511301977579
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": 0.00785,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.06370161
+        },
+        {
+          "description": "python function `usaddress.tag` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:plqi72tk2h553n3owq4yblceycfcuk4pwqej42iwunnongkahwiq",
+          "entity_kind": "uceg.entity.python.function",
+          "epoch_id": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 2,
+            "score": 0.01612903,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "git-usaddress",
+          "lane_ranks": {
+            "blocking": 105,
+            "lexical": 10,
+            "vector": 20
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "tag",
+          "qualified_name": "usaddress.tag",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 1.0,
+              "lexical": -9.873095570499586,
+              "vector": 0.13363062095621217
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": 0.00785,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05810703
+        },
+        {
+          "description": "python variable `usaddress.tag.address_type` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:yxweneumtipem5vlzj3y4v6y5lyxhl3corxgeootfq6rr6ps5aea",
+          "entity_kind": "uceg.entity.python.variable",
+          "epoch_id": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 3,
+            "score": 0.01587302,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "pypi-usaddress",
+          "lane_ranks": {
+            "blocking": 1,
+            "lexical": 1,
+            "vector": 1
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_type",
+          "qualified_name": "usaddress.tag.address_type",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 10.0,
+              "lexical": -18.133745087767203,
+              "vector": 0.4714045207910316
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0073,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.06237213
+        },
+        {
+          "description": "python variable `usaddress.tag.tagged_components` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:fpm6qcuqfgwk22udgpv7xpf3e2rkjyn2kzmmkx5c34mh7ck6amnq",
+          "entity_kind": "uceg.entity.python.variable",
+          "epoch_id": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 3,
+            "score": 0.01587302,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "git-usaddress",
+          "lane_ranks": {
+            "blocking": 2,
+            "lexical": 9,
+            "vector": 8
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "tagged_components",
+          "qualified_name": "usaddress.tag.tagged_components",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 9.0,
+              "lexical": -12.082379340077509,
+              "vector": 0.2357022603955158
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0073,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05619689
+        },
+        {
+          "description": "python variable `usaddress.tag.tagged_components` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:burv2bglee7zvudrgsegeeru4jo376pqxsfouqakbh3fru45p5ya",
+          "entity_kind": "uceg.entity.python.variable",
+          "epoch_id": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 4,
+            "score": 0.015625,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "pypi-usaddress",
+          "lane_ranks": {
+            "blocking": 2,
+            "lexical": 4,
+            "vector": 3
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "tagged_components",
+          "qualified_name": "usaddress.tag.tagged_components",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 9.0,
+              "lexical": -10.31848220856829,
+              "vector": 0.2357022603955158
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0073,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.0599203
+        },
+        {
+          "description": "python variable `usaddress.tag.tagged_address` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:ptxorcav4bgenpjcdovdqbtqrjty7bytdjltx3anuyhb6zfma6tq",
+          "entity_kind": "uceg.entity.python.variable",
+          "epoch_id": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 4,
+            "score": 0.015625,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "git-usaddress",
+          "lane_ranks": {
+            "blocking": 15,
+            "lexical": 5,
+            "vector": 9
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "tagged_address",
+          "qualified_name": "usaddress.tag.tagged_address",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 6.0,
+              "lexical": -14.26369976887678,
+              "vector": 0.2357022603955158
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0073,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05491851
+        },
+        {
+          "description": "python variable `usaddress.tag.tagged_address` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:c3dioczitafo6e3wxhqe2aezsle5jhuv4g66uyb6e5whdzrs6lxq",
+          "entity_kind": "uceg.entity.python.variable",
+          "epoch_id": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 5,
+            "score": 0.01538462,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "pypi-usaddress",
+          "lane_ranks": {
+            "blocking": 5,
+            "lexical": 3,
+            "vector": 4
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "tagged_address",
+          "qualified_name": "usaddress.tag.tagged_address",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 6.0,
+              "lexical": -10.538678533463525,
+              "vector": 0.2357022603955158
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0073,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.0593619
+        },
+        {
+          "description": "python parameter `usaddress.tag.address_string` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:rab7kxk33chddp2d4l77tdcsrg5m3k6zqkemqe4duyo5zopgea4a",
+          "entity_kind": "uceg.entity.python.parameter",
+          "epoch_id": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 5,
+            "score": 0.01538462,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "git-usaddress",
+          "lane_ranks": {
+            "blocking": 17,
+            "lexical": 4,
+            "vector": 10
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_string",
+          "qualified_name": "usaddress.tag.address_string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 6.0,
+              "lexical": -14.336782254525687,
+              "vector": 0.2357022603955158
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0083,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05379416
+        }
+      ]
+    }
+  },
+  {
+    "expected": "usaddress.tokenize",
+    "graph": "all",
+    "query": "tokenize an address string",
+    "query_id": 3,
+    "response": {
+      "count": 10,
+      "epochs": {
+        "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+        "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+      },
+      "graph": "all",
+      "items": [
+        {
+          "description": "python function `usaddress.tokenize` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:g2eagdom5lqf5err6vsc5gtiwcrsh2stlqtnmqy5fwvjq44v7v5q",
+          "entity_kind": "uceg.entity.python.function",
+          "epoch_id": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 1,
+            "score": 0.01639344,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "pypi-usaddress",
+          "lane_ranks": {
+            "blocking": 4,
+            "lexical": 2,
+            "vector": 4
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "tokenize",
+          "qualified_name": "usaddress.tokenize",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 7.0,
+              "lexical": -9.107549553238387,
+              "vector": 0.1889822365046136
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": 0.00785,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.07526431
+        },
+        {
+          "description": "python function `usaddress.tokenize` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:3f2lb4pbsrqf45ik24fgbl74p5ae5feu4wgsj25ef46nnwmitd4a",
+          "entity_kind": "uceg.entity.python.function",
+          "epoch_id": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 1,
+            "score": 0.01639344,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "git-usaddress",
+          "lane_ranks": {
+            "blocking": 4,
+            "lexical": 2,
+            "vector": 8
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "tokenize",
+          "qualified_name": "usaddress.tokenize",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 7.0,
+              "lexical": -13.722345220812244,
+              "vector": 0.1889822365046136
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": 0.00785,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.07411542
+        },
+        {
+          "description": "python import_binding `usaddress.string` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:5zqvkbzy7ddvcy3mtpnscyqeffkvk2h5xduairug5tak5hhfmi7q",
+          "entity_kind": "uceg.entity.python.import_binding",
+          "epoch_id": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 2,
+            "score": 0.01612903,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "pypi-usaddress",
+          "lane_ranks": {
+            "blocking": 7,
+            "lexical": 8,
+            "vector": 5
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "string",
+          "qualified_name": "usaddress.string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 5.0,
+              "lexical": -4.40337182907793,
+              "vector": 0.17677669529663687
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.00015,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.06341791
+        },
+        {
+          "description": "python parameter `usaddress.tokenize.address_string` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:bh6ffzdups7egxpfgkj7mi7b4wulg2qzlvdcyx3fca4fxufxwyxq",
+          "entity_kind": "uceg.entity.python.parameter",
+          "epoch_id": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 2,
+            "score": 0.01612903,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "git-usaddress",
+          "lane_ranks": {
+            "blocking": 1,
+            "lexical": 1,
+            "vector": 1
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_string",
+          "qualified_name": "usaddress.tokenize.address_string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 12.0,
+              "lexical": -18.83227922579062,
+              "vector": 0.5
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0083,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.06137213
+        },
+        {
+          "description": "python parameter `usaddress.tokenize.address_string` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:5g363sjcobzmkrktt6m6iscuijwqhzkeg4vutshm7b7p3zwb44qa",
+          "entity_kind": "uceg.entity.python.parameter",
+          "epoch_id": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 3,
+            "score": 0.01587302,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "pypi-usaddress",
+          "lane_ranks": {
+            "blocking": 1,
+            "lexical": 1,
+            "vector": 1
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_string",
+          "qualified_name": "usaddress.tokenize.address_string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 12.0,
+              "lexical": -13.132367525327904,
+              "vector": 0.5
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0083,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.06137213
+        },
+        {
+          "description": "python import_binding `usaddress.string` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:6qi53cgr6akv35cmnwgzp2vhif5gdn5wzaguel2w544yd56js6fq",
+          "entity_kind": "uceg.entity.python.import_binding",
+          "epoch_id": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 3,
+            "score": 0.01587302,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "git-usaddress",
+          "lane_ranks": {
+            "blocking": 20,
+            "lexical": 7,
+            "vector": 9
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "string",
+          "qualified_name": "usaddress.string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 5.0,
+              "lexical": -7.503769952952657,
+              "vector": 0.17677669529663687
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.00015,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.06031669
+        },
+        {
+          "description": "python import_binding `usaddress.tests.test_tokenizing.tokenize` declared in module `usaddress.tests.test_tokenizing`.",
+          "entity_id": "uceg:v1:entity:z43i674nlrikgz7qqeakv5yumdiihusa3lkcla2sjbzfqolfeowq",
+          "entity_kind": "uceg.entity.python.import_binding",
+          "epoch_id": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 4,
+            "score": 0.015625,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "git-usaddress",
+          "lane_ranks": {
+            "blocking": 7,
+            "lexical": 10,
+            "vector": 16
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress.tests.test_tokenizing",
+          "native_name": "tokenize",
+          "qualified_name": "usaddress.tests.test_tokenizing.tokenize",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 7.0,
+              "lexical": -7.0571451041433715,
+              "vector": 0.15075567228888181
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.00045,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05949417
+        },
+        {
+          "description": "python parameter `usaddress.tag.address_string` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:hicasdlqn3ht3xtwgbct5uohr2ovrri3xbswsjrgiudrahshbxbq",
+          "entity_kind": "uceg.entity.python.parameter",
+          "epoch_id": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 4,
+            "score": 0.015625,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "pypi-usaddress",
+          "lane_ranks": {
+            "blocking": 2,
+            "lexical": 3,
+            "vector": 3
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_string",
+          "qualified_name": "usaddress.tag.address_string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 12.0,
+              "lexical": -8.079987406833665,
+              "vector": 0.3333333333333333
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0083,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05941633
+        },
+        {
+          "description": "python parameter `usaddress.tag.address_string` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:rab7kxk33chddp2d4l77tdcsrg5m3k6zqkemqe4duyo5zopgea4a",
+          "entity_kind": "uceg.entity.python.parameter",
+          "epoch_id": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 5,
+            "score": 0.01538462,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "git-usaddress",
+          "lane_ranks": {
+            "blocking": 2,
+            "lexical": 3,
+            "vector": 7
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_string",
+          "qualified_name": "usaddress.tag.address_string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 12.0,
+              "lexical": -11.888977053310096,
+              "vector": 0.3333333333333333
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0083,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05823178
+        },
+        {
+          "description": "python parameter `usaddress.parse.address_string` declared in module `usaddress`.",
+          "entity_id": "uceg:v1:entity:m3svnz2xx2woathtlvlnuphyojltfw4juls3vrhbgitsqe7bwa5a",
+          "entity_kind": "uceg.entity.python.parameter",
+          "epoch_id": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq",
+          "federation_receipt": {
+            "method": "mount_reciprocal_rank@60",
+            "mode": "hybrid",
+            "mount_count": 2,
+            "mount_rank": 5,
+            "score": 0.01538462,
+            "searched_epochs": {
+              "git-usaddress": "uceg:v1:graph_epoch:2hbu7pduhoaetuzpwowvri3bs4dxre3kk6x75jna34rrv2dq33ta",
+              "pypi-usaddress": "uceg:v1:graph_epoch:g2tog37cbdlem5ainrkkzurptzzvxokswjwnv53ajrvcovekxmoq"
+            },
+            "warning": "federated retrieval nominates candidates; it is not compatibility proof"
+          },
+          "graph_mount": "pypi-usaddress",
+          "lane_ranks": {
+            "blocking": 3,
+            "lexical": 4,
+            "vector": 9
+          },
+          "lifecycle": "L3_source_backed",
+          "module_name": "usaddress",
+          "native_name": "address_string",
+          "qualified_name": "usaddress.parse.address_string",
+          "query_receipt": {
+            "contributing_lanes": [
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "facet_filters": {},
+            "fusion": "weighted_reciprocal_rank@60",
+            "raw_lane_scores": {
+              "blocking": 12.0,
+              "lexical": -8.079987406833665,
+              "vector": 0.16666666666666666
+            },
+            "requested_lanes": [
+              "exact",
+              "lexical",
+              "blocking",
+              "vector"
+            ],
+            "structural_prior": -0.0083,
+            "vector_policy": "candidate-bounded-or-exhaustive-at-most-50000"
+          },
+          "score": 0.05693896
+        }
+      ]
+    }
+  }
+]

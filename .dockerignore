@@ -1,0 +1,12 @@
+.git
+.github
+.venv
+.tcg
+**/__pycache__
+*.pyc
+*.pyo
+*.egg-info
+build
+dist
+eval/results
+upload

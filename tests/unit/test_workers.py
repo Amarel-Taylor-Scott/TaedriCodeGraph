@@ -125,7 +125,76 @@ class WorkerQueueTests(unittest.TestCase):
                 output_refs=("receipt:late",),
             )
 
+    def test_heartbeat_replaces_the_lease_and_cancellation_is_cooperative(self) -> None:
+        queue = WorkerQueue()
+        job = queue.enqueue(self.job())
+        lease = queue.claim(
+            queue="indexing",
+            worker_id="worker-1",
+            leased_at="2026-07-16T12:00:01Z",
+            expires_at="2026-07-16T12:00:31Z",
+            lease_nonce="nonce-1",
+            capabilities=("python-ast",),
+        )
+        assert lease is not None
+        renewed = queue.heartbeat(
+            lease,
+            occurred_at="2026-07-16T12:00:10Z",
+            expires_at="2026-07-16T12:00:40Z",
+            lease_nonce="nonce-2",
+        )
+        self.assertNotEqual(renewed.identity.id, lease.identity.id)
+        with self.assertRaisesRegex(WorkerQueueError, "stale"):
+            queue.complete(
+                lease,
+                occurred_at="2026-07-16T12:00:11Z",
+                output_refs=("receipt:stale",),
+            )
+        requested = queue.request_cancel(
+            job.identity.id,
+            occurred_at="2026-07-16T12:00:12Z",
+            actor="user:reviewer",
+        )
+        self.assertEqual(requested.event_kind.value, "cancellation_requested")
+        self.assertTrue(queue.cancellation_requested(renewed))
+        with self.assertRaisesRegex(WorkerQueueError, "cancellation"):
+            queue.complete(
+                renewed,
+                occurred_at="2026-07-16T12:00:13Z",
+                output_refs=("receipt:racy",),
+            )
+        cancelled = queue.acknowledge_cancel(
+            renewed, occurred_at="2026-07-16T12:00:14Z"
+        )
+        self.assertEqual(cancelled.event_kind.value, "cancelled")
+        self.assertEqual(queue.state(job.identity.id), JobState.CANCELLED)
+
+    def test_pending_cancellation_is_immediate_and_idempotent(self) -> None:
+        queue = WorkerQueue()
+        job = queue.enqueue(self.job())
+        first = queue.request_cancel(
+            job.identity.id,
+            occurred_at="2026-07-16T12:00:01Z",
+            actor="user:reviewer",
+        )
+        second = queue.request_cancel(
+            job.identity.id,
+            occurred_at="2026-07-16T12:00:02Z",
+            actor="user:reviewer",
+        )
+        self.assertEqual(first, second)
+        self.assertEqual(queue.state(job.identity.id), JobState.CANCELLED)
+        self.assertIsNone(
+            queue.claim(
+                queue="indexing",
+                worker_id="worker-1",
+                leased_at="2026-07-16T12:00:03Z",
+                expires_at="2026-07-16T12:00:33Z",
+                lease_nonce="nonce",
+                capabilities=("python-ast",),
+            )
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
-

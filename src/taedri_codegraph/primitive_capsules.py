@@ -1,8 +1,7 @@
 """Registry-native primitive capsules with Git-like history and thin downloads.
 
-This is a deliberately small local POC. It models the stable contracts that can sit
-behind PostgreSQL metadata and an S3/OCI-compatible blob store without making either
-system part of primitive identity.
+Capsules are immutable content containers.  A capsule is not a released primitive
+until the independent release gate records executable acceptance evidence.
 """
 
 from __future__ import annotations
@@ -43,6 +42,9 @@ class CapsuleRole(str, Enum):
     GRAPH_DELTA = "graph_delta"
     DOCUMENTATION = "documentation"
     RUNTIME = "runtime"
+    EXAMPLE = "example"
+    LICENSE = "license"
+    PROVENANCE = "provenance"
 
 
 class RefKind(str, Enum):

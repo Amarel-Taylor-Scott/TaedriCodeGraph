@@ -1,0 +1,10 @@
+table,records
+candidate_submission,0
+primitive_blob,13
+primitive_handle,1
+primitive_ref,1
+primitive_ref_update,1
+primitive_release,1
+primitive_release_revocation,0
+primitive_revision,1
+primitive_tree,1

@@ -4,12 +4,26 @@ Open the [interactive architecture explorer](architecture-explorer.html) to vary
 subject-local enrichment signals, inspect the multi-resolution LSH operating regions,
 drill into real-package measurements, and explore the monorepo dependency map.
 
+The [primitive platform waterfall architecture](../architecture/PRIMITIVE_PLATFORM_WATERFALLS.md)
+adds GitHub-rendered Mermaid flows for storage, adaptive retrieval, discovery, safe
+digestion, SaaS entitlement, and matched evaluation. The containerized
+[`apps/portal`](../../apps/portal/index.html) is a second live HTML artifact for the
+public plan and tenant-account surface.
+
 GitHub does not execute committed HTML in its file viewer. Use the
 [interactive branch preview](https://htmlpreview.github.io/?https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/blob/agent/initial-vertical-slice/docs/visuals/architecture-explorer.html)
 or open the self-contained file locally. The SVG previews below render directly on
 GitHub without scripts.
 
 GitHub renders the static SVG previews directly:
+
+## Primitive-platform waterfall readiness
+
+The [acceptance report](../reports/PRIMITIVE_PLATFORM_WATERFALLS_2026-07-16.md)
+separates locally executable stages from stages that still require hosted identity,
+billing, managed storage, model, or verifier evidence.
+
+![Primitive-platform waterfall readiness](../../eval/results/primitive-platform-waterfalls-2026-07-16/waterfall-readiness.svg)
 
 ## Matched benchmark worker and evidence boundary
 

@@ -291,35 +291,31 @@ def data_model_chart() -> None:
 def monorepo_chart() -> list[dict[str, str | list[str]]]:
     manifest = json.loads((ROOT / "architecture" / "components.json").read_text("utf-8"))
     components = manifest["components"]
-    layer = {
-        "shared-kernel": 0,
-        "shared-schemas": 0,
-        "schema-artifacts": 0,
-        "primitive-capsules": 1,
-        "ingestion-pypi": 1,
-        "ingestion-git": 1,
-        "analyzer-python": 1,
-        "analyzer-polyglot": 1,
-        "storage": 1,
-        "retrieval": 1,
-        "compatibility": 1,
-        "indexer-service": 2,
-        "query-api": 2,
-        "registry-api": 2,
-        "mcp-integration": 3,
-        "agent-integrations": 3,
-        "explorer-app": 3,
-        "deployment": 3,
-        "evaluation": 3,
-    }
     columns = {
-        0: ["shared-kernel", "shared-schemas", "schema-artifacts"],
-        1: ["primitive-capsules", "ingestion-pypi", "ingestion-git", "analyzer-python", "analyzer-polyglot", "storage", "retrieval", "compatibility"],
-        2: ["indexer-service", "query-api", "registry-api"],
-        3: ["mcp-integration", "agent-integrations", "explorer-app", "deployment", "evaluation"],
+        0: ["mechanism-runtime", "shared-kernel", "shared-schemas", "schema-artifacts"],
+        1: [
+            "pipeline-catalog", "primitive-capsules", "primitive-factory",
+            "ingestion-pypi", "ingestion-git", "analyzer-python",
+            "analyzer-polyglot", "storage", "retrieval", "compatibility",
+            "session-ledger", "benchmarking", "saas-control-plane",
+        ],
+        2: [
+            "worker-runtime", "discovery-worker", "ingestion-worker",
+            "primitive-worker", "benchmark-worker", "indexer-service",
+            "query-api", "registry-api",
+        ],
+        3: [
+            "mcp-integration", "agent-integrations", "explorer-app", "portal-app",
+            "deployment", "evaluation", "vertical-slice",
+        ],
+    }
+    layer = {
+        component_id: column
+        for column, component_ids in columns.items()
+        for component_id in component_ids
     }
     positions: dict[str, tuple[float, float]] = {}
-    fig, ax = plt.subplots(figsize=(14.5, 8.3))
+    fig, ax = plt.subplots(figsize=(16.5, 11.5))
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     ax.axis("off")
@@ -338,7 +334,7 @@ def monorepo_chart() -> list[dict[str, str | list[str]]]:
             positions[component_id] = (x, float(y))
             kind = component_by_id[component_id]["kind"]
             color = {0: PURPLE, 1: BLUE, 2: TEAL, 3: GOLD}[column]
-            rounded_box(ax, (x, float(y)), width, 0.075, component_id, color, kind)
+            rounded_box(ax, (x, float(y)), width, 0.052, component_id, color, kind)
     for component in components:
         target = component["id"]
         if target not in positions:
@@ -348,8 +344,8 @@ def monorepo_chart() -> list[dict[str, str | list[str]]]:
             if dependency not in positions:
                 continue
             sx, sy = positions[dependency]
-            start = (sx + widths[layer[dependency]], sy + 0.037)
-            end = (tx, ty + 0.037)
+            start = (sx + widths[layer[dependency]], sy + 0.026)
+            end = (tx, ty + 0.026)
             arrow(ax, start, end, color=MUTED, alpha=0.28, rad=0.04 if sy < ty else -0.04)
     ax.add_patch(FancyBboxPatch((0.03, 0.015), 0.94, 0.05, boxstyle="round,pad=0.01", facecolor=PALE, edgecolor=GRID))
     ax.text(0.50, 0.040, "src/taedri_codegraph stays active during test-preserving extraction; the manifest prevents dependency drift", ha="center", va="center", color=MUTED, fontsize=9)

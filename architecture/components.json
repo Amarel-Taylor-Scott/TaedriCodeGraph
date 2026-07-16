@@ -8,208 +8,538 @@
     "ingestion does not import or execute analyzed target code",
     "similarity candidates never become compatibility proof",
     "sealed benchmark tasks, tests, gold outputs, and answer-derived features never enter production retrieval",
-    "primitive revisions are immutable and branch refs never participate in content identity"
+    "primitive revisions are immutable and branch refs never participate in content identity",
+    "staged and curated candidates never enter public primitive search, resolution, or pack delivery",
+    "component status is an evidence-backed readiness state, never a roadmap label"
   ],
   "components": [
     {
       "id": "vertical-slice",
       "path": "src/taedri_codegraph",
       "kind": "transitional-package",
-      "status": "active",
-      "owns": ["current executable implementation while packages are extracted"],
+      "status": "working",
+      "owns": [
+        "current executable implementation while packages are extracted"
+      ],
       "depends_on": []
+    },
+    {
+      "id": "mechanism-runtime",
+      "path": "src/taedri_codegraph/mechanisms",
+      "kind": "library",
+      "status": "working",
+      "owns": [
+        "versioned mechanism registry",
+        "budgeted waterfall execution",
+        "attempt and abstention receipts"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "pipeline-catalog",
+      "path": "src/taedri_codegraph/pipelines",
+      "kind": "library",
+      "status": "working",
+      "owns": [
+        "ingestion and generation pipeline definitions",
+        "operation admission contracts",
+        "source-discovery event routing"
+      ],
+      "depends_on": [
+        "mechanism-runtime"
+      ]
     },
     {
       "id": "shared-kernel",
       "path": "packages/shared-kernel",
       "kind": "library",
-      "status": "scaffolded",
-      "owns": ["identity", "canonical encoding", "typed envelopes", "provenance primitives"],
+      "status": "working",
+      "owns": [
+        "identity",
+        "canonical encoding",
+        "typed envelopes",
+        "provenance primitives"
+      ],
       "depends_on": []
     },
     {
       "id": "shared-schemas",
       "path": "packages/shared-schemas",
       "kind": "library-and-registry",
-      "status": "scaffolded",
-      "owns": ["descriptor schemas", "predicate schemas", "registry manifests", "conformance fixtures"],
-      "depends_on": ["shared-kernel"]
+      "status": "partial",
+      "owns": [
+        "descriptor schemas",
+        "predicate schemas",
+        "registry manifests",
+        "conformance fixtures"
+      ],
+      "depends_on": [
+        "shared-kernel"
+      ]
     },
     {
       "id": "schema-artifacts",
       "path": "schemas",
       "kind": "generated-artifacts",
-      "status": "scaffolded",
-      "owns": ["exported JSON Schema", "Arrow schemas", "SQL DDL", "compatibility fixtures"],
-      "depends_on": ["shared-schemas"]
+      "status": "partial",
+      "owns": [
+        "exported JSON Schema",
+        "PostgreSQL DDL",
+        "schema acceptance checks"
+      ],
+      "depends_on": [
+        "shared-schemas"
+      ]
     },
     {
       "id": "primitive-capsules",
       "path": "packages/primitive-registry",
       "kind": "library",
-      "status": "scaffolded",
-      "owns": ["primitive handles", "content trees", "revision DAGs", "refs", "thin pack contracts"],
-      "depends_on": ["shared-kernel", "shared-schemas"]
+      "status": "working",
+      "owns": [
+        "primitive handles",
+        "content trees",
+        "revision DAGs",
+        "refs",
+        "thin pack contracts",
+        "proof-gated releases",
+        "evidence-backed interface graphs"
+      ],
+      "depends_on": [
+        "shared-kernel",
+        "shared-schemas"
+      ]
     },
     {
       "id": "primitive-factory",
       "path": "packages/primitive-factory",
       "kind": "library",
-      "status": "active",
-      "owns": ["source-backed primitive candidate extraction", "candidate contracts", "search descriptors", "candidate graph neighborhoods"],
-      "depends_on": ["shared-kernel", "shared-schemas", "primitive-capsules", "analyzer-python"]
+      "status": "working",
+      "owns": [
+        "source-backed primitive candidate extraction",
+        "candidate contracts",
+        "search descriptors",
+        "candidate graph neighborhoods"
+      ],
+      "depends_on": [
+        "shared-kernel",
+        "shared-schemas",
+        "primitive-capsules",
+        "analyzer-python"
+      ]
     },
     {
       "id": "ingestion-pypi",
       "path": "packages/ingestion-pypi",
       "kind": "library",
-      "status": "scaffolded",
-      "owns": ["PyPI acquisition receipts", "wheel verification", "distribution metadata"],
-      "depends_on": ["shared-kernel", "shared-schemas"]
+      "status": "working",
+      "owns": [
+        "PyPI acquisition receipts",
+        "wheel verification",
+        "distribution metadata"
+      ],
+      "depends_on": [
+        "shared-kernel",
+        "shared-schemas"
+      ]
     },
     {
       "id": "ingestion-git",
       "path": "packages/ingestion-git",
       "kind": "library",
-      "status": "scaffolded",
-      "owns": ["Git object acquisition", "commit and tree lineage", "repository policy"],
-      "depends_on": ["shared-kernel", "shared-schemas"]
+      "status": "working",
+      "owns": [
+        "Git object acquisition",
+        "commit and tree lineage",
+        "repository policy"
+      ],
+      "depends_on": [
+        "shared-kernel",
+        "shared-schemas"
+      ]
     },
     {
       "id": "analyzer-python",
       "path": "packages/analyzer-python",
       "kind": "library",
-      "status": "scaffolded",
-      "owns": ["Python syntax and semantic extraction", "Python conformance corpus"],
-      "depends_on": ["shared-kernel", "shared-schemas"]
+      "status": "working",
+      "owns": [
+        "Python syntax and semantic extraction",
+        "Python conformance corpus"
+      ],
+      "depends_on": [
+        "shared-kernel",
+        "shared-schemas"
+      ]
     },
     {
       "id": "analyzer-polyglot",
       "path": "packages/analyzer-polyglot",
       "kind": "library",
-      "status": "scaffolded",
-      "owns": ["SCIP and CPG import", "Tree-sitter adapters", "language inventory"],
-      "depends_on": ["shared-kernel", "shared-schemas"]
+      "status": "partial",
+      "owns": [
+        "language-neutral file inventory",
+        "polyglot analyzer adapter boundary"
+      ],
+      "depends_on": [
+        "shared-kernel",
+        "shared-schemas"
+      ]
     },
     {
       "id": "storage",
       "path": "packages/storage",
       "kind": "library",
-      "status": "scaffolded",
-      "owns": ["canonical ledger adapters", "CAS", "typed long tables", "projection epochs"],
-      "depends_on": ["shared-kernel", "shared-schemas", "primitive-capsules"]
+      "status": "working",
+      "owns": [
+        "canonical ledger adapters",
+        "CAS",
+        "typed long tables",
+        "projection epochs"
+      ],
+      "depends_on": [
+        "shared-kernel",
+        "shared-schemas",
+        "primitive-capsules"
+      ]
     },
     {
       "id": "retrieval",
       "path": "packages/retrieval",
       "kind": "library",
-      "status": "scaffolded",
-      "owns": ["query planning", "sparse and LSH retrieval", "ANN adapters", "fusion receipts"],
-      "depends_on": ["shared-kernel", "shared-schemas", "storage"]
+      "status": "working",
+      "owns": [
+        "query planning",
+        "sparse and LSH retrieval",
+        "bounded vector scoring",
+        "fusion receipts"
+      ],
+      "depends_on": [
+        "shared-kernel",
+        "shared-schemas",
+        "storage"
+      ]
     },
     {
       "id": "compatibility",
       "path": "packages/compatibility",
       "kind": "library",
-      "status": "scaffolded",
-      "owns": ["typed contracts", "directional solving", "adapter witnesses", "verification policy"],
-      "depends_on": ["shared-kernel", "shared-schemas"]
+      "status": "partial",
+      "owns": [
+        "typed compatibility dimensions",
+        "directional exact evaluation",
+        "unknown and poison policy",
+        "exact port matching",
+        "adapter-free unary pipeline plans and receipts"
+      ],
+      "depends_on": [
+        "shared-kernel",
+        "shared-schemas"
+      ]
     },
     {
       "id": "session-ledger",
       "path": "packages/session-ledger",
       "kind": "library",
-      "status": "active",
-      "owns": ["prompt privacy modes", "harness session events", "acceptance and abstention receipts"],
-      "depends_on": ["shared-kernel", "shared-schemas"]
+      "status": "working",
+      "owns": [
+        "prompt privacy modes",
+        "harness session events",
+        "acceptance and abstention receipts"
+      ],
+      "depends_on": [
+        "shared-kernel",
+        "shared-schemas"
+      ]
     },
     {
       "id": "benchmarking",
       "path": "packages/benchmarking",
       "kind": "library",
-      "status": "active",
-      "owns": ["matched-lane experiments", "sealed task references", "run receipts", "contamination strata", "paired metrics", "claim eligibility"],
-      "depends_on": ["shared-kernel", "shared-schemas"]
+      "status": "conformance_only",
+      "owns": [
+        "matched-lane experiments",
+        "sealed task references",
+        "run receipts",
+        "contamination strata",
+        "paired metrics",
+        "claim eligibility"
+      ],
+      "depends_on": [
+        "shared-kernel",
+        "shared-schemas"
+      ]
+    },
+    {
+      "id": "saas-control-plane",
+      "path": "packages/saas-control-plane",
+      "kind": "library-and-adapter",
+      "status": "working",
+      "owns": [
+        "tenant identity",
+        "scoped API keys",
+        "graph mounts",
+        "audit chains",
+        "persistent job payloads and leases",
+        "quota policy and immutable usage receipts"
+      ],
+      "depends_on": [
+        "shared-kernel",
+        "shared-schemas",
+        "storage",
+        "worker-runtime"
+      ]
     },
     {
       "id": "worker-runtime",
       "path": "services/worker-runtime",
       "kind": "service",
-      "status": "active",
-      "owns": ["idempotent jobs", "capability-aware leases", "attempt receipts", "retry and dead-letter policy"],
-      "depends_on": ["shared-kernel", "shared-schemas", "primitive-factory", "storage"]
+      "status": "working",
+      "owns": [
+        "idempotent jobs",
+        "capability-aware leases",
+        "lease heartbeats and cooperative cancellation",
+        "attempt receipts",
+        "retry and dead-letter policy"
+      ],
+      "depends_on": [
+        "shared-kernel",
+        "shared-schemas",
+        "primitive-factory",
+        "storage"
+      ]
     },
     {
       "id": "benchmark-worker",
       "path": "services/benchmark-worker",
       "kind": "service",
-      "status": "active",
-      "owns": ["isolated evaluation controller", "lane context enforcement", "provider and sandbox adapters", "sealed-oracle handoff", "benchmark job receipts"],
-      "depends_on": ["benchmarking", "worker-runtime", "query-api", "registry-api", "session-ledger"]
+      "status": "conformance_only",
+      "owns": [
+        "matched run scheduling",
+        "lane disclosure enforcement",
+        "terminal receipt validation",
+        "contamination strata",
+        "claim eligibility comparison"
+      ],
+      "depends_on": [
+        "benchmarking",
+        "worker-runtime",
+        "query-api",
+        "registry-api",
+        "session-ledger"
+      ]
+    },
+    {
+      "id": "discovery-worker",
+      "path": "services/discovery-worker",
+      "kind": "service",
+      "status": "partial",
+      "owns": [
+        "allowlisted discovery event contracts",
+        "replay-safe discovery-to-job routing"
+      ],
+      "depends_on": [
+        "pipeline-catalog",
+        "worker-runtime",
+        "saas-control-plane"
+      ]
+    },
+    {
+      "id": "ingestion-worker",
+      "path": "services/ingestion-worker",
+      "kind": "service",
+      "status": "working",
+      "owns": [
+        "bounded remote acquisition",
+        "safe extraction",
+        "atomic graph publication",
+        "acquisition receipts"
+      ],
+      "depends_on": [
+        "pipeline-catalog",
+        "worker-runtime",
+        "ingestion-pypi",
+        "ingestion-git",
+        "storage"
+      ]
+    },
+    {
+      "id": "primitive-worker",
+      "path": "services/primitive-worker",
+      "kind": "service",
+      "status": "working",
+      "owns": [
+        "source-backed candidate generation",
+        "candidate provenance",
+        "candidate curation",
+        "complete-capsule release verification",
+        "one-at-a-time primitive validation and release"
+      ],
+      "depends_on": [
+        "pipeline-catalog",
+        "worker-runtime",
+        "primitive-factory",
+        "primitive-capsules"
+      ]
     },
     {
       "id": "indexer-service",
       "path": "services/indexer",
       "kind": "service",
-      "status": "scaffolded",
-      "owns": ["ingestion orchestration", "projection builds", "invalidation scheduling"],
-      "depends_on": ["ingestion-pypi", "ingestion-git", "analyzer-python", "analyzer-polyglot", "primitive-factory", "worker-runtime", "storage", "retrieval"]
+      "status": "working",
+      "owns": [
+        "local ingestion orchestration",
+        "atomic publication",
+        "rebuildable projection builds"
+      ],
+      "depends_on": [
+        "ingestion-pypi",
+        "ingestion-git",
+        "analyzer-python",
+        "analyzer-polyglot",
+        "primitive-factory",
+        "worker-runtime",
+        "saas-control-plane",
+        "storage",
+        "retrieval"
+      ]
     },
     {
       "id": "query-api",
       "path": "services/query-api",
       "kind": "service",
-      "status": "scaffolded",
-      "owns": ["authenticated search", "context disclosure", "compatibility and provenance APIs"],
-      "depends_on": ["storage", "retrieval", "compatibility"]
+      "status": "working",
+      "owns": [
+        "authenticated graph and primitive search",
+        "context disclosure",
+        "tenant quota admission",
+        "usage and provenance responses"
+      ],
+      "depends_on": [
+        "storage",
+        "retrieval",
+        "compatibility",
+        "saas-control-plane"
+      ]
     },
     {
       "id": "registry-api",
       "path": "services/registry-api",
       "kind": "service",
-      "status": "scaffolded",
-      "owns": ["candidate submission", "branch and tag mutations", "fork and merge commands", "authorized pack delivery"],
-      "depends_on": ["primitive-capsules", "storage", "retrieval", "compatibility"]
+      "status": "working",
+      "owns": [
+        "candidate intake and curation",
+        "staged branch and tag mutations",
+        "fork commands",
+        "proof-gated release search and pack delivery"
+      ],
+      "depends_on": [
+        "primitive-capsules",
+        "storage",
+        "retrieval",
+        "compatibility",
+        "saas-control-plane"
+      ]
     },
     {
       "id": "mcp-integration",
       "path": "integrations/mcp",
       "kind": "integration",
-      "status": "scaffolded",
-      "owns": ["MCP tool and resource contracts", "bounded context adapters"],
-      "depends_on": ["shared-schemas", "retrieval", "compatibility"]
+      "status": "working",
+      "owns": [
+        "MCP tool and resource contracts",
+        "bounded context adapters"
+      ],
+      "depends_on": [
+        "shared-schemas",
+        "retrieval",
+        "compatibility"
+      ]
     },
     {
       "id": "agent-integrations",
       "path": "integrations/agents",
       "kind": "integration",
-      "status": "scaffolded",
-      "owns": ["Codex and Claude instructions", "skills", "hooks", "harness policies"],
-      "depends_on": ["shared-schemas", "mcp-integration", "session-ledger"]
+      "status": "partial",
+      "owns": [
+        "Codex and Claude instructions",
+        "local search skill",
+        "harness policy guidance"
+      ],
+      "depends_on": [
+        "shared-schemas",
+        "mcp-integration",
+        "session-ledger"
+      ]
     },
     {
       "id": "explorer-app",
       "path": "apps/explorer",
       "kind": "application",
-      "status": "scaffolded",
-      "owns": ["human graph explorer", "provenance and search explanation UI"],
-      "depends_on": ["query-api", "registry-api", "session-ledger"]
+      "status": "working",
+      "owns": [
+        "authenticated browser console",
+        "search and record inspection UI"
+      ],
+      "depends_on": [
+        "query-api",
+        "registry-api",
+        "session-ledger"
+      ]
+    },
+    {
+      "id": "portal-app",
+      "path": "apps/portal",
+      "kind": "application",
+      "status": "working",
+      "owns": [
+        "public plan catalog",
+        "tenant subscription and entitlement view",
+        "provider redirect initiation"
+      ],
+      "depends_on": [
+        "query-api",
+        "saas-control-plane"
+      ]
     },
     {
       "id": "deployment",
       "path": "deploy",
       "kind": "operations",
-      "status": "scaffolded",
-      "owns": ["local stacks", "migrations", "observability", "deployment policy"],
-      "depends_on": ["indexer-service", "query-api", "registry-api"]
+      "status": "poc_only",
+      "owns": [
+        "local containers",
+        "PostgreSQL migrations",
+        "single-Machine Fly.io POC",
+        "deployment policy"
+      ],
+      "depends_on": [
+        "indexer-service",
+        "query-api",
+        "registry-api",
+        "explorer-app",
+        "saas-control-plane"
+      ]
     },
     {
       "id": "evaluation",
       "path": "eval",
       "kind": "evaluation",
-      "status": "active",
-      "owns": ["real-package corpora", "ablation receipts", "promotion gates", "reports"],
-      "depends_on": ["indexer-service", "query-api", "registry-api", "agent-integrations", "benchmark-worker"]
+      "status": "partial",
+      "owns": [
+        "real-package corpora",
+        "ablation receipts",
+        "promotion gates",
+        "deterministic primitive-composition receipts",
+        "reports"
+      ],
+      "depends_on": [
+        "indexer-service",
+        "query-api",
+        "registry-api",
+        "agent-integrations",
+        "benchmark-worker"
+      ]
     }
   ]
 }

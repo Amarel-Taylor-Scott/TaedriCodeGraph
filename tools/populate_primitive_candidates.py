@@ -270,7 +270,7 @@ def main() -> int:
             sha256_digest(b"digest-only:D0-D4:no-model-execution"),
             "mcp-compatible-reference",
         ),
-        policy_digest=sha256_digest(b"candidate-only:no-auto-promotion:no-model-execution"),
+        policy_digest=sha256_digest(b"candidate-only:no-auto-release:no-model-execution"),
         privacy_mode=PromptPrivacyMode.DIGEST_ONLY,
         started_at="2026-07-16T12:01:00Z",
     )
@@ -495,7 +495,7 @@ def main() -> int:
             "states": sorted(
                 {intake.state(submission_id).value for submission_id in intake.submissions}
             ),
-            "promoted_count": 0,
+            "released_count": 0,
         },
         "worker": {
             "job_count": len(workers.jobs),

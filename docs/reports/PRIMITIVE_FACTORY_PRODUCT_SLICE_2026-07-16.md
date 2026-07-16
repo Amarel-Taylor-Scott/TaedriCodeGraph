@@ -41,7 +41,7 @@ commit.
   tree and revision.
 - Candidate lifecycle progressed through received, quarantined, structurally valid, and
   indexed states without overwriting capsule identity.
-- The producer could not self-promote a generated candidate; promotion requires
+- The producer could not self-release a generated candidate; release requires
   independent evidence and a policy decision.
 - Public promotion additionally requires verified license evidence.
 - Search records retain exact names/digests, lexical text, blocking keys, three

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.taedri.dev/codegraph/prompt-session-start.v1.schema.json",
+  "title": "Taedri prompt session start request v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["workspace_id", "repository_snapshot_id", "harness", "policy_digest", "privacy_mode", "started_at"],
+  "properties": {
+    "workspace_id": {"type": "string", "minLength": 1},
+    "repository_snapshot_id": {"type": "string", "minLength": 1},
+    "policy_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "privacy_mode": {"enum": ["digest_only", "encrypted_reference", "explicit_capture"]},
+    "started_at": {"type": "string", "format": "date-time"},
+    "harness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "config_digest", "interface"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "config_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "interface": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

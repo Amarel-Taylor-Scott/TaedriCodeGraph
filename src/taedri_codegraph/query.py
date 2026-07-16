@@ -13,6 +13,7 @@ from .canonical import canonical_json_bytes
 from .contracts import GraphBundle, RelationAssertion
 from .fingerprints import lsh_key_profile
 from .representations import (
+    RepresentationRegistry,
     core_representation_registry,
     identifier_blocking_keys,
     lexical_hash_vector,
@@ -88,11 +89,16 @@ def _cosine(left: Iterable[int], right: Iterable[int]) -> float:
     return dot / (left_norm * right_norm)
 
 
-def build_index(bundle: GraphBundle, path: Path) -> dict[str, Any]:
+def build_index(
+    bundle: GraphBundle,
+    path: Path,
+    representation_registry: RepresentationRegistry | None = None,
+) -> dict[str, Any]:
     """Build a disposable projection from a validated in-memory fact bundle."""
 
     if path.exists():
         path.unlink()
+    representation_registry = representation_registry or core_representation_registry()
     descriptions = _projection_texts(bundle)
     connection = sqlite3.connect(path)
     try:
@@ -322,7 +328,6 @@ def build_index(bundle: GraphBundle, path: Path) -> dict[str, Any]:
                 (ordinal, entity.qualified_name, entity.native_name, entity.entity_kind_key,
                  entity.module_name, description),
             )
-        representation_registry = core_representation_registry()
         search_texts: dict[str, list[str]] = {
             entity_id: [
                 entity.qualified_name,

@@ -1,0 +1,300 @@
+{
+  "schema_version": "1.0.0",
+  "as_of": "2026-07-16",
+  "definition_of_done": [
+    "the component has an executable interface instead of documentation-only scaffolding",
+    "stateful behavior is durable, idempotent, restart-safe, and tenant-isolated where applicable",
+    "security boundaries and failure behavior are covered by automated tests",
+    "at least one non-synthetic source, package, repository, or task exercises the component",
+    "inputs, outputs, versions, provenance, cost, and failures produce inspectable receipts",
+    "the component has an operator path, observable health, and a documented rollback or recovery path",
+    "all component acceptance commands pass in the declared target environment"
+  ],
+  "status_meanings": {
+    "working": "The declared local or transitional scope has executable acceptance evidence.",
+    "partial": "The named implemented scope is executable; broader scope remains an explicit external gate and is not advertised as working.",
+    "conformance_only": "Contracts and deterministic fixtures work, but no claimable external execution exists.",
+    "poc_only": "The component works for a bounded single-node proof of concept, not production durability.",
+    "scaffolded": "The intended boundary is documented but lacks an executable acceptance path."
+  },
+  "components": [
+    {
+      "id": "vertical-slice",
+      "status": "working",
+      "scope": "local modular monolith",
+      "implemented_by": ["src/taedri_codegraph", "tests"],
+      "acceptance_evidence": ["tests/integration/test_epoch_query_cli.py", "tests/integration/test_saas_http_worker.py"],
+      "open_gates": ["replace local-only state ports with production adapters without changing domain identities"]
+    },
+    {
+      "id": "mechanism-runtime",
+      "status": "working",
+      "scope": "in-process versioned and budgeted waterfall executor",
+      "implemented_by": ["src/taedri_codegraph/mechanisms"],
+      "acceptance_evidence": ["tests/unit/test_mechanism_waterfall.py"],
+      "open_gates": ["persistent distributed run repository", "cross-process cancellation and tracing"]
+    },
+    {
+      "id": "pipeline-catalog",
+      "status": "working",
+      "scope": "shared API-admission and worker-execution operation catalog",
+      "implemented_by": ["src/taedri_codegraph/pipelines"],
+      "acceptance_evidence": ["tests/unit/test_pipeline_catalog.py", "tests/unit/test_source_discovery.py", "tests/integration/test_saas_http_worker.py"],
+      "open_gates": ["signed remote catalog distribution", "cross-language generated clients"]
+    },
+    {
+      "id": "shared-kernel",
+      "status": "working",
+      "scope": "transitional package",
+      "implemented_by": ["src/taedri_codegraph/canonical.py", "src/taedri_codegraph/contracts.py", "src/taedri_codegraph/identity.py"],
+      "acceptance_evidence": ["tests/unit/test_identity.py", "tests/unit/test_registry.py", "tests/unit/test_representations.py"],
+      "open_gates": ["extract a separately versioned package after contracts stabilize"]
+    },
+    {
+      "id": "shared-schemas",
+      "status": "partial",
+      "scope": "JSON Schema registry",
+      "implemented_by": ["schemas"],
+      "acceptance_evidence": ["tests/architecture/test_product_slice.py", "tests/architecture/test_saas_slice.py"],
+      "open_gates": ["export every public record contract", "add cross-version compatibility fixtures"]
+    },
+    {
+      "id": "schema-artifacts",
+      "status": "partial",
+      "scope": "JSON Schema and SQL DDL",
+      "implemented_by": ["schemas", "deploy/postgres/001_control_plane.sql", "deploy/postgres/002_representation_ledger.sql"],
+      "acceptance_evidence": ["tests/architecture/test_saas_slice.py", "tests/integration/test_extensible_representation_storage.py"],
+      "open_gates": ["Arrow and Parquet schemas", "generated-schema drift check", "migration execution against live PostgreSQL 17"]
+    },
+    {
+      "id": "primitive-capsules",
+      "status": "working",
+      "scope": "durable tenant-scoped SQLite registry with immutable packs and proof-gated released-primitive serving",
+      "implemented_by": ["src/taedri_codegraph/primitive_capsules.py", "src/taedri_codegraph/primitive_repository.py", "src/taedri_codegraph/primitives/release.py", "src/taedri_codegraph/primitives/acceptance.py", "src/taedri_codegraph/primitives/bundle.py", "src/taedri_codegraph/primitives/edges.py"],
+      "acceptance_evidence": ["tests/unit/test_primitive_capsules.py", "tests/unit/test_primitive_repository.py", "tests/unit/test_primitive_edges.py", "tests/integration/test_primitive_cli.py", "tests/integration/test_saas_http_worker.py", "eval/results/reference-primitive-acceptance-2026-07-16", "eval/results/deterministic-primitive-pipeline-2026-07-16"],
+      "open_gates": ["signed packs", "PostgreSQL metadata and object-store repository adapter", "isolated hostile-code verifier runtimes", "non-Python executable verifiers"]
+    },
+    {
+      "id": "primitive-factory",
+      "status": "working",
+      "scope": "safe Python source candidates",
+      "implemented_by": ["src/taedri_codegraph/primitive_factory.py", "tools/populate_primitive_candidates.py"],
+      "acceptance_evidence": ["tests/unit/test_primitive_factory.py", "eval/results/primitive-factory-2026-07-16"],
+      "open_gates": ["behavioral verifier jobs", "reviewer identity stronger than API-key attribution", "non-Python factories"]
+    },
+    {
+      "id": "ingestion-pypi",
+      "status": "working",
+      "scope": "bounded public PyPI wheel acquisition and AST-only worker ingestion",
+      "implemented_by": ["src/taedri_codegraph/acquisition.py", "src/taedri_codegraph/artifacts.py", "src/taedri_codegraph/job_runner.py"],
+      "acceptance_evidence": ["tests/unit/test_acquisition.py", "tests/security/test_safe_ingestion.py", "tests/integration/test_saas_http_worker.py", "eval/results/saas-real-acquisition-2026-07-16"],
+      "open_gates": ["private index policy", "supply-chain signature and attestation verification", "production egress proxy"]
+    },
+    {
+      "id": "ingestion-git",
+      "status": "working",
+      "scope": "bounded public GitHub immutable-commit archives",
+      "implemented_by": ["src/taedri_codegraph/acquisition.py", "src/taedri_codegraph/job_runner.py", "packages/ingestion-git/README.md"],
+      "acceptance_evidence": ["tests/unit/test_acquisition.py", "tests/integration/test_saas_http_worker.py", "eval/results/saas-real-acquisition-2026-07-16"],
+      "open_gates": ["submodule and LFS policy", "private repository integration test", "non-GitHub Git host adapters"]
+    },
+    {
+      "id": "analyzer-python",
+      "status": "working",
+      "scope": "AST-only syntax and relation extraction",
+      "implemented_by": ["src/taedri_codegraph/analyzers/python_syntax.py"],
+      "acceptance_evidence": ["tests/golden/test_python_syntax.py", "tests/security/test_safe_ingestion.py", "eval/results/real-pypi-2026-07-15"],
+      "open_gates": ["larger poison corpus", "optional type-checker and runtime-evidence adapters"]
+    },
+    {
+      "id": "analyzer-polyglot",
+      "status": "partial",
+      "scope": "language-neutral file inventory",
+      "implemented_by": ["src/taedri_codegraph/sources.py"],
+      "acceptance_evidence": ["tests/unit/test_source_adapters.py"],
+      "open_gates": ["SCIP importer", "Tree-sitter or CPG semantic adapters", "polyglot golden corpora"]
+    },
+    {
+      "id": "storage",
+      "status": "working",
+      "scope": "local immutable CAS, typed long-table assertions, atomic epochs, portable backup/restore, and S3 client conformance",
+      "implemented_by": ["src/taedri_codegraph/storage.py", "src/taedri_codegraph/primitives/storage.py", "src/taedri_codegraph/object_store.py", "deploy/postgres/002_representation_ledger.sql"],
+      "acceptance_evidence": ["tests/integration/test_epoch_query_cli.py", "tests/integration/test_extensible_representation_storage.py", "tests/unit/test_primitive_storage_service.py", "tests/unit/test_object_store.py", "eval/results/saas-real-acquisition-2026-07-16/backups"],
+      "open_gates": ["live S3-compatible integration test", "PostgreSQL metadata adapter", "scheduled disaster-recovery drill"]
+    },
+    {
+      "id": "retrieval",
+      "status": "working",
+      "scope": "local adaptive exact, FTS5, facet, blocking, LSH, bounded-vector, metadata, and graph retrieval",
+      "implemented_by": ["src/taedri_codegraph/query.py", "src/taedri_codegraph/primitives/search.py", "src/taedri_codegraph/fingerprints.py"],
+      "acceptance_evidence": ["tests/integration/test_epoch_query_cli.py", "tests/unit/test_primitive_search_service.py", "tests/unit/test_search_triggers.py", "eval/results/hybrid-architecture-2026-07-15"],
+      "open_gates": ["real embedding provider adapters", "ANN service adapter", "multi-tenant load and relevance gates"]
+    },
+    {
+      "id": "compatibility",
+      "status": "partial",
+      "scope": "exact directional dimensions plus evidence-backed ports and adapter-free unary planning/execution",
+      "implemented_by": ["src/taedri_codegraph/compatibility.py", "src/taedri_codegraph/primitives/edges.py", "src/taedri_codegraph/primitives/wiring.py"],
+      "acceptance_evidence": ["tests/unit/test_compatibility.py", "tests/unit/test_primitive_edges.py", "tests/unit/test_primitive_wiring.py", "eval/results/deterministic-primitive-pipeline-2026-07-16"],
+      "open_gates": ["persistent corpus-scale signatures", "bounded candidate blocking", "typed adapter witnesses", "multi-input and branching route solver", "isolated route verification"]
+    },
+    {
+      "id": "session-ledger",
+      "status": "working",
+      "scope": "durable tenant-scoped privacy-aware SQLite ledger and API",
+      "implemented_by": ["src/taedri_codegraph/sessions.py", "src/taedri_codegraph/session_repository.py", "src/taedri_codegraph/http_api.py", "src/taedri_codegraph/api_client.py", "src/taedri_codegraph/harness_receipts.py"],
+      "acceptance_evidence": ["tests/unit/test_sessions.py", "tests/unit/test_session_repository.py", "tests/unit/test_harness_receipts.py", "tests/integration/test_saas_http_worker.py", "tests/integration/test_remote_api_client.py"],
+      "open_gates": ["OIDC harness identities", "PostgreSQL adapter", "retention and encrypted-capture operations"]
+    },
+    {
+      "id": "benchmarking",
+      "status": "conformance_only",
+      "scope": "matched-lane contracts, reporting, and bounded Ollama protocol adapter",
+      "implemented_by": ["src/taedri_codegraph/benchmarking.py", "src/taedri_codegraph/model_providers.py"],
+      "acceptance_evidence": ["tests/unit/test_benchmarking.py", "tests/integration/test_ollama_provider.py", "eval/results/benchmark-worker-2026-07-16"],
+      "open_gates": ["live model run", "isolated sandbox/verifier", "sealed non-synthetic task suite"]
+    },
+    {
+      "id": "saas-control-plane",
+      "status": "working",
+      "scope": "single-node SQLite tenants, keys, mounts, jobs, audit, quotas, subscriptions, entitlements, and immutable receipts",
+      "implemented_by": ["src/taedri_codegraph/saas.py", "src/taedri_codegraph/metering.py", "src/taedri_codegraph/portal/subscriptions.py"],
+      "acceptance_evidence": ["tests/unit/test_saas.py", "tests/unit/test_metering.py", "tests/unit/test_portal_subscriptions.py", "tests/integration/test_saas_http_worker.py"],
+      "open_gates": ["PostgreSQL repository conformance", "OIDC user and organization identities", "invoice-provider export and reconciliation"]
+    },
+    {
+      "id": "worker-runtime",
+      "status": "working",
+      "scope": "persistent local leases, automatic heartbeats, cooperative cancellation, source jobs, and a trusted-source Python primitive verifier",
+      "implemented_by": ["src/taedri_codegraph/job_runner.py", "src/taedri_codegraph/saas.py"],
+      "acceptance_evidence": ["tests/unit/test_saas.py", "tests/integration/test_saas_http_worker.py"],
+      "open_gates": ["hostile-code resource isolation", "PostgreSQL concurrent claim conformance", "distributed cancellation latency SLO"]
+    },
+    {
+      "id": "benchmark-worker",
+      "status": "conformance_only",
+      "scope": "deterministic non-claimable fixture",
+      "implemented_by": ["src/taedri_codegraph/benchmarking.py", "src/taedri_codegraph/model_providers.py", "tools/run_benchmark_worker_conformance.py", "tools/smoke_ollama_provider.py"],
+      "acceptance_evidence": ["tests/unit/test_benchmarking.py", "tests/integration/test_ollama_provider.py", "eval/results/benchmark-worker-2026-07-16"],
+      "open_gates": ["live provider matched-lane execution", "real harness execution", "independent sealed verification"]
+    },
+    {
+      "id": "discovery-worker",
+      "status": "partial",
+      "scope": "replay-safe allowlisted PyPI and GitHub discovery event routing",
+      "implemented_by": ["src/taedri_codegraph/pipelines/discovery.py", "services/discovery-worker"],
+      "acceptance_evidence": ["tests/unit/test_source_discovery.py"],
+      "open_gates": ["hosted polling scheduler", "verified GitHub webhook ingress", "durable poll cursors and rate-limit telemetry"]
+    },
+    {
+      "id": "ingestion-worker",
+      "status": "working",
+      "scope": "local source-mounted and bounded public-artifact job execution",
+      "implemented_by": ["src/taedri_codegraph/job_runner.py", "src/taedri_codegraph/acquisition.py", "services/ingestion-worker"],
+      "acceptance_evidence": ["tests/unit/test_pipeline_catalog.py", "tests/unit/test_acquisition.py", "tests/integration/test_saas_http_worker.py", "eval/results/saas-real-acquisition-2026-07-16"],
+      "open_gates": ["resource-isolated network workers", "production egress policy", "attestation and signature verification"]
+    },
+    {
+      "id": "primitive-worker",
+      "status": "working",
+      "scope": "AST-only Python candidate generation plus complete-capsule trusted-source Python release verification",
+      "implemented_by": ["src/taedri_codegraph/primitive_factory.py", "src/taedri_codegraph/primitives/acceptance.py", "src/taedri_codegraph/job_runner.py", "services/primitive-worker"],
+      "acceptance_evidence": ["tests/unit/test_primitive_factory.py", "tests/unit/test_primitive_repository.py", "tests/unit/test_primitive_edges.py", "tests/unit/test_pipeline_catalog.py", "tests/integration/test_primitive_cli.py", "tests/integration/test_saas_http_worker.py", "eval/results/reference-primitive-acceptance-2026-07-16", "eval/results/deterministic-primitive-pipeline-2026-07-16"],
+      "open_gates": ["hostile-code isolated verification", "non-Python generators and verifiers", "measured dynamic-depth provider curation"]
+    },
+    {
+      "id": "indexer-service",
+      "status": "working",
+      "scope": "local Python and polyglot source-mounted jobs",
+      "implemented_by": ["src/taedri_codegraph/job_runner.py"],
+      "acceptance_evidence": ["tests/integration/test_saas_http_worker.py"],
+      "open_gates": ["projection invalidation scheduler", "distributed concurrency and cancellation", "resource-isolated execution"]
+    },
+    {
+      "id": "query-api",
+      "status": "working",
+      "scope": "authenticated WSGI API with declarative routes, generated OpenAPI, and tenant quota admission",
+      "implemented_by": ["src/taedri_codegraph/http_api.py", "src/taedri_codegraph/api/routes.py", "src/taedri_codegraph/api/openapi.py", "src/taedri_codegraph/metering.py", "src/taedri_codegraph/pagination.py"],
+      "acceptance_evidence": ["tests/architecture/test_api_catalog.py", "tests/unit/test_metering.py", "tests/unit/test_pagination.py", "tests/unit/test_production_server.py", "tests/integration/test_remote_api_client.py", "tests/integration/test_saas_http_worker.py", "tools/smoke_production_server.py"],
+      "open_gates": ["distributed tracing", "hosted multi-tenant load SLO", "cursor coverage for non-search collection APIs"]
+    },
+    {
+      "id": "registry-api",
+      "status": "working",
+      "scope": "authenticated single-node candidate curation, complete-capsule staging, proof-gated release search, and pack API",
+      "implemented_by": ["src/taedri_codegraph/http_api.py", "src/taedri_codegraph/primitive_repository.py", "src/taedri_codegraph/candidate_repository.py", "src/taedri_codegraph/primitives/acceptance.py", "services/registry-api/README.md"],
+      "acceptance_evidence": ["tests/unit/test_primitive_repository.py", "tests/unit/test_candidate_repository.py", "tests/integration/test_saas_http_worker.py", "eval/results/reference-primitive-acceptance-2026-07-16"],
+      "open_gates": ["reviewed merge command", "signed packs", "OIDC reviewer roles", "production persistence adapters", "isolated untrusted verifier service"]
+    },
+    {
+      "id": "mcp-integration",
+      "status": "working",
+      "scope": "optional local or authenticated-remote stdio server",
+      "implemented_by": ["src/taedri_codegraph/mcp_server.py", "src/taedri_codegraph/api_client.py", "src/taedri_codegraph/harness_receipts.py"],
+      "acceptance_evidence": ["tests/unit/test_api_client.py", "tests/unit/test_harness_receipts.py", "tests/integration/test_mcp_protocol.py", "tests/integration/test_remote_api_client.py", "docs/guides/AGENT_HARNESS.md"],
+      "open_gates": ["hosted harness evaluation", "OIDC harness identity", "multi-client concurrency soak"]
+    },
+    {
+      "id": "agent-integrations",
+      "status": "partial",
+      "scope": "instructions and local search skill",
+      "implemented_by": ["integrations/agents", "docs/guides/AGENT_HARNESS.md", "AGENTS.md", "CLAUDE.md"],
+      "acceptance_evidence": ["docs/guides/AGENT_HARNESS.md"],
+      "open_gates": ["installable plugin bundle", "hook and harness adapters", "end-to-end model session evidence"]
+    },
+    {
+      "id": "explorer-app",
+      "status": "working",
+      "scope": "static authenticated local browser console",
+      "implemented_by": ["apps/explorer/index.html", "apps/explorer/Dockerfile"],
+      "acceptance_evidence": ["tests/architecture/test_saas_slice.py"],
+      "open_gates": ["OIDC sign-in", "tenant administration", "graph visualization and provenance drill-down", "browser end-to-end tests"]
+    },
+    {
+      "id": "portal-app",
+      "status": "working",
+      "scope": "static public plan and authenticated tenant-account POC",
+      "implemented_by": ["apps/portal", "src/taedri_codegraph/portal", "src/taedri_codegraph/http_api.py"],
+      "acceptance_evidence": ["tests/unit/test_portal_subscriptions.py", "tests/integration/test_saas_http_worker.py", "tests/architecture/test_saas_slice.py"],
+      "open_gates": ["OIDC authorization-code flow with PKCE", "configured billing test gateway and verified webhooks", "browser end-to-end accessibility and redirect tests"]
+    },
+    {
+      "id": "deployment",
+      "status": "poc_only",
+      "scope": "Docker Compose and one-Machine Fly.io design",
+      "implemented_by": ["Dockerfile", "compose.yaml", "deploy/fly", "deploy/postgres"],
+      "acceptance_evidence": ["tests/architecture/test_saas_slice.py", "tools/smoke_production_server.py"],
+      "open_gates": ["hosted container build in CI", "Fly deployment smoke", "managed PostgreSQL and object storage", "observability, backup, restore, and incident drills"]
+    },
+    {
+      "id": "evaluation",
+      "status": "partial",
+      "scope": "real-package static evaluation, real custom-primitive execution acceptance, deterministic no-model composition, and benchmark conformance",
+      "implemented_by": ["eval", "tools/benchmark_real_packages.py", "tools/evaluate_hybrid_real_packages.py", "tools/run_reference_primitive_acceptance.py", "tools/run_deterministic_primitive_pipeline.py", "tools/run_benchmark_worker_conformance.py"],
+      "acceptance_evidence": ["eval/results/real-pypi-2026-07-15", "eval/results/hybrid-architecture-2026-07-15", "eval/results/reference-primitive-acceptance-2026-07-16", "eval/results/deterministic-primitive-pipeline-2026-07-16", "eval/results/benchmark-worker-2026-07-16"],
+      "open_gates": ["real-model matched lanes", "sealed executable tasks", "promotion thresholds and longitudinal regression tracking"]
+    }
+  ],
+  "external_gates": [
+    {
+      "id": "github-publication-and-ci",
+      "needed": ["GitHub CLI or equivalent branch-write authentication", "Actions workflow permission", "package and artifact permission if images are published"],
+      "secret_delivery": "GitHub environment or runner credential; never chat or committed files"
+    },
+    {
+      "id": "hosted-data-plane",
+      "needed": ["disposable PostgreSQL URL", "S3-compatible endpoint, bucket, access key, and secret", "Fly.io organization and scoped deploy token"],
+      "secret_delivery": "deployment secret manager with separate staging and production credentials"
+    },
+    {
+      "id": "real-model-evaluation",
+      "needed": ["one or more scoped provider keys or a reachable Ollama server", "isolated sandbox runner", "sealed task and verifier storage"],
+      "secret_delivery": "evaluation-only environment; provider and oracle credentials must remain inaccessible to production retrieval"
+    },
+    {
+      "id": "commercial-saas",
+      "needed": ["OIDC provider application", "billing provider test account and webhook secret", "email provider or explicit no-email policy", "observability endpoint"],
+      "secret_delivery": "least-privilege staging secrets followed by separately approved production secrets"
+    }
+  ]
+}

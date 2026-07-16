@@ -1,0 +1,2 @@
+producer_interface,producer_port,consumer_interface,consumer_port,verdict,schema_digest,transport
+taedri.core.normalize-text.v1,port.output.result,taedri.core.casefold-text.v1,port.input.value,compatible,sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03,python_native

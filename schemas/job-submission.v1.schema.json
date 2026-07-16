@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.taedri.dev/codegraph/job-submission.v1.schema.json",
+  "title": "Taedri authenticated job submission v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["kind", "subject_id", "idempotency_key", "payload"],
+  "properties": {
+    "kind": {"enum": ["acquire", "extract", "index"]},
+    "subject_id": {"type": "string", "minLength": 1},
+    "idempotency_key": {"type": "string", "minLength": 1},
+    "queue": {"type": "string", "minLength": 1, "default": "default"},
+    "priority": {"type": "integer", "minimum": 0, "maximum": 100, "default": 50},
+    "max_attempts": {"type": "integer", "minimum": 1, "default": 3},
+    "required_capabilities": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "payload": {
+      "oneOf": [
+        {"$ref": "#/$defs/pythonPath"},
+        {"$ref": "#/$defs/polyglotPath"},
+        {"$ref": "#/$defs/primitiveCandidates"},
+        {"$ref": "#/$defs/pypiWheel"},
+        {"$ref": "#/$defs/githubCommit"}
+      ]
+    }
+  },
+  "$defs": {
+    "sourcePathBase": {
+      "type": "object",
+      "required": ["operation", "relative_path"],
+      "properties": {
+        "relative_path": {
+          "type": "string",
+          "minLength": 1,
+          "not": {"pattern": "(^/|(^|/)\\.\\.(/|$))"}
+        },
+        "package_name": {"type": "string", "minLength": 1},
+        "release": {"type": "string", "minLength": 1},
+        "graph": {"type": "string", "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$", "default": "default"},
+        "publish": {"type": "boolean", "default": true}
+      }
+    },
+    "pythonPath": {
+      "allOf": [
+        {"$ref": "#/$defs/sourcePathBase"},
+        {
+          "type": "object",
+          "properties": {"operation": {"const": "analyze_python_path"}}
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "polyglotPath": {
+      "allOf": [
+        {"$ref": "#/$defs/sourcePathBase"},
+        {
+          "type": "object",
+          "properties": {
+            "operation": {"const": "inventory_source_path"},
+            "source_uri": {"type": "string", "minLength": 1}
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "primitiveCandidates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operation", "relative_path", "namespace"],
+      "properties": {
+        "operation": {"const": "generate_primitive_candidates"},
+        "relative_path": {
+          "type": "string",
+          "minLength": 1,
+          "not": {"pattern": "(^/|(^|/)\\.\\.(/|$))"}
+        },
+        "namespace": {"type": "string", "minLength": 1, "maxLength": 255},
+        "package_name": {"type": "string", "minLength": 1},
+        "source_uri": {"type": "string", "minLength": 1},
+        "source_revision": {"type": "string", "minLength": 1},
+        "license_expression": {"type": "string", "minLength": 1},
+        "license_evidence_state": {
+          "enum": ["unknown", "declared", "verified", "conflicting"],
+          "default": "unknown"
+        },
+        "visibility": {
+          "enum": ["private", "organization", "public"],
+          "default": "private"
+        },
+        "candidate_limit": {"type": "integer", "minimum": 1, "maximum": 5000, "default": 1000}
+      }
+    },
+    "pypiWheel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operation", "package", "version"],
+      "properties": {
+        "operation": {"const": "ingest_pypi_wheel"},
+        "package": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"},
+        "version": {"type": "string", "minLength": 1, "maxLength": 128},
+        "filename": {"type": "string", "pattern": "^[^/\\\\]+\\.whl$"},
+        "allow_yanked": {"type": "boolean", "default": false},
+        "graph": {"type": "string", "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$", "default": "default"},
+        "publish": {"type": "boolean", "default": true}
+      }
+    },
+    "githubCommit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operation", "repository", "commit_sha"],
+      "properties": {
+        "operation": {"const": "ingest_github_commit"},
+        "repository": {"type": "string", "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"},
+        "commit_sha": {"type": "string", "pattern": "^[0-9a-fA-F]{40}$"},
+        "analysis": {"enum": ["python", "inventory"], "default": "python"},
+        "package_name": {"type": "string", "minLength": 1},
+        "graph": {"type": "string", "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$", "default": "default"},
+        "publish": {"type": "boolean", "default": true}
+      }
+    }
+  }
+}

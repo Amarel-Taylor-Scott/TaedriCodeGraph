@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Taedri · Verified code reuse</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #07090d; --panel: #10151c; --panel2: #151c25; --line: #273442;
+      --ink: #f5f7fa; --muted: #9eabb9; --cyan: #70dcff; --mint: #6cf0bd;
+      --amber: #f8c86a; --red: #ff7b8e; --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background:
+      radial-gradient(circle at 72% -15%, rgba(112,220,255,.16), transparent 36rem),
+      radial-gradient(circle at 12% 12%, rgba(108,240,189,.10), transparent 30rem), var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+    a { color: inherit; } button, input { font: inherit; }
+    .shell { width: min(1160px, calc(100% - 32px)); margin: auto; }
+    nav { height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 850; letter-spacing: -.02em; }
+    .mark { width: 28px; height: 28px; border: 1px solid var(--cyan); border-radius: 8px;
+      background: linear-gradient(135deg, rgba(112,220,255,.25), rgba(108,240,189,.10));
+      box-shadow: inset 7px 0 0 rgba(108,240,189,.18); }
+    .navlinks { display: flex; gap: 22px; color: var(--muted); font-size: .9rem; }
+    .navlinks a { text-decoration: none; }
+    .button { border: 1px solid rgba(108,240,189,.42); border-radius: 11px; padding: 11px 16px;
+      color: #04130e; background: var(--mint); font-weight: 800; cursor: pointer; }
+    .button.secondary { color: var(--ink); background: var(--panel2); border-color: var(--line); }
+    .button:disabled { opacity: .5; cursor: not-allowed; }
+    .hero { padding: 86px 0 68px; display: grid; grid-template-columns: 1.12fr .88fr; gap: 54px; align-items: center; }
+    .eyebrow { color: var(--mint); font-size: .75rem; font-weight: 850; letter-spacing: .19em; text-transform: uppercase; }
+    h1 { margin: 13px 0 18px; font-size: clamp(3rem, 7.8vw, 6.6rem); line-height: .86; letter-spacing: -.075em; }
+    h1 span { color: var(--cyan); }
+    .lede { color: var(--muted); max-width: 650px; font-size: 1.08rem; line-height: 1.7; }
+    .hero-actions { display: flex; gap: 10px; margin-top: 30px; }
+    .proof { border: 1px solid var(--line); border-radius: 24px; padding: 18px; background: rgba(16,21,28,.88); box-shadow: 0 30px 90px rgba(0,0,0,.35); }
+    .proof-head { display: flex; justify-content: space-between; color: var(--muted); font-size: .75rem; margin-bottom: 18px; }
+    .flow { display: grid; gap: 8px; }
+    .flow-row { display: grid; grid-template-columns: 30px 1fr auto; gap: 11px; align-items: center; padding: 12px;
+      background: #0b1016; border: 1px solid #1d2934; border-radius: 12px; }
+    .flow-row b { font-size: .84rem; } .flow-row small { color: var(--muted); display: block; margin-top: 3px; }
+    .num { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: rgba(112,220,255,.10); color: var(--cyan); font-weight: 850; }
+    .state { color: var(--mint); font-size: .68rem; text-transform: uppercase; letter-spacing: .08em; }
+    section.block { padding: 72px 0; }
+    .section-head { display: flex; justify-content: space-between; gap: 30px; align-items: end; margin-bottom: 28px; }
+    h2 { margin: 7px 0 0; font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: -.055em; }
+    .section-head p { max-width: 520px; color: var(--muted); line-height: 1.6; margin: 0; }
+    .mechanisms { display: grid; grid-template-columns: repeat(4, 1fr); gap: 11px; }
+    .card { border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; background: rgba(16,21,28,.82); }
+    .card code { color: var(--cyan); font-size: .72rem; } .card h3 { margin: 16px 0 8px; }
+    .card p { color: var(--muted); font-size: .88rem; line-height: 1.55; margin: 0; }
+    .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; }
+    .plan { display: grid; align-content: start; min-height: 360px; }
+    .plan.featured { border-color: rgba(112,220,255,.52); background: linear-gradient(180deg, rgba(112,220,255,.08), rgba(16,21,28,.88)); }
+    .plan-top { display: flex; justify-content: space-between; gap: 12px; }
+    .commercial { color: var(--amber); font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; }
+    .plan ul { padding: 0; list-style: none; display: grid; gap: 9px; margin: 22px 0; }
+    .plan li { color: var(--muted); font-size: .82rem; padding-left: 18px; position: relative; overflow-wrap: anywhere; }
+    .plan li::before { content: "✓"; color: var(--mint); position: absolute; left: 0; }
+    .plan .button { margin-top: auto; width: 100%; }
+    .account { display: grid; grid-template-columns: .8fr 1.2fr; gap: 14px; }
+    .form { display: grid; gap: 13px; align-content: start; }
+    label { display: grid; gap: 7px; color: var(--muted); font-size: .78rem; font-weight: 750; }
+    input { width: 100%; border: 1px solid var(--line); border-radius: 10px; padding: 11px 12px; color: var(--ink); background: #090e14; }
+    input:focus { outline: 3px solid rgba(112,220,255,.12); border-color: var(--cyan); }
+    .notice { border-left: 3px solid var(--amber); padding: 10px 12px; background: rgba(248,200,106,.07); color: var(--muted); font-size: .8rem; line-height: 1.5; }
+    pre { margin: 0; min-height: 270px; max-height: 520px; overflow: auto; color: #cce3df; background: #080d12; border: 1px solid var(--line); border-radius: 12px; padding: 15px; font: .76rem/1.55 ui-monospace, SFMono-Regular, Menlo, monospace; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .status { color: var(--muted); font-size: .8rem; } .status.ok { color: var(--mint); } .status.error { color: var(--red); }
+    footer { padding: 34px 0 55px; color: var(--muted); border-top: 1px solid var(--line); font-size: .78rem; display: flex; justify-content: space-between; gap: 20px; }
+    @media (max-width: 900px) { .hero, .account { grid-template-columns: 1fr; } .mechanisms { grid-template-columns: repeat(2,1fr); } .plans { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .navlinks { display:none; } .hero { padding-top: 52px; } .mechanisms { grid-template-columns: 1fr; } .section-head { display:block; } .section-head p { margin-top: 12px; } .hero-actions { flex-direction: column; } footer { display:block; } }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <nav>
+      <div class="brand"><span class="mark" aria-hidden="true"></span>Taedri CodeGraph</div>
+      <div class="navlinks"><a href="#mechanisms">How it works</a><a href="#plans">Plans</a><a href="#account">Account</a></div>
+      <a class="button secondary" href="http://localhost:8080">Open explorer</a>
+    </nav>
+
+    <main>
+      <section class="hero">
+        <div>
+          <div class="eyebrow">Evidence-backed primitive retrieval</div>
+          <h1>Reuse code.<br><span>Keep proof.</span></h1>
+          <p class="lede">Taedri helps coding agents find, inspect, verify, and selectively digest existing components through exact facts, hybrid retrieval, typed contracts, lineage, and bounded source disclosure.</p>
+          <div class="hero-actions"><a class="button" href="#plans">Inspect plan contracts</a><a class="button secondary" href="#account">Connect tenant</a></div>
+        </div>
+        <div class="proof" aria-label="Decision waterfall">
+          <div class="proof-head"><span>PRIMITIVE DECISION WATERFALL</span><span>v1 · receipt-bearing</span></div>
+          <div class="flow">
+            <div class="flow-row"><span class="num">1</span><div><b>Trigger</b><small>explicit intent · dependency gap · reuse pressure</small></div><span class="state">bounded</span></div>
+            <div class="flow-row"><span class="num">2</span><div><b>Retrieve</b><small>exact → sparse → LSH → vector → graph</small></div><span class="state">hybrid</span></div>
+            <div class="flow-row"><span class="num">3</span><div><b>Decide</b><small>typed contracts · evidence · policy · compatibility</small></div><span class="state">fail closed</span></div>
+            <div class="flow-row"><span class="num">4</span><div><b>Digest</b><small>thin pack · digest check · safe paths · atomic files</small></div><span class="state">verified</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="mechanisms" class="block">
+        <div class="section-head"><div><div class="eyebrow">Multifaceted by design</div><h2>Smallest useful evidence.</h2></div><p>Cheap, deterministic mechanisms run first. Costlier representations activate only when ambiguity, policy, or the requested disclosure depth requires them.</p></div>
+        <div class="mechanisms">
+          <article class="card"><code>01 / identity</code><h3>Exact facts</h3><p>Qualified names, versions, hashes, source locations, schemas, and immutable lineage.</p></article>
+          <article class="card"><code>02 / candidates</code><h3>Sparse + LSH</h3><p>Lexical keys and narrow, medium, and wide similarity bands recover cheap candidates.</p></article>
+          <article class="card"><code>03 / meaning</code><h3>Semantic views</h3><p>Role-specific embeddings and classifiers propose candidates without becoming truth.</p></article>
+          <article class="card"><code>04 / decision</code><h3>Contracts + proof</h3><p>Compatibility, licensing, evidence, tests, and policy decide reuse or explicit abstention.</p></article>
+        </div>
+      </section>
+
+      <section id="plans" class="block">
+        <div class="section-head"><div><div class="eyebrow">Versioned plan catalog</div><h2>No invented pricing.</h2></div><p>These cards are rendered from the public API. Commercialization remains visibly unconfigured until provider price identifiers and approved amounts exist.</p></div>
+        <div id="plansGrid" class="plans"><article class="card">Loading public plan contracts…</article></div>
+        <p id="planStatus" class="status"></p>
+      </section>
+
+      <section id="account" class="block">
+        <div class="section-head"><div><div class="eyebrow">Tenant control plane</div><h2>Account and entitlements.</h2></div><p>Subscription revisions are append-only. Active entitlements are computed from the current provider-backed revision and versioned catalog.</p></div>
+        <div class="account">
+          <div class="card form">
+            <label>API origin<input id="apiBase" value="http://localhost:8000" spellcheck="false"></label>
+            <label>Tenant token<input id="token" type="password" autocomplete="off" placeholder="tcg_…"></label>
+            <div class="notice">Local POC only: paste a scoped token. Hosted SaaS must replace this with OIDC authorization-code + PKCE and must never expose billing-provider secrets.</div>
+            <button id="connect" class="button">Load account</button>
+            <button id="manage" class="button secondary" disabled>Manage billing</button>
+            <span id="accountStatus" class="status">Not connected.</span>
+          </div>
+          <pre id="accountData">No tenant subscription loaded.</pre>
+        </div>
+      </section>
+    </main>
+
+    <footer><span>Taedri CodeGraph · pre-alpha working vertical slice</span><span>Exact facts identify. Retrieval proposes. Evidence and verification decide.</span></footer>
+  </div>
+  <script>
+    "use strict";
+    const $ = (id) => document.getElementById(id);
+    const base = () => $("apiBase").value.replace(/\/$/, "");
+    const moneyless = {price_not_configured: "Price not configured", provider_configured: "Provider configured", contact_sales: "Contact sales"};
+    function setStatus(id, text, kind = "") { const node = $(id); node.textContent = text; node.className = `status ${kind}`; }
+    async function api(path, authenticated = false, options = {}) {
+      const headers = {...(options.headers || {})};
+      if (authenticated) headers.Authorization = `Bearer ${$("token").value.trim()}`;
+      if (options.body) headers["Content-Type"] = "application/json";
+      const response = await fetch(`${base()}${path}`, {...options, headers});
+      const value = await response.json();
+      if (!response.ok) throw new Error(value?.error?.message || `${response.status} ${response.statusText}`);
+      return value;
+    }
+    function entitlementLabel(key, value) {
+      const label = key.replace("taedri.entitlement.", "").replaceAll("_", " ");
+      return `${label}: ${typeof value === "boolean" ? (value ? "included" : "not included") : value}`;
+    }
+    async function loadPlans() {
+      try {
+        const payload = await api("/v1/public/plans");
+        const grid = $("plansGrid"); grid.replaceChildren();
+        payload.items.forEach((plan, index) => {
+          const article = document.createElement("article"); article.className = `card plan ${index === 1 ? "featured" : ""}`;
+          const top = document.createElement("div"); top.className = "plan-top";
+          const title = document.createElement("h3"); title.textContent = plan.display_name;
+          const state = document.createElement("span"); state.className = "commercial"; state.textContent = moneyless[plan.commercialization_state] || plan.commercialization_state;
+          top.append(title, state); article.append(top);
+          const description = document.createElement("p"); description.textContent = plan.description; article.append(description);
+          const list = document.createElement("ul"); Object.entries(plan.entitlements).forEach(([key, value]) => { const li = document.createElement("li"); li.textContent = entitlementLabel(key, value); list.append(li); }); article.append(list);
+          const button = document.createElement("button"); button.className = index === 1 ? "button" : "button secondary"; button.textContent = plan.commercialization_state === "contact_sales" ? "Contact workflow pending" : "Checkout unavailable"; button.disabled = plan.commercialization_state !== "provider_configured"; button.dataset.planRef = `${plan.key}@${plan.version}`; button.addEventListener("click", () => checkout(button.dataset.planRef)); article.append(button);
+          grid.append(article);
+        });
+        setStatus("planStatus", `${payload.count} plans · catalog ${payload.catalog_digest.slice(0, 22)}…`, "ok");
+      } catch (error) { setStatus("planStatus", `Could not load API catalog: ${error.message}`, "error"); }
+    }
+    async function loadAccount() {
+      setStatus("accountStatus", "Loading…");
+      try {
+        if (!$("token").value.trim()) throw new Error("A scoped tenant token is required.");
+        const value = await api("/v1/portal/subscription", true);
+        $("accountData").textContent = JSON.stringify(value, null, 2);
+        $("manage").disabled = !value.subscription;
+        setStatus("accountStatus", value.subscription ? `Connected · ${value.subscription.state}` : "Connected · no subscription", "ok");
+      } catch (error) { setStatus("accountStatus", error.message, "error"); }
+    }
+    async function checkout(planRef) {
+      try {
+        const value = await api("/v1/portal/checkout", true, {method: "POST", body: JSON.stringify({plan_ref: planRef, return_url: window.location.origin + "/#account"})});
+        window.location.assign(value.url);
+      } catch (error) { setStatus("accountStatus", error.message, "error"); }
+    }
+    async function manageBilling() {
+      try {
+        const value = await api("/v1/portal/billing-session", true, {method: "POST", body: JSON.stringify({return_url: window.location.origin + "/#account"})});
+        window.location.assign(value.url);
+      } catch (error) { setStatus("accountStatus", error.message, "error"); }
+    }
+    $("connect").addEventListener("click", loadAccount); $("manage").addEventListener("click", manageBilling); $("apiBase").addEventListener("change", loadPlans); loadPlans();
+  </script>
+</body>
+</html>

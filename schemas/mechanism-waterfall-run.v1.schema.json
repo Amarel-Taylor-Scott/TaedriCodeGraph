@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.taedri.dev/codegraph/mechanism-waterfall-run.v1.schema.json",
+  "title": "Taedri mechanism waterfall run v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["run_id", "plan_key", "plan_version", "plan_digest", "request_digest", "correlation_id", "status", "outputs", "receipts", "consumed_cost_units", "stop_reason"],
+  "properties": {
+    "run_id": {"type": "string", "pattern": "^uceg:v1:waterfall_run:"},
+    "plan_key": {"type": "string", "pattern": "^[a-z][a-z0-9_-]*(\\.[a-z0-9_-]+)+$"},
+    "plan_version": {"type": "string", "minLength": 1},
+    "plan_digest": {"$ref": "#/$defs/digest"},
+    "request_digest": {"$ref": "#/$defs/digest"},
+    "correlation_id": {"type": "string"},
+    "status": {"enum": ["succeeded", "partial", "abstained", "failed"]},
+    "outputs": {"type": "object", "additionalProperties": {"type": "array", "items": {"type": "object"}}},
+    "receipts": {"type": "array", "items": {"$ref": "#/$defs/step"}},
+    "consumed_cost_units": {"type": "integer", "minimum": 0},
+    "stop_reason": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "step": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sequence", "stage_key", "mechanism_ref", "definition_digest", "status", "request_digest", "output_digest", "confidence_ppm", "evidence_refs", "error_code", "cost_units", "duration_ms", "started_at", "finished_at"],
+      "properties": {
+        "sequence": {"type": "integer", "minimum": 1},
+        "stage_key": {"type": "string", "minLength": 1},
+        "mechanism_ref": {"type": "string", "minLength": 3},
+        "definition_digest": {"$ref": "#/$defs/digest"},
+        "status": {"enum": ["succeeded", "failed", "skipped_capability", "skipped_budget"]},
+        "request_digest": {"$ref": "#/$defs/digest"},
+        "output_digest": {"anyOf": [{"$ref": "#/$defs/digest"}, {"type": "null"}]},
+        "confidence_ppm": {"type": ["integer", "null"], "minimum": 0, "maximum": 1000000},
+        "evidence_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "error_code": {"type": ["string", "null"]},
+        "cost_units": {"type": "integer", "minimum": 0},
+        "duration_ms": {"type": "integer", "minimum": 0},
+        "started_at": {"type": "string", "format": "date-time"},
+        "finished_at": {"type": "string", "format": "date-time"}
+      }
+    }
+  }
+}

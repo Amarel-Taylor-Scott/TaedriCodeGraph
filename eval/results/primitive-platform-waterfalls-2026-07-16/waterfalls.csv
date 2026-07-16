@@ -1,0 +1,8 @@
+waterfall,status,stage_count,implemented_boundary,next_external_gate
+primitive-storage,working-local,7,typed ledger CAS revision DAG proof-gated release and disposable active-release projections,live PostgreSQL and S3 adapters
+primitive-search,working-local,5,adaptive exact sparse semantic structural decision pipeline,live embeddings ANN relevance and load gates
+search-trigger,working-library,5,user deterministic classifier and model precedence,hosted hook and plugin session study
+client-digestion,working-library,6,bounded verified thin-pack materialization,signed packs and cross-language clients
+public-saas,working-local-poc,6,portal subscriptions entitlements scoped API and provider ports,OIDC PKCE and billing sandbox
+source-to-primitive,working-candidate-only,5,replay-safe discovery acquisition extraction description and non-public candidate generation,complete capsule authoring and isolated release verification
+matched-benchmark,conformance-only-external-execution-gated,4,frozen inputs supplied-receipt validation paired analysis and claim gate,real model sealed tasks and isolated verifier

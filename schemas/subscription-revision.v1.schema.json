@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.taedri.dev/codegraph/subscription-revision.v1.schema.json",
+  "title": "Taedri append-only subscription revision v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["identity", "tenant_id", "plan_ref", "state", "provider", "provider_customer_ref", "provider_subscription_ref", "effective_at", "ends_at", "source_event_id", "source_event_digest", "previous_revision_id"],
+  "properties": {
+    "identity": {"type": "object"},
+    "tenant_id": {"type": "string", "minLength": 1},
+    "plan_ref": {"type": "string", "pattern": "^[a-z][a-z0-9_-]*(\\.[a-z0-9_-]+)+@[0-9]+(\\.[0-9]+){0,2}$"},
+    "state": {"enum": ["trialing", "active", "past_due", "paused", "cancelled", "expired"]},
+    "provider": {"type": "string", "minLength": 1},
+    "provider_customer_ref": {"type": "string", "minLength": 1},
+    "provider_subscription_ref": {"type": "string", "minLength": 1},
+    "effective_at": {"type": "string", "format": "date-time"},
+    "ends_at": {"type": ["string", "null"], "format": "date-time"},
+    "source_event_id": {"type": "string", "minLength": 1},
+    "source_event_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "previous_revision_id": {"type": ["string", "null"]}
+  }
+}

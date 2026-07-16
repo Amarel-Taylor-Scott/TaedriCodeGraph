@@ -1,0 +1,223 @@
+{
+  "schema_version": "1.1.0",
+  "interface_id": "taedri.core.normalize-text.v1",
+  "nodes": [
+    {
+      "id": "implementation.normalize_text",
+      "kind": "implementation",
+      "path": "src/normalize.py",
+      "symbol": "normalize_text"
+    },
+    {
+      "id": "contract.normalize_text",
+      "kind": "contract",
+      "path": "contract.json"
+    },
+    {
+      "id": "port.input.value",
+      "kind": "input_port",
+      "path": "contract.json",
+      "json_pointer": "#/inputs/0"
+    },
+    {
+      "id": "port.output.result",
+      "kind": "output_port",
+      "path": "contract.json",
+      "json_pointer": "#/output"
+    },
+    {
+      "id": "examples.normalize_text",
+      "kind": "example_set",
+      "path": "examples.json"
+    },
+    {
+      "id": "tests.normalize_text",
+      "kind": "test_set",
+      "path": "tests.json"
+    },
+    {
+      "id": "runtime.python312",
+      "kind": "runtime",
+      "path": "runtime.json"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.implements_contract",
+      "source": "implementation.normalize_text",
+      "predicate": "taedri.predicate.implements_contract",
+      "target": "contract.normalize_text",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "src/normalize.py",
+          "digest": "sha256:185de081ff73af42b5608195f65d666ba235c3f9f95102d3ead10ee8d5095d31"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:91a896dc7c5fb8da3173052551747a4a05029b4444d757fe3a81051abfb8aa53"
+        }
+      ]
+    },
+    {
+      "id": "edge.accepts_value",
+      "source": "implementation.normalize_text",
+      "predicate": "taedri.predicate.accepts_port",
+      "target": "port.input.value",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:91a896dc7c5fb8da3173052551747a4a05029b4444d757fe3a81051abfb8aa53"
+        }
+      ]
+    },
+    {
+      "id": "edge.produces_result",
+      "source": "implementation.normalize_text",
+      "predicate": "taedri.predicate.produces_port",
+      "target": "port.output.result",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:91a896dc7c5fb8da3173052551747a4a05029b4444d757fe3a81051abfb8aa53"
+        }
+      ]
+    },
+    {
+      "id": "edge.demonstrated_by_examples",
+      "source": "examples.normalize_text",
+      "predicate": "taedri.predicate.demonstrates",
+      "target": "implementation.normalize_text",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "examples.json",
+          "digest": "sha256:2741c7aa8d9c70e5f877be2fd3570c3f48430eb001ebbabd73d34a6bc5037f26"
+        }
+      ]
+    },
+    {
+      "id": "edge.verified_by_tests",
+      "source": "tests.normalize_text",
+      "predicate": "taedri.predicate.verifies",
+      "target": "implementation.normalize_text",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "tests.json",
+          "digest": "sha256:536578f665c88b10cdcf07cee8e18d0d360da920c03740cd74d669eeb6b1ea28"
+        }
+      ]
+    },
+    {
+      "id": "edge.runs_on_python312",
+      "source": "implementation.normalize_text",
+      "predicate": "taedri.predicate.runs_on",
+      "target": "runtime.python312",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "runtime.json",
+          "digest": "sha256:bb6b6904188a60e2feb04f0ce0240ace748fcce85bb4ee1950210ceb91df3585"
+        }
+      ]
+    }
+  ],
+  "ports": [
+    {
+      "id": "port.input.value",
+      "owner": "implementation.normalize_text",
+      "direction": "input",
+      "name": "value",
+      "schema": {
+        "type": "string"
+      },
+      "schema_digest": "sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03",
+      "schema_ref": "contract.json#/inputs/0/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native",
+        "text"
+      ]
+    },
+    {
+      "id": "port.output.result",
+      "owner": "implementation.normalize_text",
+      "direction": "output",
+      "name": "result",
+      "schema": {
+        "type": "string"
+      },
+      "schema_digest": "sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03",
+      "schema_ref": "contract.json#/output/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native",
+        "text"
+      ]
+    }
+  ],
+  "compatibility": {
+    "language": "python",
+    "runtime_version": "3.12",
+    "execution_model": "in_process_call",
+    "deterministic": true,
+    "purity": "pure",
+    "network": "denied",
+    "effects": [],
+    "dimensions": {
+      "taedri.compatibility.call_style": "sync",
+      "taedri.compatibility.language": "python",
+      "taedri.compatibility.runtime_major_minor": "3.12",
+      "taedri.compatibility.value_transport": "python_native"
+    },
+    "required_dimensions": [
+      "taedri.compatibility.call_style",
+      "taedri.compatibility.language",
+      "taedri.compatibility.runtime_major_minor",
+      "taedri.compatibility.value_transport"
+    ]
+  },
+  "groups": [
+    {
+      "id": "taedri.group.text_normalization",
+      "kind": "capability",
+      "labels": [
+        "text cleanup",
+        "trim surrounding whitespace",
+        "unicode whitespace normalization"
+      ],
+      "member_nodes": [
+        "implementation.normalize_text"
+      ],
+      "evidence": [
+        {
+          "path": "descriptor.json",
+          "digest": "sha256:5c7d54f850b4097bf3253224d517cc50b714745896e2373be14c304b35a967e9"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:91a896dc7c5fb8da3173052551747a4a05029b4444d757fe3a81051abfb8aa53"
+        }
+      ]
+    }
+  ]
+}

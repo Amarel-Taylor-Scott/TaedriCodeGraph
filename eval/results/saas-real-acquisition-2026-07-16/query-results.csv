@@ -1,0 +1,10 @@
+expected,graph,hit_at_10,latency_ms,query,query_id,rank,reciprocal_rank,result_count
+usaddress.parse,pypi-usaddress,True,58.9027,parse a street address into labeled components,1,1,1.0,10
+usaddress.tag,pypi-usaddress,True,45.2769,tag address components and determine address type,2,1,1.0,10
+usaddress.tokenize,pypi-usaddress,True,46.1648,tokenize an address string,3,1,1.0,10
+usaddress.parse,git-usaddress,True,53.858,parse a street address into labeled components,1,5,0.2,10
+usaddress.tag,git-usaddress,True,50.2574,tag address components and determine address type,2,2,0.5,10
+usaddress.tokenize,git-usaddress,True,53.4514,tokenize an address string,3,1,1.0,10
+usaddress.parse,all,True,57.5644,parse a street address into labeled components,1,1,1.0,10
+usaddress.tag,all,True,53.6521,tag address components and determine address type,2,1,1.0,10
+usaddress.tokenize,all,True,51.9126,tokenize an address string,3,1,1.0,10
