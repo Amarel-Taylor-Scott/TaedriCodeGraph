@@ -6,7 +6,7 @@
   },
   "efficacy_claimable": false,
   "evidence_class": "conformance_fixture",
-  "experiment_id": "uceg:v1:benchmark_experiment:2x3q5zjdl5tiam7ltyeldefdk7ollufjak6rn7ub62u4zabmjluq",
+  "experiment_id": "uceg:v1:benchmark_experiment:ksrworfampre2ljrsopywg76t5d3tyoznzh6miwov2p72qxmpfba",
   "experiment_name": "benchmark worker progressive-disclosure conformance",
   "frozen_inputs": {
     "budget": {
@@ -16,7 +16,7 @@
       "max_verifier_cpu_ms": 30000,
       "max_wall_ms": 60000
     },
-    "harness_digest": "sha256:86496d2d400f270813b90c6972f09191b2d5c3705e616d8b895fdcb44373ffb3",
+    "harness_digest": "sha256:ada72f203241778997e0ead35be7300fde0343edd849438c92c0ab5cd294bdcd",
     "model_config_digest": "sha256:6a1378e861a3d80416707af52857d98ecedf25a23aa1c5fa5cf89affc711dc94",
     "model_id": "not-a-model",
     "network_policy": "disabled",

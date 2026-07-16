@@ -381,13 +381,15 @@ def main() -> int:
             "exact_output_consistency_ppm",
             "behavior_consistency_ppm",
         ]
-        writer = csv.DictWriter(handle, fieldnames=fields)
+        writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         for summary in report["lane_summaries"]:
             writer.writerow({field: summary.get(field) for field in fields})
     with (OUTPUT / "matched-comparisons.csv").open("w", newline="", encoding="utf-8") as handle:
         comparisons = report["matched_comparisons"]
-        writer = csv.DictWriter(handle, fieldnames=list(comparisons[0]))
+        writer = csv.DictWriter(
+            handle, fieldnames=list(comparisons[0]), lineterminator="\n"
+        )
         writer.writeheader()
         writer.writerows(comparisons)
     (OUTPUT / "benchmark-lanes.mmd").write_text(
