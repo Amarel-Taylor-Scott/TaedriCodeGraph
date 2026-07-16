@@ -1,0 +1,157 @@
+{
+  "schema_version": "1.0.0",
+  "layout_state": "transitional",
+  "invariants": [
+    "canonical facts never depend on disposable search indexes",
+    "component dependencies form a directed acyclic graph",
+    "schemas and the kernel do not depend on services, integrations, or apps",
+    "ingestion does not import or execute analyzed target code",
+    "similarity candidates never become compatibility proof"
+  ],
+  "components": [
+    {
+      "id": "vertical-slice",
+      "path": "src/taedri_codegraph",
+      "kind": "transitional-package",
+      "status": "active",
+      "owns": ["current executable implementation while packages are extracted"],
+      "depends_on": []
+    },
+    {
+      "id": "shared-kernel",
+      "path": "packages/shared-kernel",
+      "kind": "library",
+      "status": "scaffolded",
+      "owns": ["identity", "canonical encoding", "typed envelopes", "provenance primitives"],
+      "depends_on": []
+    },
+    {
+      "id": "shared-schemas",
+      "path": "packages/shared-schemas",
+      "kind": "library-and-registry",
+      "status": "scaffolded",
+      "owns": ["descriptor schemas", "predicate schemas", "registry manifests", "conformance fixtures"],
+      "depends_on": ["shared-kernel"]
+    },
+    {
+      "id": "schema-artifacts",
+      "path": "schemas",
+      "kind": "generated-artifacts",
+      "status": "scaffolded",
+      "owns": ["exported JSON Schema", "Arrow schemas", "SQL DDL", "compatibility fixtures"],
+      "depends_on": ["shared-schemas"]
+    },
+    {
+      "id": "ingestion-pypi",
+      "path": "packages/ingestion-pypi",
+      "kind": "library",
+      "status": "scaffolded",
+      "owns": ["PyPI acquisition receipts", "wheel verification", "distribution metadata"],
+      "depends_on": ["shared-kernel", "shared-schemas"]
+    },
+    {
+      "id": "ingestion-git",
+      "path": "packages/ingestion-git",
+      "kind": "library",
+      "status": "scaffolded",
+      "owns": ["Git object acquisition", "commit and tree lineage", "repository policy"],
+      "depends_on": ["shared-kernel", "shared-schemas"]
+    },
+    {
+      "id": "analyzer-python",
+      "path": "packages/analyzer-python",
+      "kind": "library",
+      "status": "scaffolded",
+      "owns": ["Python syntax and semantic extraction", "Python conformance corpus"],
+      "depends_on": ["shared-kernel", "shared-schemas"]
+    },
+    {
+      "id": "analyzer-polyglot",
+      "path": "packages/analyzer-polyglot",
+      "kind": "library",
+      "status": "scaffolded",
+      "owns": ["SCIP and CPG import", "Tree-sitter adapters", "language inventory"],
+      "depends_on": ["shared-kernel", "shared-schemas"]
+    },
+    {
+      "id": "storage",
+      "path": "packages/storage",
+      "kind": "library",
+      "status": "scaffolded",
+      "owns": ["canonical ledger adapters", "CAS", "typed long tables", "projection epochs"],
+      "depends_on": ["shared-kernel", "shared-schemas"]
+    },
+    {
+      "id": "retrieval",
+      "path": "packages/retrieval",
+      "kind": "library",
+      "status": "scaffolded",
+      "owns": ["query planning", "sparse and LSH retrieval", "ANN adapters", "fusion receipts"],
+      "depends_on": ["shared-kernel", "shared-schemas", "storage"]
+    },
+    {
+      "id": "compatibility",
+      "path": "packages/compatibility",
+      "kind": "library",
+      "status": "scaffolded",
+      "owns": ["typed contracts", "directional solving", "adapter witnesses", "verification policy"],
+      "depends_on": ["shared-kernel", "shared-schemas"]
+    },
+    {
+      "id": "indexer-service",
+      "path": "services/indexer",
+      "kind": "service",
+      "status": "scaffolded",
+      "owns": ["ingestion orchestration", "projection builds", "invalidation scheduling"],
+      "depends_on": ["ingestion-pypi", "ingestion-git", "analyzer-python", "analyzer-polyglot", "storage", "retrieval"]
+    },
+    {
+      "id": "query-api",
+      "path": "services/query-api",
+      "kind": "service",
+      "status": "scaffolded",
+      "owns": ["authenticated search", "context disclosure", "compatibility and provenance APIs"],
+      "depends_on": ["storage", "retrieval", "compatibility"]
+    },
+    {
+      "id": "mcp-integration",
+      "path": "integrations/mcp",
+      "kind": "integration",
+      "status": "scaffolded",
+      "owns": ["MCP tool and resource contracts", "bounded context adapters"],
+      "depends_on": ["shared-schemas", "retrieval", "compatibility"]
+    },
+    {
+      "id": "agent-integrations",
+      "path": "integrations/agents",
+      "kind": "integration",
+      "status": "scaffolded",
+      "owns": ["Codex and Claude instructions", "skills", "hooks", "harness policies"],
+      "depends_on": ["shared-schemas", "mcp-integration"]
+    },
+    {
+      "id": "explorer-app",
+      "path": "apps/explorer",
+      "kind": "application",
+      "status": "scaffolded",
+      "owns": ["human graph explorer", "provenance and search explanation UI"],
+      "depends_on": ["query-api"]
+    },
+    {
+      "id": "deployment",
+      "path": "deploy",
+      "kind": "operations",
+      "status": "scaffolded",
+      "owns": ["local stacks", "migrations", "observability", "deployment policy"],
+      "depends_on": ["indexer-service", "query-api"]
+    },
+    {
+      "id": "evaluation",
+      "path": "eval",
+      "kind": "evaluation",
+      "status": "active",
+      "owns": ["real-package corpora", "ablation receipts", "promotion gates", "reports"],
+      "depends_on": ["indexer-service", "query-api", "agent-integrations"]
+    }
+  ]
+}

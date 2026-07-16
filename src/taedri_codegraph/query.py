@@ -11,6 +11,7 @@ from typing import Any, Iterable, Mapping
 
 from .canonical import canonical_json_bytes
 from .contracts import GraphBundle, RelationAssertion
+from .fingerprints import lsh_key_profile
 from .representations import (
     core_representation_registry,
     identifier_blocking_keys,
@@ -967,7 +968,8 @@ class GraphIndex:
                 str(row["block_key"])
                 for row in connection.execute(
                     "SELECT DISTINCT block_key FROM blocking WHERE entity_id=? "
-                    "AND (block_key LIKE 'minhash4:%' OR block_key LIKE 'simhash16:%')",
+                    "AND (block_key LIKE 'lsh:v1:%' OR block_key LIKE 'minhash4:%' "
+                    "OR block_key LIKE 'simhash16:%')",
                     (entity_id,),
                 )
             ]
@@ -984,19 +986,37 @@ class GraphIndex:
                 "ORDER BY matching_bands DESC, e.qualified_name LIMIT ?",
                 (*keys, entity_id, limit),
             ).fetchall()
-        return [
-            {
-                **dict(row),
-                "candidate_only": True,
-                "receipt": {
-                    "method": "indexed_lsh_bands",
-                    "source_entity_id": entity_id,
-                    "searched_band_count": len(keys),
-                    "warning": "fingerprint collision nominates; it does not prove equivalence",
-                },
+        searched_profiles = sorted(
+            {profile for profile in map(lsh_key_profile, keys) if profile is not None}
+        )
+        results: list[dict[str, Any]] = []
+        for row in rows:
+            result = dict(row)
+            matched_keys = str(result.get("matched_keys", "")).split(",")
+            matched_profiles = sorted(
+                {
+                    profile
+                    for profile in map(lsh_key_profile, matched_keys)
+                    if profile is not None
+                }
+            )
+            result["matching_profiles"] = [
+                {"algorithm": algorithm, "profile": profile}
+                for algorithm, profile in matched_profiles
+            ]
+            result["candidate_only"] = True
+            result["receipt"] = {
+                "method": "indexed_multiresolution_lsh_bands",
+                "source_entity_id": entity_id,
+                "searched_band_count": len(keys),
+                "searched_profiles": [
+                    {"algorithm": algorithm, "profile": profile}
+                    for algorithm, profile in searched_profiles
+                ],
+                "warning": "fingerprint collision nominates; it does not prove equivalence",
             }
-            for row in rows
-        ]
+            results.append(result)
+        return results
 
     def search_edges(
         self,

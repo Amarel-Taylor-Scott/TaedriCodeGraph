@@ -80,12 +80,45 @@ class EpochQueryIntegrationTests(unittest.TestCase):
         self.assertTrue(all(item["generation_run_id"] for item in variants))
         self.assertTrue(any(item["representation_key"] == "uceg.name.qualified" for item in variants))
 
+    def test_lsh_profiles_are_independently_ablated_variants(self) -> None:
+        epoch = self.store.write_candidate(self.bundle, self.analyzer.registry)
+        self.store.publish_epoch(epoch)
+        index = self.store.index()
+        widget = index.resolve_entity("pkg.model.Widget")
+        variants = index.representations("entity", widget["identity"]["id"], limit=200)
+        lsh_variants = [
+            item
+            for item in variants
+            if item["representation_key"] == "uceg.block.fingerprint_lsh"
+        ]
+        self.assertEqual(
+            {(item["value"]["algorithm"], item["value"]["profile"]) for item in lsh_variants},
+            {
+                ("minhash16", "narrow"),
+                ("minhash16", "medium"),
+                ("minhash16", "wide"),
+                ("simhash64", "narrow"),
+                ("simhash64", "medium"),
+                ("simhash64", "wide"),
+            },
+        )
+        self.assertTrue(
+            all(
+                item["value"]["collision_policy"] == "candidate_only"
+                for item in lsh_variants
+            )
+        )
+
     def test_lsh_candidates_are_indexed_and_explicitly_non_proving(self) -> None:
         epoch = self.store.write_candidate(self.bundle, self.analyzer.registry)
         self.store.publish_epoch(epoch)
         candidates = self.store.index().structurally_similar("pkg.model.Widget", limit=5)
         self.assertTrue(candidates)
         self.assertTrue(candidates[0]["candidate_only"])
+        self.assertTrue(candidates[0]["matching_profiles"])
+        searched = candidates[0]["receipt"]["searched_profiles"]
+        self.assertIn({"algorithm": "simhash64", "profile": "narrow"}, searched)
+        self.assertIn({"algorithm": "minhash16", "profile": "wide"}, searched)
         self.assertIn("does not prove", candidates[0]["receipt"]["warning"])
 
     def test_tampered_fact_shard_fails_closed(self) -> None:

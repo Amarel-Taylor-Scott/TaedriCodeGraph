@@ -82,6 +82,28 @@ retrieval, provider/router contracts, and agent harnesses. Its
 [real-package report](docs/reports/HYBRID_ARCHITECTURE_CHALLENGE_2026-07-15.md) retains
 both successful and failed retrieval cases with raw query receipts.
 
+## Description atlas and architecture explorer
+
+The [18,608-word Code Entity Description Atlas](docs/spec/TAEDRI_CODE_ENTITY_DESCRIPTION_ATLAS.md)
+is now part of the repository. Its implementation direction uses typed long tables,
+content-addressed payloads, immutable production attempts, assertion and lineage rows,
+explicit materialization states, and role-scoped views—not an ever-widening entity
+table.
+
+The executable follow-up adds subject-local adaptive enrichment and overlapping
+narrow/medium/wide SimHash and MinHash LSH families. A useful helper can earn deeper
+descriptions independently of its parent package's stated purpose.
+
+[Open the architecture and monorepo decision](docs/architecture/ADAPTIVE_PORTFOLIO_MONOREPO.md)
+or browse the [interactive and static visual atlas](docs/visuals/README.md). The
+[validation report](docs/reports/ADAPTIVE_PORTFOLIO_VISUAL_VALIDATION_2026-07-16.md)
+includes the real-usaddress LSH smoke test and its intentionally retained collision
+finding.
+
+![Typed long-table representation spine](docs/visuals/assets/typed-long-table-model.svg)
+
+![Adaptive enrichment depth](docs/visuals/assets/adaptive-enrichment-depth.svg)
+
 ## Project status
 
 Pre-alpha. The current slice proves the identity/evidence/ingestion/publication/query

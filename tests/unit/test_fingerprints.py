@@ -6,10 +6,13 @@ import unittest
 from taedri_codegraph.fingerprints import (
     ast_sha256,
     hamming_distance64,
+    lsh_key_profile,
+    minhash16_lsh_keys,
     minhash_signature,
     minhash_similarity,
     normalized_python_tokens,
     simhash64,
+    simhash64_lsh_keys,
     token_shingles,
 )
 
@@ -41,6 +44,36 @@ class FingerprintTests(unittest.TestCase):
     def test_empty_minhash_does_not_claim_similarity_without_comparison(self) -> None:
         signature = minhash_signature((), permutations=4)
         self.assertEqual(signature, (0, 0, 0, 0))
+
+    def test_multiresolution_lsh_keys_are_self_describing(self) -> None:
+        simhash_keys = simhash64_lsh_keys("0123456789abcdef")
+        minhash_keys = minhash16_lsh_keys(range(16))
+        self.assertEqual(len(simhash_keys), 28)
+        self.assertEqual(len(minhash_keys), 28)
+        self.assertEqual(
+            {lsh_key_profile(key) for key in simhash_keys},
+            {
+                ("simhash64", "narrow"),
+                ("simhash64", "medium"),
+                ("simhash64", "wide"),
+            },
+        )
+        self.assertEqual(
+            {lsh_key_profile(key) for key in minhash_keys},
+            {
+                ("minhash16", "narrow"),
+                ("minhash16", "medium"),
+                ("minhash16", "wide"),
+            },
+        )
+
+    def test_narrow_family_protects_recall_when_medium_bands_all_change(self) -> None:
+        left = 0
+        right = sum(1 << bit for bit in (0, 16, 32, 48))
+        shared = set(simhash64_lsh_keys(left)) & set(simhash64_lsh_keys(right))
+        profiles = {lsh_key_profile(key) for key in shared}
+        self.assertIn(("simhash64", "narrow"), profiles)
+        self.assertNotIn(("simhash64", "medium"), profiles)
 
 
 if __name__ == "__main__":

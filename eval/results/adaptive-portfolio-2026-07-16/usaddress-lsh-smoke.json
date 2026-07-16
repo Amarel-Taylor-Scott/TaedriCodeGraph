@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0.0",
+  "run_date": "2026-07-16",
+  "input": {
+    "package": "usaddress",
+    "version": "0.5.16",
+    "artifact_filename": "usaddress-0.5.16-py3-none-any.whl",
+    "artifact_digest": "sha256:ce2bd73e3a41176fa29f093e9ad153327a87862430f1b0b121f0cb230c182a6a",
+    "artifact_size_bytes": 70562
+  },
+  "analysis": {
+    "snapshot_id": "uceg:v1:package_snapshot:vnkjjcq36fbzeglgi3d7i2i2xekgx2gpi4qhd44yyfrrvlw4bgca",
+    "analysis_manifest_id": "uceg:v1:analysis_manifest:wbej6zt2oxwirdi4xg2vygo2ajnt4posvx2pxtfhd2jzkzn2y6ja",
+    "epoch_id": "uceg:v1:graph_epoch:5tm5gss3c6sktda267uzqmdvhv67hgjfywrnpgba2qnghakqneja",
+    "files": 1,
+    "entities": 101,
+    "occurrences": 296,
+    "relations": 614,
+    "representation_assertions": 1883,
+    "representation_contents": 744,
+    "generation_runs": 2,
+    "lineage_assertions": 671,
+    "fact_bytes": 7984829,
+    "index_bytes": 10129408,
+    "prior_single_layout_fact_bytes": 6790854,
+    "prior_single_layout_index_bytes": 8081408,
+    "fact_growth_percent": 17.58,
+    "index_growth_percent": 25.34
+  },
+  "query": {
+    "operation": "entity similar",
+    "identifier": "usaddress.tag",
+    "source_entity_id": "uceg:v1:entity:rn2q73draqawtucm2otihuvv7jw62mfoob2vlet6nvmovlf7oywq",
+    "searched_band_count": 56,
+    "searched_profiles": [
+      {"algorithm": "minhash16", "profile": "narrow"},
+      {"algorithm": "minhash16", "profile": "medium"},
+      {"algorithm": "minhash16", "profile": "wide"},
+      {"algorithm": "simhash64", "profile": "narrow"},
+      {"algorithm": "simhash64", "profile": "medium"},
+      {"algorithm": "simhash64", "profile": "wide"}
+    ],
+    "candidate_only": true,
+    "warning": "fingerprint collision nominates; it does not prove equivalence",
+    "top_candidates": [
+      {
+        "qualified_name": "usaddress.DIRECTIONS",
+        "entity_id": "uceg:v1:entity:a3yg7j2nli3omjnoiicxz5nm2nmrrk2szui36p6weccisvfedonq",
+        "entity_kind": "uceg.entity.python.variable",
+        "matching_bands": 28,
+        "matching_profiles": [
+          {"algorithm": "simhash64", "profile": "narrow"},
+          {"algorithm": "simhash64", "profile": "medium"},
+          {"algorithm": "simhash64", "profile": "wide"}
+        ]
+      },
+      {
+        "qualified_name": "usaddress.Feature",
+        "entity_id": "uceg:v1:entity:xdxky6eglyweybj7oqugwefxhj2vduz4dihm5c4ajcu2wx2xeyhq",
+        "entity_kind": "uceg.entity.python.variable",
+        "matching_bands": 28,
+        "matching_profiles": [
+          {"algorithm": "simhash64", "profile": "narrow"},
+          {"algorithm": "simhash64", "profile": "medium"},
+          {"algorithm": "simhash64", "profile": "wide"}
+        ]
+      },
+      {
+        "qualified_name": "usaddress.GROUP_LABEL",
+        "entity_id": "uceg:v1:entity:ufpehf4jd5h5rxxe3jxhh3beajkis7czxhzprz5jvbl43cgm2iza",
+        "entity_kind": "uceg.entity.python.variable",
+        "matching_bands": 28,
+        "matching_profiles": [
+          {"algorithm": "simhash64", "profile": "narrow"},
+          {"algorithm": "simhash64", "profile": "medium"},
+          {"algorithm": "simhash64", "profile": "wide"}
+        ]
+      }
+    ]
+  },
+  "interpretation": {
+    "result": "pass_with_expected_collision_pressure",
+    "finding": "All three SimHash widths collide for several variable declarations because the normalized token projection is identical; a wider band cannot recover information erased by the input view.",
+    "architecture_consequence": "Large collision classes should raise candidate_confusion_ppm and trigger another independent projection, contextual feature family, exact distance, or typed verifier rather than blindly adding more tables of the same fingerprint.",
+    "physical_cost_finding": "Materializing all six LSH profiles as independent variants increased usaddress fact bytes by 17.58% and the SQLite index by 25.34% versus the prior single-layout POC, so profile generation and promotion require measured policy rather than unconditional production defaults."
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0.0",
+  "generated_from": {
+    "package_results": "eval/results/hybrid-architecture-2026-07-15/package-results.json",
+    "component_manifest": "architecture/components.json",
+    "policy_implementation": "src/taedri_codegraph/portfolio.py"
+  },
+  "charts": [
+    "multiresolution-lsh-collision",
+    "adaptive-enrichment-depth",
+    "real-package-storage-scale",
+    "typed-long-table-model",
+    "monorepo-component-topology"
+  ],
+  "package_rows": [
+    {
+      "package": "usaddress",
+      "version": "0.5.16",
+      "mode": "full-wheel-ast-hybrid",
+      "entities": 101,
+      "representation_assertions": 1593,
+      "storage_mib": 14.1833,
+      "recall_at_10": 1.0,
+      "mrr_at_10": 1.0
+    },
+    {
+      "package": "requests",
+      "version": "2.34.2",
+      "mode": "full-wheel-ast-hybrid",
+      "entities": 2878,
+      "representation_assertions": 47253,
+      "storage_mib": 392.7635,
+      "recall_at_10": 1.0,
+      "mrr_at_10": 0.1583
+    },
+    {
+      "package": "pypdf",
+      "version": "6.14.2",
+      "mode": "full-wheel-ast-hybrid",
+      "entities": 10059,
+      "representation_assertions": 167392,
+      "storage_mib": 1598.0614,
+      "recall_at_10": 0.0,
+      "mrr_at_10": 0.0
+    },
+    {
+      "package": "pandas",
+      "version": "2.2.3",
+      "mode": "polyglot-inventory-only",
+      "entities": 1412,
+      "representation_assertions": 16944,
+      "storage_mib": 79.3174,
+      "recall_at_10": null,
+      "mrr_at_10": null
+    }
+  ],
+  "component_count": 18,
+  "lsh_profiles": [
+    {
+      "profile": "narrow",
+      "minhash_bands": 8,
+      "rows_per_band": 2,
+      "offsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "profile": "medium",
+      "minhash_bands": 4,
+      "rows_per_band": 4,
+      "offsets": [
+        0,
+        2
+      ]
+    },
+    {
+      "profile": "wide",
+      "minhash_bands": 2,
+      "rows_per_band": 8,
+      "offsets": [
+        0,
+        4
+      ]
+    }
+  ]
+}

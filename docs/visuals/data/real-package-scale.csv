@@ -1,0 +1,5 @@
+package,version,mode,entities,representation_assertions,storage_mib,recall_at_10,mrr_at_10
+usaddress,0.5.16,full-wheel-ast-hybrid,101,1593,14.1833,1.0,1.0
+requests,2.34.2,full-wheel-ast-hybrid,2878,47253,392.7635,1.0,0.1583
+pypdf,6.14.2,full-wheel-ast-hybrid,10059,167392,1598.0614,0.0,0.0
+pandas,2.2.3,polyglot-inventory-only,1412,16944,79.3174,,

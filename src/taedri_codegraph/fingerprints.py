@@ -11,8 +11,46 @@ import io
 import keyword
 import tokenize
 from collections.abc import Iterable
+from dataclasses import dataclass
 
 from .canonical import sha256_digest
+
+
+@dataclass(frozen=True, slots=True)
+class LSHBandFamily:
+    """One self-describing LSH table family.
+
+    Presentation labels such as ``narrow`` and ``wide`` never define the
+    algorithm.  The exact width, band count, offsets, feature space, and
+    version are encoded in every key so incompatible buckets cannot be joined.
+    Overlapping tables reduce sensitivity to one arbitrary band boundary.
+    """
+
+    profile: str
+    width: int
+    bands: int
+    offsets: tuple[int, ...]
+
+    def __post_init__(self) -> None:
+        if self.profile not in {"narrow", "medium", "wide"}:
+            raise ValueError("LSH profile must be narrow, medium, or wide")
+        if self.width <= 0 or self.bands <= 0:
+            raise ValueError("LSH width and band count must be positive")
+        if not self.offsets or any(offset < 0 for offset in self.offsets):
+            raise ValueError("LSH table offsets must be non-negative")
+
+
+SIMHASH64_LSH_FAMILIES = (
+    LSHBandFamily("narrow", width=8, bands=8, offsets=(0, 4)),
+    LSHBandFamily("medium", width=16, bands=4, offsets=(0, 8)),
+    LSHBandFamily("wide", width=32, bands=2, offsets=(0, 16)),
+)
+
+MINHASH16_LSH_FAMILIES = (
+    LSHBandFamily("narrow", width=2, bands=8, offsets=(0, 1)),
+    LSHBandFamily("medium", width=4, bands=4, offsets=(0, 2)),
+    LSHBandFamily("wide", width=8, bands=2, offsets=(0, 4)),
+)
 
 
 def ast_sha256(node: ast.AST) -> str:
@@ -119,3 +157,101 @@ def minhash_similarity(left: Iterable[int], right: Iterable[int]) -> float:
     return sum(a == b for a, b in zip(left_tuple, right_tuple, strict=True)) / len(
         left_tuple
     )
+
+
+def _circular_slice(
+    sequence: tuple[object, ...], start: int, width: int
+) -> tuple[object, ...]:
+    if not sequence:
+        raise ValueError("cannot band an empty sequence")
+    return tuple(sequence[(start + offset) % len(sequence)] for offset in range(width))
+
+
+def simhash64_lsh_keys(
+    value: int | str,
+    families: Iterable[LSHBandFamily] = SIMHASH64_LSH_FAMILIES,
+) -> tuple[str, ...]:
+    """Return overlapping narrow/medium/wide SimHash candidate keys.
+
+    These keys nominate candidates only.  Exact Hamming distance and downstream
+    verification remain authoritative.
+    """
+
+    if isinstance(value, str):
+        if len(value) != 16:
+            raise ValueError("SimHash hexadecimal value must contain 16 characters")
+        try:
+            numeric = int(value, 16)
+        except ValueError as exc:
+            raise ValueError("SimHash value must be hexadecimal") from exc
+    else:
+        numeric = value
+    if not 0 <= numeric < (1 << 64):
+        raise ValueError("SimHash value must fit in 64 bits")
+    bits = tuple(f"{numeric:064b}")
+    keys: list[str] = []
+    for family in families:
+        if family.width * family.bands != 64:
+            raise ValueError("SimHash LSH family must cover exactly 64 bits per table")
+        for table, offset in enumerate(family.offsets):
+            for band in range(family.bands):
+                start = (offset + band * family.width) % 64
+                band_bits = "".join(_circular_slice(bits, start, family.width))
+                hexadecimal_width = (family.width + 3) // 4
+                encoded = f"{int(band_bits, 2):0{hexadecimal_width}x}"
+                keys.append(
+                    "lsh:v1:simhash64:"
+                    f"{family.profile}:w{family.width}:t{table}:o{offset}:b{band}:{encoded}"
+                )
+    return tuple(keys)
+
+
+def minhash16_lsh_keys(
+    signature: Iterable[int | str],
+    families: Iterable[LSHBandFamily] = MINHASH16_LSH_FAMILIES,
+) -> tuple[str, ...]:
+    """Return overlapping narrow/medium/wide MinHash candidate keys."""
+
+    raw_values = tuple(signature)
+    values: tuple[int, ...]
+    try:
+        values = tuple(
+            int(value, 16) if isinstance(value, str) and len(value) == 16 else value
+            for value in raw_values
+        )
+    except ValueError as exc:
+        raise ValueError(
+            "MinHash16 signature values must be unsigned integers or 16-character hex strings"
+        ) from exc
+    if len(values) != 16 or any(
+        not isinstance(value, int)
+        or isinstance(value, bool)
+        or not 0 <= value < (1 << 64)
+        for value in values
+    ):
+        raise ValueError("MinHash16 signature must contain sixteen unsigned 64-bit integers")
+    keys: list[str] = []
+    for family in families:
+        if family.width * family.bands != 16:
+            raise ValueError("MinHash LSH family must cover exactly 16 rows per table")
+        for table, offset in enumerate(family.offsets):
+            for band in range(family.bands):
+                start = (offset + band * family.width) % 16
+                band_values = _circular_slice(values, start, family.width)
+                encoded = hashlib.sha256(
+                    b"".join(value.to_bytes(8, "big") for value in band_values)
+                ).hexdigest()[:16]
+                keys.append(
+                    "lsh:v1:minhash16:"
+                    f"{family.profile}:r{family.width}:t{table}:o{offset}:b{band}:{encoded}"
+                )
+    return tuple(keys)
+
+
+def lsh_key_profile(key: str) -> tuple[str, str] | None:
+    """Return ``(algorithm, profile)`` for a versioned LSH key."""
+
+    parts = key.split(":")
+    if len(parts) == 9 and parts[0:2] == ["lsh", "v1"]:
+        return parts[2], parts[3]
+    return None

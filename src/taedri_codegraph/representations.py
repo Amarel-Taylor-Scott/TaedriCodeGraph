@@ -28,6 +28,7 @@ from .contracts import (
     TypedValue,
     ValueKind,
 )
+from .fingerprints import lsh_key_profile, minhash16_lsh_keys, simhash64_lsh_keys
 
 _KEY = re.compile(r"^[a-z][a-z0-9_-]*(?:\.[a-z0-9_-]+)+$")
 _VERSION = re.compile(r"^[0-9]+(?:\.[0-9]+){0,2}(?:[-+][A-Za-z0-9.-]+)?$")
@@ -187,6 +188,20 @@ def core_representation_registry() -> RepresentationRegistry:
             descriptor("uceg.family.license", "uceg.license.classifier", (ValueKind.TEXT,), ("facet", "lexical"), ("snapshot",)),
             descriptor("uceg.family.license", "uceg.license.file", (ValueKind.JSON,), ("lexical",), ("snapshot", "file")),
             descriptor("uceg.family.router", "uceg.router.decision", (ValueKind.JSON,), ("lexical",), ("snapshot", "analysis")),
+            descriptor(
+                "uceg.family.portfolio",
+                "uceg.portfolio.materialization_state",
+                (ValueKind.JSON,),
+                (),
+                ("entity", "relation", "snapshot", "file", "group", "route"),
+            ),
+            descriptor(
+                "uceg.family.portfolio",
+                "uceg.portfolio.materialization_plan",
+                (ValueKind.JSON,),
+                (),
+                ("entity", "relation", "snapshot", "file", "group", "route"),
+            ),
         )
     )
     return registry
@@ -314,6 +329,46 @@ def _typed_from_legacy(value: Any, key: str) -> TypedValue:
     return TypedValue(ValueKind.JSON, value)
 
 
+def _lsh_variant_payloads(keys: Iterable[str]) -> tuple[dict[str, Any], ...]:
+    grouped: dict[tuple[str, str], list[str]] = defaultdict(list)
+    for key in keys:
+        parsed = lsh_key_profile(key)
+        if parsed is None:
+            raise ValueError(f"LSH key is not self-describing: {key}")
+        grouped[parsed].append(key)
+    payloads: list[dict[str, Any]] = []
+    for (algorithm, profile), values in sorted(grouped.items()):
+        parts = values[0].split(":")
+        width_field = parts[4]
+        tables = {value.split(":")[5] for value in values}
+        offsets = {int(value.split(":")[6].removeprefix("o")) for value in values}
+        bands = {value.split(":")[7] for value in values}
+        parameters: dict[str, Any] = {
+            "table_count": len(tables),
+            "bands_per_table": len(bands),
+            "offsets": sorted(offsets),
+            "offset_policy": "half-width-overlap-circular",
+        }
+        if width_field.startswith("w"):
+            parameters["width_bits"] = int(width_field[1:])
+        elif width_field.startswith("r"):
+            parameters["rows_per_band"] = int(width_field[1:])
+        else:  # pragma: no cover - guarded by the key generator
+            raise ValueError(f"unknown LSH width field: {width_field}")
+        payloads.append(
+            {
+                "key_schema_version": "lsh:v1",
+                "algorithm": algorithm,
+                "profile": profile,
+                "parameters": parameters,
+                "values": sorted(values),
+                "collision_policy": "candidate_only",
+                "verification_requirement": "exact_distance_then_typed_verifier",
+            }
+        )
+    return tuple(payloads)
+
+
 def core_entity_seeds(bundle: GraphBundle) -> list[RepresentationSeed]:
     seeds: list[RepresentationSeed] = []
     lexical_by_entity: dict[str, list[str]] = defaultdict(list)
@@ -324,25 +379,24 @@ def core_entity_seeds(bundle: GraphBundle) -> list[RepresentationSeed]:
             lexical_by_entity[projection.subject.id].append(_typed_from_legacy(
                 projection.payload, projection.projection_key
             ).value)
-    lsh_by_entity: dict[str, list[str]] = defaultdict(list)
+    lsh_by_entity: dict[str, list[tuple[dict[str, Any], SubjectRef]]] = defaultdict(list)
     for projection in bundle.projections.values():
         if projection.subject.subject_kind != "entity" or not isinstance(projection.payload, dict):
             continue
         if projection.projection_key.endswith("token_simhash64"):
             value = projection.payload.get("value")
             if isinstance(value, str) and len(value) == 16:
-                for band in range(4):
-                    lsh_by_entity[projection.subject.id].append(
-                        f"simhash16:b{band}:{value[band * 4:(band + 1) * 4]}"
-                    )
+                lsh_by_entity[projection.subject.id].extend(
+                    (payload, SubjectRef("projection", projection.identity.id))
+                    for payload in _lsh_variant_payloads(simhash64_lsh_keys(value))
+                )
         elif projection.projection_key.endswith("token_minhash16"):
             values = projection.payload.get("values")
             if isinstance(values, list) and len(values) == 16:
-                for band in range(4):
-                    band_values = values[band * 4:(band + 1) * 4]
-                    lsh_by_entity[projection.subject.id].append(
-                        f"minhash4:b{band}:{canonical_digest(band_values).removeprefix('sha256:')[:16]}"
-                    )
+                lsh_by_entity[projection.subject.id].extend(
+                    (payload, SubjectRef("projection", projection.identity.id))
+                    for payload in _lsh_variant_payloads(minhash16_lsh_keys(values))
+                )
     evidence_by_entity: dict[str, tuple[str, ...]] = defaultdict(tuple)
     for entity in bundle.entities.values():
         if entity.defining_occurrence_id:
@@ -390,14 +444,15 @@ def core_entity_seeds(bundle: GraphBundle) -> list[RepresentationSeed]:
             RepresentationSeed(subject, family, key, value, evidence_ids=evidence)
             for family, key, value in direct
         )
-        if lsh_by_entity.get(entity.identity.id):
+        for payload, input_ref in lsh_by_entity.get(entity.identity.id, ()):
             seeds.append(
                 RepresentationSeed(
                     subject,
                     "uceg.family.blocking",
                     "uceg.block.fingerprint_lsh",
-                    TypedValue(ValueKind.JSON, sorted(lsh_by_entity[entity.identity.id])),
+                    TypedValue(ValueKind.JSON, payload),
                     evidence_ids=evidence,
+                    input_ref=input_ref,
                 )
             )
 
@@ -444,7 +499,7 @@ def enrich_bundle_representations(bundle: GraphBundle) -> GenerationRun:
         canonical_digest(
             {
                 "identifier_tokens": "unicode-word+camel-v1",
-                "blocking": "identifier-v1",
+                "blocking": "identifier-v1+multiresolution-overlap-lsh-v1",
                 "vector": "signed-feature-hash64-v1",
             }
         ),
