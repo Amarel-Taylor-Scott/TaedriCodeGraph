@@ -1,0 +1,23 @@
+{
+  "summary": "Remove duplicate finite JSON values while retaining their first order.",
+  "keywords": [
+    "deduplicate",
+    "distinct",
+    "data cleaning",
+    "stable order"
+  ],
+  "use_cases": [
+    "remove repeated categorical values",
+    "deduplicate JSON records with key-order-independent equality",
+    "retain first-seen order in ingestion pipelines"
+  ],
+  "limitations": [
+    "Equality is defined by finite canonical JSON representation.",
+    "The full input and a marker per distinct value are retained in memory.",
+    "Does not select duplicates by a subset of record fields."
+  ],
+  "references": [
+    "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop_duplicates.html",
+    "https://docs.python.org/3.12/library/json.html#json.dumps"
+  ]
+}

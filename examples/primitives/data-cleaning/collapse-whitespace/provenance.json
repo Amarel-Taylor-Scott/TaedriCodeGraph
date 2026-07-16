@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0",
+  "implementation_producer_id": "taedri.data.author.collapse-whitespace.v1",
+  "source_uri": "https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/tree/main/examples/primitives/data-cleaning/collapse-whitespace",
+  "source_revision": "sha256:e823f70cad0863675d22ddf7ec7530cf92ee0258ca8be68141c8b3a29b19989e",
+  "source_digest": "sha256:e823f70cad0863675d22ddf7ec7530cf92ee0258ca8be68141c8b3a29b19989e"
+}

@@ -1,0 +1,23 @@
+{
+  "summary": "Collapse Unicode whitespace runs to one space for stable text fields.",
+  "keywords": [
+    "collapse whitespace",
+    "data cleaning",
+    "text",
+    "unicode"
+  ],
+  "use_cases": [
+    "clean free-text columns before comparison",
+    "normalize tabs, newlines, and non-breaking spaces",
+    "prepare text for deterministic keys"
+  ],
+  "limitations": [
+    "All whitespace distinctions are replaced by one ASCII space.",
+    "Does not normalize Unicode composition or case.",
+    "Accepts one string and processes it in memory."
+  ],
+  "references": [
+    "https://docs.python.org/3.12/library/stdtypes.html#str.split",
+    "https://pandas.pydata.org/docs/user_guide/text.html"
+  ]
+}

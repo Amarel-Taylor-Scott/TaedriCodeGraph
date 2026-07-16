@@ -1,0 +1,42 @@
+{
+  "cases": [
+    {
+      "kind": "positive",
+      "args": [
+        [
+          -1,
+          1
+        ]
+      ],
+      "expected": [
+        -1.0,
+        1.0
+      ]
+    },
+    {
+      "kind": "boundary",
+      "args": [
+        [
+          10,
+          10,
+          10
+        ]
+      ],
+      "expected": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "kind": "negative",
+      "args": [
+        [
+          1,
+          true
+        ]
+      ],
+      "expected_error": "TypeError"
+    }
+  ]
+}

@@ -158,10 +158,12 @@
         "tests/unit/test_primitive_capsules.py",
         "tests/unit/test_primitive_repository.py",
         "tests/unit/test_primitive_edges.py",
+        "tests/unit/test_primitive_authoring.py",
         "tests/integration/test_primitive_cli.py",
         "tests/integration/test_saas_http_worker.py",
         "eval/results/reference-primitive-acceptance-2026-07-16",
-        "eval/results/deterministic-primitive-pipeline-2026-07-16"
+        "eval/results/deterministic-primitive-pipeline-2026-07-16",
+        "eval/results/data-primitive-cohort-2026-07-16"
       ],
       "capabilities": [
         "primitive handles",
@@ -170,7 +172,8 @@
         "refs",
         "thin pack contracts",
         "proof-gated releases",
-        "evidence-backed interface graphs"
+        "evidence-backed interface graphs",
+        "strict complete-capsule authoring compiler"
       ],
       "folder": "packages/primitive-registry",
       "id": "primitive-capsules",
@@ -180,10 +183,11 @@
         "src/taedri_codegraph/primitives/release.py",
         "src/taedri_codegraph/primitives/acceptance.py",
         "src/taedri_codegraph/primitives/bundle.py",
-        "src/taedri_codegraph/primitives/edges.py"
+        "src/taedri_codegraph/primitives/edges.py",
+        "src/taedri_codegraph/primitives/authoring.py"
       ],
       "kind": "library",
-      "measured_records": "Reference run: 1 public release / 13 blobs; deterministic route: 2 releases / 2 packs",
+      "measured_records": "Data cohort: 11 public releases / 109 blobs / 11 downloadable packs",
       "next_gates": [
         "signed packs",
         "PostgreSQL metadata and object-store repository adapter",
@@ -408,7 +412,7 @@
         "src/taedri_codegraph/primitives/wiring.py"
       ],
       "kind": "library",
-      "measured_records": "Deterministic route: 12 evidence edges / 4 ports / 1 compatible exact wire; broad solver remains partial",
+      "measured_records": "Data cohort: 66 evidence edges / 22 typed ports / 18 blocked exact compatibility edges / 2 executed routes",
       "next_gates": [
         "persistent corpus-scale signatures",
         "bounded candidate blocking",
@@ -629,31 +633,37 @@
     {
       "acceptance_evidence": [
         "tests/unit/test_primitive_factory.py",
+        "tests/unit/test_primitive_authoring.py",
         "tests/unit/test_primitive_repository.py",
         "tests/unit/test_primitive_edges.py",
         "tests/unit/test_pipeline_catalog.py",
         "tests/integration/test_primitive_cli.py",
         "tests/integration/test_saas_http_worker.py",
+        "tests/architecture/test_data_primitive_cohort.py",
         "eval/results/reference-primitive-acceptance-2026-07-16",
-        "eval/results/deterministic-primitive-pipeline-2026-07-16"
+        "eval/results/deterministic-primitive-pipeline-2026-07-16",
+        "eval/results/data-primitive-cohort-2026-07-16"
       ],
       "capabilities": [
         "source-backed candidate generation",
         "candidate provenance",
         "candidate curation",
         "complete-capsule release verification",
-        "one-at-a-time primitive validation and release"
+        "one-at-a-time primitive validation and release",
+        "curated reusable data-primitive generation"
       ],
       "folder": "services/primitive-worker",
       "id": "primitive-worker",
       "implemented_by": [
         "src/taedri_codegraph/primitive_factory.py",
+        "src/taedri_codegraph/primitives/authoring.py",
         "src/taedri_codegraph/primitives/acceptance.py",
         "src/taedri_codegraph/job_runner.py",
+        "tools/generate_data_primitive_capsules.py",
         "services/primitive-worker"
       ],
       "kind": "service",
-      "measured_records": "347 candidates plus 2 independently verified and released working primitives",
+      "measured_records": "347 candidates plus 11 independently verified and released working primitives",
       "next_gates": [
         "hostile-code isolated verification",
         "non-Python generators and verifiers",
@@ -744,7 +754,7 @@
         "services/registry-api/README.md"
       ],
       "kind": "service",
-      "measured_records": "Reference run: 1 public release; 0 candidate rows serving as primitives",
+      "measured_records": "Data cohort: 11 public releases; 0 candidate rows serving as primitives",
       "next_gates": [
         "reviewed merge command",
         "signed packs",
@@ -900,6 +910,7 @@
         "eval/results/hybrid-architecture-2026-07-15",
         "eval/results/reference-primitive-acceptance-2026-07-16",
         "eval/results/deterministic-primitive-pipeline-2026-07-16",
+        "eval/results/data-primitive-cohort-2026-07-16",
         "eval/results/benchmark-worker-2026-07-16"
       ],
       "capabilities": [
@@ -917,10 +928,11 @@
         "tools/evaluate_hybrid_real_packages.py",
         "tools/run_reference_primitive_acceptance.py",
         "tools/run_deterministic_primitive_pipeline.py",
+        "tools/run_data_primitive_cohort.py",
         "tools/run_benchmark_worker_conformance.py"
       ],
       "kind": "evaluation",
-      "measured_records": "3 real PyPI packages + 2 real usaddress sources + 2 real custom releases + 1 no-model route + 16 non-claimable benchmark receipts",
+      "measured_records": "3 real PyPI packages + 2 real usaddress sources + 11 real custom releases + 2 no-model routes + 16 non-claimable benchmark receipts",
       "next_gates": [
         "real-model matched lanes",
         "sealed executable tasks",

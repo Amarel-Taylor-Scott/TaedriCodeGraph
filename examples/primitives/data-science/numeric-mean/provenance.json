@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0",
+  "implementation_producer_id": "taedri.data.author.numeric-mean.v1",
+  "source_uri": "https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/tree/main/examples/primitives/data-science/numeric-mean",
+  "source_revision": "sha256:f0e55cd19d3ce48925cf5eb74f2b42d73ff029352fb951c8434eab41da48900b",
+  "source_digest": "sha256:f0e55cd19d3ce48925cf5eb74f2b42d73ff029352fb951c8434eab41da48900b"
+}

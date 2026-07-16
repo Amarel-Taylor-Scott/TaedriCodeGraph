@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0.0",
+  "inputs": [
+    {
+      "name": "request",
+      "schema": {
+        "type": "object",
+        "required": [
+          "items",
+          "size"
+        ],
+        "properties": {
+          "items": {
+            "type": "array"
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  ],
+  "output": {
+    "schema": {
+      "type": "array",
+      "items": {
+        "type": "array"
+      }
+    }
+  },
+  "errors": [
+    {
+      "type": "TypeError",
+      "when": "request, items, or size has the wrong type"
+    },
+    {
+      "type": "ValueError",
+      "when": "size is non-positive or fields are invalid"
+    }
+  ],
+  "effects": []
+}

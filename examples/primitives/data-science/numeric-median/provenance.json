@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0",
+  "implementation_producer_id": "taedri.data.author.numeric-median.v1",
+  "source_uri": "https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/tree/main/examples/primitives/data-science/numeric-median",
+  "source_revision": "sha256:a3e5aa6e34939e9bfe4c847b6fd6d15192033d9d5b2b838c186818c5e517af1a",
+  "source_digest": "sha256:a3e5aa6e34939e9bfe4c847b6fd6d15192033d9d5b2b838c186818c5e517af1a"
+}

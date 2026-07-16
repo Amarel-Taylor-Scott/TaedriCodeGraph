@@ -1,0 +1,227 @@
+{
+  "schema_version": "1.1.0",
+  "interface_id": "taedri.data.science.minmax-scale.v1",
+  "nodes": [
+    {
+      "id": "implementation.minmax_scale",
+      "kind": "implementation",
+      "path": "src/minmax_scale.py",
+      "symbol": "minmax_scale"
+    },
+    {
+      "id": "contract.minmax_scale",
+      "kind": "contract",
+      "path": "contract.json"
+    },
+    {
+      "id": "port.input.values",
+      "kind": "input_port",
+      "path": "contract.json",
+      "json_pointer": "#/inputs/0"
+    },
+    {
+      "id": "port.output.result",
+      "kind": "output_port",
+      "path": "contract.json",
+      "json_pointer": "#/output"
+    },
+    {
+      "id": "examples.minmax_scale",
+      "kind": "example_set",
+      "path": "examples.json"
+    },
+    {
+      "id": "tests.minmax_scale",
+      "kind": "test_set",
+      "path": "tests.json"
+    },
+    {
+      "id": "runtime.python312",
+      "kind": "runtime",
+      "path": "runtime.json"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.implements_contract",
+      "source": "implementation.minmax_scale",
+      "predicate": "taedri.predicate.implements_contract",
+      "target": "contract.minmax_scale",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "src/minmax_scale.py",
+          "digest": "sha256:fc21bc1dbcf21a9b651ba5fe98aa3030cffeaecd962d258ad1b3ff614ba9c6cc"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:a8cb9397869affb09c3aeceb67dd8420e95d25a03c3802179ffe7e8860a9a39d"
+        }
+      ]
+    },
+    {
+      "id": "edge.accepts_values",
+      "source": "implementation.minmax_scale",
+      "predicate": "taedri.predicate.accepts_port",
+      "target": "port.input.values",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:a8cb9397869affb09c3aeceb67dd8420e95d25a03c3802179ffe7e8860a9a39d"
+        }
+      ]
+    },
+    {
+      "id": "edge.produces_result",
+      "source": "implementation.minmax_scale",
+      "predicate": "taedri.predicate.produces_port",
+      "target": "port.output.result",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:a8cb9397869affb09c3aeceb67dd8420e95d25a03c3802179ffe7e8860a9a39d"
+        }
+      ]
+    },
+    {
+      "id": "edge.demonstrated_by_examples",
+      "source": "examples.minmax_scale",
+      "predicate": "taedri.predicate.demonstrates",
+      "target": "implementation.minmax_scale",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "examples.json",
+          "digest": "sha256:b7a0bde91c97c9194203590f731d51026e361f588b45234f0e74417b374e6b89"
+        }
+      ]
+    },
+    {
+      "id": "edge.verified_by_tests",
+      "source": "tests.minmax_scale",
+      "predicate": "taedri.predicate.verifies",
+      "target": "implementation.minmax_scale",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "tests.json",
+          "digest": "sha256:8adfbcc535cfcfa1db86cf3d396c3f91bfe9c330e92263f277cd0e934718522a"
+        }
+      ]
+    },
+    {
+      "id": "edge.runs_on_python312",
+      "source": "implementation.minmax_scale",
+      "predicate": "taedri.predicate.runs_on",
+      "target": "runtime.python312",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "runtime.json",
+          "digest": "sha256:44eb276f5ae60e8d7bb4ff780a3a885a0ba0fc79d5b3a02c19d4d462432b3144"
+        }
+      ]
+    }
+  ],
+  "ports": [
+    {
+      "id": "port.input.values",
+      "owner": "implementation.minmax_scale",
+      "direction": "input",
+      "name": "values",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      },
+      "schema_digest": "sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c",
+      "schema_ref": "contract.json#/inputs/0/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native"
+      ]
+    },
+    {
+      "id": "port.output.result",
+      "owner": "implementation.minmax_scale",
+      "direction": "output",
+      "name": "result",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      },
+      "schema_digest": "sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c",
+      "schema_ref": "contract.json#/output/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native"
+      ]
+    }
+  ],
+  "compatibility": {
+    "language": "python",
+    "runtime_version": "3.12",
+    "execution_model": "in_process_call",
+    "deterministic": true,
+    "purity": "pure",
+    "network": "denied",
+    "effects": [],
+    "dimensions": {
+      "taedri.compatibility.call_style": "sync",
+      "taedri.compatibility.language": "python",
+      "taedri.compatibility.runtime_major_minor": "3.12",
+      "taedri.compatibility.value_transport": "python_native"
+    },
+    "required_dimensions": [
+      "taedri.compatibility.call_style",
+      "taedri.compatibility.language",
+      "taedri.compatibility.runtime_major_minor",
+      "taedri.compatibility.value_transport"
+    ]
+  },
+  "groups": [
+    {
+      "id": "taedri.group.data_science_feature_scaling",
+      "kind": "capability",
+      "labels": [
+        "scale numeric vector zero one",
+        "feature range normalization",
+        "min max preprocessing"
+      ],
+      "member_nodes": [
+        "implementation.minmax_scale"
+      ],
+      "evidence": [
+        {
+          "path": "descriptor.json",
+          "digest": "sha256:fa4d6caf414d08093304c44e803aa6a2c72b21dae5858cdf6fe2e0681e719a20"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:a8cb9397869affb09c3aeceb67dd8420e95d25a03c3802179ffe7e8860a9a39d"
+        }
+      ]
+    }
+  ]
+}

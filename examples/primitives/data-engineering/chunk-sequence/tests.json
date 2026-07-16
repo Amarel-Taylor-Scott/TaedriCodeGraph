@@ -1,0 +1,47 @@
+{
+  "cases": [
+    {
+      "kind": "boundary",
+      "args": [
+        {
+          "items": [
+            1,
+            2
+          ],
+          "size": 5
+        }
+      ],
+      "expected": [
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "kind": "negative",
+      "args": [
+        {
+          "items": [
+            1
+          ],
+          "size": true
+        }
+      ],
+      "expected_error": "TypeError"
+    },
+    {
+      "kind": "negative",
+      "args": [
+        {
+          "items": [
+            1
+          ],
+          "size": 1,
+          "extra": false
+        }
+      ],
+      "expected_error": "ValueError"
+    }
+  ]
+}

@@ -70,8 +70,8 @@
       "id": "primitive-capsules",
       "status": "working",
       "scope": "durable tenant-scoped SQLite registry with immutable packs and proof-gated released-primitive serving",
-      "implemented_by": ["src/taedri_codegraph/primitive_capsules.py", "src/taedri_codegraph/primitive_repository.py", "src/taedri_codegraph/primitives/release.py", "src/taedri_codegraph/primitives/acceptance.py", "src/taedri_codegraph/primitives/bundle.py", "src/taedri_codegraph/primitives/edges.py"],
-      "acceptance_evidence": ["tests/unit/test_primitive_capsules.py", "tests/unit/test_primitive_repository.py", "tests/unit/test_primitive_edges.py", "tests/integration/test_primitive_cli.py", "tests/integration/test_saas_http_worker.py", "eval/results/reference-primitive-acceptance-2026-07-16", "eval/results/deterministic-primitive-pipeline-2026-07-16"],
+      "implemented_by": ["src/taedri_codegraph/primitive_capsules.py", "src/taedri_codegraph/primitive_repository.py", "src/taedri_codegraph/primitives/release.py", "src/taedri_codegraph/primitives/acceptance.py", "src/taedri_codegraph/primitives/bundle.py", "src/taedri_codegraph/primitives/edges.py", "src/taedri_codegraph/primitives/authoring.py"],
+      "acceptance_evidence": ["tests/unit/test_primitive_capsules.py", "tests/unit/test_primitive_repository.py", "tests/unit/test_primitive_edges.py", "tests/unit/test_primitive_authoring.py", "tests/integration/test_primitive_cli.py", "tests/integration/test_saas_http_worker.py", "eval/results/reference-primitive-acceptance-2026-07-16", "eval/results/deterministic-primitive-pipeline-2026-07-16", "eval/results/data-primitive-cohort-2026-07-16"],
       "open_gates": ["signed packs", "PostgreSQL metadata and object-store repository adapter", "isolated hostile-code verifier runtimes", "non-Python executable verifiers"]
     },
     {
@@ -198,8 +198,8 @@
       "id": "primitive-worker",
       "status": "working",
       "scope": "AST-only Python candidate generation plus complete-capsule trusted-source Python release verification",
-      "implemented_by": ["src/taedri_codegraph/primitive_factory.py", "src/taedri_codegraph/primitives/acceptance.py", "src/taedri_codegraph/job_runner.py", "services/primitive-worker"],
-      "acceptance_evidence": ["tests/unit/test_primitive_factory.py", "tests/unit/test_primitive_repository.py", "tests/unit/test_primitive_edges.py", "tests/unit/test_pipeline_catalog.py", "tests/integration/test_primitive_cli.py", "tests/integration/test_saas_http_worker.py", "eval/results/reference-primitive-acceptance-2026-07-16", "eval/results/deterministic-primitive-pipeline-2026-07-16"],
+      "implemented_by": ["src/taedri_codegraph/primitive_factory.py", "src/taedri_codegraph/primitives/authoring.py", "src/taedri_codegraph/primitives/acceptance.py", "src/taedri_codegraph/job_runner.py", "tools/generate_data_primitive_capsules.py", "services/primitive-worker"],
+      "acceptance_evidence": ["tests/unit/test_primitive_factory.py", "tests/unit/test_primitive_authoring.py", "tests/unit/test_primitive_repository.py", "tests/unit/test_primitive_edges.py", "tests/unit/test_pipeline_catalog.py", "tests/integration/test_primitive_cli.py", "tests/integration/test_saas_http_worker.py", "tests/architecture/test_data_primitive_cohort.py", "eval/results/reference-primitive-acceptance-2026-07-16", "eval/results/deterministic-primitive-pipeline-2026-07-16", "eval/results/data-primitive-cohort-2026-07-16"],
       "open_gates": ["hostile-code isolated verification", "non-Python generators and verifiers", "measured dynamic-depth provider curation"]
     },
     {
@@ -270,8 +270,8 @@
       "id": "evaluation",
       "status": "partial",
       "scope": "real-package static evaluation, real custom-primitive execution acceptance, deterministic no-model composition, and benchmark conformance",
-      "implemented_by": ["eval", "tools/benchmark_real_packages.py", "tools/evaluate_hybrid_real_packages.py", "tools/run_reference_primitive_acceptance.py", "tools/run_deterministic_primitive_pipeline.py", "tools/run_benchmark_worker_conformance.py"],
-      "acceptance_evidence": ["eval/results/real-pypi-2026-07-15", "eval/results/hybrid-architecture-2026-07-15", "eval/results/reference-primitive-acceptance-2026-07-16", "eval/results/deterministic-primitive-pipeline-2026-07-16", "eval/results/benchmark-worker-2026-07-16"],
+      "implemented_by": ["eval", "tools/benchmark_real_packages.py", "tools/evaluate_hybrid_real_packages.py", "tools/run_reference_primitive_acceptance.py", "tools/run_deterministic_primitive_pipeline.py", "tools/run_data_primitive_cohort.py", "tools/run_benchmark_worker_conformance.py"],
+      "acceptance_evidence": ["eval/results/real-pypi-2026-07-15", "eval/results/hybrid-architecture-2026-07-15", "eval/results/reference-primitive-acceptance-2026-07-16", "eval/results/deterministic-primitive-pipeline-2026-07-16", "eval/results/data-primitive-cohort-2026-07-16", "eval/results/benchmark-worker-2026-07-16"],
       "open_gates": ["real-model matched lanes", "sealed executable tasks", "promotion thresholds and longitudinal regression tracking"]
     }
   ],

@@ -103,7 +103,8 @@
         "refs",
         "thin pack contracts",
         "proof-gated releases",
-        "evidence-backed interface graphs"
+        "evidence-backed interface graphs",
+        "strict complete-capsule authoring compiler"
       ],
       "depends_on": [
         "shared-kernel",
@@ -373,7 +374,8 @@
         "candidate provenance",
         "candidate curation",
         "complete-capsule release verification",
-        "one-at-a-time primitive validation and release"
+        "one-at-a-time primitive validation and release",
+        "curated reusable data-primitive generation"
       ],
       "depends_on": [
         "pipeline-catalog",

@@ -1,0 +1,22 @@
+{
+  "summary": "Split an in-memory sequence into deterministic contiguous batches.",
+  "keywords": [
+    "batch",
+    "chunk",
+    "data engineering",
+    "sequence"
+  ],
+  "use_cases": [
+    "batch records for bounded API or database operations",
+    "partition a sequence for worker jobs",
+    "create deterministic fixed-size ingestion units"
+  ],
+  "limitations": [
+    "Consumes and returns in-memory lists rather than streaming iterators.",
+    "Does not balance work by item cost.",
+    "The final chunk can be smaller than the requested size."
+  ],
+  "references": [
+    "https://docs.python.org/3.12/library/itertools.html#itertools.batched"
+  ]
+}

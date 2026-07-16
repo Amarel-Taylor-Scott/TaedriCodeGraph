@@ -1,0 +1,41 @@
+{
+  "cases": [
+    {
+      "kind": "positive",
+      "args": [
+        {
+          "record": {
+            "user": {
+              "id": 7
+            }
+          },
+          "separator": "_"
+        }
+      ],
+      "expected": {
+        "user_id": 7
+      }
+    },
+    {
+      "kind": "negative",
+      "args": [
+        {
+          "record": {
+            "a": {
+              "b": 1
+            },
+            "a.b": 2
+          }
+        }
+      ],
+      "expected_error": "ValueError"
+    },
+    {
+      "kind": "negative",
+      "args": [
+        null
+      ],
+      "expected_error": "TypeError"
+    }
+  ]
+}

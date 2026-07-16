@@ -1,0 +1,22 @@
+{
+  "summary": "Fit and transform one finite numeric vector to the interval from zero to one.",
+  "keywords": [
+    "data science",
+    "feature scaling",
+    "min max",
+    "preprocessing"
+  ],
+  "use_cases": [
+    "scale a numeric vector before a bounded downstream calculation",
+    "normalize heterogeneous numeric ranges",
+    "create deterministic zero-to-one features in a sealed training partition"
+  ],
+  "limitations": [
+    "Fits and transforms the same vector; do not include held-out data.",
+    "Does not reduce the influence of outliers.",
+    "Constant vectors map to all zeros and fitted parameters are not retained."
+  ],
+  "references": [
+    "https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html"
+  ]
+}

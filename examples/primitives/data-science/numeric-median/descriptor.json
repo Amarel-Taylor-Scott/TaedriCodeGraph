@@ -1,0 +1,22 @@
+{
+  "summary": "Compute the conventional median of a non-empty finite numeric vector.",
+  "keywords": [
+    "data science",
+    "descriptive statistics",
+    "median",
+    "robust center"
+  ],
+  "use_cases": [
+    "summarize a numeric feature with a robust center",
+    "compare mean and median for skew or outlier signals",
+    "verify numeric cleaning output"
+  ],
+  "limitations": [
+    "Returns binary floating-point output.",
+    "Rejects booleans, missing values, NaN, and infinity.",
+    "Sorts and copies the complete vector in memory."
+  ],
+  "references": [
+    "https://docs.python.org/3.12/library/statistics.html"
+  ]
+}

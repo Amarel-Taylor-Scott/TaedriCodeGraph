@@ -1,0 +1,221 @@
+{
+  "schema_version": "1.1.0",
+  "interface_id": "taedri.data.cleaning.stable-deduplicate.v1",
+  "nodes": [
+    {
+      "id": "implementation.stable_deduplicate",
+      "kind": "implementation",
+      "path": "src/stable_deduplicate.py",
+      "symbol": "stable_deduplicate"
+    },
+    {
+      "id": "contract.stable_deduplicate",
+      "kind": "contract",
+      "path": "contract.json"
+    },
+    {
+      "id": "port.input.values",
+      "kind": "input_port",
+      "path": "contract.json",
+      "json_pointer": "#/inputs/0"
+    },
+    {
+      "id": "port.output.result",
+      "kind": "output_port",
+      "path": "contract.json",
+      "json_pointer": "#/output"
+    },
+    {
+      "id": "examples.stable_deduplicate",
+      "kind": "example_set",
+      "path": "examples.json"
+    },
+    {
+      "id": "tests.stable_deduplicate",
+      "kind": "test_set",
+      "path": "tests.json"
+    },
+    {
+      "id": "runtime.python312",
+      "kind": "runtime",
+      "path": "runtime.json"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.implements_contract",
+      "source": "implementation.stable_deduplicate",
+      "predicate": "taedri.predicate.implements_contract",
+      "target": "contract.stable_deduplicate",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "src/stable_deduplicate.py",
+          "digest": "sha256:dec0f1ecf4e261c7cf0f1565262c520aa928791edaeeef6e8eaf8646bd43f8d4"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:23e4aee2872e6025c1865d24761da1101ba0cda99ac70f2e12beca8d124ccf03"
+        }
+      ]
+    },
+    {
+      "id": "edge.accepts_values",
+      "source": "implementation.stable_deduplicate",
+      "predicate": "taedri.predicate.accepts_port",
+      "target": "port.input.values",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:23e4aee2872e6025c1865d24761da1101ba0cda99ac70f2e12beca8d124ccf03"
+        }
+      ]
+    },
+    {
+      "id": "edge.produces_result",
+      "source": "implementation.stable_deduplicate",
+      "predicate": "taedri.predicate.produces_port",
+      "target": "port.output.result",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:23e4aee2872e6025c1865d24761da1101ba0cda99ac70f2e12beca8d124ccf03"
+        }
+      ]
+    },
+    {
+      "id": "edge.demonstrated_by_examples",
+      "source": "examples.stable_deduplicate",
+      "predicate": "taedri.predicate.demonstrates",
+      "target": "implementation.stable_deduplicate",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "examples.json",
+          "digest": "sha256:079c7ae78118c87cac8de5ded134d86894739bdf00d20bd396a67e8416f599d8"
+        }
+      ]
+    },
+    {
+      "id": "edge.verified_by_tests",
+      "source": "tests.stable_deduplicate",
+      "predicate": "taedri.predicate.verifies",
+      "target": "implementation.stable_deduplicate",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "tests.json",
+          "digest": "sha256:d684c65fbed7045996b67feb2e66dd11eaed90fd57905616aa1432170e3480fd"
+        }
+      ]
+    },
+    {
+      "id": "edge.runs_on_python312",
+      "source": "implementation.stable_deduplicate",
+      "predicate": "taedri.predicate.runs_on",
+      "target": "runtime.python312",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "runtime.json",
+          "digest": "sha256:28ef120808983e79070c9484fd8cf5e05574df35bbd9385443ff9e9938eb92f2"
+        }
+      ]
+    }
+  ],
+  "ports": [
+    {
+      "id": "port.input.values",
+      "owner": "implementation.stable_deduplicate",
+      "direction": "input",
+      "name": "values",
+      "schema": {
+        "type": "array"
+      },
+      "schema_digest": "sha256:af2ee54631778f1722c1bea167696865e3db32697b66252d0998ae96a73e099a",
+      "schema_ref": "contract.json#/inputs/0/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native"
+      ]
+    },
+    {
+      "id": "port.output.result",
+      "owner": "implementation.stable_deduplicate",
+      "direction": "output",
+      "name": "result",
+      "schema": {
+        "type": "array"
+      },
+      "schema_digest": "sha256:af2ee54631778f1722c1bea167696865e3db32697b66252d0998ae96a73e099a",
+      "schema_ref": "contract.json#/output/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native"
+      ]
+    }
+  ],
+  "compatibility": {
+    "language": "python",
+    "runtime_version": "3.12",
+    "execution_model": "in_process_call",
+    "deterministic": true,
+    "purity": "pure",
+    "network": "denied",
+    "effects": [],
+    "dimensions": {
+      "taedri.compatibility.call_style": "sync",
+      "taedri.compatibility.language": "python",
+      "taedri.compatibility.runtime_major_minor": "3.12",
+      "taedri.compatibility.value_transport": "python_native"
+    },
+    "required_dimensions": [
+      "taedri.compatibility.call_style",
+      "taedri.compatibility.language",
+      "taedri.compatibility.runtime_major_minor",
+      "taedri.compatibility.value_transport"
+    ]
+  },
+  "groups": [
+    {
+      "id": "taedri.group.data_cleaning_deduplication",
+      "kind": "capability",
+      "labels": [
+        "stable duplicate removal",
+        "distinct json values",
+        "preserve first occurrence"
+      ],
+      "member_nodes": [
+        "implementation.stable_deduplicate"
+      ],
+      "evidence": [
+        {
+          "path": "descriptor.json",
+          "digest": "sha256:70658c54f2271d2d2c47a72b45fccb8abe029b86321f3ba61088428c7bb45961"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:23e4aee2872e6025c1865d24761da1101ba0cda99ac70f2e12beca8d124ccf03"
+        }
+      ]
+    }
+  ]
+}

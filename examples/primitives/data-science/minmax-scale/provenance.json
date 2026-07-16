@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0",
+  "implementation_producer_id": "taedri.data.author.minmax-scale.v1",
+  "source_uri": "https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/tree/main/examples/primitives/data-science/minmax-scale",
+  "source_revision": "sha256:d968efcac10f2537b4e6bb1208c3cd13476328066ce5c6a127511a1ba220c9b4",
+  "source_digest": "sha256:d968efcac10f2537b4e6bb1208c3cd13476328066ce5c6a127511a1ba220c9b4"
+}

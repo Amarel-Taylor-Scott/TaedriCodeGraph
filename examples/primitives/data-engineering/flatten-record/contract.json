@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "inputs": [
+    {
+      "name": "request",
+      "schema": {
+        "type": "object",
+        "required": [
+          "record"
+        ],
+        "properties": {
+          "record": {
+            "type": "object"
+          },
+          "separator": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  ],
+  "output": {
+    "schema": {
+      "type": "object"
+    }
+  },
+  "errors": [
+    {
+      "type": "TypeError",
+      "when": "request or record is not an object"
+    },
+    {
+      "type": "ValueError",
+      "when": "separator or flattened keys are ambiguous"
+    }
+  ],
+  "effects": []
+}

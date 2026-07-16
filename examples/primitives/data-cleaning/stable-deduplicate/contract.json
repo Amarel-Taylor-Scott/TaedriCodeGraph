@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "inputs": [
+    {
+      "name": "values",
+      "schema": {
+        "type": "array"
+      }
+    }
+  ],
+  "output": {
+    "schema": {
+      "type": "array"
+    }
+  },
+  "errors": [
+    {
+      "type": "TypeError",
+      "when": "values is not a list"
+    },
+    {
+      "type": "TypeError",
+      "when": "an item is not finite JSON"
+    }
+  ],
+  "effects": []
+}

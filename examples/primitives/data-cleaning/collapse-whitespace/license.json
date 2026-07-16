@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0.0",
+  "state": "verified",
+  "spdx_expression": "LicenseRef-Taedri-All-Rights-Reserved",
+  "evidence_path": "LICENSE_EVIDENCE.txt",
+  "evidence_digest": "sha256:301fa020159a3b49feb61c9d1f1a358b614dd2d7b7ab9ac402533ec016a3e557",
+  "note": "All rights reserved; no public project license has been granted."
+}

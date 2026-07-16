@@ -1,0 +1,238 @@
+{
+  "schema_version": "1.1.0",
+  "interface_id": "taedri.data.engineering.chunk-sequence.v1",
+  "nodes": [
+    {
+      "id": "implementation.chunk_sequence",
+      "kind": "implementation",
+      "path": "src/chunk_sequence.py",
+      "symbol": "chunk_sequence"
+    },
+    {
+      "id": "contract.chunk_sequence",
+      "kind": "contract",
+      "path": "contract.json"
+    },
+    {
+      "id": "port.input.request",
+      "kind": "input_port",
+      "path": "contract.json",
+      "json_pointer": "#/inputs/0"
+    },
+    {
+      "id": "port.output.result",
+      "kind": "output_port",
+      "path": "contract.json",
+      "json_pointer": "#/output"
+    },
+    {
+      "id": "examples.chunk_sequence",
+      "kind": "example_set",
+      "path": "examples.json"
+    },
+    {
+      "id": "tests.chunk_sequence",
+      "kind": "test_set",
+      "path": "tests.json"
+    },
+    {
+      "id": "runtime.python312",
+      "kind": "runtime",
+      "path": "runtime.json"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.implements_contract",
+      "source": "implementation.chunk_sequence",
+      "predicate": "taedri.predicate.implements_contract",
+      "target": "contract.chunk_sequence",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "src/chunk_sequence.py",
+          "digest": "sha256:75eefef38ba6823d00e2e41e4b044ee849dbed0629ad2f315bfc8d16f0fc3640"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:b5813db0654b526d0f85643d89a2f37c4939e6156a64a3a91311fd46436531aa"
+        }
+      ]
+    },
+    {
+      "id": "edge.accepts_request",
+      "source": "implementation.chunk_sequence",
+      "predicate": "taedri.predicate.accepts_port",
+      "target": "port.input.request",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:b5813db0654b526d0f85643d89a2f37c4939e6156a64a3a91311fd46436531aa"
+        }
+      ]
+    },
+    {
+      "id": "edge.produces_result",
+      "source": "implementation.chunk_sequence",
+      "predicate": "taedri.predicate.produces_port",
+      "target": "port.output.result",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:b5813db0654b526d0f85643d89a2f37c4939e6156a64a3a91311fd46436531aa"
+        }
+      ]
+    },
+    {
+      "id": "edge.demonstrated_by_examples",
+      "source": "examples.chunk_sequence",
+      "predicate": "taedri.predicate.demonstrates",
+      "target": "implementation.chunk_sequence",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "examples.json",
+          "digest": "sha256:5476a9af56771bece48a1af40bd43577574f2397ba9f32a5eb3798cabc65177c"
+        }
+      ]
+    },
+    {
+      "id": "edge.verified_by_tests",
+      "source": "tests.chunk_sequence",
+      "predicate": "taedri.predicate.verifies",
+      "target": "implementation.chunk_sequence",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "tests.json",
+          "digest": "sha256:f1018f713a17f79702013a98987f564ad1f05fdf87b286ce637fc15c77d7513d"
+        }
+      ]
+    },
+    {
+      "id": "edge.runs_on_python312",
+      "source": "implementation.chunk_sequence",
+      "predicate": "taedri.predicate.runs_on",
+      "target": "runtime.python312",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "runtime.json",
+          "digest": "sha256:24b5a4951dc74e16bf31354b06dee4dc26ff0b9ad82ea94ba567faf8a5314167"
+        }
+      ]
+    }
+  ],
+  "ports": [
+    {
+      "id": "port.input.request",
+      "owner": "implementation.chunk_sequence",
+      "direction": "input",
+      "name": "request",
+      "schema": {
+        "type": "object",
+        "required": [
+          "items",
+          "size"
+        ],
+        "properties": {
+          "items": {
+            "type": "array"
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "additionalProperties": false
+      },
+      "schema_digest": "sha256:8ecf3d632644ab0b6d6be1027aa5ded42f51c2d7aff281a3a650d368295cfff0",
+      "schema_ref": "contract.json#/inputs/0/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native"
+      ]
+    },
+    {
+      "id": "port.output.result",
+      "owner": "implementation.chunk_sequence",
+      "direction": "output",
+      "name": "result",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "array"
+        }
+      },
+      "schema_digest": "sha256:87cf9c5d25911ca1334b850dd6f4552a4afc9e32e56402babbc9bef8c16dde33",
+      "schema_ref": "contract.json#/output/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native"
+      ]
+    }
+  ],
+  "compatibility": {
+    "language": "python",
+    "runtime_version": "3.12",
+    "execution_model": "in_process_call",
+    "deterministic": true,
+    "purity": "pure",
+    "network": "denied",
+    "effects": [],
+    "dimensions": {
+      "taedri.compatibility.call_style": "sync",
+      "taedri.compatibility.language": "python",
+      "taedri.compatibility.runtime_major_minor": "3.12",
+      "taedri.compatibility.value_transport": "python_native"
+    },
+    "required_dimensions": [
+      "taedri.compatibility.call_style",
+      "taedri.compatibility.language",
+      "taedri.compatibility.runtime_major_minor",
+      "taedri.compatibility.value_transport"
+    ]
+  },
+  "groups": [
+    {
+      "id": "taedri.group.data_engineering_batching",
+      "kind": "capability",
+      "labels": [
+        "batch sequence chunks",
+        "bounded ingestion batches",
+        "contiguous list partitioning"
+      ],
+      "member_nodes": [
+        "implementation.chunk_sequence"
+      ],
+      "evidence": [
+        {
+          "path": "descriptor.json",
+          "digest": "sha256:6ecf982f57694c660db2ea1731fa8d325bd7d8ce1d82d3d1220f68d7144893f8"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:b5813db0654b526d0f85643d89a2f37c4939e6156a64a3a91311fd46436531aa"
+        }
+      ]
+    }
+  ]
+}

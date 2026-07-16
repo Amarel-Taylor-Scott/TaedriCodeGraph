@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0",
+  "implementation_producer_id": "taedri.data.author.zscore-standardize.v1",
+  "source_uri": "https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/tree/main/examples/primitives/data-science/zscore-standardize",
+  "source_revision": "sha256:9fa4bc27c44eccc1acd627d9a4631a98dc4bea57fdb5ea2c3865a9a42bce0bf0",
+  "source_digest": "sha256:9fa4bc27c44eccc1acd627d9a4631a98dc4bea57fdb5ea2c3865a9a42bce0bf0"
+}

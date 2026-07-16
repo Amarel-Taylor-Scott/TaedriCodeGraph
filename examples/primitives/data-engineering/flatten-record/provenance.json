@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0",
+  "implementation_producer_id": "taedri.data.author.flatten-record.v1",
+  "source_uri": "https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/tree/main/examples/primitives/data-engineering/flatten-record",
+  "source_revision": "sha256:2d446bb4117bab63185ff05b9261d1433c0ae249610b8f973673c1248c76d91d",
+  "source_digest": "sha256:2d446bb4117bab63185ff05b9261d1433c0ae249610b8f973673c1248c76d91d"
+}

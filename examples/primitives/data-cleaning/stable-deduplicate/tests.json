@@ -1,0 +1,55 @@
+{
+  "cases": [
+    {
+      "kind": "positive",
+      "args": [
+        [
+          {
+            "a": 1,
+            "b": 2
+          },
+          {
+            "b": 2,
+            "a": 1
+          }
+        ]
+      ],
+      "expected": [
+        {
+          "a": 1,
+          "b": 2
+        }
+      ]
+    },
+    {
+      "kind": "boundary",
+      "args": [
+        [
+          1,
+          1.0,
+          true,
+          1
+        ]
+      ],
+      "expected": [
+        1,
+        1.0,
+        true
+      ]
+    },
+    {
+      "kind": "positive",
+      "args": [
+        [
+          null,
+          null,
+          ""
+        ]
+      ],
+      "expected": [
+        null,
+        ""
+      ]
+    }
+  ]
+}

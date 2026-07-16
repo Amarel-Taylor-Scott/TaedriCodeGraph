@@ -1,0 +1,6 @@
+{
+  "schema_version": "1.0.0",
+  "oracle_producer_id": "taedri.data.oracle.numeric-median.v1",
+  "comparison": "exact JSON value or exact exception class",
+  "minimum_cases": 6
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "inputs": [
+    {
+      "name": "value",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "output": {
+    "schema": {
+      "type": "string"
+    }
+  },
+  "errors": [
+    {
+      "type": "TypeError",
+      "when": "value is not a string"
+    },
+    {
+      "type": "ValueError",
+      "when": "value contains no letter or number"
+    }
+  ],
+  "effects": []
+}

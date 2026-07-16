@@ -30,9 +30,8 @@ def main() -> None:
     pypi = read_json("eval/results/real-pypi-2026-07-15/summary.json")["packages"]
     acquisition = read_json("eval/results/saas-real-acquisition-2026-07-16/run.json")
     factory = read_json("eval/results/primitive-factory-2026-07-16/candidate-manifest.json")
-    reference = read_json("eval/results/reference-primitive-acceptance-2026-07-16/run.json")
-    deterministic_pipeline = read_json(
-        "eval/results/deterministic-primitive-pipeline-2026-07-16/run.json"
+    data_cohort = read_json(
+        "eval/results/data-primitive-cohort-2026-07-16/run.json"
     )
     benchmark = read_json(
         "eval/results/benchmark-worker-2026-07-16/conformance-report.json"
@@ -63,11 +62,11 @@ def main() -> None:
     )
     candidate_count = int(factory["factory"]["candidate_count"])
     candidate_events = int(factory["intake"]["event_count"])
-    released = int(reference["record_counts"]["primitive_release"])
-    reference_blobs = int(reference["record_counts"]["primitive_blob"])
-    pipeline_primitives = int(deterministic_pipeline["primitive_count"])
-    pipeline_edges = int(deterministic_pipeline["edge_count"])
-    pipeline_ports = int(deterministic_pipeline["port_count"])
+    released = int(data_cohort["primitive_count"])
+    release_blobs = int(data_cohort["database_record_counts"]["primitive_blob"])
+    pipeline_edges = int(data_cohort["compatibility_edge_count"])
+    evidence_edges = int(data_cohort["evidence_edge_count"])
+    pipeline_ports = int(data_cohort["typed_port_count"])
     benchmark_runs = int(benchmark["completed_run_count"])
 
     counts: dict[str, str] = {
@@ -77,7 +76,7 @@ def main() -> None:
         "shared-kernel": "N/A — stateless identity/canonicalization library",
         "shared-schemas": f"{schema_count} checked-in JSON Schemas",
         "schema-artifacts": f"{schema_count} JSON Schemas; {sql_tables} PostgreSQL tables",
-        "primitive-capsules": f"Reference run: {released} public release / {reference_blobs} blobs; deterministic route: {pipeline_primitives} releases / {pipeline_primitives} packs",
+        "primitive-capsules": f"Data cohort: {released} public releases / {release_blobs} blobs / {data_cohort['pack_count']} downloadable packs",
         "primitive-factory": f"{candidate_count:,} real-source candidates; {candidate_events:,} intake events; 0 released by factory",
         "ingestion-pypi": f"4 real wheels evidenced (3 benchmark + usaddress); latest usaddress mount: 101 entities / 614 relations",
         "ingestion-git": "1 immutable real GitHub commit archive; 417 entities / 2,282 relations",
@@ -85,7 +84,7 @@ def main() -> None:
         "analyzer-polyglot": "No dedicated durable rows; working file-inventory boundary, semantic adapters not claimed",
         "storage": f"5 real published evaluation epochs; usaddress runs: {mount_entities:,} entities / {mount_variants:,} typed variants",
         "retrieval": "36 retained real-package hybrid query receipts",
-        "compatibility": f"Deterministic route: {pipeline_edges} evidence edges / {pipeline_ports} ports / 1 compatible exact wire; broad solver remains partial",
+        "compatibility": f"Data cohort: {evidence_edges} evidence edges / {pipeline_ports} typed ports / {pipeline_edges} blocked exact compatibility edges / 2 executed routes",
         "session-ledger": "Reference factory evidence: 1 digest-only session / 7 events / 0 model calls",
         "benchmarking": f"2 tasks / 4 lanes / {benchmark_runs} conformance receipts; efficacy_claimable=false",
         "saas-control-plane": "Real acquisition evidence: 1 tenant / 2 succeeded jobs / 4 audit events",
@@ -93,16 +92,16 @@ def main() -> None:
         "benchmark-worker": f"{benchmark_runs} deterministic fixture receipts; 0 real-model efficacy runs",
         "discovery-worker": "0 hosted poll/webhook rows; replay-safe local router is tested",
         "ingestion-worker": f"2 real acquisition jobs; {mount_entities:,} entities / {mount_relations:,} relations published",
-        "primitive-worker": f"{candidate_count:,} candidates plus {pipeline_primitives} independently verified and released working primitives",
+        "primitive-worker": f"{candidate_count:,} candidates plus {released} independently verified and released working primitives",
         "indexer-service": "5 real evaluation epochs (3 PyPI benchmark + 2 usaddress acquisition)",
         "query-api": f"{route_count} operations across {path_count} paths",
-        "registry-api": f"Reference run: {released} public release; 0 candidate rows serving as primitives",
+        "registry-api": f"Data cohort: {released} public releases; 0 candidate rows serving as primitives",
         "mcp-integration": "Protocol and remote round-trip evidence; no durable MCP-owned rows",
         "agent-integrations": "1 digest-only harness session; 0 model calls; no efficacy claim",
         "explorer-app": "Static application; records are read from authenticated APIs",
         "portal-app": "Static application + versioned plan/subscription contracts; no checked-in customer rows",
         "deployment": f"{sql_tables} PostgreSQL tables; Docker/Compose and one-Machine Fly POC",
-        "evaluation": f"3 real PyPI packages + 2 real usaddress sources + {pipeline_primitives} real custom releases + 1 no-model route + {benchmark_runs} non-claimable benchmark receipts",
+        "evaluation": f"3 real PyPI packages + 2 real usaddress sources + {released} real custom releases + 2 no-model routes + {benchmark_runs} non-claimable benchmark receipts",
     }
     records: list[dict[str, Any]] = []
     for component in architecture["components"]:
@@ -192,7 +191,7 @@ def render_markdown(result: dict[str, Any]) -> str:
             "",
             "## Primitive truth boundary",
             "",
-            "The factory's candidate rows are not primitive releases. Public primitive search, resolution, and pack delivery read only `primitive_release`, whose rows require the complete capsule and all executable acceptance proofs. The checked-in reference evidence has one release; the 347 static candidates remain candidate-only.",
+            "The factory's candidate rows are not primitive releases. Public primitive search, resolution, and pack delivery read only `primitive_release`, whose rows require the complete capsule and all executable acceptance proofs. The checked-in data cohort has 11 active releases; the 347 static candidates remain candidate-only.",
             "",
         ]
     )

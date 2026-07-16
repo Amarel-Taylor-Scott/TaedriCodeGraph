@@ -1,0 +1,223 @@
+{
+  "schema_version": "1.1.0",
+  "interface_id": "taedri.data.cleaning.normalize-column-name.v1",
+  "nodes": [
+    {
+      "id": "implementation.normalize_column_name",
+      "kind": "implementation",
+      "path": "src/normalize_column_name.py",
+      "symbol": "normalize_column_name"
+    },
+    {
+      "id": "contract.normalize_column_name",
+      "kind": "contract",
+      "path": "contract.json"
+    },
+    {
+      "id": "port.input.value",
+      "kind": "input_port",
+      "path": "contract.json",
+      "json_pointer": "#/inputs/0"
+    },
+    {
+      "id": "port.output.result",
+      "kind": "output_port",
+      "path": "contract.json",
+      "json_pointer": "#/output"
+    },
+    {
+      "id": "examples.normalize_column_name",
+      "kind": "example_set",
+      "path": "examples.json"
+    },
+    {
+      "id": "tests.normalize_column_name",
+      "kind": "test_set",
+      "path": "tests.json"
+    },
+    {
+      "id": "runtime.python312",
+      "kind": "runtime",
+      "path": "runtime.json"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.implements_contract",
+      "source": "implementation.normalize_column_name",
+      "predicate": "taedri.predicate.implements_contract",
+      "target": "contract.normalize_column_name",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "src/normalize_column_name.py",
+          "digest": "sha256:78da835604a433d519583709cb2804b2fc078606c1e5202d4c36b06f818dd77a"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:56fa7924eee066dba9c785d5e28d7d88654d1e29efaf3ee3387c39e27fb307ca"
+        }
+      ]
+    },
+    {
+      "id": "edge.accepts_value",
+      "source": "implementation.normalize_column_name",
+      "predicate": "taedri.predicate.accepts_port",
+      "target": "port.input.value",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:56fa7924eee066dba9c785d5e28d7d88654d1e29efaf3ee3387c39e27fb307ca"
+        }
+      ]
+    },
+    {
+      "id": "edge.produces_result",
+      "source": "implementation.normalize_column_name",
+      "predicate": "taedri.predicate.produces_port",
+      "target": "port.output.result",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:56fa7924eee066dba9c785d5e28d7d88654d1e29efaf3ee3387c39e27fb307ca"
+        }
+      ]
+    },
+    {
+      "id": "edge.demonstrated_by_examples",
+      "source": "examples.normalize_column_name",
+      "predicate": "taedri.predicate.demonstrates",
+      "target": "implementation.normalize_column_name",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "examples.json",
+          "digest": "sha256:43a628dcad3b4d6e6e2fcb7eb1441f7ac5ad19ac70df0ee7a7b24987e3f2f141"
+        }
+      ]
+    },
+    {
+      "id": "edge.verified_by_tests",
+      "source": "tests.normalize_column_name",
+      "predicate": "taedri.predicate.verifies",
+      "target": "implementation.normalize_column_name",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "tests.json",
+          "digest": "sha256:7f5d806f7d4d74e3e79a775dfed13d3d2b7e89072336e88b1b218302f2d9cb86"
+        }
+      ]
+    },
+    {
+      "id": "edge.runs_on_python312",
+      "source": "implementation.normalize_column_name",
+      "predicate": "taedri.predicate.runs_on",
+      "target": "runtime.python312",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "runtime.json",
+          "digest": "sha256:e8c3554a7dc3484d96e13a488e40944dd4c09c041b9c69a7406ecb3fd614491d"
+        }
+      ]
+    }
+  ],
+  "ports": [
+    {
+      "id": "port.input.value",
+      "owner": "implementation.normalize_column_name",
+      "direction": "input",
+      "name": "value",
+      "schema": {
+        "type": "string"
+      },
+      "schema_digest": "sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03",
+      "schema_ref": "contract.json#/inputs/0/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native",
+        "text"
+      ]
+    },
+    {
+      "id": "port.output.result",
+      "owner": "implementation.normalize_column_name",
+      "direction": "output",
+      "name": "result",
+      "schema": {
+        "type": "string"
+      },
+      "schema_digest": "sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03",
+      "schema_ref": "contract.json#/output/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native",
+        "text"
+      ]
+    }
+  ],
+  "compatibility": {
+    "language": "python",
+    "runtime_version": "3.12",
+    "execution_model": "in_process_call",
+    "deterministic": true,
+    "purity": "pure",
+    "network": "denied",
+    "effects": [],
+    "dimensions": {
+      "taedri.compatibility.call_style": "sync",
+      "taedri.compatibility.language": "python",
+      "taedri.compatibility.runtime_major_minor": "3.12",
+      "taedri.compatibility.value_transport": "python_native"
+    },
+    "required_dimensions": [
+      "taedri.compatibility.call_style",
+      "taedri.compatibility.language",
+      "taedri.compatibility.runtime_major_minor",
+      "taedri.compatibility.value_transport"
+    ]
+  },
+  "groups": [
+    {
+      "id": "taedri.group.data_cleaning_column_names",
+      "kind": "capability",
+      "labels": [
+        "normalize dataframe column header",
+        "schema field name cleanup",
+        "stable column identifiers"
+      ],
+      "member_nodes": [
+        "implementation.normalize_column_name"
+      ],
+      "evidence": [
+        {
+          "path": "descriptor.json",
+          "digest": "sha256:c21cad14f39aa5bf0f4d666644d3a684f31c0e9796b9b82c748080c2feee6b84"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:56fa7924eee066dba9c785d5e28d7d88654d1e29efaf3ee3387c39e27fb307ca"
+        }
+      ]
+    }
+  ]
+}

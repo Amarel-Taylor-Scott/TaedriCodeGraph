@@ -1,0 +1,23 @@
+{
+  "summary": "Create a stable NFKC, case-folded, underscore-delimited column name.",
+  "keywords": [
+    "column names",
+    "data cleaning",
+    "schema",
+    "unicode normalization"
+  ],
+  "use_cases": [
+    "normalize CSV and spreadsheet headers",
+    "create stable field identifiers before schema matching",
+    "reduce punctuation and spacing differences across sources"
+  ],
+  "limitations": [
+    "NFKC compatibility normalization can change presentation characters.",
+    "Case folding can change string length.",
+    "The result can contain Unicode letters and numbers, not ASCII only."
+  ],
+  "references": [
+    "https://docs.python.org/3.12/library/unicodedata.html#unicodedata.normalize",
+    "https://pandas.pydata.org/docs/reference/api/pandas.Series.str.normalize.html"
+  ]
+}

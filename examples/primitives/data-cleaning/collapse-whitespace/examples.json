@@ -1,0 +1,25 @@
+{
+  "examples": [
+    {
+      "kind": "positive",
+      "args": [
+        "  North\t  America\n"
+      ],
+      "expected": "North America"
+    },
+    {
+      "kind": "boundary",
+      "args": [
+        ""
+      ],
+      "expected": ""
+    },
+    {
+      "kind": "negative",
+      "args": [
+        42
+      ],
+      "expected_error": "TypeError"
+    }
+  ]
+}

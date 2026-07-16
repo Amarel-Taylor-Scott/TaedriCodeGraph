@@ -1,0 +1,39 @@
+{
+  "examples": [
+    {
+      "kind": "positive",
+      "args": [
+        {
+          "record": {
+            "user": {
+              "id": 7
+            },
+            "active": true
+          }
+        }
+      ],
+      "expected": {
+        "user.id": 7,
+        "active": true
+      }
+    },
+    {
+      "kind": "boundary",
+      "args": [
+        {
+          "record": {}
+        }
+      ],
+      "expected": {}
+    },
+    {
+      "kind": "negative",
+      "args": [
+        {
+          "record": []
+        }
+      ],
+      "expected_error": "TypeError"
+    }
+  ]
+}

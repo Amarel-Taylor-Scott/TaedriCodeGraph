@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0",
+  "implementation_producer_id": "taedri.data.author.stable-deduplicate.v1",
+  "source_uri": "https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/tree/main/examples/primitives/data-cleaning/stable-deduplicate",
+  "source_revision": "sha256:3a0a32bd22e6844696c981c7b4084d06507bd1adb5cad4eef93492cecf78bb1d",
+  "source_digest": "sha256:3a0a32bd22e6844696c981c7b4084d06507bd1adb5cad4eef93492cecf78bb1d"
+}

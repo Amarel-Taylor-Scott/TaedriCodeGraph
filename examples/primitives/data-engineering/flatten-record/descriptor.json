@@ -1,0 +1,22 @@
+{
+  "summary": "Flatten one nested JSON record with explicit separator and collision rules.",
+  "keywords": [
+    "flatten record",
+    "json normalize",
+    "nested data",
+    "data engineering"
+  ],
+  "use_cases": [
+    "prepare nested API records for tabular storage",
+    "flatten event payloads before column selection",
+    "create deterministic dotted field paths"
+  ],
+  "limitations": [
+    "Lists remain leaf values and are not exploded.",
+    "Existing keys containing the separator can create a rejected collision.",
+    "The complete flattened record is materialized in memory."
+  ],
+  "references": [
+    "https://pandas.pydata.org/docs/reference/api/pandas.json_normalize.html"
+  ]
+}

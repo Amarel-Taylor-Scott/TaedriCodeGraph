@@ -1,0 +1,22 @@
+{
+  "summary": "Standardize one finite numeric vector using population mean and variance.",
+  "keywords": [
+    "data science",
+    "feature scaling",
+    "standardization",
+    "z score"
+  ],
+  "use_cases": [
+    "center and scale one numeric training vector",
+    "compare observations in standard deviation units",
+    "prepare a sealed numeric feature for scale-sensitive algorithms"
+  ],
+  "limitations": [
+    "Fits and transforms the same vector; do not include held-out data.",
+    "Uses population variance with zero degrees-of-freedom correction.",
+    "Constant vectors map to all zeros and fitted parameters are not retained."
+  ],
+  "references": [
+    "https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html"
+  ]
+}

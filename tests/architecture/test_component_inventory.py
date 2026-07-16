@@ -32,8 +32,9 @@ class ComponentInventoryArchitectureTests(unittest.TestCase):
         primitive = next(
             item for item in inventory["components"] if item["id"] == "primitive-capsules"
         )
-        self.assertIn("1 public release", primitive["measured_records"])
-        self.assertIn("deterministic route: 2 releases", primitive["measured_records"])
+        self.assertIn("11 public releases", primitive["measured_records"])
+        self.assertIn("109 blobs", primitive["measured_records"])
+        self.assertIn("11 downloadable packs", primitive["measured_records"])
         factory = next(
             item for item in inventory["components"] if item["id"] == "primitive-factory"
         )

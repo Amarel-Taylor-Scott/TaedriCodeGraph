@@ -1,0 +1,25 @@
+{
+  "examples": [
+    {
+      "kind": "positive",
+      "args": [
+        " Customer ID "
+      ],
+      "expected": "customer_id"
+    },
+    {
+      "kind": "boundary",
+      "args": [
+        "Ｆｕｌｌ　Ｎａｍｅ"
+      ],
+      "expected": "full_name"
+    },
+    {
+      "kind": "negative",
+      "args": [
+        "---"
+      ],
+      "expected_error": "ValueError"
+    }
+  ]
+}

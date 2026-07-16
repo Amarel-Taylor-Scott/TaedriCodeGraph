@@ -1,0 +1,25 @@
+{
+  "cases": [
+    {
+      "kind": "positive",
+      "args": [
+        "HTTP.Status-Code"
+      ],
+      "expected": "http_status_code"
+    },
+    {
+      "kind": "boundary",
+      "args": [
+        "Straße"
+      ],
+      "expected": "strasse"
+    },
+    {
+      "kind": "negative",
+      "args": [
+        12
+      ],
+      "expected_error": "TypeError"
+    }
+  ]
+}

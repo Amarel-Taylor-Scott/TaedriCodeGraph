@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0",
+  "implementation_producer_id": "taedri.data.author.normalize-column-name.v1",
+  "source_uri": "https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/tree/main/examples/primitives/data-cleaning/normalize-column-name",
+  "source_revision": "sha256:113f167207414aae183b27d962031967314be62a2a45c1c09ee53523d4ffafde",
+  "source_digest": "sha256:113f167207414aae183b27d962031967314be62a2a45c1c09ee53523d4ffafde"
+}

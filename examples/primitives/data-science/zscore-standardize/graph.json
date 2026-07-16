@@ -1,0 +1,227 @@
+{
+  "schema_version": "1.1.0",
+  "interface_id": "taedri.data.science.zscore-standardize.v1",
+  "nodes": [
+    {
+      "id": "implementation.zscore_standardize",
+      "kind": "implementation",
+      "path": "src/zscore_standardize.py",
+      "symbol": "zscore_standardize"
+    },
+    {
+      "id": "contract.zscore_standardize",
+      "kind": "contract",
+      "path": "contract.json"
+    },
+    {
+      "id": "port.input.values",
+      "kind": "input_port",
+      "path": "contract.json",
+      "json_pointer": "#/inputs/0"
+    },
+    {
+      "id": "port.output.result",
+      "kind": "output_port",
+      "path": "contract.json",
+      "json_pointer": "#/output"
+    },
+    {
+      "id": "examples.zscore_standardize",
+      "kind": "example_set",
+      "path": "examples.json"
+    },
+    {
+      "id": "tests.zscore_standardize",
+      "kind": "test_set",
+      "path": "tests.json"
+    },
+    {
+      "id": "runtime.python312",
+      "kind": "runtime",
+      "path": "runtime.json"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.implements_contract",
+      "source": "implementation.zscore_standardize",
+      "predicate": "taedri.predicate.implements_contract",
+      "target": "contract.zscore_standardize",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "src/zscore_standardize.py",
+          "digest": "sha256:40caf7b1d6d0d07110990d9bc953123f24bd5568d2495a634d3c1a5c044f08f0"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:a8cb9397869affb09c3aeceb67dd8420e95d25a03c3802179ffe7e8860a9a39d"
+        }
+      ]
+    },
+    {
+      "id": "edge.accepts_values",
+      "source": "implementation.zscore_standardize",
+      "predicate": "taedri.predicate.accepts_port",
+      "target": "port.input.values",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:a8cb9397869affb09c3aeceb67dd8420e95d25a03c3802179ffe7e8860a9a39d"
+        }
+      ]
+    },
+    {
+      "id": "edge.produces_result",
+      "source": "implementation.zscore_standardize",
+      "predicate": "taedri.predicate.produces_port",
+      "target": "port.output.result",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:a8cb9397869affb09c3aeceb67dd8420e95d25a03c3802179ffe7e8860a9a39d"
+        }
+      ]
+    },
+    {
+      "id": "edge.demonstrated_by_examples",
+      "source": "examples.zscore_standardize",
+      "predicate": "taedri.predicate.demonstrates",
+      "target": "implementation.zscore_standardize",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "examples.json",
+          "digest": "sha256:8d2ec569708d1e55a429bedcc9f91c4eb6ddd5d817893ae031b273ada8301dad"
+        }
+      ]
+    },
+    {
+      "id": "edge.verified_by_tests",
+      "source": "tests.zscore_standardize",
+      "predicate": "taedri.predicate.verifies",
+      "target": "implementation.zscore_standardize",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "tests.json",
+          "digest": "sha256:1222f06197e32a89535fa8bd78130d2bc63387e607e57c104bb45b0317c56907"
+        }
+      ]
+    },
+    {
+      "id": "edge.runs_on_python312",
+      "source": "implementation.zscore_standardize",
+      "predicate": "taedri.predicate.runs_on",
+      "target": "runtime.python312",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "runtime.json",
+          "digest": "sha256:01ba94d33f9d9de41b21640ae137ffa5278bc9dea6ed1208df533973b334026f"
+        }
+      ]
+    }
+  ],
+  "ports": [
+    {
+      "id": "port.input.values",
+      "owner": "implementation.zscore_standardize",
+      "direction": "input",
+      "name": "values",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      },
+      "schema_digest": "sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c",
+      "schema_ref": "contract.json#/inputs/0/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native"
+      ]
+    },
+    {
+      "id": "port.output.result",
+      "owner": "implementation.zscore_standardize",
+      "direction": "output",
+      "name": "result",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      },
+      "schema_digest": "sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c",
+      "schema_ref": "contract.json#/output/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native"
+      ]
+    }
+  ],
+  "compatibility": {
+    "language": "python",
+    "runtime_version": "3.12",
+    "execution_model": "in_process_call",
+    "deterministic": true,
+    "purity": "pure",
+    "network": "denied",
+    "effects": [],
+    "dimensions": {
+      "taedri.compatibility.call_style": "sync",
+      "taedri.compatibility.language": "python",
+      "taedri.compatibility.runtime_major_minor": "3.12",
+      "taedri.compatibility.value_transport": "python_native"
+    },
+    "required_dimensions": [
+      "taedri.compatibility.call_style",
+      "taedri.compatibility.language",
+      "taedri.compatibility.runtime_major_minor",
+      "taedri.compatibility.value_transport"
+    ]
+  },
+  "groups": [
+    {
+      "id": "taedri.group.data_science_feature_scaling",
+      "kind": "capability",
+      "labels": [
+        "z score standardize vector",
+        "zero mean unit variance",
+        "feature standardization"
+      ],
+      "member_nodes": [
+        "implementation.zscore_standardize"
+      ],
+      "evidence": [
+        {
+          "path": "descriptor.json",
+          "digest": "sha256:33ce205e918a3b8a279eb32819dde2ac2c0b6077ffaf70c07c817351abad0fb7"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:a8cb9397869affb09c3aeceb67dd8420e95d25a03c3802179ffe7e8860a9a39d"
+        }
+      ]
+    }
+  ]
+}

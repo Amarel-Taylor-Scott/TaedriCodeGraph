@@ -1,0 +1,233 @@
+{
+  "schema_version": "1.1.0",
+  "interface_id": "taedri.data.engineering.flatten-record.v1",
+  "nodes": [
+    {
+      "id": "implementation.flatten_record",
+      "kind": "implementation",
+      "path": "src/flatten_record.py",
+      "symbol": "flatten_record"
+    },
+    {
+      "id": "contract.flatten_record",
+      "kind": "contract",
+      "path": "contract.json"
+    },
+    {
+      "id": "port.input.request",
+      "kind": "input_port",
+      "path": "contract.json",
+      "json_pointer": "#/inputs/0"
+    },
+    {
+      "id": "port.output.result",
+      "kind": "output_port",
+      "path": "contract.json",
+      "json_pointer": "#/output"
+    },
+    {
+      "id": "examples.flatten_record",
+      "kind": "example_set",
+      "path": "examples.json"
+    },
+    {
+      "id": "tests.flatten_record",
+      "kind": "test_set",
+      "path": "tests.json"
+    },
+    {
+      "id": "runtime.python312",
+      "kind": "runtime",
+      "path": "runtime.json"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.implements_contract",
+      "source": "implementation.flatten_record",
+      "predicate": "taedri.predicate.implements_contract",
+      "target": "contract.flatten_record",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "src/flatten_record.py",
+          "digest": "sha256:2ba33a12cccddfdb65fe5c5c608e92b7c67147b743d938de177e6d670eb117dd"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:d5e34798bf96ea01066c508374bbd3142a4b022ce7f43fe73098f5edfcf114a7"
+        }
+      ]
+    },
+    {
+      "id": "edge.accepts_request",
+      "source": "implementation.flatten_record",
+      "predicate": "taedri.predicate.accepts_port",
+      "target": "port.input.request",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:d5e34798bf96ea01066c508374bbd3142a4b022ce7f43fe73098f5edfcf114a7"
+        }
+      ]
+    },
+    {
+      "id": "edge.produces_result",
+      "source": "implementation.flatten_record",
+      "predicate": "taedri.predicate.produces_port",
+      "target": "port.output.result",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:d5e34798bf96ea01066c508374bbd3142a4b022ce7f43fe73098f5edfcf114a7"
+        }
+      ]
+    },
+    {
+      "id": "edge.demonstrated_by_examples",
+      "source": "examples.flatten_record",
+      "predicate": "taedri.predicate.demonstrates",
+      "target": "implementation.flatten_record",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "examples.json",
+          "digest": "sha256:c34e54875ce7db864345f28264adcceeee5d21bdf6933fa26e153767d5accb6f"
+        }
+      ]
+    },
+    {
+      "id": "edge.verified_by_tests",
+      "source": "tests.flatten_record",
+      "predicate": "taedri.predicate.verifies",
+      "target": "implementation.flatten_record",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "tests.json",
+          "digest": "sha256:930cf1e38a0d6af60fd98712a561591502eeef24724cf9d98bb1005f613940b0"
+        }
+      ]
+    },
+    {
+      "id": "edge.runs_on_python312",
+      "source": "implementation.flatten_record",
+      "predicate": "taedri.predicate.runs_on",
+      "target": "runtime.python312",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "runtime.json",
+          "digest": "sha256:e08c1ef7e239239f01b57ec008c8551efab60204f3970ccf3ed63ade8c292d17"
+        }
+      ]
+    }
+  ],
+  "ports": [
+    {
+      "id": "port.input.request",
+      "owner": "implementation.flatten_record",
+      "direction": "input",
+      "name": "request",
+      "schema": {
+        "type": "object",
+        "required": [
+          "record"
+        ],
+        "properties": {
+          "record": {
+            "type": "object"
+          },
+          "separator": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "schema_digest": "sha256:f51f5eff1f9e0c554fa93fc78d830c67bb9b3c06eab1b144b1638e05fb85305c",
+      "schema_ref": "contract.json#/inputs/0/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native"
+      ]
+    },
+    {
+      "id": "port.output.result",
+      "owner": "implementation.flatten_record",
+      "direction": "output",
+      "name": "result",
+      "schema": {
+        "type": "object"
+      },
+      "schema_digest": "sha256:db13a804b68016157da85c711411fb9f45e65eb6a5adb2ac8878d5de824b048d",
+      "schema_ref": "contract.json#/output/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native"
+      ]
+    }
+  ],
+  "compatibility": {
+    "language": "python",
+    "runtime_version": "3.12",
+    "execution_model": "in_process_call",
+    "deterministic": true,
+    "purity": "pure",
+    "network": "denied",
+    "effects": [],
+    "dimensions": {
+      "taedri.compatibility.call_style": "sync",
+      "taedri.compatibility.language": "python",
+      "taedri.compatibility.runtime_major_minor": "3.12",
+      "taedri.compatibility.value_transport": "python_native"
+    },
+    "required_dimensions": [
+      "taedri.compatibility.call_style",
+      "taedri.compatibility.language",
+      "taedri.compatibility.runtime_major_minor",
+      "taedri.compatibility.value_transport"
+    ]
+  },
+  "groups": [
+    {
+      "id": "taedri.group.data_engineering_record_reshape",
+      "kind": "capability",
+      "labels": [
+        "flatten nested record",
+        "json object to flat columns",
+        "record reshaping"
+      ],
+      "member_nodes": [
+        "implementation.flatten_record"
+      ],
+      "evidence": [
+        {
+          "path": "descriptor.json",
+          "digest": "sha256:27a0a7bcc47672d2d6e3f616449573b3afd6cdaf1fa0dd8a6d1305f069323d97"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:d5e34798bf96ea01066c508374bbd3142a4b022ce7f43fe73098f5edfcf114a7"
+        }
+      ]
+    }
+  ]
+}

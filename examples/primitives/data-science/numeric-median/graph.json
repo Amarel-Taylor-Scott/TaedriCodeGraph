@@ -1,0 +1,224 @@
+{
+  "schema_version": "1.1.0",
+  "interface_id": "taedri.data.science.numeric-median.v1",
+  "nodes": [
+    {
+      "id": "implementation.numeric_median",
+      "kind": "implementation",
+      "path": "src/numeric_median.py",
+      "symbol": "numeric_median"
+    },
+    {
+      "id": "contract.numeric_median",
+      "kind": "contract",
+      "path": "contract.json"
+    },
+    {
+      "id": "port.input.values",
+      "kind": "input_port",
+      "path": "contract.json",
+      "json_pointer": "#/inputs/0"
+    },
+    {
+      "id": "port.output.result",
+      "kind": "output_port",
+      "path": "contract.json",
+      "json_pointer": "#/output"
+    },
+    {
+      "id": "examples.numeric_median",
+      "kind": "example_set",
+      "path": "examples.json"
+    },
+    {
+      "id": "tests.numeric_median",
+      "kind": "test_set",
+      "path": "tests.json"
+    },
+    {
+      "id": "runtime.python312",
+      "kind": "runtime",
+      "path": "runtime.json"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.implements_contract",
+      "source": "implementation.numeric_median",
+      "predicate": "taedri.predicate.implements_contract",
+      "target": "contract.numeric_median",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "src/numeric_median.py",
+          "digest": "sha256:75d650dcd460d62453658bc9059b05ccc216687d0212e32431928b33981f369a"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:ff0f5eb9ffdbeae5d01bbe9d9941bb42f882a7b23fc904552ae388c1348940d0"
+        }
+      ]
+    },
+    {
+      "id": "edge.accepts_values",
+      "source": "implementation.numeric_median",
+      "predicate": "taedri.predicate.accepts_port",
+      "target": "port.input.values",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:ff0f5eb9ffdbeae5d01bbe9d9941bb42f882a7b23fc904552ae388c1348940d0"
+        }
+      ]
+    },
+    {
+      "id": "edge.produces_result",
+      "source": "implementation.numeric_median",
+      "predicate": "taedri.predicate.produces_port",
+      "target": "port.output.result",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:ff0f5eb9ffdbeae5d01bbe9d9941bb42f882a7b23fc904552ae388c1348940d0"
+        }
+      ]
+    },
+    {
+      "id": "edge.demonstrated_by_examples",
+      "source": "examples.numeric_median",
+      "predicate": "taedri.predicate.demonstrates",
+      "target": "implementation.numeric_median",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "examples.json",
+          "digest": "sha256:115ec065b8bb82503024e853dc89d504a44a69dcb6e90c383a442f24feb1fc1e"
+        }
+      ]
+    },
+    {
+      "id": "edge.verified_by_tests",
+      "source": "tests.numeric_median",
+      "predicate": "taedri.predicate.verifies",
+      "target": "implementation.numeric_median",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "tests.json",
+          "digest": "sha256:6ed1f97ae44578244be8682113dab23e7ee5d3c41b29824b460c72b7f47d3cf7"
+        }
+      ]
+    },
+    {
+      "id": "edge.runs_on_python312",
+      "source": "implementation.numeric_median",
+      "predicate": "taedri.predicate.runs_on",
+      "target": "runtime.python312",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "runtime.json",
+          "digest": "sha256:a270931e5a647eb01aa41e7d757987bfa4cc902a7e31498972a95a199de2085c"
+        }
+      ]
+    }
+  ],
+  "ports": [
+    {
+      "id": "port.input.values",
+      "owner": "implementation.numeric_median",
+      "direction": "input",
+      "name": "values",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      },
+      "schema_digest": "sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c",
+      "schema_ref": "contract.json#/inputs/0/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native"
+      ]
+    },
+    {
+      "id": "port.output.result",
+      "owner": "implementation.numeric_median",
+      "direction": "output",
+      "name": "result",
+      "schema": {
+        "type": "number"
+      },
+      "schema_digest": "sha256:2ca93d3dd1e9283742144fc34570a933bcf56093e081410670168506dbb77f47",
+      "schema_ref": "contract.json#/output/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native"
+      ]
+    }
+  ],
+  "compatibility": {
+    "language": "python",
+    "runtime_version": "3.12",
+    "execution_model": "in_process_call",
+    "deterministic": true,
+    "purity": "pure",
+    "network": "denied",
+    "effects": [],
+    "dimensions": {
+      "taedri.compatibility.call_style": "sync",
+      "taedri.compatibility.language": "python",
+      "taedri.compatibility.runtime_major_minor": "3.12",
+      "taedri.compatibility.value_transport": "python_native"
+    },
+    "required_dimensions": [
+      "taedri.compatibility.call_style",
+      "taedri.compatibility.language",
+      "taedri.compatibility.runtime_major_minor",
+      "taedri.compatibility.value_transport"
+    ]
+  },
+  "groups": [
+    {
+      "id": "taedri.group.data_science_descriptive_statistics",
+      "kind": "capability",
+      "labels": [
+        "robust median numeric vector",
+        "descriptive statistics",
+        "numeric center"
+      ],
+      "member_nodes": [
+        "implementation.numeric_median"
+      ],
+      "evidence": [
+        {
+          "path": "descriptor.json",
+          "digest": "sha256:1eb601bc5c4ef9fc0e86a3ed9981ffc85ebf29469ddd4689fda9648a4dcccbfe"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:ff0f5eb9ffdbeae5d01bbe9d9941bb42f882a7b23fc904552ae388c1348940d0"
+        }
+      ]
+    }
+  ]
+}

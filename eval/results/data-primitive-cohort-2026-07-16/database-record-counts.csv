@@ -1,0 +1,11 @@
+table,records
+audit_event,23
+job_payload,11
+primitive_blob,109
+primitive_handle,11
+primitive_ref,11
+primitive_ref_update,11
+primitive_release,11
+primitive_release_revocation,0
+primitive_revision,11
+primitive_tree,11

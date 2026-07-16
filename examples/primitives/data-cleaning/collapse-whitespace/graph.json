@@ -1,0 +1,223 @@
+{
+  "schema_version": "1.1.0",
+  "interface_id": "taedri.data.cleaning.collapse-whitespace.v1",
+  "nodes": [
+    {
+      "id": "implementation.collapse_whitespace",
+      "kind": "implementation",
+      "path": "src/collapse_whitespace.py",
+      "symbol": "collapse_whitespace"
+    },
+    {
+      "id": "contract.collapse_whitespace",
+      "kind": "contract",
+      "path": "contract.json"
+    },
+    {
+      "id": "port.input.value",
+      "kind": "input_port",
+      "path": "contract.json",
+      "json_pointer": "#/inputs/0"
+    },
+    {
+      "id": "port.output.result",
+      "kind": "output_port",
+      "path": "contract.json",
+      "json_pointer": "#/output"
+    },
+    {
+      "id": "examples.collapse_whitespace",
+      "kind": "example_set",
+      "path": "examples.json"
+    },
+    {
+      "id": "tests.collapse_whitespace",
+      "kind": "test_set",
+      "path": "tests.json"
+    },
+    {
+      "id": "runtime.python312",
+      "kind": "runtime",
+      "path": "runtime.json"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.implements_contract",
+      "source": "implementation.collapse_whitespace",
+      "predicate": "taedri.predicate.implements_contract",
+      "target": "contract.collapse_whitespace",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "src/collapse_whitespace.py",
+          "digest": "sha256:b6dee066ebf9b6061d4b7dc983a1f4a5c0e1fe01457c025dd9bde76531794cda"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:91a896dc7c5fb8da3173052551747a4a05029b4444d757fe3a81051abfb8aa53"
+        }
+      ]
+    },
+    {
+      "id": "edge.accepts_value",
+      "source": "implementation.collapse_whitespace",
+      "predicate": "taedri.predicate.accepts_port",
+      "target": "port.input.value",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:91a896dc7c5fb8da3173052551747a4a05029b4444d757fe3a81051abfb8aa53"
+        }
+      ]
+    },
+    {
+      "id": "edge.produces_result",
+      "source": "implementation.collapse_whitespace",
+      "predicate": "taedri.predicate.produces_port",
+      "target": "port.output.result",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:91a896dc7c5fb8da3173052551747a4a05029b4444d757fe3a81051abfb8aa53"
+        }
+      ]
+    },
+    {
+      "id": "edge.demonstrated_by_examples",
+      "source": "examples.collapse_whitespace",
+      "predicate": "taedri.predicate.demonstrates",
+      "target": "implementation.collapse_whitespace",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "examples.json",
+          "digest": "sha256:e1d8d55978550bccdc5fa7eff672e259c9b904b2d493cc799c68b17de2d10b9f"
+        }
+      ]
+    },
+    {
+      "id": "edge.verified_by_tests",
+      "source": "tests.collapse_whitespace",
+      "predicate": "taedri.predicate.verifies",
+      "target": "implementation.collapse_whitespace",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "tests.json",
+          "digest": "sha256:fdee1d590000e539688cc7a4460581edb6e1cc7437d1549e3371c0947d08206f"
+        }
+      ]
+    },
+    {
+      "id": "edge.runs_on_python312",
+      "source": "implementation.collapse_whitespace",
+      "predicate": "taedri.predicate.runs_on",
+      "target": "runtime.python312",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "runtime.json",
+          "digest": "sha256:6942ebd58fd5de67f1fefcdcf91733817f02755b6257c488ab7d7fed4b0234d6"
+        }
+      ]
+    }
+  ],
+  "ports": [
+    {
+      "id": "port.input.value",
+      "owner": "implementation.collapse_whitespace",
+      "direction": "input",
+      "name": "value",
+      "schema": {
+        "type": "string"
+      },
+      "schema_digest": "sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03",
+      "schema_ref": "contract.json#/inputs/0/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native",
+        "text"
+      ]
+    },
+    {
+      "id": "port.output.result",
+      "owner": "implementation.collapse_whitespace",
+      "direction": "output",
+      "name": "result",
+      "schema": {
+        "type": "string"
+      },
+      "schema_digest": "sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03",
+      "schema_ref": "contract.json#/output/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native",
+        "text"
+      ]
+    }
+  ],
+  "compatibility": {
+    "language": "python",
+    "runtime_version": "3.12",
+    "execution_model": "in_process_call",
+    "deterministic": true,
+    "purity": "pure",
+    "network": "denied",
+    "effects": [],
+    "dimensions": {
+      "taedri.compatibility.call_style": "sync",
+      "taedri.compatibility.language": "python",
+      "taedri.compatibility.runtime_major_minor": "3.12",
+      "taedri.compatibility.value_transport": "python_native"
+    },
+    "required_dimensions": [
+      "taedri.compatibility.call_style",
+      "taedri.compatibility.language",
+      "taedri.compatibility.runtime_major_minor",
+      "taedri.compatibility.value_transport"
+    ]
+  },
+  "groups": [
+    {
+      "id": "taedri.group.data_cleaning_whitespace",
+      "kind": "capability",
+      "labels": [
+        "collapse internal whitespace",
+        "normalize text spacing",
+        "unicode whitespace cleanup"
+      ],
+      "member_nodes": [
+        "implementation.collapse_whitespace"
+      ],
+      "evidence": [
+        {
+          "path": "descriptor.json",
+          "digest": "sha256:8853d05854c798a59788891fd4ee265f397add68c0a26f4f69788528e6466bbc"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:91a896dc7c5fb8da3173052551747a4a05029b4444d757fe3a81051abfb8aa53"
+        }
+      ]
+    }
+  ]
+}

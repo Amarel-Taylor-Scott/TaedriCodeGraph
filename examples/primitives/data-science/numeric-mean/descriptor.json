@@ -1,0 +1,22 @@
+{
+  "summary": "Compute the arithmetic mean of a non-empty finite numeric vector.",
+  "keywords": [
+    "arithmetic mean",
+    "average",
+    "data science",
+    "descriptive statistics"
+  ],
+  "use_cases": [
+    "summarize one numeric feature vector",
+    "calculate a deterministic aggregate in a small pipeline",
+    "verify an upstream numeric transformation"
+  ],
+  "limitations": [
+    "Returns binary floating-point output.",
+    "Rejects booleans, missing values, NaN, and infinity.",
+    "The mean is sensitive to outliers."
+  ],
+  "references": [
+    "https://docs.python.org/3.12/library/statistics.html"
+  ]
+}
