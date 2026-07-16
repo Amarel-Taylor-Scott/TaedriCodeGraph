@@ -20,6 +20,8 @@ This repository currently contains the first executable vertical slice:
   vector, and graph lanes;
 - verified local-wheel ingestion with declared license provenance and distribution/import
   namespace separation;
+- registry-native primitive capsules with content-addressed trees, immutable revision
+  DAGs, compare-and-swap branches, forks/merges, and selective thin downloads;
 - a polyglot inventory adapter boundary plus optional MCP, Codex, and Claude harnesses.
 
 The implementation deliberately separates canonical graph truth from disposable
@@ -104,11 +106,26 @@ finding.
 
 ![Adaptive enrichment depth](docs/visuals/assets/adaptive-enrichment-depth.svg)
 
+## Primitive registry and deployment evolution
+
+Taedri-generated primitives do not need one repository or PyPI distribution each. The
+default is a candidate capsule containing digest-bound source/runtime content, contract,
+tests or verifiers, graph deltas, and provenance. Mature groups can later be exported as
+normal Git repositories, OCI artifacts, or ecosystem packages when those collaboration
+and distribution boundaries are useful.
+
+The executable POC implements immutable revisions, optimistic branch updates, immutable
+tags, cross-namespace forks, merges, role-selective packs, and cached-blob omission. Read
+the [primitive registry and staged deployment decision](docs/architecture/PRIMITIVE_CAPSULE_REGISTRY_AND_DEPLOYMENT.md)
+or inspect the machine-readable [deployment topology](deploy/topology.v1.json). The
+[validation report](docs/reports/PRIMITIVE_CAPSULE_VALIDATION_2026-07-16.md) links the
+real-source capsule receipt and downloadable pack.
+
 ## Project status
 
 Pre-alpha. The current slice proves the identity/evidence/ingestion/publication/query
 spine and the universal representation extension mechanism. Remote PyPI/Git acquisition,
-semantic cross-language analyzers, production storage, real model embeddings, calibrated
-fusion, and compatibility routing remain explicit later milestones.
+semantic cross-language analyzers, production capsule storage, real model embeddings,
+calibrated fusion, and compatibility routing remain explicit later milestones.
 
 No project license has been selected yet; all rights are reserved until one is added.

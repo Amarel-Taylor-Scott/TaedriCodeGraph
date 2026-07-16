@@ -151,6 +151,12 @@ eval/           real-package data, ablations, promotion receipts
 docs/           specifications, reports, and rendered visuals
 ```
 
+Registry-native primitives add `packages/primitive-registry` for capsule/revision/ref
+contracts and `services/registry-api` for submissions and authorized pulls. A primitive
+does not require its own repository or PyPI project. The detailed content-addressing,
+forking, thin-pack, and deployment decision is in
+[Primitive capsule registry and deployment evolution](PRIMITIVE_CAPSULE_REGISTRY_AND_DEPLOYMENT.md).
+
 The current `src/taedri_codegraph` remains the working vertical slice. Empty moves
 would create churn without isolation. New work should land in the target component,
 and existing modules should be extracted behind conformance tests one boundary at a
@@ -164,8 +170,10 @@ test checks path existence, dependency integrity, and acyclicity.
 3. Move wheel acquisition and Python analysis behind stable adapter protocols.
 4. Split canonical storage from query projections.
 5. Move retrieval and compatibility into independent libraries.
-6. Make indexer and query API separate processes with versioned contracts.
-7. Point MCP, skills, hooks, and the explorer only at the serving contract.
+6. Extract capsule/revision/ref contracts and their storage adapters.
+7. Make indexer, query, and registry boundaries independently runnable behind versioned
+   contracts; keep them in one deployable until a measured split gate passes.
+8. Point MCP, skills, hooks, and the explorer only at the serving contracts.
 
 Each step must preserve the current CLI and golden corpus until a replacement passes
 the same tests and real-package evaluation.

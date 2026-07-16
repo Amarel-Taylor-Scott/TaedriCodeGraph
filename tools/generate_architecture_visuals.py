@@ -295,6 +295,7 @@ def monorepo_chart() -> list[dict[str, str | list[str]]]:
         "shared-kernel": 0,
         "shared-schemas": 0,
         "schema-artifacts": 0,
+        "primitive-capsules": 1,
         "ingestion-pypi": 1,
         "ingestion-git": 1,
         "analyzer-python": 1,
@@ -304,6 +305,7 @@ def monorepo_chart() -> list[dict[str, str | list[str]]]:
         "compatibility": 1,
         "indexer-service": 2,
         "query-api": 2,
+        "registry-api": 2,
         "mcp-integration": 3,
         "agent-integrations": 3,
         "explorer-app": 3,
@@ -312,8 +314,8 @@ def monorepo_chart() -> list[dict[str, str | list[str]]]:
     }
     columns = {
         0: ["shared-kernel", "shared-schemas", "schema-artifacts"],
-        1: ["ingestion-pypi", "ingestion-git", "analyzer-python", "analyzer-polyglot", "storage", "retrieval", "compatibility"],
-        2: ["indexer-service", "query-api"],
+        1: ["primitive-capsules", "ingestion-pypi", "ingestion-git", "analyzer-python", "analyzer-polyglot", "storage", "retrieval", "compatibility"],
+        2: ["indexer-service", "query-api", "registry-api"],
         3: ["mcp-integration", "agent-integrations", "explorer-app", "deployment", "evaluation"],
     }
     positions: dict[str, tuple[float, float]] = {}

@@ -1,0 +1,131 @@
+{
+  "schema_version": "1.0.0",
+  "decision": "modular-monolith-first",
+  "invariants": [
+    "one monorepo does not imply one process or one deployable",
+    "service extraction requires a measured security, scaling, failure-domain, runtime, ownership, or residency gate",
+    "immutable blobs and facts never depend on a Machine-local volume for production durability",
+    "branch refs use transactional compare-and-swap while releases and evidence remain immutable",
+    "every process consumes versioned package contracts and may be recombined without changing wire identity"
+  ],
+  "stages": [
+    {
+      "id": "S0-local-vertical-slice",
+      "status": "active",
+      "deployment_unit": "one local process and one repository checkout",
+      "processes": [
+        {
+          "name": "tcg",
+          "component_ids": ["vertical-slice"],
+          "state": "local SQLite, CAS, and immutable graph epochs"
+        }
+      ],
+      "exit_gate": "capsule, query, registry, and projection ports have conformance tests"
+    },
+    {
+      "id": "S1-fly-modular-service",
+      "status": "planned",
+      "deployment_unit": "one image with independently scaled Fly process groups",
+      "processes": [
+        {
+          "name": "web",
+          "component_ids": ["query-api", "registry-api"],
+          "state": "stateless request serving with bounded caches"
+        },
+        {
+          "name": "indexer",
+          "component_ids": ["indexer-service"],
+          "state": "queue-driven acquisition, analysis, and projection builds"
+        }
+      ],
+      "storage": [
+        {
+          "role": "control-plane",
+          "port": "postgresql",
+          "source_of_truth": true,
+          "stores": ["primitive handles", "revision parents", "refs", "ACLs", "jobs", "projection manifests"]
+        },
+        {
+          "role": "immutable-payloads",
+          "port": "s3-compatible-object-storage",
+          "source_of_truth": true,
+          "stores": ["source blobs", "pack layers", "cold graph facts", "receipts", "Parquet partitions"]
+        },
+        {
+          "role": "machine-cache",
+          "port": "ephemeral-filesystem",
+          "source_of_truth": false,
+          "stores": ["hot packs", "decoded source", "temporary index builds"]
+        }
+      ],
+      "exit_gate": "a declared split gate remains violated after vertical and process-group scaling"
+    },
+    {
+      "id": "S2-independent-services",
+      "status": "planned",
+      "deployment_unit": "separate deployables sharing only versioned APIs, events, and storage ports",
+      "processes": [
+        {
+          "name": "query",
+          "component_ids": ["query-api"],
+          "state": "read-optimized body-free search and progressive disclosure"
+        },
+        {
+          "name": "registry",
+          "component_ids": ["registry-api"],
+          "state": "transactional submissions, refs, releases, forks, and pack authorization"
+        },
+        {
+          "name": "indexer",
+          "component_ids": ["indexer-service"],
+          "state": "resource-heavy asynchronous extraction and projection publication"
+        }
+      ],
+      "storage": [
+        {
+          "role": "control-plane",
+          "port": "postgresql",
+          "source_of_truth": true
+        },
+        {
+          "role": "immutable-payloads",
+          "port": "s3-compatible-object-storage",
+          "source_of_truth": true
+        },
+        {
+          "role": "serving-projections",
+          "port": "replaceable-search-vector-graph-adapters",
+          "source_of_truth": false
+        }
+      ],
+      "exit_gate": "only add another service for an independently measured boundary"
+    }
+  ],
+  "split_gates": [
+    {
+      "id": "security-isolation",
+      "question": "Does the workload need a different trust, secret, network, or sandbox boundary?",
+      "evidence_required": "threat model plus enforcement and failure-injection results"
+    },
+    {
+      "id": "independent-scaling",
+      "question": "Does one workload miss its SLO or waste material resources when scaled with the others?",
+      "evidence_required": "queue, latency, CPU, memory, and cost measurements from real traffic"
+    },
+    {
+      "id": "failure-domain",
+      "question": "Does a crash, overload, or rollout in one workload threaten unrelated accepted outcomes?",
+      "evidence_required": "incident or controlled failure evidence and a tested isolation benefit"
+    },
+    {
+      "id": "runtime-or-release",
+      "question": "Does the workload require an incompatible runtime or genuinely independent release cadence?",
+      "evidence_required": "versioned contract compatibility and deployment-frequency evidence"
+    },
+    {
+      "id": "ownership-or-residency",
+      "question": "Does a team, tenant, region, or regulatory boundary require separate operational control?",
+      "evidence_required": "declared owner, data-flow inventory, and policy requirement"
+    }
+  ]
+}

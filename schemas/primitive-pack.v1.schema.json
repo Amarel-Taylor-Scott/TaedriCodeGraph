@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.taedri.dev/codegraph/primitive-pack.v1.schema.json",
+  "title": "Taedri primitive thin pack v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "identity",
+    "format_version",
+    "revision_ids",
+    "tree_ids",
+    "entries",
+    "included_blobs",
+    "assumed_present_digests",
+    "graph_epoch_ids",
+    "raw_payload_bytes"
+  ],
+  "properties": {
+    "identity": {"$ref": "#/$defs/identity"},
+    "format_version": {"const": "1.0.0"},
+    "revision_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/ucegId"}
+    },
+    "tree_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/ucegId"}
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["revision_id", "tree_id", "path", "role", "blob", "mode"],
+        "properties": {
+          "revision_id": {"$ref": "#/$defs/ucegId"},
+          "tree_id": {"$ref": "#/$defs/ucegId"},
+          "path": {"type": "string", "minLength": 1},
+          "role": {"$ref": "#/$defs/role"},
+          "blob": {"$ref": "#/$defs/blob"},
+          "mode": {"enum": ["100644", "100755"]}
+        }
+      }
+    },
+    "included_blobs": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/blob"}
+    },
+    "assumed_present_digests": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/digest"}
+    },
+    "graph_epoch_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/ucegId"}
+    },
+    "raw_payload_bytes": {"type": "integer", "minimum": 0}
+  },
+  "$defs": {
+    "digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "ucegId": {
+      "type": "string",
+      "pattern": "^uceg:v1:[a-z][a-z0-9_.-]*:[a-z2-7]+$"
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "canonical_key"],
+      "properties": {
+        "id": {"$ref": "#/$defs/ucegId"},
+        "kind": {"type": "string", "pattern": "^[a-z][a-z0-9_.-]*$"},
+        "canonical_key": {}
+      }
+    },
+    "role": {
+      "enum": [
+        "source",
+        "contract",
+        "test",
+        "verifier",
+        "dependency_lock",
+        "graph_delta",
+        "documentation",
+        "runtime"
+      ]
+    },
+    "blob": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["digest", "size_bytes", "media_type"],
+      "properties": {
+        "digest": {"$ref": "#/$defs/digest"},
+        "size_bytes": {"type": "integer", "minimum": 0},
+        "media_type": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9!#$&^_.+-]+/[A-Za-z0-9!#$&^_.+-]+$"
+        }
+      }
+    }
+  }
+}

@@ -391,20 +391,22 @@
       { id:'shared-kernel', layer:'Foundations', kind:'library', owns:'Identity, canonical encoding, typed envelopes, provenance primitives', deps:[] },
       { id:'shared-schemas', layer:'Foundations', kind:'registry', owns:'Descriptor, predicate, provider, view, and index schemas', deps:['shared-kernel'] },
       { id:'schema-artifacts', layer:'Foundations', kind:'generated artifacts', owns:'Exported JSON Schema, Arrow schemas, SQL DDL and fixtures', deps:['shared-schemas'] },
+      { id:'primitive-capsules', layer:'Packages', kind:'library', owns:'Primitive handles, immutable trees/revisions, refs, forks, merges, and thin packs', deps:['shared-kernel','shared-schemas'] },
       { id:'ingestion-pypi', layer:'Packages', kind:'library', owns:'PyPI acquisition, wheel verification, metadata and license provenance', deps:['shared-kernel','shared-schemas'] },
       { id:'ingestion-git', layer:'Packages', kind:'library', owns:'Git object acquisition, commit/tree lineage, repository policy', deps:['shared-kernel','shared-schemas'] },
       { id:'analyzer-python', layer:'Packages', kind:'library', owns:'Python syntax and semantic extraction plus conformance corpus', deps:['shared-kernel','shared-schemas'] },
       { id:'analyzer-polyglot', layer:'Packages', kind:'library', owns:'SCIP/CPG/Tree-sitter adapters and language inventory', deps:['shared-kernel','shared-schemas'] },
-      { id:'storage', layer:'Packages', kind:'library', owns:'CAS, canonical ledger, typed long tables, projection epochs', deps:['shared-kernel','shared-schemas'] },
+      { id:'storage', layer:'Packages', kind:'library', owns:'CAS, canonical ledger, typed long tables, projection epochs', deps:['shared-kernel','shared-schemas','primitive-capsules'] },
       { id:'retrieval', layer:'Packages', kind:'library', owns:'Query planning, LSH, ANN adapters, fusion and disclosure receipts', deps:['shared-kernel','shared-schemas','storage'] },
       { id:'compatibility', layer:'Packages', kind:'library', owns:'Directional contracts, solver outcomes, adapters and verification', deps:['shared-kernel','shared-schemas'] },
       { id:'indexer-service', layer:'Services', kind:'service', owns:'Acquisition orchestration, enrichment, invalidation and epoch builds', deps:['ingestion-pypi','ingestion-git','analyzer-python','analyzer-polyglot','storage','retrieval'] },
       { id:'query-api', layer:'Services', kind:'service', owns:'Authenticated search, context, provenance and compatibility APIs', deps:['storage','retrieval','compatibility'] },
+      { id:'registry-api', layer:'Services', kind:'service', owns:'Candidate submissions, ref updates, forks, merges, release tags, and authorized pack delivery', deps:['primitive-capsules','storage','retrieval','compatibility'] },
       { id:'mcp-integration', layer:'Consumers', kind:'integration', owns:'MCP tools/resources and bounded context contracts', deps:['shared-schemas','retrieval','compatibility'] },
       { id:'agent-integrations', layer:'Consumers', kind:'integration', owns:'Codex/Claude instructions, skills, hooks and harness policy', deps:['shared-schemas','mcp-integration'] },
       { id:'explorer-app', layer:'Consumers', kind:'application', owns:'Human graph, provenance, portfolio and search explorer', deps:['query-api'] },
-      { id:'deployment', layer:'Consumers', kind:'operations', owns:'Stacks, migrations, observability and policy integration', deps:['indexer-service','query-api'] },
-      { id:'evaluation', layer:'Consumers', kind:'evaluation', owns:'Real packages, ablations, promotion gates and receipts', deps:['indexer-service','query-api','agent-integrations'] }
+      { id:'deployment', layer:'Consumers', kind:'operations', owns:'Stacks, migrations, observability and policy integration', deps:['indexer-service','query-api','registry-api'] },
+      { id:'evaluation', layer:'Consumers', kind:'evaluation', owns:'Real packages, ablations, promotion gates and receipts', deps:['indexer-service','query-api','registry-api','agent-integrations'] }
     ];
     let selectedComponent = null;
     function renderComponents() {

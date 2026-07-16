@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.taedri.dev/codegraph/primitive-revision.v1.schema.json",
+  "title": "Taedri primitive revision v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "identity",
+    "format_version",
+    "primitive",
+    "tree_id",
+    "contract_digest",
+    "graph_epoch_id",
+    "parent_revision_ids",
+    "upstream_revision_id",
+    "producer",
+    "generation_run_id",
+    "evidence_ids",
+    "author",
+    "created_at",
+    "message"
+  ],
+  "properties": {
+    "identity": {"$ref": "#/$defs/identity"},
+    "format_version": {"const": "1.0.0"},
+    "primitive": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["identity", "namespace", "name"],
+      "properties": {
+        "identity": {"$ref": "#/$defs/identity"},
+        "namespace": {"$ref": "#/$defs/handlePart"},
+        "name": {"$ref": "#/$defs/handlePart"}
+      }
+    },
+    "tree_id": {"$ref": "#/$defs/ucegId"},
+    "contract_digest": {"$ref": "#/$defs/digest"},
+    "graph_epoch_id": {
+      "oneOf": [{"$ref": "#/$defs/ucegId"}, {"type": "null"}]
+    },
+    "parent_revision_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/ucegId"}
+    },
+    "upstream_revision_id": {
+      "oneOf": [{"$ref": "#/$defs/ucegId"}, {"type": "null"}]
+    },
+    "producer": {"$ref": "#/$defs/producer"},
+    "generation_run_id": {
+      "oneOf": [{"type": "string", "minLength": 1}, {"type": "null"}]
+    },
+    "evidence_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "author": {"type": "string", "minLength": 1},
+    "created_at": {"type": "string", "format": "date-time"},
+    "message": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "handlePart": {
+      "type": "string",
+      "pattern": "^[a-z0-9](?:[a-z0-9._-]{0,62}[a-z0-9])?$"
+    },
+    "ucegId": {
+      "type": "string",
+      "pattern": "^uceg:v1:[a-z][a-z0-9_.-]*:[a-z2-7]+$"
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "canonical_key"],
+      "properties": {
+        "id": {"$ref": "#/$defs/ucegId"},
+        "kind": {"type": "string", "pattern": "^[a-z][a-z0-9_.-]*$"},
+        "canonical_key": {}
+      }
+    },
+    "producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "config_digest"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "config_digest": {"$ref": "#/$defs/digest"}
+      }
+    }
+  }
+}

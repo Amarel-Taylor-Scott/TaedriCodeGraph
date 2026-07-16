@@ -6,7 +6,8 @@
     "component dependencies form a directed acyclic graph",
     "schemas and the kernel do not depend on services, integrations, or apps",
     "ingestion does not import or execute analyzed target code",
-    "similarity candidates never become compatibility proof"
+    "similarity candidates never become compatibility proof",
+    "primitive revisions are immutable and branch refs never participate in content identity"
   ],
   "components": [
     {
@@ -40,6 +41,14 @@
       "status": "scaffolded",
       "owns": ["exported JSON Schema", "Arrow schemas", "SQL DDL", "compatibility fixtures"],
       "depends_on": ["shared-schemas"]
+    },
+    {
+      "id": "primitive-capsules",
+      "path": "packages/primitive-registry",
+      "kind": "library",
+      "status": "scaffolded",
+      "owns": ["primitive handles", "content trees", "revision DAGs", "refs", "thin pack contracts"],
+      "depends_on": ["shared-kernel", "shared-schemas"]
     },
     {
       "id": "ingestion-pypi",
@@ -79,7 +88,7 @@
       "kind": "library",
       "status": "scaffolded",
       "owns": ["canonical ledger adapters", "CAS", "typed long tables", "projection epochs"],
-      "depends_on": ["shared-kernel", "shared-schemas"]
+      "depends_on": ["shared-kernel", "shared-schemas", "primitive-capsules"]
     },
     {
       "id": "retrieval",
@@ -114,6 +123,14 @@
       "depends_on": ["storage", "retrieval", "compatibility"]
     },
     {
+      "id": "registry-api",
+      "path": "services/registry-api",
+      "kind": "service",
+      "status": "scaffolded",
+      "owns": ["candidate submission", "branch and tag mutations", "fork and merge commands", "authorized pack delivery"],
+      "depends_on": ["primitive-capsules", "storage", "retrieval", "compatibility"]
+    },
+    {
       "id": "mcp-integration",
       "path": "integrations/mcp",
       "kind": "integration",
@@ -143,7 +160,7 @@
       "kind": "operations",
       "status": "scaffolded",
       "owns": ["local stacks", "migrations", "observability", "deployment policy"],
-      "depends_on": ["indexer-service", "query-api"]
+      "depends_on": ["indexer-service", "query-api", "registry-api"]
     },
     {
       "id": "evaluation",
@@ -151,7 +168,7 @@
       "kind": "evaluation",
       "status": "active",
       "owns": ["real-package corpora", "ablation receipts", "promotion gates", "reports"],
-      "depends_on": ["indexer-service", "query-api", "agent-integrations"]
+      "depends_on": ["indexer-service", "query-api", "registry-api", "agent-integrations"]
     }
   ]
 }

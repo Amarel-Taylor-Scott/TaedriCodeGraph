@@ -1,0 +1,761 @@
+{
+  "decoded_blob_count": 3,
+  "evidence_class": "transport-and-history-poc-not-production-authorization",
+  "fork_revision": {
+    "author": "taedri-demo-builder",
+    "contract_digest": "sha256:86d30591deb47dbc0ef7bda230507ea7c4cf39ba5c7a0745a6d6480470d6ad6c",
+    "created_at": "2026-07-16T12:00:02Z",
+    "evidence_ids": [],
+    "format_version": "1.0.0",
+    "generation_run_id": null,
+    "graph_epoch_id": "uceg:v1:graph_epoch:uezfiubbeyapsbibk3skyh6jhjy43c6ovujprwqihdisoped4pva",
+    "identity": {
+      "canonical_key": {
+        "author": "taedri-demo-builder",
+        "contract_digest": "sha256:86d30591deb47dbc0ef7bda230507ea7c4cf39ba5c7a0745a6d6480470d6ad6c",
+        "created_at": "2026-07-16T12:00:02Z",
+        "evidence_ids": [],
+        "format_version": "1.0.0",
+        "generation_run_id": null,
+        "graph_epoch_id": "uceg:v1:graph_epoch:uezfiubbeyapsbibk3skyh6jhjy43c6ovujprwqihdisoped4pva",
+        "message": "Demonstrate cross-namespace fork lineage",
+        "parent_revision_ids": [
+          "uceg:v1:primitive_revision:ibk3reufcyktdhkjsk5tq2qwsu3v4wwlhbxzikbi6ztzbetfqb3a"
+        ],
+        "primitive_id": "uceg:v1:primitive:2gtuqkolemivhsfffawovadzoibsfxg7ztdoxly5yb66bedcso7a",
+        "producer": {
+          "config_digest": "sha256:e953f269a4fce985ae39f0cdb4dc95dc48c91742ffc93ff9ddd35b89052edea6",
+          "id": "taedri.tool.build-primitive-capsule-demo",
+          "version": "1.0.0"
+        },
+        "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq",
+        "upstream_revision_id": "uceg:v1:primitive_revision:ibk3reufcyktdhkjsk5tq2qwsu3v4wwlhbxzikbi6ztzbetfqb3a"
+      },
+      "id": "uceg:v1:primitive_revision:kklv6mmkc6uqai3rawchteodylw645lka5akk5emv5nczirwk2sa",
+      "kind": "primitive_revision"
+    },
+    "message": "Demonstrate cross-namespace fork lineage",
+    "parent_revision_ids": [
+      "uceg:v1:primitive_revision:ibk3reufcyktdhkjsk5tq2qwsu3v4wwlhbxzikbi6ztzbetfqb3a"
+    ],
+    "primitive": {
+      "identity": {
+        "canonical_key": {
+          "name": "canonical-identity-encoding",
+          "namespace": "taedri.demo"
+        },
+        "id": "uceg:v1:primitive:2gtuqkolemivhsfffawovadzoibsfxg7ztdoxly5yb66bedcso7a",
+        "kind": "primitive"
+      },
+      "name": "canonical-identity-encoding",
+      "namespace": "taedri.demo"
+    },
+    "producer": {
+      "config_digest": "sha256:e953f269a4fce985ae39f0cdb4dc95dc48c91742ffc93ff9ddd35b89052edea6",
+      "id": "taedri.tool.build-primitive-capsule-demo",
+      "version": "1.0.0"
+    },
+    "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq",
+    "upstream_revision_id": "uceg:v1:primitive_revision:ibk3reufcyktdhkjsk5tq2qwsu3v4wwlhbxzikbi6ztzbetfqb3a"
+  },
+  "initial_revision": {
+    "author": "taedri-demo-builder",
+    "contract_digest": "sha256:86d30591deb47dbc0ef7bda230507ea7c4cf39ba5c7a0745a6d6480470d6ad6c",
+    "created_at": "2026-07-16T12:00:00Z",
+    "evidence_ids": [
+      "sha256:9102a673df7ad3358fc1c2034c428220a6d02215a125ab09ce0920835e14b72a"
+    ],
+    "format_version": "1.0.0",
+    "generation_run_id": "uceg:v1:generation_run:tqv6nvmcen7tm7qko73ojmvflm647hs27ahd3qsq5uwd7qfj3aka",
+    "graph_epoch_id": "uceg:v1:graph_epoch:uezfiubbeyapsbibk3skyh6jhjy43c6ovujprwqihdisoped4pva",
+    "identity": {
+      "canonical_key": {
+        "author": "taedri-demo-builder",
+        "contract_digest": "sha256:86d30591deb47dbc0ef7bda230507ea7c4cf39ba5c7a0745a6d6480470d6ad6c",
+        "created_at": "2026-07-16T12:00:00Z",
+        "evidence_ids": [
+          "sha256:9102a673df7ad3358fc1c2034c428220a6d02215a125ab09ce0920835e14b72a"
+        ],
+        "format_version": "1.0.0",
+        "generation_run_id": "uceg:v1:generation_run:tqv6nvmcen7tm7qko73ojmvflm647hs27ahd3qsq5uwd7qfj3aka",
+        "graph_epoch_id": "uceg:v1:graph_epoch:uezfiubbeyapsbibk3skyh6jhjy43c6ovujprwqihdisoped4pva",
+        "message": "Package existing canonical identity implementation",
+        "parent_revision_ids": [],
+        "primitive_id": "uceg:v1:primitive:2g46dfzdmrdqjyt4ebf6mppg3wsfj5snzghnpqak5o2dij7eox7q",
+        "producer": {
+          "config_digest": "sha256:e953f269a4fce985ae39f0cdb4dc95dc48c91742ffc93ff9ddd35b89052edea6",
+          "id": "taedri.tool.build-primitive-capsule-demo",
+          "version": "1.0.0"
+        },
+        "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq",
+        "upstream_revision_id": null
+      },
+      "id": "uceg:v1:primitive_revision:ibk3reufcyktdhkjsk5tq2qwsu3v4wwlhbxzikbi6ztzbetfqb3a",
+      "kind": "primitive_revision"
+    },
+    "message": "Package existing canonical identity implementation",
+    "parent_revision_ids": [],
+    "primitive": {
+      "identity": {
+        "canonical_key": {
+          "name": "canonical-identity-encoding",
+          "namespace": "taedri.core"
+        },
+        "id": "uceg:v1:primitive:2g46dfzdmrdqjyt4ebf6mppg3wsfj5snzghnpqak5o2dij7eox7q",
+        "kind": "primitive"
+      },
+      "name": "canonical-identity-encoding",
+      "namespace": "taedri.core"
+    },
+    "producer": {
+      "config_digest": "sha256:e953f269a4fce985ae39f0cdb4dc95dc48c91742ffc93ff9ddd35b89052edea6",
+      "id": "taedri.tool.build-primitive-capsule-demo",
+      "version": "1.0.0"
+    },
+    "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq",
+    "upstream_revision_id": null
+  },
+  "merged_revision": {
+    "author": "taedri-demo-builder",
+    "contract_digest": "sha256:86d30591deb47dbc0ef7bda230507ea7c4cf39ba5c7a0745a6d6480470d6ad6c",
+    "created_at": "2026-07-16T12:00:03Z",
+    "evidence_ids": [],
+    "format_version": "1.0.0",
+    "generation_run_id": null,
+    "graph_epoch_id": "uceg:v1:graph_epoch:uezfiubbeyapsbibk3skyh6jhjy43c6ovujprwqihdisoped4pva",
+    "identity": {
+      "canonical_key": {
+        "author": "taedri-demo-builder",
+        "contract_digest": "sha256:86d30591deb47dbc0ef7bda230507ea7c4cf39ba5c7a0745a6d6480470d6ad6c",
+        "created_at": "2026-07-16T12:00:03Z",
+        "evidence_ids": [],
+        "format_version": "1.0.0",
+        "generation_run_id": null,
+        "graph_epoch_id": "uceg:v1:graph_epoch:uezfiubbeyapsbibk3skyh6jhjy43c6ovujprwqihdisoped4pva",
+        "message": "Demonstrate reviewed two-parent merge",
+        "parent_revision_ids": [
+          "uceg:v1:primitive_revision:ibk3reufcyktdhkjsk5tq2qwsu3v4wwlhbxzikbi6ztzbetfqb3a",
+          "uceg:v1:primitive_revision:kklv6mmkc6uqai3rawchteodylw645lka5akk5emv5nczirwk2sa"
+        ],
+        "primitive_id": "uceg:v1:primitive:2g46dfzdmrdqjyt4ebf6mppg3wsfj5snzghnpqak5o2dij7eox7q",
+        "producer": {
+          "config_digest": "sha256:e953f269a4fce985ae39f0cdb4dc95dc48c91742ffc93ff9ddd35b89052edea6",
+          "id": "taedri.tool.build-primitive-capsule-demo",
+          "version": "1.0.0"
+        },
+        "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq",
+        "upstream_revision_id": null
+      },
+      "id": "uceg:v1:primitive_revision:cwtj76zkdn6otqgorsazewi6yobfabcxvq3g3uuqe7hbceub5dxa",
+      "kind": "primitive_revision"
+    },
+    "message": "Demonstrate reviewed two-parent merge",
+    "parent_revision_ids": [
+      "uceg:v1:primitive_revision:ibk3reufcyktdhkjsk5tq2qwsu3v4wwlhbxzikbi6ztzbetfqb3a",
+      "uceg:v1:primitive_revision:kklv6mmkc6uqai3rawchteodylw645lka5akk5emv5nczirwk2sa"
+    ],
+    "primitive": {
+      "identity": {
+        "canonical_key": {
+          "name": "canonical-identity-encoding",
+          "namespace": "taedri.core"
+        },
+        "id": "uceg:v1:primitive:2g46dfzdmrdqjyt4ebf6mppg3wsfj5snzghnpqak5o2dij7eox7q",
+        "kind": "primitive"
+      },
+      "name": "canonical-identity-encoding",
+      "namespace": "taedri.core"
+    },
+    "producer": {
+      "config_digest": "sha256:e953f269a4fce985ae39f0cdb4dc95dc48c91742ffc93ff9ddd35b89052edea6",
+      "id": "taedri.tool.build-primitive-capsule-demo",
+      "version": "1.0.0"
+    },
+    "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq",
+    "upstream_revision_id": null
+  },
+  "pack": {
+    "assumed_present_digests": [
+      "sha256:0244c199e706b925683c91efb8974a59e11320e3794d87cb5841f6b0d7a9f2e1"
+    ],
+    "entries": [
+      {
+        "blob": {
+          "digest": "sha256:86d30591deb47dbc0ef7bda230507ea7c4cf39ba5c7a0745a6d6480470d6ad6c",
+          "media_type": "application/vnd.taedri.primitive.contract.v1+json",
+          "size_bytes": 288
+        },
+        "mode": "100644",
+        "path": "contract.json",
+        "revision_id": "uceg:v1:primitive_revision:cwtj76zkdn6otqgorsazewi6yobfabcxvq3g3uuqe7hbceub5dxa",
+        "role": "contract",
+        "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq"
+      },
+      {
+        "blob": {
+          "digest": "sha256:601ca774775a77f96c276a8ae67c934e18264bc745b1aba2ea41defbb38dd333",
+          "media_type": "application/vnd.taedri.codegraph.edges.v1+json",
+          "size_bytes": 289
+        },
+        "mode": "100644",
+        "path": "graph/neighborhood.json",
+        "revision_id": "uceg:v1:primitive_revision:cwtj76zkdn6otqgorsazewi6yobfabcxvq3g3uuqe7hbceub5dxa",
+        "role": "graph_delta",
+        "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq"
+      },
+      {
+        "blob": {
+          "digest": "sha256:0244c199e706b925683c91efb8974a59e11320e3794d87cb5841f6b0d7a9f2e1",
+          "media_type": "text/x-python",
+          "size_bytes": 4449
+        },
+        "mode": "100644",
+        "path": "src/canonical.py",
+        "revision_id": "uceg:v1:primitive_revision:cwtj76zkdn6otqgorsazewi6yobfabcxvq3g3uuqe7hbceub5dxa",
+        "role": "source",
+        "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq"
+      },
+      {
+        "blob": {
+          "digest": "sha256:9102a673df7ad3358fc1c2034c428220a6d02215a125ab09ce0920835e14b72a",
+          "media_type": "text/x-python",
+          "size_bytes": 1426
+        },
+        "mode": "100644",
+        "path": "tests/test_identity.py",
+        "revision_id": "uceg:v1:primitive_revision:cwtj76zkdn6otqgorsazewi6yobfabcxvq3g3uuqe7hbceub5dxa",
+        "role": "test",
+        "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq"
+      },
+      {
+        "blob": {
+          "digest": "sha256:86d30591deb47dbc0ef7bda230507ea7c4cf39ba5c7a0745a6d6480470d6ad6c",
+          "media_type": "application/vnd.taedri.primitive.contract.v1+json",
+          "size_bytes": 288
+        },
+        "mode": "100644",
+        "path": "contract.json",
+        "revision_id": "uceg:v1:primitive_revision:ibk3reufcyktdhkjsk5tq2qwsu3v4wwlhbxzikbi6ztzbetfqb3a",
+        "role": "contract",
+        "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq"
+      },
+      {
+        "blob": {
+          "digest": "sha256:601ca774775a77f96c276a8ae67c934e18264bc745b1aba2ea41defbb38dd333",
+          "media_type": "application/vnd.taedri.codegraph.edges.v1+json",
+          "size_bytes": 289
+        },
+        "mode": "100644",
+        "path": "graph/neighborhood.json",
+        "revision_id": "uceg:v1:primitive_revision:ibk3reufcyktdhkjsk5tq2qwsu3v4wwlhbxzikbi6ztzbetfqb3a",
+        "role": "graph_delta",
+        "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq"
+      },
+      {
+        "blob": {
+          "digest": "sha256:0244c199e706b925683c91efb8974a59e11320e3794d87cb5841f6b0d7a9f2e1",
+          "media_type": "text/x-python",
+          "size_bytes": 4449
+        },
+        "mode": "100644",
+        "path": "src/canonical.py",
+        "revision_id": "uceg:v1:primitive_revision:ibk3reufcyktdhkjsk5tq2qwsu3v4wwlhbxzikbi6ztzbetfqb3a",
+        "role": "source",
+        "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq"
+      },
+      {
+        "blob": {
+          "digest": "sha256:9102a673df7ad3358fc1c2034c428220a6d02215a125ab09ce0920835e14b72a",
+          "media_type": "text/x-python",
+          "size_bytes": 1426
+        },
+        "mode": "100644",
+        "path": "tests/test_identity.py",
+        "revision_id": "uceg:v1:primitive_revision:ibk3reufcyktdhkjsk5tq2qwsu3v4wwlhbxzikbi6ztzbetfqb3a",
+        "role": "test",
+        "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq"
+      },
+      {
+        "blob": {
+          "digest": "sha256:86d30591deb47dbc0ef7bda230507ea7c4cf39ba5c7a0745a6d6480470d6ad6c",
+          "media_type": "application/vnd.taedri.primitive.contract.v1+json",
+          "size_bytes": 288
+        },
+        "mode": "100644",
+        "path": "contract.json",
+        "revision_id": "uceg:v1:primitive_revision:kklv6mmkc6uqai3rawchteodylw645lka5akk5emv5nczirwk2sa",
+        "role": "contract",
+        "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq"
+      },
+      {
+        "blob": {
+          "digest": "sha256:601ca774775a77f96c276a8ae67c934e18264bc745b1aba2ea41defbb38dd333",
+          "media_type": "application/vnd.taedri.codegraph.edges.v1+json",
+          "size_bytes": 289
+        },
+        "mode": "100644",
+        "path": "graph/neighborhood.json",
+        "revision_id": "uceg:v1:primitive_revision:kklv6mmkc6uqai3rawchteodylw645lka5akk5emv5nczirwk2sa",
+        "role": "graph_delta",
+        "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq"
+      },
+      {
+        "blob": {
+          "digest": "sha256:0244c199e706b925683c91efb8974a59e11320e3794d87cb5841f6b0d7a9f2e1",
+          "media_type": "text/x-python",
+          "size_bytes": 4449
+        },
+        "mode": "100644",
+        "path": "src/canonical.py",
+        "revision_id": "uceg:v1:primitive_revision:kklv6mmkc6uqai3rawchteodylw645lka5akk5emv5nczirwk2sa",
+        "role": "source",
+        "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq"
+      },
+      {
+        "blob": {
+          "digest": "sha256:9102a673df7ad3358fc1c2034c428220a6d02215a125ab09ce0920835e14b72a",
+          "media_type": "text/x-python",
+          "size_bytes": 1426
+        },
+        "mode": "100644",
+        "path": "tests/test_identity.py",
+        "revision_id": "uceg:v1:primitive_revision:kklv6mmkc6uqai3rawchteodylw645lka5akk5emv5nczirwk2sa",
+        "role": "test",
+        "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq"
+      }
+    ],
+    "format_version": "1.0.0",
+    "graph_epoch_ids": [
+      "uceg:v1:graph_epoch:uezfiubbeyapsbibk3skyh6jhjy43c6ovujprwqihdisoped4pva"
+    ],
+    "identity": {
+      "canonical_key": {
+        "assumed_present_digests": [
+          "sha256:0244c199e706b925683c91efb8974a59e11320e3794d87cb5841f6b0d7a9f2e1"
+        ],
+        "entries": [
+          {
+            "blob": {
+              "digest": "sha256:86d30591deb47dbc0ef7bda230507ea7c4cf39ba5c7a0745a6d6480470d6ad6c",
+              "media_type": "application/vnd.taedri.primitive.contract.v1+json",
+              "size_bytes": 288
+            },
+            "mode": "100644",
+            "path": "contract.json",
+            "revision_id": "uceg:v1:primitive_revision:cwtj76zkdn6otqgorsazewi6yobfabcxvq3g3uuqe7hbceub5dxa",
+            "role": "contract",
+            "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq"
+          },
+          {
+            "blob": {
+              "digest": "sha256:601ca774775a77f96c276a8ae67c934e18264bc745b1aba2ea41defbb38dd333",
+              "media_type": "application/vnd.taedri.codegraph.edges.v1+json",
+              "size_bytes": 289
+            },
+            "mode": "100644",
+            "path": "graph/neighborhood.json",
+            "revision_id": "uceg:v1:primitive_revision:cwtj76zkdn6otqgorsazewi6yobfabcxvq3g3uuqe7hbceub5dxa",
+            "role": "graph_delta",
+            "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq"
+          },
+          {
+            "blob": {
+              "digest": "sha256:0244c199e706b925683c91efb8974a59e11320e3794d87cb5841f6b0d7a9f2e1",
+              "media_type": "text/x-python",
+              "size_bytes": 4449
+            },
+            "mode": "100644",
+            "path": "src/canonical.py",
+            "revision_id": "uceg:v1:primitive_revision:cwtj76zkdn6otqgorsazewi6yobfabcxvq3g3uuqe7hbceub5dxa",
+            "role": "source",
+            "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq"
+          },
+          {
+            "blob": {
+              "digest": "sha256:9102a673df7ad3358fc1c2034c428220a6d02215a125ab09ce0920835e14b72a",
+              "media_type": "text/x-python",
+              "size_bytes": 1426
+            },
+            "mode": "100644",
+            "path": "tests/test_identity.py",
+            "revision_id": "uceg:v1:primitive_revision:cwtj76zkdn6otqgorsazewi6yobfabcxvq3g3uuqe7hbceub5dxa",
+            "role": "test",
+            "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq"
+          },
+          {
+            "blob": {
+              "digest": "sha256:86d30591deb47dbc0ef7bda230507ea7c4cf39ba5c7a0745a6d6480470d6ad6c",
+              "media_type": "application/vnd.taedri.primitive.contract.v1+json",
+              "size_bytes": 288
+            },
+            "mode": "100644",
+            "path": "contract.json",
+            "revision_id": "uceg:v1:primitive_revision:ibk3reufcyktdhkjsk5tq2qwsu3v4wwlhbxzikbi6ztzbetfqb3a",
+            "role": "contract",
+            "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq"
+          },
+          {
+            "blob": {
+              "digest": "sha256:601ca774775a77f96c276a8ae67c934e18264bc745b1aba2ea41defbb38dd333",
+              "media_type": "application/vnd.taedri.codegraph.edges.v1+json",
+              "size_bytes": 289
+            },
+            "mode": "100644",
+            "path": "graph/neighborhood.json",
+            "revision_id": "uceg:v1:primitive_revision:ibk3reufcyktdhkjsk5tq2qwsu3v4wwlhbxzikbi6ztzbetfqb3a",
+            "role": "graph_delta",
+            "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq"
+          },
+          {
+            "blob": {
+              "digest": "sha256:0244c199e706b925683c91efb8974a59e11320e3794d87cb5841f6b0d7a9f2e1",
+              "media_type": "text/x-python",
+              "size_bytes": 4449
+            },
+            "mode": "100644",
+            "path": "src/canonical.py",
+            "revision_id": "uceg:v1:primitive_revision:ibk3reufcyktdhkjsk5tq2qwsu3v4wwlhbxzikbi6ztzbetfqb3a",
+            "role": "source",
+            "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq"
+          },
+          {
+            "blob": {
+              "digest": "sha256:9102a673df7ad3358fc1c2034c428220a6d02215a125ab09ce0920835e14b72a",
+              "media_type": "text/x-python",
+              "size_bytes": 1426
+            },
+            "mode": "100644",
+            "path": "tests/test_identity.py",
+            "revision_id": "uceg:v1:primitive_revision:ibk3reufcyktdhkjsk5tq2qwsu3v4wwlhbxzikbi6ztzbetfqb3a",
+            "role": "test",
+            "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq"
+          },
+          {
+            "blob": {
+              "digest": "sha256:86d30591deb47dbc0ef7bda230507ea7c4cf39ba5c7a0745a6d6480470d6ad6c",
+              "media_type": "application/vnd.taedri.primitive.contract.v1+json",
+              "size_bytes": 288
+            },
+            "mode": "100644",
+            "path": "contract.json",
+            "revision_id": "uceg:v1:primitive_revision:kklv6mmkc6uqai3rawchteodylw645lka5akk5emv5nczirwk2sa",
+            "role": "contract",
+            "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq"
+          },
+          {
+            "blob": {
+              "digest": "sha256:601ca774775a77f96c276a8ae67c934e18264bc745b1aba2ea41defbb38dd333",
+              "media_type": "application/vnd.taedri.codegraph.edges.v1+json",
+              "size_bytes": 289
+            },
+            "mode": "100644",
+            "path": "graph/neighborhood.json",
+            "revision_id": "uceg:v1:primitive_revision:kklv6mmkc6uqai3rawchteodylw645lka5akk5emv5nczirwk2sa",
+            "role": "graph_delta",
+            "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq"
+          },
+          {
+            "blob": {
+              "digest": "sha256:0244c199e706b925683c91efb8974a59e11320e3794d87cb5841f6b0d7a9f2e1",
+              "media_type": "text/x-python",
+              "size_bytes": 4449
+            },
+            "mode": "100644",
+            "path": "src/canonical.py",
+            "revision_id": "uceg:v1:primitive_revision:kklv6mmkc6uqai3rawchteodylw645lka5akk5emv5nczirwk2sa",
+            "role": "source",
+            "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq"
+          },
+          {
+            "blob": {
+              "digest": "sha256:9102a673df7ad3358fc1c2034c428220a6d02215a125ab09ce0920835e14b72a",
+              "media_type": "text/x-python",
+              "size_bytes": 1426
+            },
+            "mode": "100644",
+            "path": "tests/test_identity.py",
+            "revision_id": "uceg:v1:primitive_revision:kklv6mmkc6uqai3rawchteodylw645lka5akk5emv5nczirwk2sa",
+            "role": "test",
+            "tree_id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq"
+          }
+        ],
+        "format_version": "1.0.0",
+        "graph_epoch_ids": [
+          "uceg:v1:graph_epoch:uezfiubbeyapsbibk3skyh6jhjy43c6ovujprwqihdisoped4pva"
+        ],
+        "included_blobs": [
+          {
+            "digest": "sha256:601ca774775a77f96c276a8ae67c934e18264bc745b1aba2ea41defbb38dd333",
+            "media_type": "application/vnd.taedri.codegraph.edges.v1+json",
+            "size_bytes": 289
+          },
+          {
+            "digest": "sha256:86d30591deb47dbc0ef7bda230507ea7c4cf39ba5c7a0745a6d6480470d6ad6c",
+            "media_type": "application/vnd.taedri.primitive.contract.v1+json",
+            "size_bytes": 288
+          },
+          {
+            "digest": "sha256:9102a673df7ad3358fc1c2034c428220a6d02215a125ab09ce0920835e14b72a",
+            "media_type": "text/x-python",
+            "size_bytes": 1426
+          }
+        ],
+        "raw_payload_bytes": 2003,
+        "revision_ids": [
+          "uceg:v1:primitive_revision:cwtj76zkdn6otqgorsazewi6yobfabcxvq3g3uuqe7hbceub5dxa",
+          "uceg:v1:primitive_revision:ibk3reufcyktdhkjsk5tq2qwsu3v4wwlhbxzikbi6ztzbetfqb3a",
+          "uceg:v1:primitive_revision:kklv6mmkc6uqai3rawchteodylw645lka5akk5emv5nczirwk2sa"
+        ],
+        "tree_ids": [
+          "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq"
+        ]
+      },
+      "id": "uceg:v1:primitive_pack:4bvjtkg3czemaoxtscr4atrah4m3ojrowlg7t6umhak6o7rahsca",
+      "kind": "primitive_pack"
+    },
+    "included_blobs": [
+      {
+        "digest": "sha256:601ca774775a77f96c276a8ae67c934e18264bc745b1aba2ea41defbb38dd333",
+        "media_type": "application/vnd.taedri.codegraph.edges.v1+json",
+        "size_bytes": 289
+      },
+      {
+        "digest": "sha256:86d30591deb47dbc0ef7bda230507ea7c4cf39ba5c7a0745a6d6480470d6ad6c",
+        "media_type": "application/vnd.taedri.primitive.contract.v1+json",
+        "size_bytes": 288
+      },
+      {
+        "digest": "sha256:9102a673df7ad3358fc1c2034c428220a6d02215a125ab09ce0920835e14b72a",
+        "media_type": "text/x-python",
+        "size_bytes": 1426
+      }
+    ],
+    "raw_payload_bytes": 2003,
+    "revision_ids": [
+      "uceg:v1:primitive_revision:cwtj76zkdn6otqgorsazewi6yobfabcxvq3g3uuqe7hbceub5dxa",
+      "uceg:v1:primitive_revision:ibk3reufcyktdhkjsk5tq2qwsu3v4wwlhbxzikbi6ztzbetfqb3a",
+      "uceg:v1:primitive_revision:kklv6mmkc6uqai3rawchteodylw645lka5akk5emv5nczirwk2sa"
+    ],
+    "tree_ids": [
+      "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq"
+    ]
+  },
+  "pack_bytes": 1835,
+  "pack_digest": "sha256:5ed86983ea416915bd676cd7e090f65e2a0071fc5f265d5fa77dbcc4db979126",
+  "pack_file": "canonical-identity-encoding.tcgpack",
+  "primitive": {
+    "identity": {
+      "canonical_key": {
+        "name": "canonical-identity-encoding",
+        "namespace": "taedri.core"
+      },
+      "id": "uceg:v1:primitive:2g46dfzdmrdqjyt4ebf6mppg3wsfj5snzghnpqak5o2dij7eox7q",
+      "kind": "primitive"
+    },
+    "name": "canonical-identity-encoding",
+    "namespace": "taedri.core"
+  },
+  "ref_updates": [
+    {
+      "actor": "taedri-demo-builder",
+      "forced": false,
+      "identity": {
+        "canonical_key": {
+          "actor": "taedri-demo-builder",
+          "forced": false,
+          "new_revision_id": "uceg:v1:primitive_revision:ibk3reufcyktdhkjsk5tq2qwsu3v4wwlhbxzikbi6ztzbetfqb3a",
+          "old_revision_id": null,
+          "primitive_id": "uceg:v1:primitive:2g46dfzdmrdqjyt4ebf6mppg3wsfj5snzghnpqak5o2dij7eox7q",
+          "ref_kind": "branch",
+          "ref_name": "main",
+          "sequence": 1,
+          "updated_at": "2026-07-16T12:00:00Z"
+        },
+        "id": "uceg:v1:primitive_ref_update:vzpqsgwbfaybanl3zk36w5y4k253andtmekiv3ceqifztvawo54q",
+        "kind": "primitive_ref_update"
+      },
+      "new_revision_id": "uceg:v1:primitive_revision:ibk3reufcyktdhkjsk5tq2qwsu3v4wwlhbxzikbi6ztzbetfqb3a",
+      "old_revision_id": null,
+      "primitive_id": "uceg:v1:primitive:2g46dfzdmrdqjyt4ebf6mppg3wsfj5snzghnpqak5o2dij7eox7q",
+      "ref_kind": "branch",
+      "ref_name": "main",
+      "sequence": 1,
+      "updated_at": "2026-07-16T12:00:00Z"
+    },
+    {
+      "actor": "taedri-demo-builder",
+      "forced": false,
+      "identity": {
+        "canonical_key": {
+          "actor": "taedri-demo-builder",
+          "forced": false,
+          "new_revision_id": "uceg:v1:primitive_revision:ibk3reufcyktdhkjsk5tq2qwsu3v4wwlhbxzikbi6ztzbetfqb3a",
+          "old_revision_id": null,
+          "primitive_id": "uceg:v1:primitive:2g46dfzdmrdqjyt4ebf6mppg3wsfj5snzghnpqak5o2dij7eox7q",
+          "ref_kind": "tag",
+          "ref_name": "poc-v1",
+          "sequence": 2,
+          "updated_at": "2026-07-16T12:00:01Z"
+        },
+        "id": "uceg:v1:primitive_ref_update:4ii5o3nha7jpl4efeeoffleoii4l545ubvgccohelxozihgnqzba",
+        "kind": "primitive_ref_update"
+      },
+      "new_revision_id": "uceg:v1:primitive_revision:ibk3reufcyktdhkjsk5tq2qwsu3v4wwlhbxzikbi6ztzbetfqb3a",
+      "old_revision_id": null,
+      "primitive_id": "uceg:v1:primitive:2g46dfzdmrdqjyt4ebf6mppg3wsfj5snzghnpqak5o2dij7eox7q",
+      "ref_kind": "tag",
+      "ref_name": "poc-v1",
+      "sequence": 2,
+      "updated_at": "2026-07-16T12:00:01Z"
+    },
+    {
+      "actor": "taedri-demo-builder",
+      "forced": false,
+      "identity": {
+        "canonical_key": {
+          "actor": "taedri-demo-builder",
+          "forced": false,
+          "new_revision_id": "uceg:v1:primitive_revision:kklv6mmkc6uqai3rawchteodylw645lka5akk5emv5nczirwk2sa",
+          "old_revision_id": null,
+          "primitive_id": "uceg:v1:primitive:2gtuqkolemivhsfffawovadzoibsfxg7ztdoxly5yb66bedcso7a",
+          "ref_kind": "branch",
+          "ref_name": "main",
+          "sequence": 3,
+          "updated_at": "2026-07-16T12:00:02Z"
+        },
+        "id": "uceg:v1:primitive_ref_update:a57xiuzkya43jtehvc5tllqnujkyktbdo66kvis5nx7scg2cotba",
+        "kind": "primitive_ref_update"
+      },
+      "new_revision_id": "uceg:v1:primitive_revision:kklv6mmkc6uqai3rawchteodylw645lka5akk5emv5nczirwk2sa",
+      "old_revision_id": null,
+      "primitive_id": "uceg:v1:primitive:2gtuqkolemivhsfffawovadzoibsfxg7ztdoxly5yb66bedcso7a",
+      "ref_kind": "branch",
+      "ref_name": "main",
+      "sequence": 3,
+      "updated_at": "2026-07-16T12:00:02Z"
+    },
+    {
+      "actor": "taedri-demo-builder",
+      "forced": false,
+      "identity": {
+        "canonical_key": {
+          "actor": "taedri-demo-builder",
+          "forced": false,
+          "new_revision_id": "uceg:v1:primitive_revision:cwtj76zkdn6otqgorsazewi6yobfabcxvq3g3uuqe7hbceub5dxa",
+          "old_revision_id": "uceg:v1:primitive_revision:ibk3reufcyktdhkjsk5tq2qwsu3v4wwlhbxzikbi6ztzbetfqb3a",
+          "primitive_id": "uceg:v1:primitive:2g46dfzdmrdqjyt4ebf6mppg3wsfj5snzghnpqak5o2dij7eox7q",
+          "ref_kind": "branch",
+          "ref_name": "main",
+          "sequence": 4,
+          "updated_at": "2026-07-16T12:00:03Z"
+        },
+        "id": "uceg:v1:primitive_ref_update:rv2rxpiiucuxh4bz5i6hgablx2xplinwsbbiiaogfk6xtfnu5gqq",
+        "kind": "primitive_ref_update"
+      },
+      "new_revision_id": "uceg:v1:primitive_revision:cwtj76zkdn6otqgorsazewi6yobfabcxvq3g3uuqe7hbceub5dxa",
+      "old_revision_id": "uceg:v1:primitive_revision:ibk3reufcyktdhkjsk5tq2qwsu3v4wwlhbxzikbi6ztzbetfqb3a",
+      "primitive_id": "uceg:v1:primitive:2g46dfzdmrdqjyt4ebf6mppg3wsfj5snzghnpqak5o2dij7eox7q",
+      "ref_kind": "branch",
+      "ref_name": "main",
+      "sequence": 4,
+      "updated_at": "2026-07-16T12:00:03Z"
+    }
+  ],
+  "schema_version": "1.0.0",
+  "source_blob_assumed_cached": "sha256:0244c199e706b925683c91efb8974a59e11320e3794d87cb5841f6b0d7a9f2e1",
+  "source_bytes_omitted_from_pack": 4449,
+  "tree": {
+    "entries": [
+      {
+        "blob": {
+          "digest": "sha256:86d30591deb47dbc0ef7bda230507ea7c4cf39ba5c7a0745a6d6480470d6ad6c",
+          "media_type": "application/vnd.taedri.primitive.contract.v1+json",
+          "size_bytes": 288
+        },
+        "mode": "100644",
+        "path": "contract.json",
+        "role": "contract"
+      },
+      {
+        "blob": {
+          "digest": "sha256:601ca774775a77f96c276a8ae67c934e18264bc745b1aba2ea41defbb38dd333",
+          "media_type": "application/vnd.taedri.codegraph.edges.v1+json",
+          "size_bytes": 289
+        },
+        "mode": "100644",
+        "path": "graph/neighborhood.json",
+        "role": "graph_delta"
+      },
+      {
+        "blob": {
+          "digest": "sha256:0244c199e706b925683c91efb8974a59e11320e3794d87cb5841f6b0d7a9f2e1",
+          "media_type": "text/x-python",
+          "size_bytes": 4449
+        },
+        "mode": "100644",
+        "path": "src/canonical.py",
+        "role": "source"
+      },
+      {
+        "blob": {
+          "digest": "sha256:9102a673df7ad3358fc1c2034c428220a6d02215a125ab09ce0920835e14b72a",
+          "media_type": "text/x-python",
+          "size_bytes": 1426
+        },
+        "mode": "100644",
+        "path": "tests/test_identity.py",
+        "role": "test"
+      }
+    ],
+    "format_version": "1.0.0",
+    "identity": {
+      "canonical_key": {
+        "entries": [
+          {
+            "blob": {
+              "digest": "sha256:86d30591deb47dbc0ef7bda230507ea7c4cf39ba5c7a0745a6d6480470d6ad6c",
+              "media_type": "application/vnd.taedri.primitive.contract.v1+json",
+              "size_bytes": 288
+            },
+            "mode": "100644",
+            "path": "contract.json",
+            "role": "contract"
+          },
+          {
+            "blob": {
+              "digest": "sha256:601ca774775a77f96c276a8ae67c934e18264bc745b1aba2ea41defbb38dd333",
+              "media_type": "application/vnd.taedri.codegraph.edges.v1+json",
+              "size_bytes": 289
+            },
+            "mode": "100644",
+            "path": "graph/neighborhood.json",
+            "role": "graph_delta"
+          },
+          {
+            "blob": {
+              "digest": "sha256:0244c199e706b925683c91efb8974a59e11320e3794d87cb5841f6b0d7a9f2e1",
+              "media_type": "text/x-python",
+              "size_bytes": 4449
+            },
+            "mode": "100644",
+            "path": "src/canonical.py",
+            "role": "source"
+          },
+          {
+            "blob": {
+              "digest": "sha256:9102a673df7ad3358fc1c2034c428220a6d02215a125ab09ce0920835e14b72a",
+              "media_type": "text/x-python",
+              "size_bytes": 1426
+            },
+            "mode": "100644",
+            "path": "tests/test_identity.py",
+            "role": "test"
+          }
+        ],
+        "format_version": "1.0.0"
+      },
+      "id": "uceg:v1:primitive_tree:jmbgifzd2xolemhwic5pm2ptj5m6eydcgvpbaheoob4wyqnww7iq",
+      "kind": "primitive_tree"
+    }
+  }
+}
