@@ -86,8 +86,14 @@ class DeterministicPrimitiveWiringTests(unittest.TestCase):
             )
 
     def test_executor_rejects_interface_fields_not_bound_by_the_pack_graph(self) -> None:
-        forged = replace(self.normalize, entrypoint="not_the_bound_symbol")
-        plan = ExactPrimitiveWirePlanner().pipeline((forged, self.casefold))
+        expected_runtime = f"{sys.version_info.major}.{sys.version_info.minor}"
+        forged = replace(
+            self.normalize,
+            entrypoint="not_the_bound_symbol",
+            runtime_version=expected_runtime,
+        )
+        companion = replace(self.casefold, runtime_version=expected_runtime)
+        plan = ExactPrimitiveWirePlanner().pipeline((forged, companion))
         packs = (
             (RESULTS / "normalize-text.tcgpack").read_bytes(),
             (RESULTS / "casefold-text.tcgpack").read_bytes(),
