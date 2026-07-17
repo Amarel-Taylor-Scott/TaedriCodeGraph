@@ -1,0 +1,196 @@
+{
+  "schema_version": "1.0.0",
+  "description": "Natural data work requests with verifier cases withheld from the teacher model.",
+  "tasks": [
+    {
+      "task_id": "customer_ingest.collapse_spacing",
+      "trajectory_id": "customer_ingest",
+      "step_index": 0,
+      "domain": "data_cleaning",
+      "request": "Clean free-text region labels by stripping their outer spacing and collapsing every internal Unicode whitespace run to one ordinary space.",
+      "hidden_cases": [
+        {
+          "case_id": "collapse.multiline",
+          "input": "  North\tAmerica\nSales ",
+          "expected": "North America Sales"
+        },
+        {
+          "case_id": "collapse.unicode",
+          "input": "\u2003alpha   beta\u00a0",
+          "expected": "alpha beta"
+        }
+      ]
+    },
+    {
+      "task_id": "customer_ingest.normalize_headers",
+      "trajectory_id": "customer_ingest",
+      "step_index": 1,
+      "domain": "data_cleaning",
+      "request": "Turn human-entered table headers into stable case-folded, underscore-delimited column names so repeated imports use the same schema.",
+      "hidden_cases": [
+        {
+          "case_id": "headers.customer_id",
+          "input": " Customer ID ",
+          "expected": "customer_id"
+        },
+        {
+          "case_id": "headers.http_status",
+          "input": "HTTP Status-Code",
+          "expected": "http_status_code"
+        }
+      ]
+    },
+    {
+      "task_id": "customer_ingest.deduplicate_rows",
+      "trajectory_id": "customer_ingest",
+      "step_index": 2,
+      "domain": "data_cleaning",
+      "request": "Remove repeated finite JSON records and values from an import batch while preserving the first-seen order of every distinct item.",
+      "hidden_cases": [
+        {
+          "case_id": "deduplicate.records",
+          "input": [
+            {"id": 1},
+            {"id": 1},
+            {"id": 2}
+          ],
+          "expected": [
+            {"id": 1},
+            {"id": 2}
+          ]
+        },
+        {
+          "case_id": "deduplicate.scalars",
+          "input": ["a", "b", "a", null, null],
+          "expected": ["a", "b", null]
+        }
+      ]
+    },
+    {
+      "task_id": "warehouse_load.chunk_batches",
+      "trajectory_id": "warehouse_load",
+      "step_index": 0,
+      "domain": "data_engineering",
+      "request": "Split an in-memory sequence into deterministic contiguous upload batches of a requested positive size, retaining a smaller final batch.",
+      "hidden_cases": [
+        {
+          "case_id": "chunks.remainder",
+          "input": {"items": [1, 2, 3, 4, 5], "size": 2},
+          "expected": [[1, 2], [3, 4], [5]]
+        },
+        {
+          "case_id": "chunks.empty",
+          "input": {"items": [], "size": 3},
+          "expected": []
+        }
+      ]
+    },
+    {
+      "task_id": "warehouse_load.flatten_events",
+      "trajectory_id": "warehouse_load",
+      "step_index": 1,
+      "domain": "data_engineering",
+      "request": "Flatten each nested JSON event record into one level using an explicit path separator and reject ambiguous key collisions.",
+      "hidden_cases": [
+        {
+          "case_id": "flatten.default_separator",
+          "input": {
+            "record": {
+              "customer": {"id": 7, "region": "NA"},
+              "active": true
+            }
+          },
+          "expected": {
+            "customer.id": 7,
+            "customer.region": "NA",
+            "active": true
+          }
+        },
+        {
+          "case_id": "flatten.custom_separator",
+          "input": {
+            "record": {"outer": {"inner": 3}},
+            "separator": "__"
+          },
+          "expected": {"outer__inner": 3}
+        }
+      ]
+    },
+    {
+      "task_id": "quality_report.arithmetic_mean",
+      "trajectory_id": "quality_report",
+      "step_index": 0,
+      "domain": "data_science",
+      "request": "Compute the arithmetic mean of each non-empty finite numeric measurement vector for a quality-control summary.",
+      "hidden_cases": [
+        {
+          "case_id": "mean.positive",
+          "input": [12, 15, 18],
+          "expected": 15.0
+        },
+        {
+          "case_id": "mean.mixed_sign",
+          "input": [-2, 4],
+          "expected": 1.0
+        }
+      ]
+    },
+    {
+      "task_id": "quality_report.conventional_median",
+      "trajectory_id": "quality_report",
+      "step_index": 1,
+      "domain": "data_science",
+      "request": "Compute the conventional median of unsorted finite measurements, averaging the two middle values when the vector length is even.",
+      "hidden_cases": [
+        {
+          "case_id": "median.odd",
+          "input": [100, 3, 8],
+          "expected": 8.0
+        },
+        {
+          "case_id": "median.even",
+          "input": [2, 9, 4, 7],
+          "expected": 5.5
+        }
+      ]
+    },
+    {
+      "task_id": "feature_prep.minmax",
+      "trajectory_id": "feature_prep",
+      "step_index": 0,
+      "domain": "data_science",
+      "request": "Fit and transform a finite numeric feature vector so its minimum becomes zero and its maximum becomes one, with constants mapped to zero.",
+      "hidden_cases": [
+        {
+          "case_id": "minmax.range",
+          "input": [10, 20, 30],
+          "expected": [0.0, 0.5, 1.0]
+        },
+        {
+          "case_id": "minmax.constant",
+          "input": [5, 5],
+          "expected": [0.0, 0.0]
+        }
+      ]
+    },
+    {
+      "task_id": "feature_prep.zscore",
+      "trajectory_id": "feature_prep",
+      "step_index": 1,
+      "domain": "data_science",
+      "request": "Standardize a finite numeric feature vector with its population mean and population variance to produce z scores.",
+      "hidden_cases": [
+        {
+          "case_id": "zscore.symmetric",
+          "input": [1, 3],
+          "expected": [-1.0, 1.0]
+        },
+        {
+          "case_id": "zscore.constant",
+          "input": [4, 4, 4],
+          "expected": [0.0, 0.0, 0.0]
+        }
+      ]
+    }
+  ]
+}

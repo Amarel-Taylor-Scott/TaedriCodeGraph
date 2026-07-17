@@ -1,0 +1,1218 @@
+{
+  "campaign_observation_totals": {
+    "all_descriptions_total_tokens": 50369,
+    "campaign_count": 7,
+    "campaign_observation_task_count": 47,
+    "checked_tcgpack_execution_receipt_count": 98,
+    "condition_call_count": 112,
+    "executed_case_count": 196,
+    "failed_case_count": 0,
+    "failure_count": 14,
+    "legacy_nonclaimable_campaign_count": 0,
+    "locally_selected_descriptions_total_tokens": 20248,
+    "matched_condition_pair_count": 56,
+    "observed_delta_ppm_of_all_descriptions": 598006,
+    "observed_delta_tokens": 30121,
+    "passed_case_count": 196,
+    "provider_usage_comparable_campaign_count": 5,
+    "provider_usage_comparable_pair_count": 50,
+    "provider_usage_noncomparable_campaign_count": 2,
+    "strict_v2_campaign_count": 7,
+    "token_totals_scope": "only matched pairs with provider usage receipts for both conditions"
+  },
+  "campaigns": [
+    {
+      "all_descriptions_accepted_pair_count": 9,
+      "both_conditions_accepted_pair_count": 9,
+      "by_condition": {
+        "all_descriptions": {
+          "accepted_call_count": 9,
+          "call_count": 9,
+          "candidate_description_counts": {
+            "distribution": {
+              "11": 9
+            },
+            "maximum": 11,
+            "minimum": 11,
+            "receipt_count": 9
+          },
+          "provider_native_usage": {
+            "completion_tokens": 162,
+            "prompt_tokens": 8901,
+            "receipt_count": 9,
+            "total_tokens": 9063,
+            "unique_receipt_count": 9,
+            "usage_sources": [
+              "mistral-native-response"
+            ],
+            "wall_ms": 64049
+          },
+          "status_counts": {
+            "accepted": 9
+          },
+          "verification": {
+            "accepted_verification_receipt_count": 9,
+            "checked_tcgpack_execution_receipt_count": 9,
+            "executed_case_count": 18,
+            "failed_case_count": 0,
+            "passed_case_count": 18,
+            "verification_receipt_count": 9
+          }
+        },
+        "locally_selected_descriptions": {
+          "accepted_call_count": 9,
+          "call_count": 9,
+          "candidate_description_counts": {
+            "distribution": {
+              "1": 9
+            },
+            "maximum": 1,
+            "minimum": 1,
+            "receipt_count": 9
+          },
+          "provider_native_usage": {
+            "completion_tokens": 162,
+            "prompt_tokens": 1949,
+            "receipt_count": 9,
+            "total_tokens": 2111,
+            "unique_receipt_count": 9,
+            "usage_sources": [
+              "mistral-native-response"
+            ],
+            "wall_ms": 54940
+          },
+          "status_counts": {
+            "accepted": 9
+          },
+          "verification": {
+            "accepted_verification_receipt_count": 9,
+            "checked_tcgpack_execution_receipt_count": 9,
+            "executed_case_count": 18,
+            "failed_case_count": 0,
+            "passed_case_count": 18,
+            "verification_receipt_count": 9
+          }
+        }
+      },
+      "campaign_file": "mistral-small-2603-k1-seed0.campaign.json",
+      "campaign_file_bytes": 773158,
+      "campaign_file_sha256": "sha256:8e95e4994d282e356d02e0df4187db51f53242fabb3ea81df2ee55875213002f",
+      "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:qqvb65sfpenc3ktqw7kbyaaiutg7kvusedg545crtkxgziply7wa",
+      "catalog_digest": "sha256:4c7416d1761d777be078f56f0f89a72c8e8ff0e79824bfe2063c92c9420c76a6",
+      "condition_call_count": 18,
+      "error_code_counts": {},
+      "failure_count": 0,
+      "failures": [],
+      "locally_selected_descriptions_accepted_pair_count": 9,
+      "matched_condition_pair_count": 9,
+      "maximum_locally_selected_descriptions": 1,
+      "model_requested": "mistral-small-2603",
+      "provider_id": "mistral",
+      "provider_native_token_observation": {
+        "all_descriptions_completion_tokens": 162,
+        "all_descriptions_prompt_tokens": 8901,
+        "all_descriptions_total_tokens": 9063,
+        "comparison_available": true,
+        "locally_selected_descriptions_completion_tokens": 162,
+        "locally_selected_descriptions_prompt_tokens": 1949,
+        "locally_selected_descriptions_total_tokens": 2111,
+        "observed_completion_delta_tokens": 0,
+        "observed_delta_ppm_of_all_descriptions": 767074,
+        "observed_delta_tokens": 6952,
+        "observed_prompt_delta_tokens": 6952
+      },
+      "provider_usage_comparable_pair_count": 9,
+      "seeds": [
+        0
+      ],
+      "source_format_version": "2.0.0",
+      "status_counts": {
+        "accepted": 18
+      },
+      "strict_validation": {
+        "arm_count": 18,
+        "arm_matrix_complete": true,
+        "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:qqvb65sfpenc3ktqw7kbyaaiutg7kvusedg545crtkxgziply7wa",
+        "claimable_independent_execution": true,
+        "concrete_deployment_bound": true,
+        "format_version": "2.0.0",
+        "identity_chain_valid": true,
+        "legacy": false,
+        "limitations": [],
+        "manifest_complete": true,
+        "matched_pair_count": 9,
+        "pair_matrix_complete": true,
+        "provider_receipts_unique": true,
+        "task_count": 9,
+        "verification_occurrences_bound": true
+      },
+      "task_count": 9,
+      "task_ids": [
+        "customer_ingest.collapse_spacing",
+        "customer_ingest.deduplicate_rows",
+        "customer_ingest.normalize_headers",
+        "feature_prep.minmax",
+        "feature_prep.zscore",
+        "quality_report.arithmetic_mean",
+        "quality_report.conventional_median",
+        "warehouse_load.chunk_batches",
+        "warehouse_load.flatten_events"
+      ],
+      "task_set_digest": "sha256:e04f88449cdef139d8438b78af2cac47177dcb6ee7dd61668e09870925439d08",
+      "verification": {
+        "accepted_verification_receipt_count": 18,
+        "checked_tcgpack_execution_receipt_count": 18,
+        "executed_case_count": 36,
+        "failed_case_count": 0,
+        "passed_case_count": 36,
+        "verification_receipt_count": 18
+      }
+    },
+    {
+      "all_descriptions_accepted_pair_count": 9,
+      "both_conditions_accepted_pair_count": 9,
+      "by_condition": {
+        "all_descriptions": {
+          "accepted_call_count": 9,
+          "call_count": 9,
+          "candidate_description_counts": {
+            "distribution": {
+              "11": 9
+            },
+            "maximum": 11,
+            "minimum": 11,
+            "receipt_count": 9
+          },
+          "provider_native_usage": {
+            "completion_tokens": 162,
+            "prompt_tokens": 8901,
+            "receipt_count": 9,
+            "total_tokens": 9063,
+            "unique_receipt_count": 9,
+            "usage_sources": [
+              "mistral-native-response"
+            ],
+            "wall_ms": 57552
+          },
+          "status_counts": {
+            "accepted": 9
+          },
+          "verification": {
+            "accepted_verification_receipt_count": 9,
+            "checked_tcgpack_execution_receipt_count": 9,
+            "executed_case_count": 18,
+            "failed_case_count": 0,
+            "passed_case_count": 18,
+            "verification_receipt_count": 9
+          }
+        },
+        "locally_selected_descriptions": {
+          "accepted_call_count": 9,
+          "call_count": 9,
+          "candidate_description_counts": {
+            "distribution": {
+              "2": 9
+            },
+            "maximum": 2,
+            "minimum": 2,
+            "receipt_count": 9
+          },
+          "provider_native_usage": {
+            "completion_tokens": 162,
+            "prompt_tokens": 2638,
+            "receipt_count": 9,
+            "total_tokens": 2800,
+            "unique_receipt_count": 9,
+            "usage_sources": [
+              "mistral-native-response"
+            ],
+            "wall_ms": 57918
+          },
+          "status_counts": {
+            "accepted": 9
+          },
+          "verification": {
+            "accepted_verification_receipt_count": 9,
+            "checked_tcgpack_execution_receipt_count": 9,
+            "executed_case_count": 18,
+            "failed_case_count": 0,
+            "passed_case_count": 18,
+            "verification_receipt_count": 9
+          }
+        }
+      },
+      "campaign_file": "mistral-small-2603-k2-seed0.campaign.json",
+      "campaign_file_bytes": 778076,
+      "campaign_file_sha256": "sha256:45ef08f5d15b8320000de76e5d49357dae00988e0927bc5829d2364b4b8e68fe",
+      "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:r7z3o2cs73c5iaehntmmqahtzov3qe2cfqm5wfb754r6digbmhaa",
+      "catalog_digest": "sha256:4c7416d1761d777be078f56f0f89a72c8e8ff0e79824bfe2063c92c9420c76a6",
+      "condition_call_count": 18,
+      "error_code_counts": {},
+      "failure_count": 0,
+      "failures": [],
+      "locally_selected_descriptions_accepted_pair_count": 9,
+      "matched_condition_pair_count": 9,
+      "maximum_locally_selected_descriptions": 2,
+      "model_requested": "mistral-small-2603",
+      "provider_id": "mistral",
+      "provider_native_token_observation": {
+        "all_descriptions_completion_tokens": 162,
+        "all_descriptions_prompt_tokens": 8901,
+        "all_descriptions_total_tokens": 9063,
+        "comparison_available": true,
+        "locally_selected_descriptions_completion_tokens": 162,
+        "locally_selected_descriptions_prompt_tokens": 2638,
+        "locally_selected_descriptions_total_tokens": 2800,
+        "observed_completion_delta_tokens": 0,
+        "observed_delta_ppm_of_all_descriptions": 691051,
+        "observed_delta_tokens": 6263,
+        "observed_prompt_delta_tokens": 6263
+      },
+      "provider_usage_comparable_pair_count": 9,
+      "seeds": [
+        0
+      ],
+      "source_format_version": "2.0.0",
+      "status_counts": {
+        "accepted": 18
+      },
+      "strict_validation": {
+        "arm_count": 18,
+        "arm_matrix_complete": true,
+        "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:r7z3o2cs73c5iaehntmmqahtzov3qe2cfqm5wfb754r6digbmhaa",
+        "claimable_independent_execution": true,
+        "concrete_deployment_bound": true,
+        "format_version": "2.0.0",
+        "identity_chain_valid": true,
+        "legacy": false,
+        "limitations": [],
+        "manifest_complete": true,
+        "matched_pair_count": 9,
+        "pair_matrix_complete": true,
+        "provider_receipts_unique": true,
+        "task_count": 9,
+        "verification_occurrences_bound": true
+      },
+      "task_count": 9,
+      "task_ids": [
+        "customer_ingest.collapse_spacing",
+        "customer_ingest.deduplicate_rows",
+        "customer_ingest.normalize_headers",
+        "feature_prep.minmax",
+        "feature_prep.zscore",
+        "quality_report.arithmetic_mean",
+        "quality_report.conventional_median",
+        "warehouse_load.chunk_batches",
+        "warehouse_load.flatten_events"
+      ],
+      "task_set_digest": "sha256:e04f88449cdef139d8438b78af2cac47177dcb6ee7dd61668e09870925439d08",
+      "verification": {
+        "accepted_verification_receipt_count": 18,
+        "checked_tcgpack_execution_receipt_count": 18,
+        "executed_case_count": 36,
+        "failed_case_count": 0,
+        "passed_case_count": 36,
+        "verification_receipt_count": 18
+      }
+    },
+    {
+      "all_descriptions_accepted_pair_count": 5,
+      "both_conditions_accepted_pair_count": 5,
+      "by_condition": {
+        "all_descriptions": {
+          "accepted_call_count": 5,
+          "call_count": 5,
+          "candidate_description_counts": {
+            "distribution": {
+              "11": 5
+            },
+            "maximum": 11,
+            "minimum": 11,
+            "receipt_count": 5
+          },
+          "provider_native_usage": {
+            "completion_tokens": 90,
+            "prompt_tokens": 4966,
+            "receipt_count": 5,
+            "total_tokens": 5056,
+            "unique_receipt_count": 5,
+            "usage_sources": [
+              "mistral-native-response"
+            ],
+            "wall_ms": 24878
+          },
+          "status_counts": {
+            "accepted": 5
+          },
+          "verification": {
+            "accepted_verification_receipt_count": 5,
+            "checked_tcgpack_execution_receipt_count": 5,
+            "executed_case_count": 10,
+            "failed_case_count": 0,
+            "passed_case_count": 10,
+            "verification_receipt_count": 5
+          }
+        },
+        "locally_selected_descriptions": {
+          "accepted_call_count": 5,
+          "call_count": 5,
+          "candidate_description_counts": {
+            "distribution": {
+              "2": 1,
+              "4": 4
+            },
+            "maximum": 4,
+            "minimum": 2,
+            "receipt_count": 5
+          },
+          "provider_native_usage": {
+            "completion_tokens": 90,
+            "prompt_tokens": 2089,
+            "receipt_count": 5,
+            "total_tokens": 2179,
+            "unique_receipt_count": 5,
+            "usage_sources": [
+              "mistral-native-response"
+            ],
+            "wall_ms": 29820
+          },
+          "status_counts": {
+            "accepted": 5
+          },
+          "verification": {
+            "accepted_verification_receipt_count": 5,
+            "checked_tcgpack_execution_receipt_count": 5,
+            "executed_case_count": 10,
+            "failed_case_count": 0,
+            "passed_case_count": 10,
+            "verification_receipt_count": 5
+          }
+        }
+      },
+      "campaign_file": "mistral-small-2603-external-issues-k4-seed0.campaign.json",
+      "campaign_file_bytes": 441076,
+      "campaign_file_sha256": "sha256:43620a414eae7c191856c01744a97cad7d174186b5289a99887e7fc7b4e585b9",
+      "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:qbubnpff4ehvts6s4fpvihs6jsb4e2rwxgnqfuhvbe7y52pf435a",
+      "catalog_digest": "sha256:4c7416d1761d777be078f56f0f89a72c8e8ff0e79824bfe2063c92c9420c76a6",
+      "condition_call_count": 10,
+      "error_code_counts": {},
+      "failure_count": 0,
+      "failures": [],
+      "locally_selected_descriptions_accepted_pair_count": 5,
+      "matched_condition_pair_count": 5,
+      "maximum_locally_selected_descriptions": 4,
+      "model_requested": "mistral-small-2603",
+      "provider_id": "mistral",
+      "provider_native_token_observation": {
+        "all_descriptions_completion_tokens": 90,
+        "all_descriptions_prompt_tokens": 4966,
+        "all_descriptions_total_tokens": 5056,
+        "comparison_available": true,
+        "locally_selected_descriptions_completion_tokens": 90,
+        "locally_selected_descriptions_prompt_tokens": 2089,
+        "locally_selected_descriptions_total_tokens": 2179,
+        "observed_completion_delta_tokens": 0,
+        "observed_delta_ppm_of_all_descriptions": 569026,
+        "observed_delta_tokens": 2877,
+        "observed_prompt_delta_tokens": 2877
+      },
+      "provider_usage_comparable_pair_count": 5,
+      "seeds": [
+        0
+      ],
+      "source_format_version": "2.0.0",
+      "status_counts": {
+        "accepted": 10
+      },
+      "strict_validation": {
+        "arm_count": 10,
+        "arm_matrix_complete": true,
+        "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:qbubnpff4ehvts6s4fpvihs6jsb4e2rwxgnqfuhvbe7y52pf435a",
+        "claimable_independent_execution": true,
+        "concrete_deployment_bound": true,
+        "format_version": "2.0.0",
+        "identity_chain_valid": true,
+        "legacy": false,
+        "limitations": [],
+        "manifest_complete": true,
+        "matched_pair_count": 5,
+        "pair_matrix_complete": true,
+        "provider_receipts_unique": true,
+        "task_count": 5,
+        "verification_occurrences_bound": true
+      },
+      "task_count": 5,
+      "task_ids": [
+        "github_more_itertools_980.chunk_rows",
+        "github_pandas_12286.flatten_mapping",
+        "github_pandas_9346.stable_unique",
+        "github_sklearn_17794.zscore_constant",
+        "github_sklearn_27987.minmax_constant"
+      ],
+      "task_set_digest": "sha256:0f3043a71fc89a6c6774e7da426467ee15ad927c513ddd1a6533b74b69c13cfc",
+      "verification": {
+        "accepted_verification_receipt_count": 10,
+        "checked_tcgpack_execution_receipt_count": 10,
+        "executed_case_count": 20,
+        "failed_case_count": 0,
+        "passed_case_count": 20,
+        "verification_receipt_count": 10
+      }
+    },
+    {
+      "all_descriptions_accepted_pair_count": 17,
+      "both_conditions_accepted_pair_count": 17,
+      "by_condition": {
+        "all_descriptions": {
+          "accepted_call_count": 17,
+          "call_count": 18,
+          "candidate_description_counts": {
+            "distribution": {
+              "11": 18
+            },
+            "maximum": 11,
+            "minimum": 11,
+            "receipt_count": 18
+          },
+          "provider_native_usage": {
+            "completion_tokens": 323,
+            "prompt_tokens": 17802,
+            "receipt_count": 18,
+            "total_tokens": 18125,
+            "unique_receipt_count": 18,
+            "usage_sources": [
+              "mistral-native-response"
+            ],
+            "wall_ms": 89937
+          },
+          "status_counts": {
+            "accepted": 17,
+            "teacher_rejected": 1
+          },
+          "verification": {
+            "accepted_verification_receipt_count": 17,
+            "checked_tcgpack_execution_receipt_count": 17,
+            "executed_case_count": 34,
+            "failed_case_count": 0,
+            "passed_case_count": 34,
+            "verification_receipt_count": 17
+          }
+        },
+        "locally_selected_descriptions": {
+          "accepted_call_count": 18,
+          "call_count": 18,
+          "candidate_description_counts": {
+            "distribution": {
+              "2": 2,
+              "4": 16
+            },
+            "maximum": 4,
+            "minimum": 2,
+            "receipt_count": 18
+          },
+          "provider_native_usage": {
+            "completion_tokens": 324,
+            "prompt_tokens": 7766,
+            "receipt_count": 18,
+            "total_tokens": 8090,
+            "unique_receipt_count": 18,
+            "usage_sources": [
+              "mistral-native-response"
+            ],
+            "wall_ms": 92586
+          },
+          "status_counts": {
+            "accepted": 18
+          },
+          "verification": {
+            "accepted_verification_receipt_count": 18,
+            "checked_tcgpack_execution_receipt_count": 18,
+            "executed_case_count": 36,
+            "failed_case_count": 0,
+            "passed_case_count": 36,
+            "verification_receipt_count": 18
+          }
+        }
+      },
+      "campaign_file": "mistral-small-2603-k4-seeds0-1.campaign.json",
+      "campaign_file_bytes": 2195975,
+      "campaign_file_sha256": "sha256:4d01252103dedfa20a000e5de719ee1e3bb296ecd97e5447a42428b9e03d4ab6",
+      "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:uypi2puil7q5m6tphtv46lbu4wq4genfput44whp6ueks5dkvd3a",
+      "catalog_digest": "sha256:4c7416d1761d777be078f56f0f89a72c8e8ff0e79824bfe2063c92c9420c76a6",
+      "condition_call_count": 36,
+      "error_code_counts": {
+        "teacher_abstained_no_suitable_candidate": 1
+      },
+      "failure_count": 1,
+      "failures": [
+        {
+          "attempt_index": 2,
+          "call_receipt_id": "uceg:v1:prompt_interception_campaign_arm_receipt:rihjsibpqq4uv3jcettqiq6umjwda7lhmeofzphoxvh3mmjsgcba",
+          "condition": "all_descriptions",
+          "error_code": "teacher_abstained_no_suitable_candidate",
+          "seed": 1,
+          "status": "teacher_rejected",
+          "step_index": 2,
+          "task_id": "customer_ingest.deduplicate_rows",
+          "trajectory_id": "customer_ingest"
+        }
+      ],
+      "locally_selected_descriptions_accepted_pair_count": 18,
+      "matched_condition_pair_count": 18,
+      "maximum_locally_selected_descriptions": 4,
+      "model_requested": "mistral-small-2603",
+      "provider_id": "mistral",
+      "provider_native_token_observation": {
+        "all_descriptions_completion_tokens": 323,
+        "all_descriptions_prompt_tokens": 17802,
+        "all_descriptions_total_tokens": 18125,
+        "comparison_available": true,
+        "locally_selected_descriptions_completion_tokens": 324,
+        "locally_selected_descriptions_prompt_tokens": 7766,
+        "locally_selected_descriptions_total_tokens": 8090,
+        "observed_completion_delta_tokens": -1,
+        "observed_delta_ppm_of_all_descriptions": 553655,
+        "observed_delta_tokens": 10035,
+        "observed_prompt_delta_tokens": 10036
+      },
+      "provider_usage_comparable_pair_count": 18,
+      "seeds": [
+        0,
+        1
+      ],
+      "source_format_version": "2.0.0",
+      "status_counts": {
+        "accepted": 35,
+        "teacher_rejected": 1
+      },
+      "strict_validation": {
+        "arm_count": 36,
+        "arm_matrix_complete": true,
+        "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:uypi2puil7q5m6tphtv46lbu4wq4genfput44whp6ueks5dkvd3a",
+        "claimable_independent_execution": true,
+        "concrete_deployment_bound": true,
+        "format_version": "2.0.0",
+        "identity_chain_valid": true,
+        "legacy": false,
+        "limitations": [],
+        "manifest_complete": true,
+        "matched_pair_count": 18,
+        "pair_matrix_complete": true,
+        "provider_receipts_unique": true,
+        "task_count": 9,
+        "verification_occurrences_bound": true
+      },
+      "task_count": 9,
+      "task_ids": [
+        "customer_ingest.collapse_spacing",
+        "customer_ingest.deduplicate_rows",
+        "customer_ingest.normalize_headers",
+        "feature_prep.minmax",
+        "feature_prep.zscore",
+        "quality_report.arithmetic_mean",
+        "quality_report.conventional_median",
+        "warehouse_load.chunk_batches",
+        "warehouse_load.flatten_events"
+      ],
+      "task_set_digest": "sha256:e0599cf22820b1f4e6ad498e8d42339d84c6d24d900e15a089330ad96c5c18f9",
+      "verification": {
+        "accepted_verification_receipt_count": 35,
+        "checked_tcgpack_execution_receipt_count": 35,
+        "executed_case_count": 70,
+        "failed_case_count": 0,
+        "passed_case_count": 70,
+        "verification_receipt_count": 35
+      }
+    },
+    {
+      "all_descriptions_accepted_pair_count": 8,
+      "both_conditions_accepted_pair_count": 8,
+      "by_condition": {
+        "all_descriptions": {
+          "accepted_call_count": 8,
+          "call_count": 9,
+          "candidate_description_counts": {
+            "distribution": {
+              "11": 9
+            },
+            "maximum": 11,
+            "minimum": 11,
+            "receipt_count": 9
+          },
+          "provider_native_usage": {
+            "completion_tokens": 161,
+            "prompt_tokens": 8901,
+            "receipt_count": 9,
+            "total_tokens": 9062,
+            "unique_receipt_count": 9,
+            "usage_sources": [
+              "mistral-native-response"
+            ],
+            "wall_ms": 64087
+          },
+          "status_counts": {
+            "accepted": 8,
+            "teacher_rejected": 1
+          },
+          "verification": {
+            "accepted_verification_receipt_count": 8,
+            "checked_tcgpack_execution_receipt_count": 8,
+            "executed_case_count": 16,
+            "failed_case_count": 0,
+            "passed_case_count": 16,
+            "verification_receipt_count": 8
+          }
+        },
+        "locally_selected_descriptions": {
+          "accepted_call_count": 9,
+          "call_count": 9,
+          "candidate_description_counts": {
+            "distribution": {
+              "2": 1,
+              "4": 1,
+              "5": 3,
+              "6": 3,
+              "8": 1
+            },
+            "maximum": 8,
+            "minimum": 2,
+            "receipt_count": 9
+          },
+          "provider_native_usage": {
+            "completion_tokens": 162,
+            "prompt_tokens": 4906,
+            "receipt_count": 9,
+            "total_tokens": 5068,
+            "unique_receipt_count": 9,
+            "usage_sources": [
+              "mistral-native-response"
+            ],
+            "wall_ms": 61316
+          },
+          "status_counts": {
+            "accepted": 9
+          },
+          "verification": {
+            "accepted_verification_receipt_count": 9,
+            "checked_tcgpack_execution_receipt_count": 9,
+            "executed_case_count": 18,
+            "failed_case_count": 0,
+            "passed_case_count": 18,
+            "verification_receipt_count": 9
+          }
+        }
+      },
+      "campaign_file": "mistral-small-2603-k8-seed0.campaign.json",
+      "campaign_file_bytes": 777754,
+      "campaign_file_sha256": "sha256:46018cee85ce2273cc0dce905803bdcc1ce3f567a2a36510d3ab7dd63daa8a78",
+      "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:2wer4x2nhefwyratyq36emovlluuft2svrafkyyfg7fzxr4jbpjq",
+      "catalog_digest": "sha256:4c7416d1761d777be078f56f0f89a72c8e8ff0e79824bfe2063c92c9420c76a6",
+      "condition_call_count": 18,
+      "error_code_counts": {
+        "teacher_abstained_no_suitable_candidate": 1
+      },
+      "failure_count": 1,
+      "failures": [
+        {
+          "attempt_index": 1,
+          "call_receipt_id": "uceg:v1:prompt_interception_campaign_arm_receipt:q7yb3b2s7sanahvbxevrggylrhi6zxqgunme4qstti4tvww56z4a",
+          "condition": "all_descriptions",
+          "error_code": "teacher_abstained_no_suitable_candidate",
+          "seed": 0,
+          "status": "teacher_rejected",
+          "step_index": 2,
+          "task_id": "customer_ingest.deduplicate_rows",
+          "trajectory_id": "customer_ingest"
+        }
+      ],
+      "locally_selected_descriptions_accepted_pair_count": 9,
+      "matched_condition_pair_count": 9,
+      "maximum_locally_selected_descriptions": 8,
+      "model_requested": "mistral-small-2603",
+      "provider_id": "mistral",
+      "provider_native_token_observation": {
+        "all_descriptions_completion_tokens": 161,
+        "all_descriptions_prompt_tokens": 8901,
+        "all_descriptions_total_tokens": 9062,
+        "comparison_available": true,
+        "locally_selected_descriptions_completion_tokens": 162,
+        "locally_selected_descriptions_prompt_tokens": 4906,
+        "locally_selected_descriptions_total_tokens": 5068,
+        "observed_completion_delta_tokens": -1,
+        "observed_delta_ppm_of_all_descriptions": 440741,
+        "observed_delta_tokens": 3994,
+        "observed_prompt_delta_tokens": 3995
+      },
+      "provider_usage_comparable_pair_count": 9,
+      "seeds": [
+        0
+      ],
+      "source_format_version": "2.0.0",
+      "status_counts": {
+        "accepted": 17,
+        "teacher_rejected": 1
+      },
+      "strict_validation": {
+        "arm_count": 18,
+        "arm_matrix_complete": true,
+        "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:2wer4x2nhefwyratyq36emovlluuft2svrafkyyfg7fzxr4jbpjq",
+        "claimable_independent_execution": true,
+        "concrete_deployment_bound": true,
+        "format_version": "2.0.0",
+        "identity_chain_valid": true,
+        "legacy": false,
+        "limitations": [],
+        "manifest_complete": true,
+        "matched_pair_count": 9,
+        "pair_matrix_complete": true,
+        "provider_receipts_unique": true,
+        "task_count": 9,
+        "verification_occurrences_bound": true
+      },
+      "task_count": 9,
+      "task_ids": [
+        "customer_ingest.collapse_spacing",
+        "customer_ingest.deduplicate_rows",
+        "customer_ingest.normalize_headers",
+        "feature_prep.minmax",
+        "feature_prep.zscore",
+        "quality_report.arithmetic_mean",
+        "quality_report.conventional_median",
+        "warehouse_load.chunk_batches",
+        "warehouse_load.flatten_events"
+      ],
+      "task_set_digest": "sha256:e04f88449cdef139d8438b78af2cac47177dcb6ee7dd61668e09870925439d08",
+      "verification": {
+        "accepted_verification_receipt_count": 17,
+        "checked_tcgpack_execution_receipt_count": 17,
+        "executed_case_count": 34,
+        "failed_case_count": 0,
+        "passed_case_count": 34,
+        "verification_receipt_count": 17
+      }
+    },
+    {
+      "all_descriptions_accepted_pair_count": 0,
+      "both_conditions_accepted_pair_count": 0,
+      "by_condition": {
+        "all_descriptions": {
+          "accepted_call_count": 0,
+          "call_count": 3,
+          "candidate_description_counts": {
+            "distribution": {},
+            "maximum": null,
+            "minimum": null,
+            "receipt_count": 0
+          },
+          "provider_native_usage": {
+            "completion_tokens": 0,
+            "prompt_tokens": 0,
+            "receipt_count": 0,
+            "total_tokens": 0,
+            "unique_receipt_count": 0,
+            "usage_sources": [],
+            "wall_ms": 0
+          },
+          "status_counts": {
+            "provider_failed": 3
+          },
+          "verification": {
+            "accepted_verification_receipt_count": 0,
+            "checked_tcgpack_execution_receipt_count": 0,
+            "executed_case_count": 0,
+            "failed_case_count": 0,
+            "passed_case_count": 0,
+            "verification_receipt_count": 0
+          }
+        },
+        "locally_selected_descriptions": {
+          "accepted_call_count": 0,
+          "call_count": 3,
+          "candidate_description_counts": {
+            "distribution": {},
+            "maximum": null,
+            "minimum": null,
+            "receipt_count": 0
+          },
+          "provider_native_usage": {
+            "completion_tokens": 0,
+            "prompt_tokens": 0,
+            "receipt_count": 0,
+            "total_tokens": 0,
+            "unique_receipt_count": 0,
+            "usage_sources": [],
+            "wall_ms": 0
+          },
+          "status_counts": {
+            "provider_failed": 3
+          },
+          "verification": {
+            "accepted_verification_receipt_count": 0,
+            "checked_tcgpack_execution_receipt_count": 0,
+            "executed_case_count": 0,
+            "failed_case_count": 0,
+            "passed_case_count": 0,
+            "verification_receipt_count": 0
+          }
+        }
+      },
+      "campaign_file": "ollama-gpt-oss-20b-k4-3tasks-seed0.campaign.json",
+      "campaign_file_bytes": 23280,
+      "campaign_file_sha256": "sha256:f5565bb6dda9e63a4a366ff4b3c82e6527d68c72ec76b8821967f480397b178f",
+      "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:pkicqgz4dlnfsseqjiykv3b72oengewcyinlutowsw7c4yhxqcwa",
+      "catalog_digest": "sha256:4c7416d1761d777be078f56f0f89a72c8e8ff0e79824bfe2063c92c9420c76a6",
+      "condition_call_count": 6,
+      "error_code_counts": {
+        "provider_modelprovidererror": 6
+      },
+      "failure_count": 6,
+      "failures": [
+        {
+          "attempt_index": 1,
+          "call_receipt_id": "uceg:v1:prompt_interception_campaign_arm_receipt:3gjpnkior5666etjyafnnun2lkrapzxsemfhaspxiapg3g43bnnq",
+          "condition": "all_descriptions",
+          "error_code": "provider_modelprovidererror",
+          "seed": 0,
+          "status": "provider_failed",
+          "step_index": 1,
+          "task_id": "customer_ingest.normalize_headers",
+          "trajectory_id": "customer_ingest"
+        },
+        {
+          "attempt_index": 1,
+          "call_receipt_id": "uceg:v1:prompt_interception_campaign_arm_receipt:uui6qmuc3cccczab2f7ou47yohdkyc22f2l3axfzxgizlklmfoeq",
+          "condition": "locally_selected_descriptions",
+          "error_code": "provider_modelprovidererror",
+          "seed": 0,
+          "status": "provider_failed",
+          "step_index": 1,
+          "task_id": "customer_ingest.normalize_headers",
+          "trajectory_id": "customer_ingest"
+        },
+        {
+          "attempt_index": 1,
+          "call_receipt_id": "uceg:v1:prompt_interception_campaign_arm_receipt:jqmngtvqn2rfadkbrjnfu5d4qdc6em2stti54sv25mn4mh4wkhpa",
+          "condition": "all_descriptions",
+          "error_code": "provider_modelprovidererror",
+          "seed": 0,
+          "status": "provider_failed",
+          "step_index": 1,
+          "task_id": "feature_prep.zscore",
+          "trajectory_id": "feature_prep"
+        },
+        {
+          "attempt_index": 1,
+          "call_receipt_id": "uceg:v1:prompt_interception_campaign_arm_receipt:73z6rfqutadsls63qva7ek6afgsuuf7szjvtkdzawuysaw7tdbta",
+          "condition": "locally_selected_descriptions",
+          "error_code": "provider_modelprovidererror",
+          "seed": 0,
+          "status": "provider_failed",
+          "step_index": 1,
+          "task_id": "feature_prep.zscore",
+          "trajectory_id": "feature_prep"
+        },
+        {
+          "attempt_index": 1,
+          "call_receipt_id": "uceg:v1:prompt_interception_campaign_arm_receipt:f2g6ygfh45wufra3t4wom5bev6cnuwf547xl7wbougkmb5m56pba",
+          "condition": "all_descriptions",
+          "error_code": "provider_modelprovidererror",
+          "seed": 0,
+          "status": "provider_failed",
+          "step_index": 1,
+          "task_id": "warehouse_load.flatten_events",
+          "trajectory_id": "warehouse_load"
+        },
+        {
+          "attempt_index": 1,
+          "call_receipt_id": "uceg:v1:prompt_interception_campaign_arm_receipt:gl76mwno55sgeyykv7vgtogcuwbun62t5cthdq3gdhhwmwmfsrva",
+          "condition": "locally_selected_descriptions",
+          "error_code": "provider_modelprovidererror",
+          "seed": 0,
+          "status": "provider_failed",
+          "step_index": 1,
+          "task_id": "warehouse_load.flatten_events",
+          "trajectory_id": "warehouse_load"
+        }
+      ],
+      "locally_selected_descriptions_accepted_pair_count": 0,
+      "matched_condition_pair_count": 3,
+      "maximum_locally_selected_descriptions": 4,
+      "model_requested": "gpt-oss:20b",
+      "provider_id": "ollama",
+      "provider_native_token_observation": {
+        "all_descriptions_completion_tokens": 0,
+        "all_descriptions_prompt_tokens": 0,
+        "all_descriptions_total_tokens": 0,
+        "comparison_available": false,
+        "locally_selected_descriptions_completion_tokens": 0,
+        "locally_selected_descriptions_prompt_tokens": 0,
+        "locally_selected_descriptions_total_tokens": 0,
+        "observed_completion_delta_tokens": null,
+        "observed_delta_ppm_of_all_descriptions": null,
+        "observed_delta_tokens": null,
+        "observed_prompt_delta_tokens": null
+      },
+      "provider_usage_comparable_pair_count": 0,
+      "seeds": [
+        0
+      ],
+      "source_format_version": "2.0.0",
+      "status_counts": {
+        "provider_failed": 6
+      },
+      "strict_validation": {
+        "arm_count": 6,
+        "arm_matrix_complete": true,
+        "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:pkicqgz4dlnfsseqjiykv3b72oengewcyinlutowsw7c4yhxqcwa",
+        "claimable_independent_execution": false,
+        "concrete_deployment_bound": false,
+        "format_version": "2.0.0",
+        "identity_chain_valid": true,
+        "legacy": false,
+        "limitations": [
+          "one or more pairs lack two provider receipts, so a concrete deployment comparison is unavailable",
+          "campaign contains no completed verifier occurrence"
+        ],
+        "manifest_complete": true,
+        "matched_pair_count": 3,
+        "pair_matrix_complete": true,
+        "provider_receipts_unique": true,
+        "task_count": 3,
+        "verification_occurrences_bound": true
+      },
+      "task_count": 3,
+      "task_ids": [
+        "customer_ingest.normalize_headers",
+        "feature_prep.zscore",
+        "warehouse_load.flatten_events"
+      ],
+      "task_set_digest": "sha256:625f3d6fe8b5aaf5c7c8d626df7c95f3a83a50e034aed354f45f51d7e54b1c2e",
+      "verification": {
+        "accepted_verification_receipt_count": 0,
+        "checked_tcgpack_execution_receipt_count": 0,
+        "executed_case_count": 0,
+        "failed_case_count": 0,
+        "passed_case_count": 0,
+        "verification_receipt_count": 0
+      }
+    },
+    {
+      "all_descriptions_accepted_pair_count": 0,
+      "both_conditions_accepted_pair_count": 0,
+      "by_condition": {
+        "all_descriptions": {
+          "accepted_call_count": 0,
+          "call_count": 3,
+          "candidate_description_counts": {
+            "distribution": {},
+            "maximum": null,
+            "minimum": null,
+            "receipt_count": 0
+          },
+          "provider_native_usage": {
+            "completion_tokens": 0,
+            "prompt_tokens": 0,
+            "receipt_count": 0,
+            "total_tokens": 0,
+            "unique_receipt_count": 0,
+            "usage_sources": [],
+            "wall_ms": 0
+          },
+          "status_counts": {
+            "provider_failed": 3
+          },
+          "verification": {
+            "accepted_verification_receipt_count": 0,
+            "checked_tcgpack_execution_receipt_count": 0,
+            "executed_case_count": 0,
+            "failed_case_count": 0,
+            "passed_case_count": 0,
+            "verification_receipt_count": 0
+          }
+        },
+        "locally_selected_descriptions": {
+          "accepted_call_count": 0,
+          "call_count": 3,
+          "candidate_description_counts": {
+            "distribution": {},
+            "maximum": null,
+            "minimum": null,
+            "receipt_count": 0
+          },
+          "provider_native_usage": {
+            "completion_tokens": 0,
+            "prompt_tokens": 0,
+            "receipt_count": 0,
+            "total_tokens": 0,
+            "unique_receipt_count": 0,
+            "usage_sources": [],
+            "wall_ms": 0
+          },
+          "status_counts": {
+            "provider_failed": 3
+          },
+          "verification": {
+            "accepted_verification_receipt_count": 0,
+            "checked_tcgpack_execution_receipt_count": 0,
+            "executed_case_count": 0,
+            "failed_case_count": 0,
+            "passed_case_count": 0,
+            "verification_receipt_count": 0
+          }
+        }
+      },
+      "campaign_file": "openrouter-llama-3.3-70b-k4-3tasks-seed0.campaign.json",
+      "campaign_file_bytes": 23900,
+      "campaign_file_sha256": "sha256:f207a9379c923bc50fdb15687a35361b5176f4ba2cc61e772f79f9c0e0448c7e",
+      "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:x5ojzt2dvfhrca3ezdgl2rnvge7vktx55njrxgmiv5awrwrxiqla",
+      "catalog_digest": "sha256:4c7416d1761d777be078f56f0f89a72c8e8ff0e79824bfe2063c92c9420c76a6",
+      "condition_call_count": 6,
+      "error_code_counts": {
+        "provider_modelprovidererror": 6
+      },
+      "failure_count": 6,
+      "failures": [
+        {
+          "attempt_index": 1,
+          "call_receipt_id": "uceg:v1:prompt_interception_campaign_arm_receipt:vs5aewcnlguu3ywoq5zpel5xx5qzlfrlt3j4nml5nrv44bokaigq",
+          "condition": "all_descriptions",
+          "error_code": "provider_modelprovidererror",
+          "seed": 0,
+          "status": "provider_failed",
+          "step_index": 1,
+          "task_id": "customer_ingest.normalize_headers",
+          "trajectory_id": "customer_ingest"
+        },
+        {
+          "attempt_index": 1,
+          "call_receipt_id": "uceg:v1:prompt_interception_campaign_arm_receipt:cjvyuiym2m3h5xnyakx5svivppr2lchch6l4xmq2ebimbc2pwoyq",
+          "condition": "locally_selected_descriptions",
+          "error_code": "provider_modelprovidererror",
+          "seed": 0,
+          "status": "provider_failed",
+          "step_index": 1,
+          "task_id": "customer_ingest.normalize_headers",
+          "trajectory_id": "customer_ingest"
+        },
+        {
+          "attempt_index": 1,
+          "call_receipt_id": "uceg:v1:prompt_interception_campaign_arm_receipt:t4bjsl7tutqsvkzcy6irimq2chfq3tubv7fmejampu7uslxd3u7q",
+          "condition": "all_descriptions",
+          "error_code": "provider_modelprovidererror",
+          "seed": 0,
+          "status": "provider_failed",
+          "step_index": 1,
+          "task_id": "feature_prep.zscore",
+          "trajectory_id": "feature_prep"
+        },
+        {
+          "attempt_index": 1,
+          "call_receipt_id": "uceg:v1:prompt_interception_campaign_arm_receipt:5ofqlbwfxangqaldade22fzactqovfb4wixywulhuhazfvdxjk5q",
+          "condition": "locally_selected_descriptions",
+          "error_code": "provider_modelprovidererror",
+          "seed": 0,
+          "status": "provider_failed",
+          "step_index": 1,
+          "task_id": "feature_prep.zscore",
+          "trajectory_id": "feature_prep"
+        },
+        {
+          "attempt_index": 1,
+          "call_receipt_id": "uceg:v1:prompt_interception_campaign_arm_receipt:fuywjm2adhjpgmatgzce5w336vgddisa44y7wivvnsvtl7b6b2ra",
+          "condition": "all_descriptions",
+          "error_code": "provider_modelprovidererror",
+          "seed": 0,
+          "status": "provider_failed",
+          "step_index": 1,
+          "task_id": "warehouse_load.flatten_events",
+          "trajectory_id": "warehouse_load"
+        },
+        {
+          "attempt_index": 1,
+          "call_receipt_id": "uceg:v1:prompt_interception_campaign_arm_receipt:hjpddho2fprnnn4u7v57scsnn54qbnqmvt7x4tupygtnwajsz7qq",
+          "condition": "locally_selected_descriptions",
+          "error_code": "provider_modelprovidererror",
+          "seed": 0,
+          "status": "provider_failed",
+          "step_index": 1,
+          "task_id": "warehouse_load.flatten_events",
+          "trajectory_id": "warehouse_load"
+        }
+      ],
+      "locally_selected_descriptions_accepted_pair_count": 0,
+      "matched_condition_pair_count": 3,
+      "maximum_locally_selected_descriptions": 4,
+      "model_requested": "meta-llama/llama-3.3-70b-instruct:free",
+      "provider_id": "openrouter",
+      "provider_native_token_observation": {
+        "all_descriptions_completion_tokens": 0,
+        "all_descriptions_prompt_tokens": 0,
+        "all_descriptions_total_tokens": 0,
+        "comparison_available": false,
+        "locally_selected_descriptions_completion_tokens": 0,
+        "locally_selected_descriptions_prompt_tokens": 0,
+        "locally_selected_descriptions_total_tokens": 0,
+        "observed_completion_delta_tokens": null,
+        "observed_delta_ppm_of_all_descriptions": null,
+        "observed_delta_tokens": null,
+        "observed_prompt_delta_tokens": null
+      },
+      "provider_usage_comparable_pair_count": 0,
+      "seeds": [
+        0
+      ],
+      "source_format_version": "2.0.0",
+      "status_counts": {
+        "provider_failed": 6
+      },
+      "strict_validation": {
+        "arm_count": 6,
+        "arm_matrix_complete": true,
+        "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:x5ojzt2dvfhrca3ezdgl2rnvge7vktx55njrxgmiv5awrwrxiqla",
+        "claimable_independent_execution": false,
+        "concrete_deployment_bound": false,
+        "format_version": "2.0.0",
+        "identity_chain_valid": true,
+        "legacy": false,
+        "limitations": [
+          "one or more pairs lack two provider receipts, so a concrete deployment comparison is unavailable",
+          "campaign contains no completed verifier occurrence"
+        ],
+        "manifest_complete": true,
+        "matched_pair_count": 3,
+        "pair_matrix_complete": true,
+        "provider_receipts_unique": true,
+        "task_count": 3,
+        "verification_occurrences_bound": true
+      },
+      "task_count": 3,
+      "task_ids": [
+        "customer_ingest.normalize_headers",
+        "feature_prep.zscore",
+        "warehouse_load.flatten_events"
+      ],
+      "task_set_digest": "sha256:625f3d6fe8b5aaf5c7c8d626df7c95f3a83a50e034aed354f45f51d7e54b1c2e",
+      "verification": {
+        "accepted_verification_receipt_count": 0,
+        "checked_tcgpack_execution_receipt_count": 0,
+        "executed_case_count": 0,
+        "failed_case_count": 0,
+        "passed_case_count": 0,
+        "verification_receipt_count": 0
+      }
+    }
+  ],
+  "claim_gate": "A separate token_savings integrity evaluation with its trusted evidence resolver must decide claimability; legacy campaigns cannot supply independent-execution occurrence evidence.",
+  "claimable_token_savings": false,
+  "classification": "provider_native_observation_only",
+  "format_version": "2.0.0",
+  "scope": {
+    "cohort": "constructed_in_catalog_natural_tasks",
+    "execution": "actual_checked_tcgpack_execution",
+    "intervention": "deterministic local retrieval plus reduced and rank-reordered primitive-card disclosure; candidate route handles are scoped to the disclosed order",
+    "measurement_stage": "selector_and_context_stage_only_not_complete_coding_session",
+    "production_status": "not_organic_production_traffic",
+    "token_source": "provider_native_receipts",
+    "verification_cases": "hidden from model calls; public fixture; not cryptographically sealed"
+  }
+}

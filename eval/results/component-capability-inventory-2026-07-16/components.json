@@ -458,32 +458,56 @@
     {
       "acceptance_evidence": [
         "tests/unit/test_benchmarking.py",
+        "tests/unit/test_model_routing.py",
+        "tests/unit/test_openai_compatible_providers.py",
+        "tests/unit/test_prompt_interception.py",
+        "tests/unit/test_prompt_interception_evidence_summary.py",
+        "tests/unit/test_token_savings.py",
         "tests/integration/test_ollama_provider.py",
-        "eval/results/benchmark-worker-2026-07-16"
+        "tests/integration/test_prompt_interception_campaign.py",
+        "tests/integration/test_token_savings_campaign.py",
+        "tests/integration/test_external_issue_workload.py",
+        "eval/results/benchmark-worker-2026-07-16",
+        "eval/results/prompt-interception-live-pilot-2026-07-16/README.md",
+        "eval/results/prompt-interception-live-pilot-2026-07-16/summary.json",
+        "eval/results/prompt-interception-live-v2-2026-07-16/README.md",
+        "eval/results/prompt-interception-live-v2-2026-07-16/summary.json"
       ],
       "capabilities": [
+        "deterministic capability, privacy, cost, and latency model-arm routing",
+        "bounded Ollama, Mistral, OpenRouter, and OpenAI-compatible provider adapters",
         "matched-lane experiments",
-        "sealed task references",
+        "sealed-task reference contracts",
         "run receipts",
         "contamination strata",
         "paired metrics",
-        "claim eligibility"
+        "body-free primitive prompt interception and checked execution",
+        "campaign-v2 task manifests, exact arm matrices, and occurrence-bound verification receipts",
+        "trusted-evidence interfaces and fail-closed token claim evaluation"
       ],
       "folder": "packages/benchmarking",
       "id": "benchmarking",
       "implemented_by": [
         "src/taedri_codegraph/benchmarking.py",
-        "src/taedri_codegraph/model_providers.py"
+        "src/taedri_codegraph/model_providers.py",
+        "src/taedri_codegraph/model_routing.py",
+        "src/taedri_codegraph/prompt_interception.py",
+        "src/taedri_codegraph/token_savings.py",
+        "tools/run_prompt_interception_campaign.py",
+        "tools/summarize_prompt_interception_evidence.py",
+        "tools/prove_token_savings.py"
       ],
       "kind": "library",
-      "measured_records": "2 tasks / 4 lanes / 16 conformance receipts; efficacy_claimable=false",
+      "measured_records": "16 deterministic worker-conformance receipts plus 13 checked live campaign documents (7 strict v2; 6 legacy non-claimable v1); 192 provider-call attempts / 96 matched-pair observations / 346 case-execution observations; strict-v2 usage-complete observation 50,369→20,248 across 50 pairs; legacy-v1 observation 39,415→15,611 across 39 pairs; claimable_token_savings=false",
       "next_gates": [
-        "live model run",
-        "isolated sandbox/verifier",
-        "sealed non-synthetic task suite"
+        "trusted isolated runtime and verifier attestation plus complete retrieval, selection, verification, repair, cache, and tool overhead receipts",
+        "sealed representative coding tasks with unsupported-task abstention and repository patch outcomes",
+        "multi-task, multi-provider, multi-model, and multi-seed promotion study",
+        "production router executor with live health and price telemetry, enforced fallback, and calibrated feedback",
+        "tenant-authorized online interceptor integration and production operations"
       ],
-      "scope": "matched-lane contracts, reporting, and bounded Ollama protocol adapter",
-      "status": "conformance_only"
+      "scope": "deterministic model-arm routing, bounded provider adapters, body-free primitive-selection campaigns, strict campaign-v2 validation, and fail-closed token-savings proof evaluation",
+      "status": "partial"
     },
     {
       "acceptance_evidence": [
@@ -567,13 +591,13 @@
         "tools/smoke_ollama_provider.py"
       ],
       "kind": "service",
-      "measured_records": "16 deterministic fixture receipts; 0 real-model efficacy runs",
+      "measured_records": "16 deterministic fixture receipts; 0 live campaigns executed by the durable worker service",
       "next_gates": [
-        "live provider matched-lane execution",
-        "real harness execution",
-        "independent sealed verification"
+        "wire the strict campaign-v2 runner into durable worker jobs",
+        "resource-isolated execution and trusted verifier attestation",
+        "real harness traffic with tenant authorization and complete overhead accounting"
       ],
-      "scope": "deterministic non-claimable fixture",
+      "scope": "deterministic non-claimable worker fixture; the newer live campaign runner is a bounded library/tool path, not a production worker service",
       "status": "conformance_only"
     },
     {
@@ -663,7 +687,7 @@
         "services/primitive-worker"
       ],
       "kind": "service",
-      "measured_records": "347 candidates plus 11 independently verified and released working primitives",
+      "measured_records": "347 candidates plus 11 locally acceptance-verified released primitives",
       "next_gates": [
         "hostile-code isolated verification",
         "non-Python generators and verifiers",
@@ -901,7 +925,7 @@
         "managed PostgreSQL and object storage",
         "observability, backup, restore, and incident drills"
       ],
-      "scope": "Docker Compose and one-Machine Fly.io design",
+      "scope": "local Docker Compose and declared one-Machine Fly.io proof-of-concept; not a deployed production data plane",
       "status": "poc_only"
     },
     {
@@ -911,44 +935,142 @@
         "eval/results/reference-primitive-acceptance-2026-07-16",
         "eval/results/deterministic-primitive-pipeline-2026-07-16",
         "eval/results/data-primitive-cohort-2026-07-16",
-        "eval/results/benchmark-worker-2026-07-16"
+        "eval/results/benchmark-worker-2026-07-16",
+        "eval/results/prompt-interception-live-pilot-2026-07-16/README.md",
+        "eval/results/prompt-interception-live-pilot-2026-07-16/summary.json",
+        "eval/results/prompt-interception-live-v2-2026-07-16/README.md",
+        "eval/results/prompt-interception-live-v2-2026-07-16/summary.json",
+        "tests/integration/test_external_issue_workload.py",
+        "tests/integration/test_token_savings_campaign.py"
       ],
       "capabilities": [
         "real-package corpora",
         "ablation receipts",
         "promotion gates",
         "deterministic primitive-composition receipts",
+        "bounded live-provider primitive-selection observations",
+        "strict campaign-v2 integrity summaries",
+        "external issue-derived positive retrieval workload",
+        "token-savings proof classification",
         "reports"
       ],
       "folder": "eval",
       "id": "evaluation",
       "implemented_by": [
         "eval",
+        "fixtures/prompt-interception",
+        "fixtures/token-savings",
+        "src/taedri_codegraph/issue_workloads.py",
         "tools/benchmark_real_packages.py",
         "tools/evaluate_hybrid_real_packages.py",
         "tools/run_reference_primitive_acceptance.py",
         "tools/run_deterministic_primitive_pipeline.py",
         "tools/run_data_primitive_cohort.py",
-        "tools/run_benchmark_worker_conformance.py"
+        "tools/run_benchmark_worker_conformance.py",
+        "tools/run_prompt_interception_campaign.py",
+        "tools/summarize_prompt_interception_evidence.py",
+        "tools/prove_token_savings.py"
       ],
       "kind": "evaluation",
-      "measured_records": "3 real PyPI packages + 2 real usaddress sources + 11 real custom releases + 2 no-model routes + 16 non-claimable benchmark receipts",
+      "measured_records": "3 real PyPI packages + 2 real usaddress sources + 11 real custom releases + 2 no-model routes + 9 constructed tasks/18 cases + 5 external issue-derived positive tasks/10 cases + 13 checked live campaign documents (7 strict v2; 6 legacy non-claimable v1); 192 provider-call attempts / 96 matched-pair observations / 346 case-execution observations; strict-v2 usage-complete observation 50,369→20,248 across 50 pairs; legacy-v1 observation 39,415→15,611 across 39 pairs; claimable_token_savings=false",
       "next_gates": [
-        "real-model matched lanes",
-        "sealed executable tasks",
-        "promotion thresholds and longitudinal regression tracking"
+        "representative sealed repository-level coding tasks including must-abstain negatives",
+        "trusted isolated runtime evidence and complete failure-inclusive overhead accounting",
+        "multi-provider, multi-model, multi-seed promotion thresholds and longitudinal regression tracking",
+        "real online coding-session and production-traffic study"
       ],
-      "scope": "real-package static evaluation, real custom-primitive execution acceptance, deterministic no-model composition, and benchmark conformance",
+      "scope": "real-package static evaluation, released-primitive execution, deterministic composition, bounded live-provider primitive selection, external issue-derived positive tasks, and strict non-claimable token-evidence analysis",
       "status": "partial"
     }
   ],
   "json_schema_count": 19,
   "live_database_note": "No production database is checked into Git. Counts are explicitly tied to immutable evaluation receipts or marked stateless/absent.",
   "postgres_table_count": 44,
+  "product_readiness": {
+    "classification": "single_node_private_alpha_candidate",
+    "not_validated": "Public multi-tenant production operation, managed PostgreSQL/object-store runtime use, hostile-code isolation, OIDC/RBAC, live billing and webhook reconciliation, production observability, full-service backup/restore, retention operations, and staged deploy/rollback.",
+    "public_paid_saas_ready": false,
+    "release_label": "private alpha candidate; not a production SaaS launch",
+    "serves_truth": false,
+    "validated_scope": "Local and single-node reference operation, including tenant-scoped SQLite APIs and workers, checked primitive execution, deterministic routing, bounded live-provider experiments, and strict evidence validation."
+  },
+  "prompt_interception_evidence": {
+    "accepted_provider_response_count": 173,
+    "all_descriptions_reported_tokens": 89784,
+    "campaign_count": 13,
+    "campaign_format_counts": {
+      "1.0.0": 6,
+      "2.0.0": 7
+    },
+    "case_execution_observation_count": 346,
+    "claim_boundary": "Campaign validation and provider-response counters are observation evidence. A correctness-preserving savings claim additionally requires trusted isolated runtime evidence and complete failure-inclusive overhead receipts.",
+    "claimable_token_savings": false,
+    "legacy_v1_campaign_count": 6,
+    "locally_selected_descriptions_reported_tokens": 35859,
+    "matched_pair_observation_count": 96,
+    "observations_by_campaign_format": {
+      "1.0.0": {
+        "accepted_provider_response_count": 75,
+        "all_descriptions_reported_tokens": 39415,
+        "campaign_count": 6,
+        "case_execution_observation_count": 150,
+        "locally_selected_descriptions_reported_tokens": 15611,
+        "matched_pair_observation_count": 40,
+        "passed_case_execution_observation_count": 150,
+        "provider_call_attempt_count": 80,
+        "provider_response_usage_count": 78,
+        "usage_complete_pair_count": 39
+      },
+      "2.0.0": {
+        "accepted_provider_response_count": 98,
+        "all_descriptions_reported_tokens": 50369,
+        "campaign_count": 7,
+        "case_execution_observation_count": 196,
+        "locally_selected_descriptions_reported_tokens": 20248,
+        "matched_pair_observation_count": 56,
+        "passed_case_execution_observation_count": 196,
+        "provider_call_attempt_count": 112,
+        "provider_response_usage_count": 100,
+        "usage_complete_pair_count": 50
+      }
+    },
+    "observed_reported_token_delta": 53925,
+    "observed_reported_token_delta_ppm": 600608,
+    "passed_case_execution_observation_count": 346,
+    "provider_call_attempt_count": 192,
+    "provider_model_count": 4,
+    "provider_models": [
+      {
+        "model_requested": "mistral-large-latest",
+        "provider_id": "mistral"
+      },
+      {
+        "model_requested": "mistral-small-2603",
+        "provider_id": "mistral"
+      },
+      {
+        "model_requested": "gpt-oss:20b",
+        "provider_id": "ollama"
+      },
+      {
+        "model_requested": "meta-llama/llama-3.3-70b-instruct:free",
+        "provider_id": "openrouter"
+      }
+    ],
+    "provider_response_usage_count": 178,
+    "shortlist_limits": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "strict_v2_campaign_count": 7,
+    "usage_complete_pair_count": 89
+  },
   "schema_version": "1.0.0",
   "status_counts": {
-    "conformance_only": 2,
-    "partial": 7,
+    "conformance_only": 1,
+    "partial": 8,
     "poc_only": 1,
     "working": 22
   }

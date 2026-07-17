@@ -1,0 +1,81 @@
+{
+  "baseline": {
+    "accepted": null,
+    "arm": "baseline",
+    "attempt_count": null,
+    "context": {
+      "budget": {
+        "max_attempts": 4,
+        "max_output_tokens_per_attempt": 1000,
+        "max_prompt_tokens_per_attempt": 1000,
+        "max_tool_calls": 8,
+        "max_total_tokens": 10000,
+        "max_verifier_cpu_ms": 30000,
+        "max_wall_ms": 60000
+      },
+      "harness_digest": "sha256:49f756463ad9dcfb9b6ade54d7d6f15476e7214f46a65b4b0c55d46845b12f70",
+      "model_config_digest": "sha256:74544cb9f7117721379760baa5416f83d1e49698cc0a5fa598dd283c5375f93f",
+      "model_id": "model-a@exact-revision",
+      "oracle_ref": "sha256:abcade795433b6bc4706e47c0c8ca670f79d9d3634ed9fb5a938f67148ec77d3",
+      "policy_digest": "sha256:823412d1eacb67956220e532959f0104603057c88704863ca38e7cd188fda812",
+      "provider_id": "provider-a",
+      "runtime_digest": "sha256:d92c6a81b2ff50096bcda80885427d1f59a25b5f483f7055523504925d16ab23",
+      "seed": 41,
+      "snapshot_ref": "sha256:3f3ee146f1bcf714c52b977a899c46688398140e37eddeae1161bbf4ae407ce3",
+      "task_ref": "sha256:0ebb429fa86d481c2630fac53db1c91cffed5d4d41d1021c179444eb67e7ee0b"
+    },
+    "format_version": "1.0.0",
+    "model_usage_receipt_digests": [],
+    "output_digest": null,
+    "reported_total_tokens": 137485,
+    "run_digest": "sha256:294e2ce0c8ec89e7bc3c8aa0f1144acf037e2e8e7ed26f3595ddf13f6c3a136e",
+    "run_spec_digest": "sha256:d866f29a50ec48b4dfc7ce93fd173bec107c91c6a08e1b666bd0a08893824c4d",
+    "runner_id": null,
+    "verifier_receipt_digest": null
+  },
+  "evidence_class": "reported_historical",
+  "evidence_note": "Reported totals only. Raw per-attempt model-usage and independent verifier receipts were not retained, so this result is explicitly non-verified.",
+  "format_version": "1.0.0",
+  "label": "REPORTED HISTORICAL 137485→85954 — RAW EVIDENCE ABSENT",
+  "model_usage_receipts": [],
+  "reuse": {
+    "accepted": null,
+    "arm": "reuse",
+    "attempt_count": null,
+    "context": {
+      "budget": {
+        "max_attempts": 4,
+        "max_output_tokens_per_attempt": 1000,
+        "max_prompt_tokens_per_attempt": 1000,
+        "max_tool_calls": 8,
+        "max_total_tokens": 10000,
+        "max_verifier_cpu_ms": 30000,
+        "max_wall_ms": 60000
+      },
+      "harness_digest": "sha256:49f756463ad9dcfb9b6ade54d7d6f15476e7214f46a65b4b0c55d46845b12f70",
+      "model_config_digest": "sha256:74544cb9f7117721379760baa5416f83d1e49698cc0a5fa598dd283c5375f93f",
+      "model_id": "model-a@exact-revision",
+      "oracle_ref": "sha256:abcade795433b6bc4706e47c0c8ca670f79d9d3634ed9fb5a938f67148ec77d3",
+      "policy_digest": "sha256:823412d1eacb67956220e532959f0104603057c88704863ca38e7cd188fda812",
+      "provider_id": "provider-a",
+      "runtime_digest": "sha256:d92c6a81b2ff50096bcda80885427d1f59a25b5f483f7055523504925d16ab23",
+      "seed": 41,
+      "snapshot_ref": "sha256:3f3ee146f1bcf714c52b977a899c46688398140e37eddeae1161bbf4ae407ce3",
+      "task_ref": "sha256:0ebb429fa86d481c2630fac53db1c91cffed5d4d41d1021c179444eb67e7ee0b"
+    },
+    "format_version": "1.0.0",
+    "model_usage_receipt_digests": [],
+    "output_digest": null,
+    "reported_total_tokens": 85954,
+    "run_digest": "sha256:33923f3667ef3f09c1a92e2750f6bc3b40ce1cc4bc122f40b4dd641cf4eec849",
+    "run_spec_digest": "sha256:1da967c3479a3ccee46c94d4acfd850ee37549213b4e6ae467769499cdbbd111",
+    "runner_id": null,
+    "verifier_receipt_digest": null
+  },
+  "source_digest": "sha256:de9077ba48f3c074e143fa5b8b222b8bfbe32d873df6d778ce3b0ba17839fcee",
+  "subject_ref": "sha256:37b620dd76fb53e3d6711c5d0ebad3cca072ab833d132386d52f864b957e49ae",
+  "terminal_receipt_refs": [
+    "sha256:35fc16eaf6569f81e0958706117ebb87366a6b86b978ff3f3f0e8730e997026d"
+  ],
+  "verifier_receipts": []
+}

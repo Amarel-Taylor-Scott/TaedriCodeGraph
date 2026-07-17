@@ -64,7 +64,37 @@ class ExactCompatibilityEvaluator:
         consumer: CompatibilitySignature,
         requirements: CompatibilityRequirementSet,
     ) -> CompatibilityAssessment:
-        assessments: list[DimensionAssessment] = []
+        producer_oriented = producer.orientation in {"provides", "bidirectional"}
+        consumer_oriented = consumer.orientation in {"requires", "bidirectional"}
+        orientation_verdict = (
+            CompatibilityVerdict.COMPATIBLE
+            if producer_oriented and consumer_oriented
+            else CompatibilityVerdict.INCOMPATIBLE
+        )
+        assessments: list[DimensionAssessment] = [
+            DimensionAssessment(
+                "uceg.compat.orientation",
+                orientation_verdict,
+                (
+                    "producer provides and consumer requires"
+                    if orientation_verdict is CompatibilityVerdict.COMPATIBLE
+                    else "producer/consumer orientations are reversed or unsupported"
+                ),
+                (),
+            )
+        ]
+        if not requirements.required_dimensions:
+            assessments.append(
+                DimensionAssessment(
+                    "uceg.compat.required_dimension",
+                    CompatibilityVerdict.UNKNOWN,
+                    (
+                        "at least one authoritative required dimension is needed; "
+                        "orientation alone is not compatibility proof"
+                    ),
+                    (),
+                )
+            )
         for dimension in requirements.required_dimensions:
             provided = producer.dimensions.get(dimension)
             required = consumer.dimensions.get(dimension)

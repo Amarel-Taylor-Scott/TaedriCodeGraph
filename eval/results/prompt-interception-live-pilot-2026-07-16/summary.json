@@ -1,0 +1,1007 @@
+{
+  "campaign_observation_totals": {
+    "all_descriptions_total_tokens": 39415,
+    "campaign_count": 6,
+    "campaign_observation_task_count": 40,
+    "checked_tcgpack_execution_receipt_count": 75,
+    "condition_call_count": 80,
+    "executed_case_count": 150,
+    "failed_case_count": 0,
+    "failure_count": 5,
+    "legacy_nonclaimable_campaign_count": 6,
+    "locally_selected_descriptions_total_tokens": 15611,
+    "matched_condition_pair_count": 40,
+    "observed_delta_ppm_of_all_descriptions": 603932,
+    "observed_delta_tokens": 23804,
+    "passed_case_count": 150,
+    "provider_usage_comparable_campaign_count": 5,
+    "provider_usage_comparable_pair_count": 39,
+    "provider_usage_noncomparable_campaign_count": 1,
+    "strict_v2_campaign_count": 0,
+    "token_totals_scope": "only matched pairs with provider usage receipts for both conditions"
+  },
+  "campaigns": [
+    {
+      "all_descriptions_accepted_pair_count": 0,
+      "both_conditions_accepted_pair_count": 0,
+      "by_condition": {
+        "all_descriptions": {
+          "accepted_call_count": 0,
+          "call_count": 1,
+          "candidate_description_counts": {
+            "distribution": {},
+            "maximum": null,
+            "minimum": null,
+            "receipt_count": 0
+          },
+          "provider_native_usage": {
+            "completion_tokens": 0,
+            "prompt_tokens": 0,
+            "receipt_count": 0,
+            "total_tokens": 0,
+            "unique_receipt_count": 0,
+            "usage_sources": [],
+            "wall_ms": 0
+          },
+          "status_counts": {
+            "provider_failed": 1
+          },
+          "verification": {
+            "accepted_verification_receipt_count": 0,
+            "checked_tcgpack_execution_receipt_count": 0,
+            "executed_case_count": 0,
+            "failed_case_count": 0,
+            "passed_case_count": 0,
+            "verification_receipt_count": 0
+          }
+        },
+        "locally_selected_descriptions": {
+          "accepted_call_count": 0,
+          "call_count": 1,
+          "candidate_description_counts": {
+            "distribution": {},
+            "maximum": null,
+            "minimum": null,
+            "receipt_count": 0
+          },
+          "provider_native_usage": {
+            "completion_tokens": 0,
+            "prompt_tokens": 0,
+            "receipt_count": 0,
+            "total_tokens": 0,
+            "unique_receipt_count": 0,
+            "usage_sources": [],
+            "wall_ms": 0
+          },
+          "status_counts": {
+            "provider_failed": 1
+          },
+          "verification": {
+            "accepted_verification_receipt_count": 0,
+            "checked_tcgpack_execution_receipt_count": 0,
+            "executed_case_count": 0,
+            "failed_case_count": 0,
+            "passed_case_count": 0,
+            "verification_receipt_count": 0
+          }
+        }
+      },
+      "campaign_file": "mistral-large-latest-k4-1task-bounded-smoke-seed0.campaign.json",
+      "campaign_file_bytes": 6956,
+      "campaign_file_sha256": "sha256:f7e8cc77ed5fca18ef3cace1e8f5768e35ee4f5f9aba21dea8057d0d32787c31",
+      "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:kdqgjsbajlbhan2jfexyidy5ptgwfbzlj4j6arqfj44v5hl72peq",
+      "catalog_digest": "sha256:4c7416d1761d777be078f56f0f89a72c8e8ff0e79824bfe2063c92c9420c76a6",
+      "condition_call_count": 2,
+      "error_code_counts": {
+        "provider_modelprovidererror": 2
+      },
+      "failure_count": 2,
+      "failures": [
+        {
+          "attempt_index": 1,
+          "call_receipt_id": "uceg:v1:prompt_interception_campaign_arm_receipt:poutmhoeajpjpjkrglgtlnpvwcjswqw73gx5b2y2p33c2b4rfxtq",
+          "condition": "all_descriptions",
+          "error_code": "provider_modelprovidererror",
+          "seed": 0,
+          "status": "provider_failed",
+          "step_index": 1,
+          "task_id": "warehouse_load.flatten_events",
+          "trajectory_id": "warehouse_load"
+        },
+        {
+          "attempt_index": 1,
+          "call_receipt_id": "uceg:v1:prompt_interception_campaign_arm_receipt:cizvciwvgoh5jtdyjpd63zmchti6tqblzqyabgiy4qxzw4wovfpq",
+          "condition": "locally_selected_descriptions",
+          "error_code": "provider_modelprovidererror",
+          "seed": 0,
+          "status": "provider_failed",
+          "step_index": 1,
+          "task_id": "warehouse_load.flatten_events",
+          "trajectory_id": "warehouse_load"
+        }
+      ],
+      "locally_selected_descriptions_accepted_pair_count": 0,
+      "matched_condition_pair_count": 1,
+      "maximum_locally_selected_descriptions": 4,
+      "model_requested": "mistral-large-latest",
+      "provider_id": "mistral",
+      "provider_native_token_observation": {
+        "all_descriptions_completion_tokens": 0,
+        "all_descriptions_prompt_tokens": 0,
+        "all_descriptions_total_tokens": 0,
+        "comparison_available": false,
+        "locally_selected_descriptions_completion_tokens": 0,
+        "locally_selected_descriptions_prompt_tokens": 0,
+        "locally_selected_descriptions_total_tokens": 0,
+        "observed_completion_delta_tokens": null,
+        "observed_delta_ppm_of_all_descriptions": null,
+        "observed_delta_tokens": null,
+        "observed_prompt_delta_tokens": null
+      },
+      "provider_usage_comparable_pair_count": 0,
+      "seeds": [
+        0
+      ],
+      "source_format_version": "1.0.0",
+      "status_counts": {
+        "provider_failed": 2
+      },
+      "strict_validation": {
+        "arm_count": 2,
+        "arm_matrix_complete": true,
+        "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:kdqgjsbajlbhan2jfexyidy5ptgwfbzlj4j6arqfj44v5hl72peq",
+        "claimable_independent_execution": false,
+        "concrete_deployment_bound": false,
+        "format_version": "1.0.0",
+        "identity_chain_valid": true,
+        "legacy": true,
+        "limitations": [
+          "legacy format has no declared task manifest, so omitted whole tasks cannot be detected",
+          "legacy verifier receipts do not bind interception, A/B arm, attempt, or occurrence",
+          "duplicate legacy verifier IDs are deterministic content matches, not independent-execution evidence",
+          "legacy campaign context does not bind harness, disclosure, provider-boundary, or executor policy versions"
+        ],
+        "manifest_complete": false,
+        "matched_pair_count": 1,
+        "pair_matrix_complete": true,
+        "provider_receipts_unique": true,
+        "task_count": 1,
+        "verification_occurrences_bound": false
+      },
+      "task_count": 1,
+      "task_ids": [
+        "warehouse_load.flatten_events"
+      ],
+      "task_set_digest": "sha256:47b50b3a55af6ff7b849c84a48981fb22639f72adc7511d759781220e000d83a",
+      "verification": {
+        "accepted_verification_receipt_count": 0,
+        "checked_tcgpack_execution_receipt_count": 0,
+        "executed_case_count": 0,
+        "failed_case_count": 0,
+        "passed_case_count": 0,
+        "verification_receipt_count": 0
+      }
+    },
+    {
+      "all_descriptions_accepted_pair_count": 8,
+      "both_conditions_accepted_pair_count": 8,
+      "by_condition": {
+        "all_descriptions": {
+          "accepted_call_count": 8,
+          "call_count": 9,
+          "candidate_description_counts": {
+            "distribution": {
+              "11": 9
+            },
+            "maximum": 11,
+            "minimum": 11,
+            "receipt_count": 9
+          },
+          "provider_native_usage": {
+            "completion_tokens": 161,
+            "prompt_tokens": 8901,
+            "receipt_count": 9,
+            "total_tokens": 9062,
+            "unique_receipt_count": 9,
+            "usage_sources": [
+              "mistral-native-response"
+            ],
+            "wall_ms": 46832
+          },
+          "status_counts": {
+            "accepted": 8,
+            "teacher_rejected": 1
+          },
+          "verification": {
+            "accepted_verification_receipt_count": 8,
+            "checked_tcgpack_execution_receipt_count": 8,
+            "executed_case_count": 16,
+            "failed_case_count": 0,
+            "passed_case_count": 16,
+            "verification_receipt_count": 8
+          }
+        },
+        "locally_selected_descriptions": {
+          "accepted_call_count": 9,
+          "call_count": 9,
+          "candidate_description_counts": {
+            "distribution": {
+              "1": 9
+            },
+            "maximum": 1,
+            "minimum": 1,
+            "receipt_count": 9
+          },
+          "provider_native_usage": {
+            "completion_tokens": 162,
+            "prompt_tokens": 1949,
+            "receipt_count": 9,
+            "total_tokens": 2111,
+            "unique_receipt_count": 9,
+            "usage_sources": [
+              "mistral-native-response"
+            ],
+            "wall_ms": 46388
+          },
+          "status_counts": {
+            "accepted": 9
+          },
+          "verification": {
+            "accepted_verification_receipt_count": 9,
+            "checked_tcgpack_execution_receipt_count": 9,
+            "executed_case_count": 18,
+            "failed_case_count": 0,
+            "passed_case_count": 18,
+            "verification_receipt_count": 9
+          }
+        }
+      },
+      "campaign_file": "mistral-small-2603-k1-seed0.campaign.json",
+      "campaign_file_bytes": 873950,
+      "campaign_file_sha256": "sha256:474c86311aec470eb3120bd8006dae62fadd8d9285bb10139a4e64b5b151c6fb",
+      "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:upf5wjctfw4l6rrdnewnywzuwmhsbygsqv47pkw6xqv6pmommrca",
+      "catalog_digest": "sha256:4c7416d1761d777be078f56f0f89a72c8e8ff0e79824bfe2063c92c9420c76a6",
+      "condition_call_count": 18,
+      "error_code_counts": {
+        "teacher_abstained_no_suitable_candidate": 1
+      },
+      "failure_count": 1,
+      "failures": [
+        {
+          "attempt_index": 1,
+          "call_receipt_id": "uceg:v1:prompt_interception_campaign_arm_receipt:gam7zajwup22da56w44ix6aela6sygrvaxpcy7nyvq4cezsdnkmq",
+          "condition": "all_descriptions",
+          "error_code": "teacher_abstained_no_suitable_candidate",
+          "seed": 0,
+          "status": "teacher_rejected",
+          "step_index": 2,
+          "task_id": "customer_ingest.deduplicate_rows",
+          "trajectory_id": "customer_ingest"
+        }
+      ],
+      "locally_selected_descriptions_accepted_pair_count": 9,
+      "matched_condition_pair_count": 9,
+      "maximum_locally_selected_descriptions": 1,
+      "model_requested": "mistral-small-2603",
+      "provider_id": "mistral",
+      "provider_native_token_observation": {
+        "all_descriptions_completion_tokens": 161,
+        "all_descriptions_prompt_tokens": 8901,
+        "all_descriptions_total_tokens": 9062,
+        "comparison_available": true,
+        "locally_selected_descriptions_completion_tokens": 162,
+        "locally_selected_descriptions_prompt_tokens": 1949,
+        "locally_selected_descriptions_total_tokens": 2111,
+        "observed_completion_delta_tokens": -1,
+        "observed_delta_ppm_of_all_descriptions": 767049,
+        "observed_delta_tokens": 6951,
+        "observed_prompt_delta_tokens": 6952
+      },
+      "provider_usage_comparable_pair_count": 9,
+      "seeds": [
+        0
+      ],
+      "source_format_version": "1.0.0",
+      "status_counts": {
+        "accepted": 17,
+        "teacher_rejected": 1
+      },
+      "strict_validation": {
+        "arm_count": 18,
+        "arm_matrix_complete": true,
+        "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:upf5wjctfw4l6rrdnewnywzuwmhsbygsqv47pkw6xqv6pmommrca",
+        "claimable_independent_execution": false,
+        "concrete_deployment_bound": false,
+        "format_version": "1.0.0",
+        "identity_chain_valid": true,
+        "legacy": true,
+        "limitations": [
+          "legacy format has no declared task manifest, so omitted whole tasks cannot be detected",
+          "legacy verifier receipts do not bind interception, A/B arm, attempt, or occurrence",
+          "duplicate legacy verifier IDs are deterministic content matches, not independent-execution evidence",
+          "legacy campaign context does not bind harness, disclosure, provider-boundary, or executor policy versions"
+        ],
+        "manifest_complete": false,
+        "matched_pair_count": 9,
+        "pair_matrix_complete": true,
+        "provider_receipts_unique": true,
+        "task_count": 9,
+        "verification_occurrences_bound": false
+      },
+      "task_count": 9,
+      "task_ids": [
+        "customer_ingest.collapse_spacing",
+        "customer_ingest.deduplicate_rows",
+        "customer_ingest.normalize_headers",
+        "feature_prep.minmax",
+        "feature_prep.zscore",
+        "quality_report.arithmetic_mean",
+        "quality_report.conventional_median",
+        "warehouse_load.chunk_batches",
+        "warehouse_load.flatten_events"
+      ],
+      "task_set_digest": "sha256:ddd12377bc2e0c52538ece5e40e7a356226ed5937eaa44d273f92d7cd0e46d47",
+      "verification": {
+        "accepted_verification_receipt_count": 17,
+        "checked_tcgpack_execution_receipt_count": 17,
+        "executed_case_count": 34,
+        "failed_case_count": 0,
+        "passed_case_count": 34,
+        "verification_receipt_count": 17
+      }
+    },
+    {
+      "all_descriptions_accepted_pair_count": 8,
+      "both_conditions_accepted_pair_count": 8,
+      "by_condition": {
+        "all_descriptions": {
+          "accepted_call_count": 8,
+          "call_count": 9,
+          "candidate_description_counts": {
+            "distribution": {
+              "11": 9
+            },
+            "maximum": 11,
+            "minimum": 11,
+            "receipt_count": 9
+          },
+          "provider_native_usage": {
+            "completion_tokens": 161,
+            "prompt_tokens": 8901,
+            "receipt_count": 9,
+            "total_tokens": 9062,
+            "unique_receipt_count": 9,
+            "usage_sources": [
+              "mistral-native-response"
+            ],
+            "wall_ms": 48898
+          },
+          "status_counts": {
+            "accepted": 8,
+            "teacher_rejected": 1
+          },
+          "verification": {
+            "accepted_verification_receipt_count": 8,
+            "checked_tcgpack_execution_receipt_count": 8,
+            "executed_case_count": 16,
+            "failed_case_count": 0,
+            "passed_case_count": 16,
+            "verification_receipt_count": 8
+          }
+        },
+        "locally_selected_descriptions": {
+          "accepted_call_count": 9,
+          "call_count": 9,
+          "candidate_description_counts": {
+            "distribution": {
+              "2": 9
+            },
+            "maximum": 2,
+            "minimum": 2,
+            "receipt_count": 9
+          },
+          "provider_native_usage": {
+            "completion_tokens": 162,
+            "prompt_tokens": 2638,
+            "receipt_count": 9,
+            "total_tokens": 2800,
+            "unique_receipt_count": 9,
+            "usage_sources": [
+              "mistral-native-response"
+            ],
+            "wall_ms": 40123
+          },
+          "status_counts": {
+            "accepted": 9
+          },
+          "verification": {
+            "accepted_verification_receipt_count": 9,
+            "checked_tcgpack_execution_receipt_count": 9,
+            "executed_case_count": 18,
+            "failed_case_count": 0,
+            "passed_case_count": 18,
+            "verification_receipt_count": 9
+          }
+        }
+      },
+      "campaign_file": "mistral-small-2603-k2-seed0.campaign.json",
+      "campaign_file_bytes": 882530,
+      "campaign_file_sha256": "sha256:9cb70c802d91bfb9e26b1d90f98e1ae2f7b7fa099e98c2b4a5d2e2159ff92ac2",
+      "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:jrkaqpwra2yylf2h2ciu3dim42cswexsre2cyaeyvmmnqlod2jjq",
+      "catalog_digest": "sha256:4c7416d1761d777be078f56f0f89a72c8e8ff0e79824bfe2063c92c9420c76a6",
+      "condition_call_count": 18,
+      "error_code_counts": {
+        "teacher_abstained_no_suitable_candidate": 1
+      },
+      "failure_count": 1,
+      "failures": [
+        {
+          "attempt_index": 1,
+          "call_receipt_id": "uceg:v1:prompt_interception_campaign_arm_receipt:ofs7huhxkramduqxo4iwo7lqljup4mvxnyoq6ngwzbinjaxzmfba",
+          "condition": "all_descriptions",
+          "error_code": "teacher_abstained_no_suitable_candidate",
+          "seed": 0,
+          "status": "teacher_rejected",
+          "step_index": 2,
+          "task_id": "customer_ingest.deduplicate_rows",
+          "trajectory_id": "customer_ingest"
+        }
+      ],
+      "locally_selected_descriptions_accepted_pair_count": 9,
+      "matched_condition_pair_count": 9,
+      "maximum_locally_selected_descriptions": 2,
+      "model_requested": "mistral-small-2603",
+      "provider_id": "mistral",
+      "provider_native_token_observation": {
+        "all_descriptions_completion_tokens": 161,
+        "all_descriptions_prompt_tokens": 8901,
+        "all_descriptions_total_tokens": 9062,
+        "comparison_available": true,
+        "locally_selected_descriptions_completion_tokens": 162,
+        "locally_selected_descriptions_prompt_tokens": 2638,
+        "locally_selected_descriptions_total_tokens": 2800,
+        "observed_completion_delta_tokens": -1,
+        "observed_delta_ppm_of_all_descriptions": 691017,
+        "observed_delta_tokens": 6262,
+        "observed_prompt_delta_tokens": 6263
+      },
+      "provider_usage_comparable_pair_count": 9,
+      "seeds": [
+        0
+      ],
+      "source_format_version": "1.0.0",
+      "status_counts": {
+        "accepted": 17,
+        "teacher_rejected": 1
+      },
+      "strict_validation": {
+        "arm_count": 18,
+        "arm_matrix_complete": true,
+        "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:jrkaqpwra2yylf2h2ciu3dim42cswexsre2cyaeyvmmnqlod2jjq",
+        "claimable_independent_execution": false,
+        "concrete_deployment_bound": false,
+        "format_version": "1.0.0",
+        "identity_chain_valid": true,
+        "legacy": true,
+        "limitations": [
+          "legacy format has no declared task manifest, so omitted whole tasks cannot be detected",
+          "legacy verifier receipts do not bind interception, A/B arm, attempt, or occurrence",
+          "duplicate legacy verifier IDs are deterministic content matches, not independent-execution evidence",
+          "legacy campaign context does not bind harness, disclosure, provider-boundary, or executor policy versions"
+        ],
+        "manifest_complete": false,
+        "matched_pair_count": 9,
+        "pair_matrix_complete": true,
+        "provider_receipts_unique": true,
+        "task_count": 9,
+        "verification_occurrences_bound": false
+      },
+      "task_count": 9,
+      "task_ids": [
+        "customer_ingest.collapse_spacing",
+        "customer_ingest.deduplicate_rows",
+        "customer_ingest.normalize_headers",
+        "feature_prep.minmax",
+        "feature_prep.zscore",
+        "quality_report.arithmetic_mean",
+        "quality_report.conventional_median",
+        "warehouse_load.chunk_batches",
+        "warehouse_load.flatten_events"
+      ],
+      "task_set_digest": "sha256:ddd12377bc2e0c52538ece5e40e7a356226ed5937eaa44d273f92d7cd0e46d47",
+      "verification": {
+        "accepted_verification_receipt_count": 17,
+        "checked_tcgpack_execution_receipt_count": 17,
+        "executed_case_count": 34,
+        "failed_case_count": 0,
+        "passed_case_count": 34,
+        "verification_receipt_count": 17
+      }
+    },
+    {
+      "all_descriptions_accepted_pair_count": 9,
+      "both_conditions_accepted_pair_count": 9,
+      "by_condition": {
+        "all_descriptions": {
+          "accepted_call_count": 9,
+          "call_count": 9,
+          "candidate_description_counts": {
+            "distribution": {
+              "11": 9
+            },
+            "maximum": 11,
+            "minimum": 11,
+            "receipt_count": 9
+          },
+          "provider_native_usage": {
+            "completion_tokens": 162,
+            "prompt_tokens": 8901,
+            "receipt_count": 9,
+            "total_tokens": 9063,
+            "unique_receipt_count": 9,
+            "usage_sources": [
+              "mistral-native-response"
+            ],
+            "wall_ms": 37448
+          },
+          "status_counts": {
+            "accepted": 9
+          },
+          "verification": {
+            "accepted_verification_receipt_count": 9,
+            "checked_tcgpack_execution_receipt_count": 9,
+            "executed_case_count": 18,
+            "failed_case_count": 0,
+            "passed_case_count": 18,
+            "verification_receipt_count": 9
+          }
+        },
+        "locally_selected_descriptions": {
+          "accepted_call_count": 9,
+          "call_count": 9,
+          "candidate_description_counts": {
+            "distribution": {
+              "2": 1,
+              "4": 8
+            },
+            "maximum": 4,
+            "minimum": 2,
+            "receipt_count": 9
+          },
+          "provider_native_usage": {
+            "completion_tokens": 162,
+            "prompt_tokens": 3883,
+            "receipt_count": 9,
+            "total_tokens": 4045,
+            "unique_receipt_count": 9,
+            "usage_sources": [
+              "mistral-native-response"
+            ],
+            "wall_ms": 43448
+          },
+          "status_counts": {
+            "accepted": 9
+          },
+          "verification": {
+            "accepted_verification_receipt_count": 9,
+            "checked_tcgpack_execution_receipt_count": 9,
+            "executed_case_count": 18,
+            "failed_case_count": 0,
+            "passed_case_count": 18,
+            "verification_receipt_count": 9
+          }
+        }
+      },
+      "campaign_file": "mistral-small-2603-k4-seed0.campaign.json",
+      "campaign_file_bytes": 909712,
+      "campaign_file_sha256": "sha256:a2dac5e227077ca80058640a05e01acb154d21779b81bae174dc51f26b976ce2",
+      "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:cr7z5tpvenpwkjudfur5c27gc2ulqpm3f3rniio2q7g2fs46ucta",
+      "catalog_digest": "sha256:4c7416d1761d777be078f56f0f89a72c8e8ff0e79824bfe2063c92c9420c76a6",
+      "condition_call_count": 18,
+      "error_code_counts": {},
+      "failure_count": 0,
+      "failures": [],
+      "locally_selected_descriptions_accepted_pair_count": 9,
+      "matched_condition_pair_count": 9,
+      "maximum_locally_selected_descriptions": 4,
+      "model_requested": "mistral-small-2603",
+      "provider_id": "mistral",
+      "provider_native_token_observation": {
+        "all_descriptions_completion_tokens": 162,
+        "all_descriptions_prompt_tokens": 8901,
+        "all_descriptions_total_tokens": 9063,
+        "comparison_available": true,
+        "locally_selected_descriptions_completion_tokens": 162,
+        "locally_selected_descriptions_prompt_tokens": 3883,
+        "locally_selected_descriptions_total_tokens": 4045,
+        "observed_completion_delta_tokens": 0,
+        "observed_delta_ppm_of_all_descriptions": 553679,
+        "observed_delta_tokens": 5018,
+        "observed_prompt_delta_tokens": 5018
+      },
+      "provider_usage_comparable_pair_count": 9,
+      "seeds": [
+        0
+      ],
+      "source_format_version": "1.0.0",
+      "status_counts": {
+        "accepted": 18
+      },
+      "strict_validation": {
+        "arm_count": 18,
+        "arm_matrix_complete": true,
+        "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:cr7z5tpvenpwkjudfur5c27gc2ulqpm3f3rniio2q7g2fs46ucta",
+        "claimable_independent_execution": false,
+        "concrete_deployment_bound": false,
+        "format_version": "1.0.0",
+        "identity_chain_valid": true,
+        "legacy": true,
+        "limitations": [
+          "legacy format has no declared task manifest, so omitted whole tasks cannot be detected",
+          "legacy verifier receipts do not bind interception, A/B arm, attempt, or occurrence",
+          "duplicate legacy verifier IDs are deterministic content matches, not independent-execution evidence",
+          "legacy campaign context does not bind harness, disclosure, provider-boundary, or executor policy versions"
+        ],
+        "manifest_complete": false,
+        "matched_pair_count": 9,
+        "pair_matrix_complete": true,
+        "provider_receipts_unique": true,
+        "task_count": 9,
+        "verification_occurrences_bound": false
+      },
+      "task_count": 9,
+      "task_ids": [
+        "customer_ingest.collapse_spacing",
+        "customer_ingest.deduplicate_rows",
+        "customer_ingest.normalize_headers",
+        "feature_prep.minmax",
+        "feature_prep.zscore",
+        "quality_report.arithmetic_mean",
+        "quality_report.conventional_median",
+        "warehouse_load.chunk_batches",
+        "warehouse_load.flatten_events"
+      ],
+      "task_set_digest": "sha256:ddd12377bc2e0c52538ece5e40e7a356226ed5937eaa44d273f92d7cd0e46d47",
+      "verification": {
+        "accepted_verification_receipt_count": 18,
+        "checked_tcgpack_execution_receipt_count": 18,
+        "executed_case_count": 36,
+        "failed_case_count": 0,
+        "passed_case_count": 36,
+        "verification_receipt_count": 18
+      }
+    },
+    {
+      "all_descriptions_accepted_pair_count": 8,
+      "both_conditions_accepted_pair_count": 8,
+      "by_condition": {
+        "all_descriptions": {
+          "accepted_call_count": 8,
+          "call_count": 9,
+          "candidate_description_counts": {
+            "distribution": {
+              "11": 9
+            },
+            "maximum": 11,
+            "minimum": 11,
+            "receipt_count": 9
+          },
+          "provider_native_usage": {
+            "completion_tokens": 161,
+            "prompt_tokens": 8901,
+            "receipt_count": 9,
+            "total_tokens": 9062,
+            "unique_receipt_count": 9,
+            "usage_sources": [
+              "mistral-native-response"
+            ],
+            "wall_ms": 39789
+          },
+          "status_counts": {
+            "accepted": 8,
+            "teacher_rejected": 1
+          },
+          "verification": {
+            "accepted_verification_receipt_count": 8,
+            "checked_tcgpack_execution_receipt_count": 8,
+            "executed_case_count": 16,
+            "failed_case_count": 0,
+            "passed_case_count": 16,
+            "verification_receipt_count": 8
+          }
+        },
+        "locally_selected_descriptions": {
+          "accepted_call_count": 9,
+          "call_count": 9,
+          "candidate_description_counts": {
+            "distribution": {
+              "2": 1,
+              "4": 1,
+              "5": 3,
+              "6": 3,
+              "8": 1
+            },
+            "maximum": 8,
+            "minimum": 2,
+            "receipt_count": 9
+          },
+          "provider_native_usage": {
+            "completion_tokens": 162,
+            "prompt_tokens": 4906,
+            "receipt_count": 9,
+            "total_tokens": 5068,
+            "unique_receipt_count": 9,
+            "usage_sources": [
+              "mistral-native-response"
+            ],
+            "wall_ms": 48157
+          },
+          "status_counts": {
+            "accepted": 9
+          },
+          "verification": {
+            "accepted_verification_receipt_count": 9,
+            "checked_tcgpack_execution_receipt_count": 9,
+            "executed_case_count": 18,
+            "failed_case_count": 0,
+            "passed_case_count": 18,
+            "verification_receipt_count": 9
+          }
+        }
+      },
+      "campaign_file": "mistral-small-2603-k8-seed0.campaign.json",
+      "campaign_file_bytes": 910158,
+      "campaign_file_sha256": "sha256:b0bd08dc8d80bc09c4ca031a55b24f27066e4a0288671679a64ccdd83787c139",
+      "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:kxw2wiexams3x4zocp2smjv75aasdwqnvz2to22xugbn2at66eyq",
+      "catalog_digest": "sha256:4c7416d1761d777be078f56f0f89a72c8e8ff0e79824bfe2063c92c9420c76a6",
+      "condition_call_count": 18,
+      "error_code_counts": {
+        "teacher_abstained_no_suitable_candidate": 1
+      },
+      "failure_count": 1,
+      "failures": [
+        {
+          "attempt_index": 1,
+          "call_receipt_id": "uceg:v1:prompt_interception_campaign_arm_receipt:75tastbp6faafwb3rjybna2n44zfs3bb2ftp3it4cc7xoy5xw3xa",
+          "condition": "all_descriptions",
+          "error_code": "teacher_abstained_no_suitable_candidate",
+          "seed": 0,
+          "status": "teacher_rejected",
+          "step_index": 2,
+          "task_id": "customer_ingest.deduplicate_rows",
+          "trajectory_id": "customer_ingest"
+        }
+      ],
+      "locally_selected_descriptions_accepted_pair_count": 9,
+      "matched_condition_pair_count": 9,
+      "maximum_locally_selected_descriptions": 8,
+      "model_requested": "mistral-small-2603",
+      "provider_id": "mistral",
+      "provider_native_token_observation": {
+        "all_descriptions_completion_tokens": 161,
+        "all_descriptions_prompt_tokens": 8901,
+        "all_descriptions_total_tokens": 9062,
+        "comparison_available": true,
+        "locally_selected_descriptions_completion_tokens": 162,
+        "locally_selected_descriptions_prompt_tokens": 4906,
+        "locally_selected_descriptions_total_tokens": 5068,
+        "observed_completion_delta_tokens": -1,
+        "observed_delta_ppm_of_all_descriptions": 440741,
+        "observed_delta_tokens": 3994,
+        "observed_prompt_delta_tokens": 3995
+      },
+      "provider_usage_comparable_pair_count": 9,
+      "seeds": [
+        0
+      ],
+      "source_format_version": "1.0.0",
+      "status_counts": {
+        "accepted": 17,
+        "teacher_rejected": 1
+      },
+      "strict_validation": {
+        "arm_count": 18,
+        "arm_matrix_complete": true,
+        "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:kxw2wiexams3x4zocp2smjv75aasdwqnvz2to22xugbn2at66eyq",
+        "claimable_independent_execution": false,
+        "concrete_deployment_bound": false,
+        "format_version": "1.0.0",
+        "identity_chain_valid": true,
+        "legacy": true,
+        "limitations": [
+          "legacy format has no declared task manifest, so omitted whole tasks cannot be detected",
+          "legacy verifier receipts do not bind interception, A/B arm, attempt, or occurrence",
+          "duplicate legacy verifier IDs are deterministic content matches, not independent-execution evidence",
+          "legacy campaign context does not bind harness, disclosure, provider-boundary, or executor policy versions"
+        ],
+        "manifest_complete": false,
+        "matched_pair_count": 9,
+        "pair_matrix_complete": true,
+        "provider_receipts_unique": true,
+        "task_count": 9,
+        "verification_occurrences_bound": false
+      },
+      "task_count": 9,
+      "task_ids": [
+        "customer_ingest.collapse_spacing",
+        "customer_ingest.deduplicate_rows",
+        "customer_ingest.normalize_headers",
+        "feature_prep.minmax",
+        "feature_prep.zscore",
+        "quality_report.arithmetic_mean",
+        "quality_report.conventional_median",
+        "warehouse_load.chunk_batches",
+        "warehouse_load.flatten_events"
+      ],
+      "task_set_digest": "sha256:ddd12377bc2e0c52538ece5e40e7a356226ed5937eaa44d273f92d7cd0e46d47",
+      "verification": {
+        "accepted_verification_receipt_count": 17,
+        "checked_tcgpack_execution_receipt_count": 17,
+        "executed_case_count": 34,
+        "failed_case_count": 0,
+        "passed_case_count": 34,
+        "verification_receipt_count": 17
+      }
+    },
+    {
+      "all_descriptions_accepted_pair_count": 3,
+      "both_conditions_accepted_pair_count": 3,
+      "by_condition": {
+        "all_descriptions": {
+          "accepted_call_count": 3,
+          "call_count": 3,
+          "candidate_description_counts": {
+            "distribution": {
+              "11": 3
+            },
+            "maximum": 11,
+            "minimum": 11,
+            "receipt_count": 3
+          },
+          "provider_native_usage": {
+            "completion_tokens": 309,
+            "prompt_tokens": 2857,
+            "receipt_count": 3,
+            "total_tokens": 3166,
+            "unique_receipt_count": 3,
+            "usage_sources": [
+              "ollama-native-response"
+            ],
+            "wall_ms": 27361
+          },
+          "status_counts": {
+            "accepted": 3
+          },
+          "verification": {
+            "accepted_verification_receipt_count": 3,
+            "checked_tcgpack_execution_receipt_count": 3,
+            "executed_case_count": 6,
+            "failed_case_count": 0,
+            "passed_case_count": 6,
+            "verification_receipt_count": 3
+          }
+        },
+        "locally_selected_descriptions": {
+          "accepted_call_count": 3,
+          "call_count": 3,
+          "candidate_description_counts": {
+            "distribution": {
+              "2": 1,
+              "4": 2
+            },
+            "maximum": 4,
+            "minimum": 2,
+            "receipt_count": 3
+          },
+          "provider_native_usage": {
+            "completion_tokens": 312,
+            "prompt_tokens": 1275,
+            "receipt_count": 3,
+            "total_tokens": 1587,
+            "unique_receipt_count": 3,
+            "usage_sources": [
+              "ollama-native-response"
+            ],
+            "wall_ms": 33113
+          },
+          "status_counts": {
+            "accepted": 3
+          },
+          "verification": {
+            "accepted_verification_receipt_count": 3,
+            "checked_tcgpack_execution_receipt_count": 3,
+            "executed_case_count": 6,
+            "failed_case_count": 0,
+            "passed_case_count": 6,
+            "verification_receipt_count": 3
+          }
+        }
+      },
+      "campaign_file": "ollama-gpt-oss-20b-k4-3tasks-seed0.campaign.json",
+      "campaign_file_bytes": 301568,
+      "campaign_file_sha256": "sha256:9a0cfe60578707d29f49ee3d05a19736a325dddb0811976fd280d44719a1ad58",
+      "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:3cxsb6bvw5ejf22ujnrgv44muuo5v3waudndjit2mfuzgw4tbz5q",
+      "catalog_digest": "sha256:4c7416d1761d777be078f56f0f89a72c8e8ff0e79824bfe2063c92c9420c76a6",
+      "condition_call_count": 6,
+      "error_code_counts": {},
+      "failure_count": 0,
+      "failures": [],
+      "locally_selected_descriptions_accepted_pair_count": 3,
+      "matched_condition_pair_count": 3,
+      "maximum_locally_selected_descriptions": 4,
+      "model_requested": "gpt-oss:20b",
+      "provider_id": "ollama",
+      "provider_native_token_observation": {
+        "all_descriptions_completion_tokens": 309,
+        "all_descriptions_prompt_tokens": 2857,
+        "all_descriptions_total_tokens": 3166,
+        "comparison_available": true,
+        "locally_selected_descriptions_completion_tokens": 312,
+        "locally_selected_descriptions_prompt_tokens": 1275,
+        "locally_selected_descriptions_total_tokens": 1587,
+        "observed_completion_delta_tokens": -3,
+        "observed_delta_ppm_of_all_descriptions": 498736,
+        "observed_delta_tokens": 1579,
+        "observed_prompt_delta_tokens": 1582
+      },
+      "provider_usage_comparable_pair_count": 3,
+      "seeds": [
+        0
+      ],
+      "source_format_version": "1.0.0",
+      "status_counts": {
+        "accepted": 6
+      },
+      "strict_validation": {
+        "arm_count": 6,
+        "arm_matrix_complete": true,
+        "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:3cxsb6bvw5ejf22ujnrgv44muuo5v3waudndjit2mfuzgw4tbz5q",
+        "claimable_independent_execution": false,
+        "concrete_deployment_bound": false,
+        "format_version": "1.0.0",
+        "identity_chain_valid": true,
+        "legacy": true,
+        "limitations": [
+          "legacy format has no declared task manifest, so omitted whole tasks cannot be detected",
+          "legacy verifier receipts do not bind interception, A/B arm, attempt, or occurrence",
+          "duplicate legacy verifier IDs are deterministic content matches, not independent-execution evidence",
+          "legacy campaign context does not bind harness, disclosure, provider-boundary, or executor policy versions"
+        ],
+        "manifest_complete": false,
+        "matched_pair_count": 3,
+        "pair_matrix_complete": true,
+        "provider_receipts_unique": true,
+        "task_count": 3,
+        "verification_occurrences_bound": false
+      },
+      "task_count": 3,
+      "task_ids": [
+        "customer_ingest.normalize_headers",
+        "feature_prep.zscore",
+        "warehouse_load.flatten_events"
+      ],
+      "task_set_digest": "sha256:15cabdc0b660e475db576940ede2ac830e0cf578fa4f26f6dfa926841d087c24",
+      "verification": {
+        "accepted_verification_receipt_count": 6,
+        "checked_tcgpack_execution_receipt_count": 6,
+        "executed_case_count": 12,
+        "failed_case_count": 0,
+        "passed_case_count": 12,
+        "verification_receipt_count": 6
+      }
+    }
+  ],
+  "claim_gate": "A separate token_savings integrity evaluation with its trusted evidence resolver must decide claimability; legacy campaigns cannot supply independent-execution occurrence evidence.",
+  "claimable_token_savings": false,
+  "classification": "provider_native_observation_only",
+  "format_version": "2.0.0",
+  "scope": {
+    "cohort": "constructed_in_catalog_natural_tasks",
+    "execution": "actual_checked_tcgpack_execution",
+    "intervention": "deterministic local retrieval plus reduced and rank-reordered primitive-card disclosure; candidate route handles are scoped to the disclosed order",
+    "measurement_stage": "selector_and_context_stage_only_not_complete_coding_session",
+    "production_status": "not_organic_production_traffic",
+    "token_source": "provider_native_receipts",
+    "verification_cases": "hidden from model calls; public fixture; not cryptographically sealed"
+  }
+}

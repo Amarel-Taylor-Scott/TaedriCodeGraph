@@ -12,6 +12,7 @@ from __future__ import annotations
 import json
 import shutil
 import sys
+import unittest
 from dataclasses import replace
 from pathlib import Path
 from typing import Iterable
@@ -22,6 +23,12 @@ from taedri_codegraph.primitive_repository import PrimitiveFileInput
 from taedri_codegraph.primitives.bundle import (
     PrimitiveDirectoryBundle,
     load_primitive_directory,
+)
+
+
+requires_checked_campaign_runtime = unittest.skipUnless(
+    sys.version_info[:2] == (3, 12),
+    "checked campaign packs and strict execution receipts require Python 3.12",
 )
 
 

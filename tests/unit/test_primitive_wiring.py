@@ -55,6 +55,20 @@ class DeterministicPrimitiveWiringTests(unittest.TestCase):
         with self.assertRaisesRegex(PrimitiveWiringError, "not proven compatible"):
             planner.connect(self.normalize, incompatible)
 
+    def test_runtime_mismatch_is_incompatible_before_execution(self) -> None:
+        incompatible = replace(self.casefold, runtime_version="99.99")
+        planner = ExactPrimitiveWirePlanner()
+        assessment = planner.assess(self.normalize, incompatible)
+        self.assertEqual(assessment.verdict, WireVerdict.INCOMPATIBLE)
+        runtime = next(
+            item
+            for item in assessment.dimensions
+            if item.dimension == "taedri.wire.runtime_version"
+        )
+        self.assertEqual(runtime.verdict, WireVerdict.INCOMPATIBLE)
+        with self.assertRaisesRegex(PrimitiveWiringError, "not proven compatible"):
+            planner.connect(self.normalize, incompatible)
+
     def test_checked_in_packs_execute_deterministically_without_model_or_rewrite(self) -> None:
         plan = ExactPrimitiveWirePlanner().pipeline((self.normalize, self.casefold))
         packs = (

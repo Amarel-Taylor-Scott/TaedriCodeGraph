@@ -43,7 +43,8 @@
     "partial": 6,
     "conformance_only": 2,
     "poc_only": 1,
-    "source": "architecture/component-readiness.v1.json"
+    "source_at_time": "eval/results/saas-working-system-2026-07-16/component-readiness.csv",
+    "superseded_by": "architecture/component-readiness.v1.json"
   },
   "non_synthetic_evidence": {
     "source": "eval/results/saas-real-acquisition-2026-07-16/run.json",

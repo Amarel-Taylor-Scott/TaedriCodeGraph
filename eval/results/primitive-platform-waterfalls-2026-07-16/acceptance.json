@@ -90,11 +90,12 @@
   "component_readiness": {
     "total": 32,
     "working": 22,
-    "partial": 7,
-    "conformance_only": 2,
+    "partial": 8,
+    "conformance_only": 1,
     "poc_only": 1,
     "working_fraction_ppm": 687500,
-    "source": "architecture/component-readiness.v1.json"
+    "source": "architecture/component-readiness.v1.json",
+    "scope_note": "Rolling current-readiness overlay regenerated after the historical acceptance commands; other acceptance fields remain the dated checkpoint."
   },
   "waterfalls": {
     "total": 7,

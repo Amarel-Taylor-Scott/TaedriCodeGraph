@@ -33,6 +33,7 @@ from .primitives.search import (
     PrimitiveSearchRequest,
     PrimitiveSearchService,
     SearchStrategy,
+    primitive_search_response_digest,
 )
 from .portal import (
     BillingGateway,
@@ -504,6 +505,29 @@ class TaedriAPI:
                 "invalid_minimum_candidates",
                 "minimum_candidates must be between 1 and 1000",
             )
+        allow_semantic = self._boolean(query, "semantic", default=True)
+        allow_structural = self._boolean(query, "structural", default=True)
+        maximum_seed_expansions_value = self._optional(
+            query, "maximum_seed_expansions"
+        )
+        try:
+            maximum_seed_expansions = (
+                int(maximum_seed_expansions_value)
+                if maximum_seed_expansions_value is not None
+                else 3
+            )
+        except ValueError as exc:
+            raise ApiError(
+                "400 Bad Request",
+                "invalid_maximum_seed_expansions",
+                "maximum_seed_expansions must be an integer",
+            ) from exc
+        if not 0 <= maximum_seed_expansions <= 20:
+            raise ApiError(
+                "400 Bad Request",
+                "invalid_maximum_seed_expansions",
+                "maximum_seed_expansions must be between 0 and 20",
+            )
         cursor_scope = {
             "route": "search",
             "query": text,
@@ -514,7 +538,11 @@ class TaedriAPI:
             "facets": facet_filters,
             "lanes": lanes,
             "strategy": strategy.value,
+            "limit": limit,
             "minimum_candidates": minimum_candidates,
+            "allow_semantic": allow_semantic,
+            "allow_structural": allow_structural,
+            "maximum_seed_expansions": maximum_seed_expansions,
         }
         cursor_value = self._optional(query, "cursor")
         try:
@@ -551,13 +579,15 @@ class TaedriAPI:
                 PrimitiveSearchRequest(
                     text,
                     strategy,
-                    limit=fetch_limit,
+                    limit=limit,
                     minimum_candidates=minimum_candidates,
                     entity_kind=entity_kind,
                     facets=facet_filters,
-                    allow_semantic=self._boolean(query, "semantic", default=True),
-                    allow_structural=self._boolean(query, "structural", default=True),
-                )
+                    allow_semantic=allow_semantic,
+                    allow_structural=allow_structural,
+                    maximum_seed_expansions=maximum_seed_expansions,
+                ),
+                result_limit=fetch_limit,
             )
             candidates = list(waterfall.items)
         else:
@@ -593,6 +623,14 @@ class TaedriAPI:
                 "stages": [item.to_dict() for item in waterfall.stages],
                 "escalated": waterfall.escalated,
                 "stop_reason": waterfall.stop_reason,
+                "response_digest": primitive_search_response_digest(
+                    query_digest=waterfall.query_digest,
+                    strategy=waterfall.strategy,
+                    items=items,
+                    stages=waterfall.stages,
+                    escalated=waterfall.escalated,
+                    stop_reason=waterfall.stop_reason,
+                ),
             }
         return response
 

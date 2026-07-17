@@ -12,7 +12,7 @@
     {
       "id": "S0-local-vertical-slice",
       "status": "active",
-      "deployment_unit": "one repository checkout, runnable as the tcg CLI or a three-container local Compose stack",
+      "deployment_unit": "one repository checkout, runnable as the tcg CLI or a four-service local Compose stack",
       "processes": [
         {
           "name": "tcg",

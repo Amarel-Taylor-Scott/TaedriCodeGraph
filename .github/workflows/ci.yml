@@ -35,6 +35,22 @@ jobs:
         run: python -m compileall -q src tests
       - name: Run complete test suite
         run: python -m unittest discover -s tests -v
+      - name: Validate fail-closed token evidence without provider calls
+        run: |
+          python tools/prove_token_savings.py fixtures/token-savings/synthetic-conformance.json --compact --output /tmp/synthetic-proof.json
+          python tools/prove_token_savings.py fixtures/token-savings/reported-historical-137485-to-85954.json --compact --output /tmp/historical-proof.json
+          python tools/prove_token_savings.py --campaign eval/results/prompt-interception-live-pilot-2026-07-16/mistral-small-2603-k4-seed0.campaign.json --compact --output /tmp/legacy-live-measurement.json
+          for campaign in eval/results/prompt-interception-live-v2-2026-07-16/mistral-*.campaign.json; do
+            python tools/prove_token_savings.py --campaign "$campaign" --compact --output "/tmp/$(basename "${campaign%.campaign.json}").measurement.json"
+          done
+      - name: Reproduce live campaign summary
+        run: |
+          python tools/summarize_prompt_interception_evidence.py eval/results/prompt-interception-live-pilot-2026-07-16/*.campaign.json --summary /tmp/prompt-summary.json --csv /tmp/prompt-summary.csv
+          cmp /tmp/prompt-summary.json eval/results/prompt-interception-live-pilot-2026-07-16/summary.json
+          cmp /tmp/prompt-summary.csv eval/results/prompt-interception-live-pilot-2026-07-16/summary.csv
+          python tools/summarize_prompt_interception_evidence.py eval/results/prompt-interception-live-v2-2026-07-16/*.campaign.json --summary /tmp/prompt-v2-summary.json --csv /tmp/prompt-v2-summary.csv
+          cmp /tmp/prompt-v2-summary.json eval/results/prompt-interception-live-v2-2026-07-16/summary.json
+          cmp /tmp/prompt-v2-summary.csv eval/results/prompt-interception-live-v2-2026-07-16/summary.csv
       - name: Smoke production HTTP server over a real socket
         run: python tools/smoke_production_server.py
       - name: Validate component readiness inventory

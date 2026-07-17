@@ -5,6 +5,7 @@ import hashlib
 import io
 import tempfile
 import unittest
+import urllib.request
 import zipfile
 from pathlib import Path
 from typing import Any, Mapping
@@ -16,6 +17,7 @@ from taedri_codegraph.acquisition import (
     HTTPDocument,
     NetworkAcquisitionPolicy,
     PyPIAcquirer,
+    _AllowlistedRedirectHandler,
     attach_acquisition_receipt,
     extract_github_archive,
 )
@@ -133,6 +135,38 @@ class AcquisitionTests(unittest.TestCase):
         ):
             with self.subTest(value=value), self.assertRaises(AcquisitionError):
                 policy.validate_url(value)
+
+    def test_authenticated_acquisition_request_never_follows_redirect(self) -> None:
+        handler = _AllowlistedRedirectHandler(NetworkAcquisitionPolicy())
+        authenticated = urllib.request.Request(
+            "https://api.github.com/repos/owner/repo",
+            headers={"Authorization": "Bearer fixture-secret"},
+        )
+        self.assertIsNone(
+            handler.redirect_request(
+                authenticated,
+                None,
+                302,
+                "Found",
+                {},
+                "https://codeload.github.com/owner/repo/zip/commit",
+            )
+        )
+
+        unauthenticated = urllib.request.Request(
+            "https://pypi.org/pypi/demo/json"
+        )
+        redirected = handler.redirect_request(
+            unauthenticated,
+            None,
+            302,
+            "Found",
+            {},
+            "https://files.pythonhosted.org/packages/demo.whl",
+        )
+        self.assertIsNotNone(redirected)
+        assert redirected is not None
+        self.assertFalse(redirected.has_header("Authorization"))
 
     def test_real_wheel_bytes_are_acquired_verified_and_never_executed(self) -> None:
         wheel = valid_wheel_bytes()

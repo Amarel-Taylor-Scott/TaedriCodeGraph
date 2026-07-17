@@ -203,7 +203,7 @@ class SaaSHTTPWorkerIntegrationTests(unittest.TestCase):
         self.assertEqual(adaptive["search_waterfall"]["strategy"], "auto")
         self.assertEqual(
             [stage["stage"] for stage in adaptive["search_waterfall"]["stages"]],
-            ["exact", "sparse", "semantic", "structural"],
+            ["exact", "sparse", "lexical_hash_vector", "semantic", "structural"],
         )
 
     def test_usage_limits_are_versioned_and_api_admission_is_enforced(self) -> None:

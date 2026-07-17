@@ -1,5 +1,10 @@
 # Taedri CodeGraph
 
+> **STOP-SHIP — NOT APPROVED FOR PUBLIC OR PAID PRODUCTION SAAS.** The runnable
+> surfaces in this repository are a local developer preview and a candidate for a
+> separately approved, controlled single-node private alpha. They are not an activated
+> service or a GA deployment; `serves_truth=false` remains controlling.
+
 Taedri CodeGraph is a language-neutral code-knowledge and reusable-component database.
 It ingests immutable snapshots from packages, Git repositories, and other codebases;
 stores exact entities, relationships, evidence, and search representations; and can
@@ -40,13 +45,23 @@ This repository currently contains the first executable vertical slice:
   cooperative cancellation receipts;
 - a sealed matched-lane benchmark worker that compares bare-model, search-context,
   primitive-plan, and materialized-composition runs with failure-inclusive receipts;
-- a persistent single-node SaaS control plane with tenants, hashed scoped API keys,
+- bounded Ollama, OpenAI-compatible, Mistral, and OpenRouter chat adapters with
+  provider-response usage counters captured by the operator, plus a deterministic
+  fail-closed model-tier router;
+- a checked prompt-interception campaign that compares showing a model all available
+  primitive descriptions with showing it only the top K descriptions selected locally,
+  then resolves and executes the selected pack against cases withheld from the model;
+- fail-closed token accounting that keeps synthetic, reported-historical, live measured,
+  and trusted-attested evidence classes separate instead of promoting a JSON label;
+- a persistent, single-node authenticated control-plane POC with tenants, hashed scoped
+  API keys,
   graph mounts, append-only audit chains, content-addressed job payloads, leases,
   atomic tenant quotas, and immutable usage receipts;
-- an authenticated HTTP search/context/graph/job API plus a source-mounted worker that
+- a local authenticated HTTP search/context/graph/job API plus a source-mounted worker that
   can publish a new immutable epoch without importing or executing target Python;
-- a live browser explorer and hardened API/worker/frontend container definitions;
-- a separate public SaaS portal, versioned plan catalog, append-only subscription
+- a locally runnable browser explorer and API/worker/frontend container definitions
+  with baseline hardening controls;
+- a static portal POC, versioned plan catalog, append-only subscription
   revisions, replay-safe billing-event contracts, and computed feature entitlements;
 - one API/worker pipeline catalog plus allowlisted replay-safe PyPI/GitHub discovery
   events shared by admission and execution;
@@ -89,15 +104,27 @@ PYTHONPATH=src python tools/run_deterministic_primitive_pipeline.py
 PYTHONPATH=src python tools/generate_data_primitive_capsules.py
 PYTHONPATH=src python tools/run_data_primitive_cohort.py
 
+# Preview a bounded comparison without making provider calls. The model would see all
+# 11 descriptions in condition A and at most four locally selected descriptions in B.
+PYTHONPATH=src python tools/run_prompt_interception_campaign.py \
+  --provider mistral --model mistral-small-2603 \
+  --locally-selected-description-limit 4
+
+# Validate a saved strict-v2 campaign as an operator-captured provider-response
+# measurement. Serialized JSON remains non-claimable without trusted runtime
+# attestation and complete overhead receipts.
+PYTHONPATH=src python tools/prove_token_savings.py \
+  --campaign eval/results/prompt-interception-live-v2-2026-07-16/mistral-small-2603-k4-seeds0-1.campaign.json
+
 # Regenerate the evidence-backed component/status/record inventory.
 PYTHONPATH=src python tools/generate_component_inventory.py
 ```
 
-## Runnable authenticated SaaS slice
+## Local authenticated multi-process preview
 
 The local cloud-shaped path uses one SQLite control database and local immutable graph
-store. It is a real multi-process POC, not the horizontally scalable production
-adapter.
+store. It is a runnable multi-process POC, not an activated private alpha, a
+horizontally scalable production adapter, or a public SaaS service.
 
 ```bash
 # Create the tenant and print a scoped API token once.
@@ -119,20 +146,24 @@ docker compose up --build
 
 Open `http://localhost:8080`, enter the one-time token, submit a relative source path,
 and search the epoch after the worker succeeds. Open `http://localhost:8081` for the
-public plan and tenant-entitlement portal. API contracts are published at
+static plan and tenant-entitlement portal POC. API contracts are published at
 `/openapi.json`. See
 [`docs/architecture/AUTHENTICATED_SAAS_VERTICAL_SLICE.md`](docs/architecture/AUTHENTICATED_SAAS_VERTICAL_SLICE.md)
 for the trust boundary and Fly.io promotion gates, and the
 [`validation report`](docs/reports/AUTHENTICATED_SAAS_VERTICAL_SLICE_2026-07-16.md)
 for the executed test and HTTP evidence.
 
-The ordered production program and least-privilege environment matrix are in the
+The target production program and least-privilege environment matrix are in the
 [`component execution plan`](docs/architecture/COMPONENT_EXECUTION_PLAN.md). Current
-claims and open gates are machine-readable in
-[`component-readiness.v1.json`](architecture/component-readiness.v1.json). The latest
+checkout-local component claims and open gates are machine-readable in
+[`component-readiness.v1.json`](architecture/component-readiness.v1.json). This is an
+inventory, not a release authority: the validator rejects any positive product
+promotion from static repository files. The dated,
+superseded
 [`working-system checkpoint`](docs/reports/WORKING_SYSTEM_CHECKPOINT_2026-07-16.md)
-records its earlier 175-test acceptance pass, production-socket smoke, database contract,
-non-synthetic evidence, readiness chart, and remaining external gates.
+records its earlier 175-test acceptance pass, Gunicorn loopback-socket smoke, database
+contract, non-synthetic evidence, then-current readiness chart, and remaining external
+gates.
 
 The current mechanism/storage/search/trigger/portal/worker design is consolidated in
 [`PRIMITIVE_PLATFORM_WATERFALLS.md`](docs/architecture/PRIMITIVE_PLATFORM_WATERFALLS.md),
@@ -140,12 +171,13 @@ with its machine-readable seven-waterfall contract in
 [`primitive-platform-waterfalls.v1.json`](architecture/primitive-platform-waterfalls.v1.json).
 It includes the regression that proved new license, integer, character, and vector
 facets can receive their declared projections without a ledger migration.
-The latest
+The dated, superseded
 [`primitive-platform acceptance report`](docs/reports/PRIMITIVE_PLATFORM_WATERFALLS_2026-07-16.md)
-records the full current acceptance pass. The current contract has 41 API operations across
-37 paths and 44 PostgreSQL tables, including proof-gated releases and revocations; the
-report also links the installable wheel, component inventory, CSV/JSON evidence, and
-explicit hosted gates.
+records its historical 233-test acceptance pass. The current design contract declares
+41 API operations across 37 paths and DDL for 44 PostgreSQL tables, including
+proof-gated releases and revocations; these counts do not mean a production PostgreSQL
+deployment is running. The report also links the installable wheel, component
+inventory, CSV/JSON evidence, and explicit hosted gates.
 
 No third-party runtime dependency is required for the graph core. Install
 `taedri-codegraph[agents]` for the optional MCP server. The supported baseline is
@@ -278,36 +310,104 @@ community tier as open source.
 ## SaaS benchmark worker
 
 Taedri now has an executable controller for testing the product hypothesis at fixed
-model quality. It defines identical real coding tasks across bare-model,
+model quality. It defines identical repository-derived coding tasks across bare-model,
 search-context, primitive-plan, and primitive-materialized lanes and validates supplied
 failure-inclusive receipts containing build/test/policy outcomes, provider and tool
 usage, tokens, latency, cost, component reuse, consistency, and contamination strata.
-The current conformance run does not yet execute model providers or a hostile-code
-sandbox; those remain required before an efficacy claim.
+The original 16-run conformance bundle does not execute model providers or a hostile-code
+sandbox; it still validates contracts rather than efficacy. A separate 2026-07-16
+strict-v2 set records operator-captured Mistral provider responses, checked-pack
+resolution, and case execution. That evidence measures only the selection/context
+stage, uses a mostly constructed in-catalog cohort, and does not replace the
+still-required sealed end-to-end coding-session campaign. Failed Ollama and OpenRouter
+strict-v2 calls are retained but support no token or fidelity comparison.
 
 ![Matched benchmark worker and sealed evidence boundary](docs/visuals/assets/benchmark-worker-evidence-boundary.svg)
 
 Read the [architecture and real campaign design](docs/architecture/SAAS_BENCHMARK_WORKER.md),
 inspect the [POC report](docs/reports/SAAS_BENCHMARK_WORKER_POC_2026-07-16.md), or open
 the [benchmark evidence console](apps/explorer/benchmark-console.html). The checked-in
-16-run bundle uses two real Taedri source tasks and real primitive/search snapshot
+16-run bundle uses two Taedri source tasks and bound primitive/search snapshot
 identities, but deterministic fixture receipts and no model call. Its report therefore
 sets `efficacy_claimable` to `false`; it validates the worker, not the SaaS benefit.
 
+## Live primitive-selection measurements
+
+The strict-v2 evidence compares two plainly defined conditions under the same task, provider,
+model, seed, output bound, and checked execution verifier:
+
+- **A — all descriptions:** the model sees descriptions of all 11 released primitives.
+- **B — locally retrieved descriptions:** deterministic local BM25 ranks the
+  descriptions against the task text, then sends a smaller relevance-ordered set of
+  up to 1, 2, 4, or 8 descriptions with condition-local opaque handles.
+
+For Mistral `mistral-small-2603`, all locally reduced conditions selected packs that
+passed every executed check. Strict-v2 provider-response prompt-plus-completion totals
+were 9,063→2,111 at K=1, 9,063→2,800 at K=2, 18,125→8,090 across two seeds at K=4,
+and 9,062→5,068 at K=8. A separate five-task workload derived from public GitHub
+issues measured 5,056→2,179 at K=4 with 5/5 accepted selections in each condition and
+20/20 executed cases passing. Across successful strict-v2 Mistral campaigns, 98/100
+calls selected a checked pack and all 196 resulting case executions passed. Both
+retained model abstentions occurred in the all-description condition.
+
+Fresh bounded Ollama and OpenRouter portability campaigns are retained: all 12 calls
+ended in provider errors before a usage receipt or primitive execution, so no token or
+fidelity comparison is reported for them. The older v1 pilot remains available as
+historical live observation evidence, including its successful three-task Ollama run,
+but v1 cannot prove a complete declared task matrix or arm-specific verifier
+occurrences and is always non-claimable.
+
+These are operator-captured provider-response measurements and checked-pack executions,
+not a complete coding-session savings claim. The tasks are plausible but constructed,
+and their cases are withheld from model calls rather than cryptographically sealed.
+Format 2.0.0 closes the serialized task-matrix and verifier-occurrence gaps, but it
+still does not turn operator-captured provider counters into trusted or all-cost
+savings evidence.
+Read the
+[strict-v2 plain-language evidence report](eval/results/prompt-interception-live-v2-2026-07-16/README.md)
+and inspect its exact sanitized campaign receipts, proof-tool measurements, summary
+JSON, CSV, hashes, and every non-success outcome. The
+[legacy-v1 report](eval/results/prompt-interception-live-pilot-2026-07-16/README.md)
+is preserved separately rather than silently rewritten.
+
+## Launch truth
+
+The repository is runnable today as a local developer preview and is a candidate for a
+controlled, single-node private alpha. Here, **private alpha** means an operator knows
+each participant, controls the host and data, can cap workloads, and accepts manual
+recovery. It has tenant-scoped API keys, quotas, immutable usage and audit receipts,
+authenticated APIs, persistent workers, primitive release/revocation, browser surfaces,
+container definitions, and restart/tenant-isolation tests.
+
+**Production SaaS** means untrusted public or paid tenants can rely on durable shared
+infrastructure, enforced isolation and entitlements, monitored service objectives,
+tested recovery, and support/incident procedures. This repository does not yet provide
+evidence for that promise. The private-alpha release bar and the production-SaaS release
+bar are different.
+
+The remaining production gates are concrete: OIDC browser identity; configured and
+verified billing webhooks; PostgreSQL and object-store production adapters; hostile-code
+resource isolation; hosted multi-tenant load/SLO evidence; telemetry; backup/restore and
+incident drills; signed packs; and a sealed, multi-task, multi-model end-to-end coding
+campaign. A document, deployment manifest, or passing local fixture is not substituted
+for any one of these gates.
+
 ## Project status
 
-Pre-alpha. The current slice proves the identity/evidence/ingestion/publication/query
+Working local developer preview / controlled private-alpha candidate; not approved or
+activated as a public or paid service. The current slice
+proves the identity/evidence/ingestion/publication/query
 spine, the universal representation extension mechanism, real-source primitive
 candidate generation, a complete Git-hostable custom primitive, proof-gated Python
 release and revocation, append-only operational receipts, and self-contained frontends.
 Inventory and exact graph storage are language-neutral; semantic extraction and
 executable release verification are Python-first. Remote PyPI/Git acquisition for the
 factory, semantic analyzers and trusted release verifiers for additional languages,
-PostgreSQL repository and object-store adapters, real model and embedding providers,
-OIDC browser sessions, independent sandbox verification, calibrated fusion, a live
+PostgreSQL repository and object-store adapters, production embedding/ANN providers,
+OIDC browser sessions, independent hostile-code sandbox verification, calibrated fusion, a live
 billing-provider adapter, and broad compatibility/adapter/branching routing remain
 explicit later milestones. Exact adapter-free unary Python wiring is implemented.
-Tenant authorization and a
-persistent HTTP/worker path now execute with the single-node SQLite adapter.
+Tenant authorization and a local persistent HTTP/worker path execute with the
+single-node SQLite adapter.
 
 No project license has been selected yet; all rights are reserved until one is added.

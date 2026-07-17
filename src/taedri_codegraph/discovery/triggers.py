@@ -187,6 +187,16 @@ class SearchTriggerRouter:
                     )
                     continue
                 confidence = signal.confidence_ppm
+                if definition.minimum_confidence_ppm > 0 and confidence is None:
+                    receipts.append(
+                        TriggerRuleReceipt(
+                            definition.ref,
+                            tier,
+                            "skipped",
+                            "confidence_unknown",
+                        )
+                    )
+                    continue
                 if confidence is not None and confidence < definition.minimum_confidence_ppm:
                     receipts.append(
                         TriggerRuleReceipt(definition.ref, tier, "skipped", "confidence")

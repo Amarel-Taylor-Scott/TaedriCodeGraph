@@ -9,7 +9,7 @@ real-model efficacy evidence
 ## Result
 
 Taedri CodeGraph has moved beyond a documentation scaffold into an executable local
-SaaS vertical slice. Seventeen of the 26 declared components now have machine-tested
+tenant-authenticated service POC. Seventeen of the 26 declared components now have machine-tested
 working scope, six are partial, two have protocol/conformance evidence only, and one
 is a deployment proof of concept.
 
@@ -17,7 +17,7 @@ The working path now includes real PyPI and immutable GitHub acquisition, safe s
 analysis, immutable graph publication, hybrid retrieval, tenant authentication,
 quotas and usage receipts, durable jobs with heartbeats and cancellation, primitive
 revision/fork storage, prompt-session receipts, an authenticated SDK and MCP server,
-a browser operations console, a multi-worker production HTTP boundary, and portable
+a browser operations console, a multi-worker Gunicorn loopback boundary, and portable
 backup/restore.
 
 “Working” is always qualified by the scope in
@@ -31,7 +31,7 @@ real model has demonstrated efficacy.
 |---|---|
 | Complete suite with server and agent dependencies | 175 tests passed in 30.575 seconds |
 | MCP protocol | Real stdio initialize, list-tools, and remote search-tool round trip passed |
-| Production HTTP boundary | Gunicorn socket returned healthy and ready responses |
+| Gunicorn process-manager loopback smoke | A local socket returned healthy and ready responses; this is not product or deployment readiness |
 | PostgreSQL contract | DDL applied twice; 21 tables present in schema `taedri` under PGlite |
 | Python compilation | `src`, `tests`, and `tools` passed `compileall` |
 | Frontend parser | Embedded explorer JavaScript parsed successfully in Node |
@@ -45,7 +45,7 @@ The complete test command was:
 /tmp/taedri-mcp-venv/bin/python -m unittest discover -s tests -t .
 ```
 
-The production server smoke returned:
+The local Gunicorn process-manager smoke returned:
 
 ```json
 {
@@ -93,8 +93,10 @@ flowchart LR
 
 ![Component readiness counts](../../eval/results/saas-working-system-2026-07-16/component-readiness.svg)
 
-The authoritative row-level data is available in
-`architecture/component-readiness.v1.json` and the checkpoint CSV/JSON artifacts.
+This is a dated 26-component snapshot. Its checkpoint CSV/JSON artifacts preserve the
+row-level state measured at that time. The mutable
+`architecture/component-readiness.v1.json` now describes the later 32-component tree
+and supersedes this chart; it is not the source for the historical counts above.
 
 ## Remaining gates, in order
 

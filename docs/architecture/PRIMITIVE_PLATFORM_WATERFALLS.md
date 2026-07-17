@@ -8,7 +8,7 @@ Machine-readable companion: `architecture/primitive-platform-waterfalls.v1.json`
 
 Taedri now has one reusable, versioned mechanism runtime and seven policy-specific
 waterfalls: primitive storage, primitive search, search triggering, client digestion,
-public SaaS, source discovery/ingestion/generation, and matched benchmarking. The
+static portal and plan-contract POC, source discovery/ingestion/generation, and matched benchmarking. The
 waterfalls share receipt, capability, cost, failure, and abstention semantics while
 remaining independently extensible.
 
@@ -188,7 +188,7 @@ now exposes primitive stage/resolve/pack/fork/revoke methods and one-call intern
 candidate or public released-primitive materialization through this digester. Staging
 cannot bypass the acceptance/release transaction.
 
-## 4. Public SaaS portal and API
+## 4. Static portal and plan-contract API POC
 
 `apps/portal/` is a separate static container. It loads the public plan catalog, explains
 the decision waterfall, and can display a tenant's current subscription and computed

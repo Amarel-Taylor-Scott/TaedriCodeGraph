@@ -18,6 +18,20 @@ from taedri_codegraph.benchmarking import (
     RunOutcome,
 )
 from taedri_codegraph.canonical import sha256_digest
+from taedri_codegraph.token_savings import (
+    MatchedRunContext,
+    ModelUsageReceipt as ProofModelUsageReceipt,
+    ProofArm,
+    TokenBreakdown,
+    TokenBudget,
+    TokenEvidenceClass,
+    TokenSavingsInput,
+    TrustedEvidenceAttestation,
+    TrustedEvidenceRequest,
+    TrustedEvidenceTrustRoot,
+    VerifierReceipt,
+    run_spec_digest,
+)
 from taedri_codegraph.workers import JobKind, WorkerQueue
 
 
@@ -25,7 +39,34 @@ def digest(label: str) -> str:
     return sha256_digest(label.encode("utf-8"))
 
 
+BENCHMARK_TRUST_KEY = b"benchmark-test-runtime-trust-root-key-v1"
+BENCHMARK_TRUST_KEY_ID = digest("benchmark-test-runtime-trust-root-key-id")
+
+
+class ExactBenchmarkResolver:
+    trust_domain = "tests.benchmark.runtime-store"
+    key_id = BENCHMARK_TRUST_KEY_ID
+
+    def resolve(
+        self, request: TrustedEvidenceRequest
+    ) -> TrustedEvidenceAttestation:
+        return TrustedEvidenceAttestation.issue_hmac(
+            trust_domain=self.trust_domain,
+            key_id=self.key_id,
+            attestation_ref=digest("benchmark-attestation"),
+            request=request,
+            signing_key=BENCHMARK_TRUST_KEY,
+        )
+
+
 class BenchmarkWorkerTests(unittest.TestCase):
+    def trust_root(self) -> TrustedEvidenceTrustRoot:
+        return TrustedEvidenceTrustRoot(
+            trust_domain=ExactBenchmarkResolver.trust_domain,
+            key_id=ExactBenchmarkResolver.key_id,
+            verification_key=BENCHMARK_TRUST_KEY,
+        )
+
     def task(self, label: str = "task-1") -> BenchmarkTask:
         return BenchmarkTask.create(
             source_task_id=label,
@@ -144,6 +185,118 @@ class BenchmarkWorkerTests(unittest.TestCase):
             output_digest=digest(f"output:{output_label}") if passed else None,
             behavior_digest=digest("behavior:passes-contract") if passed else None,
             failure_class=None if passed else "test_failure",
+        )
+
+    def token_source(
+        self,
+        worker: BenchmarkWorker,
+        task: BenchmarkTask,
+        experiment: BenchmarkExperiment,
+    ) -> TokenSavingsInput:
+        baseline_terminal = next(
+            receipt
+            for receipt in worker.receipts.values()
+            if receipt.lane is BenchmarkLane.BARE_MODEL
+        )
+        reuse_terminal = next(
+            receipt
+            for receipt in worker.receipts.values()
+            if receipt.lane is BenchmarkLane.SEARCH_CONTEXT
+        )
+        context = MatchedRunContext(
+            task_ref=task.identity.id,
+            seed=11,
+            provider_id=experiment.provider_id,
+            model_id=experiment.model_id,
+            model_config_digest=experiment.model_config_digest,
+            harness_digest=experiment.harness_digest,
+            runtime_digest=task.runtime_digest,
+            policy_digest=task.policy_digest,
+            oracle_ref=task.sealed_oracle_ref,
+            snapshot_ref=task.repository_snapshot_ref,
+            budget=TokenBudget(2, 2_000, 1_000, 10_000, 8, 60_000, 30_000),
+        )
+
+        def usage(
+            arm: ProofArm, terminal: BenchmarkRunReceipt
+        ) -> ProofModelUsageReceipt:
+            assert terminal.model_usage_receipt_ref is not None
+            return ProofModelUsageReceipt.create(
+                run_spec_digest=run_spec_digest(context, arm),
+                attempt_index=1,
+                provider_id=experiment.provider_id,
+                model_id=experiment.model_id,
+                model_config_digest=experiment.model_config_digest,
+                provider_receipt_ref=terminal.model_usage_receipt_ref,
+                provider_content_digest=terminal.output_digest or digest("failed"),
+                usage_source="benchmark-runtime-provider-receipt",
+                request_digest=digest(f"request:{terminal.run_spec_id}"),
+                response_digest=terminal.output_digest or digest("failed"),
+                tool_calls=terminal.tool_calls,
+                usage=TokenBreakdown(
+                    terminal.prompt_tokens,
+                    terminal.cached_prompt_tokens,
+                    0,
+                    terminal.completion_tokens,
+                    terminal.tool_tokens,
+                    0,
+                    0,
+                    0,
+                    0,
+                ),
+            )
+
+        baseline_usage = usage(ProofArm.BASELINE, baseline_terminal)
+        reuse_usage = usage(ProofArm.REUSE, reuse_terminal)
+        assert baseline_terminal.output_digest is not None
+        assert reuse_terminal.output_digest is not None
+        baseline_verifier = VerifierReceipt.for_run(
+            context=context,
+            arm=ProofArm.BASELINE,
+            model_usage_receipts=(baseline_usage,),
+            output_digest=baseline_terminal.output_digest,
+            verifier_id="benchmark-independent-verifier",
+            source_verifier_ref=baseline_terminal.verification_receipt_refs[0],
+            verifier_config_digest=digest("benchmark-verifier-config"),
+            observed_run_wall_ms=baseline_terminal.wall_ms,
+            verifier_cpu_ms=baseline_terminal.verifier_cpu_ms,
+            accepted=True,
+            tests_total=baseline_terminal.tests_total,
+            tests_passed=baseline_terminal.tests_passed,
+            tests_failed=baseline_terminal.tests_failed,
+        )
+        reuse_verifier = VerifierReceipt.for_run(
+            context=context,
+            arm=ProofArm.REUSE,
+            model_usage_receipts=(reuse_usage,),
+            output_digest=reuse_terminal.output_digest,
+            verifier_id="benchmark-independent-verifier",
+            source_verifier_ref=reuse_terminal.verification_receipt_refs[0],
+            verifier_config_digest=digest("benchmark-verifier-config"),
+            observed_run_wall_ms=reuse_terminal.wall_ms,
+            verifier_cpu_ms=reuse_terminal.verifier_cpu_ms,
+            accepted=True,
+            tests_total=reuse_terminal.tests_total,
+            tests_passed=reuse_terminal.tests_passed,
+            tests_failed=reuse_terminal.tests_failed,
+        )
+        return TokenSavingsInput.create_matched_pair(
+            label="benchmark attested matched pair",
+            evidence_note="provider and verifier receipts resolved by runtime store",
+            subject_ref=experiment.identity.id,
+            terminal_receipt_refs=tuple(
+                sorted((baseline_terminal.identity.id, reuse_terminal.identity.id))
+            ),
+            context=context,
+            baseline_runner_id="benchmark-baseline-runner",
+            baseline_attempt_count=1,
+            baseline_model_usage_receipts=(baseline_usage,),
+            baseline_verifier_receipt=baseline_verifier,
+            reuse_runner_id="benchmark-reuse-runner",
+            reuse_attempt_count=1,
+            reuse_model_usage_receipts=(reuse_usage,),
+            reuse_verifier_receipt=reuse_verifier,
+            evidence_class=TokenEvidenceClass.VERIFIED_REAL_MODEL,
         )
 
     def test_schedule_is_matched_and_enqueues_idempotent_benchmark_jobs(self) -> None:
@@ -282,7 +435,7 @@ class BenchmarkWorkerTests(unittest.TestCase):
         self.assertEqual(comparison["discordant_pair_count"], 1)
         self.assertEqual(comparison["exact_paired_sign_test_p_ppm"], 1_000_000)
 
-    def test_complete_real_clean_run_can_support_a_claim(self) -> None:
+    def test_complete_real_clean_run_requires_resolved_evidence_integrity(self) -> None:
         worker, task, experiment = self.scheduled(
             evidence_class=RunEvidenceClass.REAL_MODEL,
             seeds=(11,),
@@ -296,12 +449,70 @@ class BenchmarkWorkerTests(unittest.TestCase):
                 experiment,
                 BenchmarkLane.SEARCH_CONTEXT,
                 1,
+                prompt_tokens=60,
+                completion_tokens=20,
                 retrieved_refs=(digest("search-card"),),
             )
         )
-        report = worker.report(experiment.identity.id)
-        self.assertTrue(report["efficacy_claimable"])
-        self.assertEqual(report["matched_comparisons"][0]["claimable_clean_pair_count"], 1)
+        unresolved = worker.report(experiment.identity.id)
+        self.assertFalse(unresolved["efficacy_claimable"])
+        self.assertFalse(unresolved["evidence_integrity_verified"])
+        self.assertEqual(
+            unresolved["matched_comparisons"][0]["claimable_clean_pair_count"], 1
+        )
+        source = self.token_source(worker, task, experiment)
+        serialized_only = worker.report(
+            experiment.identity.id,
+            token_savings_source=source,
+        )
+        self.assertFalse(serialized_only["efficacy_claimable"])
+        resolver_only = worker.report(
+            experiment.identity.id,
+            token_savings_source=source,
+            trusted_evidence_resolver=ExactBenchmarkResolver(),
+        )
+        self.assertFalse(resolver_only["evidence_integrity_verified"])
+        self.assertFalse(resolver_only["efficacy_claimable"])
+        resolved = worker.report(
+            experiment.identity.id,
+            token_savings_source=source,
+            trusted_evidence_resolver=ExactBenchmarkResolver(),
+            trusted_evidence_root=self.trust_root(),
+        )
+        self.assertTrue(resolved["efficacy_claimable"])
+        self.assertTrue(resolved["evidence_integrity_verified"])
+        self.assertEqual(
+            resolved["evidence_integrity_trust_domain"],
+            ExactBenchmarkResolver.trust_domain,
+        )
+        self.assertEqual(
+            resolved["evidence_integrity_trust_key_id"],
+            ExactBenchmarkResolver.key_id,
+        )
+
+        unrelated = TokenSavingsInput.create(
+            label=source.label,
+            evidence_note=source.evidence_note,
+            evidence_class=source.evidence_class,
+            subject_ref=digest("unrelated-experiment"),
+            terminal_receipt_refs=source.terminal_receipt_refs,
+            baseline=source.baseline,
+            reuse=source.reuse,
+            model_usage_receipts=source.model_usage_receipts,
+            verifier_receipts=source.verifier_receipts,
+        )
+        unrelated_report = worker.report(
+            experiment.identity.id,
+            token_savings_source=unrelated,
+            trusted_evidence_resolver=ExactBenchmarkResolver(),
+            trusted_evidence_root=self.trust_root(),
+        )
+        self.assertFalse(unrelated_report["efficacy_claimable"])
+        with self.assertRaises(TypeError):
+            worker.report(  # type: ignore[call-arg]
+                experiment.identity.id,
+                evidence_integrity_resolver=lambda *_args: object(),
+            )
 
     def test_real_model_receipt_requires_usage_provenance(self) -> None:
         worker, task, experiment = self.scheduled(
@@ -351,6 +562,19 @@ class BenchmarkWorkerTests(unittest.TestCase):
                 tests_total=1,
                 tests_failed=1,
                 wall_ms=100,
+            )
+        with self.assertRaisesRegex(BenchmarkError, "verifier CPU budget"):
+            BenchmarkRunReceipt.create(
+                spec=spec,
+                task=task,
+                evidence_class=experiment.evidence_class,
+                outcome=RunOutcome.FAILED,
+                contamination_state=ContaminationState.CLEAN,
+                completed_at="2026-07-16T14:01:00Z",
+                verifier_cpu_ms=30_001,
+                tests_total=1,
+                tests_failed=1,
+                wall_ms=30_001,
             )
 
     def test_competing_terminal_receipts_are_rejected_but_replay_is_idempotent(self) -> None:

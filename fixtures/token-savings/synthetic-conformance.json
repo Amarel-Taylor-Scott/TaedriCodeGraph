@@ -1,0 +1,211 @@
+{
+  "baseline": {
+    "accepted": true,
+    "arm": "baseline",
+    "attempt_count": 2,
+    "context": {
+      "budget": {
+        "max_attempts": 4,
+        "max_output_tokens_per_attempt": 1000,
+        "max_prompt_tokens_per_attempt": 1000,
+        "max_tool_calls": 8,
+        "max_total_tokens": 10000,
+        "max_verifier_cpu_ms": 30000,
+        "max_wall_ms": 60000
+      },
+      "harness_digest": "sha256:49f756463ad9dcfb9b6ade54d7d6f15476e7214f46a65b4b0c55d46845b12f70",
+      "model_config_digest": "sha256:74544cb9f7117721379760baa5416f83d1e49698cc0a5fa598dd283c5375f93f",
+      "model_id": "model-a@exact-revision",
+      "oracle_ref": "sha256:abcade795433b6bc4706e47c0c8ca670f79d9d3634ed9fb5a938f67148ec77d3",
+      "policy_digest": "sha256:823412d1eacb67956220e532959f0104603057c88704863ca38e7cd188fda812",
+      "provider_id": "provider-a",
+      "runtime_digest": "sha256:d92c6a81b2ff50096bcda80885427d1f59a25b5f483f7055523504925d16ab23",
+      "seed": 41,
+      "snapshot_ref": "sha256:3f3ee146f1bcf714c52b977a899c46688398140e37eddeae1161bbf4ae407ce3",
+      "task_ref": "sha256:0ebb429fa86d481c2630fac53db1c91cffed5d4d41d1021c179444eb67e7ee0b"
+    },
+    "format_version": "1.0.0",
+    "model_usage_receipt_digests": [
+      "sha256:e5b335a8d963e4de91c080788d7b0910b24c3b59ecb48d2fa7785f69bb8bb5e9",
+      "sha256:ad0822802db5a3a2b46263147cb4adf4484ebf0411a4aaa79dfa70ed76f59261"
+    ],
+    "output_digest": "sha256:8c1c174556433264a9ddf3b9ea9bd94194611592dfef54ebba7761c3f37bc7ff",
+    "reported_total_tokens": null,
+    "run_digest": "sha256:762d004604dabb6b7a23fbe18261ea2d5a556bbc3e73d070f062d9b056f04549",
+    "run_spec_digest": "sha256:d866f29a50ec48b4dfc7ce93fd173bec107c91c6a08e1b666bd0a08893824c4d",
+    "runner_id": "baseline-model-runner",
+    "verifier_receipt_digest": "sha256:4c6d94b661d0aa520391ce702ca4f7c63161380914ba2e93d116aedcfc9f3689"
+  },
+  "evidence_class": "conformance_fixture",
+  "evidence_note": "Synthetic resolved receipts exercise accounting and fail-closed validation only; they are not observations from a real model campaign.",
+  "format_version": "1.0.0",
+  "label": "SYNTHETIC CONFORMANCE FIXTURE \u2014 NOT MODEL EFFICACY",
+  "model_usage_receipts": [
+    {
+      "attempt_index": 1,
+      "format_version": "1.0.0",
+      "model_config_digest": "sha256:74544cb9f7117721379760baa5416f83d1e49698cc0a5fa598dd283c5375f93f",
+      "model_id": "model-a@exact-revision",
+      "provider_content_digest": "sha256:dff2523553367e3d21d3d2e9cb1f016da203780fd225293075459bc63bfec31f",
+      "provider_id": "provider-a",
+      "provider_receipt_ref": "sha256:ac8e8023db407bcfabb0c8ab7b1e1b453b5d2e004f5c1cf17f09087bc2296b82",
+      "receipt_digest": "sha256:e5b335a8d963e4de91c080788d7b0910b24c3b59ecb48d2fa7785f69bb8bb5e9",
+      "request_digest": "sha256:2d041a6822086b1b1f0d1be0ed90fc2a2dfdd06965a3c15b28ba13660d2ecabf",
+      "response_digest": "sha256:24f0a181bad9c1d193a1afb62da281af884928010f68ef772c384f20201c580e",
+      "run_spec_digest": "sha256:d866f29a50ec48b4dfc7ce93fd173bec107c91c6a08e1b666bd0a08893824c4d",
+      "tool_calls": 1,
+      "usage": {
+        "accounting_mode": "exclusive_v1",
+        "cached_prompt_tokens": 20,
+        "completion_tokens": 20,
+        "prompt_tokens": 60,
+        "reasoning_tokens": 10,
+        "repair_tokens": 1,
+        "retrieval_tokens": 3,
+        "selector_tokens": 2,
+        "tool_tokens": 5,
+        "verification_tokens": 4
+      },
+      "usage_source": "unit-test-provider-receipt"
+    },
+    {
+      "attempt_index": 2,
+      "format_version": "1.0.0",
+      "model_config_digest": "sha256:74544cb9f7117721379760baa5416f83d1e49698cc0a5fa598dd283c5375f93f",
+      "model_id": "model-a@exact-revision",
+      "provider_content_digest": "sha256:89d50af2c7459138aafe1c61da7f76031e68e9753c41704f04abe038c7b682e9",
+      "provider_id": "provider-a",
+      "provider_receipt_ref": "sha256:2a9f7ef8e65272706f3b0c147da341b9a6bed846aff80575036b00ab82a7c76a",
+      "receipt_digest": "sha256:ad0822802db5a3a2b46263147cb4adf4484ebf0411a4aaa79dfa70ed76f59261",
+      "request_digest": "sha256:9a5c1f59f33b156ee9cca2ecc8b09d9e74df893ae9d5e8cd7ecd2b6377840874",
+      "response_digest": "sha256:f64b125d2b782f1c191605f9045b27daad25e2b2d8a829856ab99648a1474be3",
+      "run_spec_digest": "sha256:d866f29a50ec48b4dfc7ce93fd173bec107c91c6a08e1b666bd0a08893824c4d",
+      "tool_calls": 1,
+      "usage": {
+        "accounting_mode": "exclusive_v1",
+        "cached_prompt_tokens": 10,
+        "completion_tokens": 10,
+        "prompt_tokens": 30,
+        "reasoning_tokens": 5,
+        "repair_tokens": 0,
+        "retrieval_tokens": 1,
+        "selector_tokens": 1,
+        "tool_tokens": 2,
+        "verification_tokens": 1
+      },
+      "usage_source": "unit-test-provider-receipt"
+    },
+    {
+      "attempt_index": 1,
+      "format_version": "1.0.0",
+      "model_config_digest": "sha256:74544cb9f7117721379760baa5416f83d1e49698cc0a5fa598dd283c5375f93f",
+      "model_id": "model-a@exact-revision",
+      "provider_content_digest": "sha256:38e4459aacffe765746dd49090196994c43a6083a27c90641355a999ab469ef5",
+      "provider_id": "provider-a",
+      "provider_receipt_ref": "sha256:6781765ff42eeb455a3165127da314c6c3c30220f23dc87de5061b1c71fa2754",
+      "receipt_digest": "sha256:be0c8e33eae0163b4602267ad1ea155cf2e4d5e3c5faea7e753c6e23dbe697aa",
+      "request_digest": "sha256:67772b95345b7c76ee8a12af0f951c1964753ed379cef4a90bc3d51a7e562d50",
+      "response_digest": "sha256:c62cd093220e7de81fbb7b199e12343bed3be473e3eff9da60e7e037319d8b14",
+      "run_spec_digest": "sha256:1da967c3479a3ccee46c94d4acfd850ee37549213b4e6ae467769499cdbbd111",
+      "tool_calls": 1,
+      "usage": {
+        "accounting_mode": "exclusive_v1",
+        "cached_prompt_tokens": 20,
+        "completion_tokens": 15,
+        "prompt_tokens": 50,
+        "reasoning_tokens": 5,
+        "repair_tokens": 1,
+        "retrieval_tokens": 3,
+        "selector_tokens": 2,
+        "tool_tokens": 2,
+        "verification_tokens": 4
+      },
+      "usage_source": "unit-test-provider-receipt"
+    }
+  ],
+  "reuse": {
+    "accepted": true,
+    "arm": "reuse",
+    "attempt_count": 1,
+    "context": {
+      "budget": {
+        "max_attempts": 4,
+        "max_output_tokens_per_attempt": 1000,
+        "max_prompt_tokens_per_attempt": 1000,
+        "max_tool_calls": 8,
+        "max_total_tokens": 10000,
+        "max_verifier_cpu_ms": 30000,
+        "max_wall_ms": 60000
+      },
+      "harness_digest": "sha256:49f756463ad9dcfb9b6ade54d7d6f15476e7214f46a65b4b0c55d46845b12f70",
+      "model_config_digest": "sha256:74544cb9f7117721379760baa5416f83d1e49698cc0a5fa598dd283c5375f93f",
+      "model_id": "model-a@exact-revision",
+      "oracle_ref": "sha256:abcade795433b6bc4706e47c0c8ca670f79d9d3634ed9fb5a938f67148ec77d3",
+      "policy_digest": "sha256:823412d1eacb67956220e532959f0104603057c88704863ca38e7cd188fda812",
+      "provider_id": "provider-a",
+      "runtime_digest": "sha256:d92c6a81b2ff50096bcda80885427d1f59a25b5f483f7055523504925d16ab23",
+      "seed": 41,
+      "snapshot_ref": "sha256:3f3ee146f1bcf714c52b977a899c46688398140e37eddeae1161bbf4ae407ce3",
+      "task_ref": "sha256:0ebb429fa86d481c2630fac53db1c91cffed5d4d41d1021c179444eb67e7ee0b"
+    },
+    "format_version": "1.0.0",
+    "model_usage_receipt_digests": [
+      "sha256:be0c8e33eae0163b4602267ad1ea155cf2e4d5e3c5faea7e753c6e23dbe697aa"
+    ],
+    "output_digest": "sha256:c9c3f005cb45e5dfeec486503956fed6414ebf3e6755fa00717e78e679febf8c",
+    "reported_total_tokens": null,
+    "run_digest": "sha256:971214b6fddd81c2e3d90fcd3834ca80961bb0e03275ebb48854aa2c6691d9d4",
+    "run_spec_digest": "sha256:1da967c3479a3ccee46c94d4acfd850ee37549213b4e6ae467769499cdbbd111",
+    "runner_id": "reuse-model-runner",
+    "verifier_receipt_digest": "sha256:e737b038cda563187267494f94f5dbc09b1549e678bebe84cc426ea26674af22"
+  },
+  "source_digest": "sha256:d15605804acceb6b8841e56fff609904ace26f272cdbf05d97a2f99ccc6cd2d9",
+  "subject_ref": "sha256:7f17fc79202e4f83cd605f02d8ecdd00c5660223a6a902ed817bf9604c95625c",
+  "terminal_receipt_refs": [
+    "sha256:5eea504ecc843f1a071696fdb928f987547f56d788acc1151ae33c4226139166",
+    "sha256:6ff2cdf57c2275c36ee54747c872f9c50021611ffcd52fab9b532b929ab2b98b"
+  ],
+  "verifier_receipts": [
+    {
+      "accepted": true,
+      "context_digest": "sha256:47150dffd2b984d98f6facf433766febbe37a0bd3ccbd525330c2d5e1d7bbe6d",
+      "format_version": "1.0.0",
+      "model_usage_receipt_digests": [
+        "sha256:e5b335a8d963e4de91c080788d7b0910b24c3b59ecb48d2fa7785f69bb8bb5e9",
+        "sha256:ad0822802db5a3a2b46263147cb4adf4484ebf0411a4aaa79dfa70ed76f59261"
+      ],
+      "observed_run_wall_ms": 1000,
+      "oracle_ref": "sha256:abcade795433b6bc4706e47c0c8ca670f79d9d3634ed9fb5a938f67148ec77d3",
+      "output_digest": "sha256:8c1c174556433264a9ddf3b9ea9bd94194611592dfef54ebba7761c3f37bc7ff",
+      "receipt_digest": "sha256:4c6d94b661d0aa520391ce702ca4f7c63161380914ba2e93d116aedcfc9f3689",
+      "run_spec_digest": "sha256:d866f29a50ec48b4dfc7ce93fd173bec107c91c6a08e1b666bd0a08893824c4d",
+      "source_verifier_ref": "sha256:b9fb0c871788f3b26a8ed25f04b1347bdd10cd5b2d58be455eaa4eefc9b1ecbd",
+      "tests_failed": 0,
+      "tests_passed": 2,
+      "tests_total": 2,
+      "verifier_config_digest": "sha256:df221fec3298e71f8a26573bfae06d2bcf332b83779f695dfcc374c77408c362",
+      "verifier_cpu_ms": 100,
+      "verifier_id": "independent-matched-verifier"
+    },
+    {
+      "accepted": true,
+      "context_digest": "sha256:47150dffd2b984d98f6facf433766febbe37a0bd3ccbd525330c2d5e1d7bbe6d",
+      "format_version": "1.0.0",
+      "model_usage_receipt_digests": [
+        "sha256:be0c8e33eae0163b4602267ad1ea155cf2e4d5e3c5faea7e753c6e23dbe697aa"
+      ],
+      "observed_run_wall_ms": 1000,
+      "oracle_ref": "sha256:abcade795433b6bc4706e47c0c8ca670f79d9d3634ed9fb5a938f67148ec77d3",
+      "output_digest": "sha256:c9c3f005cb45e5dfeec486503956fed6414ebf3e6755fa00717e78e679febf8c",
+      "receipt_digest": "sha256:e737b038cda563187267494f94f5dbc09b1549e678bebe84cc426ea26674af22",
+      "run_spec_digest": "sha256:1da967c3479a3ccee46c94d4acfd850ee37549213b4e6ae467769499cdbbd111",
+      "source_verifier_ref": "sha256:d12d5bffe8116129646370b6b5cd9ab483348fc88e4b43c998658fffd4e94a1a",
+      "tests_failed": 0,
+      "tests_passed": 2,
+      "tests_total": 2,
+      "verifier_config_digest": "sha256:df221fec3298e71f8a26573bfae06d2bcf332b83779f695dfcc374c77408c362",
+      "verifier_cpu_ms": 100,
+      "verifier_id": "independent-matched-verifier"
+    }
+  ]
+}

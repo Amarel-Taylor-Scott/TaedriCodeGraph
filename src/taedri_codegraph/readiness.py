@@ -11,6 +11,9 @@ from typing import Any, Mapping
 READINESS_STATUSES = frozenset(
     {"working", "partial", "conformance_only", "poc_only", "scaffolded"}
 )
+INVENTORY_PRODUCT_CLASSIFICATIONS = frozenset(
+    {"single_node_private_alpha_candidate"}
+)
 
 
 class ReadinessError(ValueError):
@@ -33,6 +36,28 @@ def load_component_readiness(
     definitions = readiness.get("definition_of_done")
     if not isinstance(definitions, list) or len(definitions) < 5:
         raise ReadinessError("component readiness requires a substantive definition of done")
+    readiness_product = _product_readiness(
+        readiness.get("product_readiness"), "component readiness"
+    )
+    architecture_product = _product_readiness(
+        architecture.get("product_readiness"), "component architecture"
+    )
+    for field in ("classification", "serves_truth", "public_paid_saas_ready"):
+        if readiness_product[field] != architecture_product[field]:
+            raise ReadinessError(
+                f"product readiness manifests disagree on {field!r}"
+            )
+    if readiness_product["public_paid_saas_ready"] and not readiness_product[
+        "serves_truth"
+    ]:
+        raise ReadinessError("public paid SaaS readiness requires serves_truth")
+    if readiness_product["serves_truth"] or readiness_product[
+        "public_paid_saas_ready"
+    ]:
+        raise ReadinessError(
+            "static component inventories cannot authorize product promotion; "
+            "a separately trusted release authority is not implemented"
+        )
     expected = {
         item["id"] for item in _mapping_list(architecture.get("components"), "components")
     }
@@ -64,7 +89,10 @@ def load_component_readiness(
         "component_count": len(records),
         "status_counts": dict(sorted(statuses.items())),
         "working_fraction_ppm": statuses["working"] * 1_000_000 // len(records),
+        "working_fraction_scope": "declared local or transitional component scope only",
+        "release_authority": "inventory_only_no_product_promotion_authority",
         "definition_of_done": definitions,
+        "product_readiness": readiness_product,
         "components": records,
         "external_gates": readiness.get("external_gates", []),
     }
@@ -94,6 +122,24 @@ def _validate_record(root: Path, record: Mapping[str, Any]) -> None:
         raise ReadinessError(f"working component {identifier!r} lacks acceptance evidence")
     if status == "scaffolded" and evidence:
         raise ReadinessError(f"scaffolded component {identifier!r} cannot claim acceptance evidence")
+
+
+def _product_readiness(value: Any, name: str) -> Mapping[str, Any]:
+    if not isinstance(value, Mapping):
+        raise ReadinessError(f"{name} must declare product_readiness")
+    classification = value.get("classification")
+    serves_truth = value.get("serves_truth")
+    paid_ready = value.get("public_paid_saas_ready")
+    if not isinstance(classification, str) or not classification:
+        raise ReadinessError(f"{name} product classification must be non-empty")
+    if classification not in INVENTORY_PRODUCT_CLASSIFICATIONS:
+        raise ReadinessError(
+            f"{name} static inventory cannot declare product classification "
+            f"{classification!r}"
+        )
+    if not isinstance(serves_truth, bool) or not isinstance(paid_ready, bool):
+        raise ReadinessError(f"{name} product truth flags must be booleans")
+    return value
 
 
 def _load_json(path: Path) -> dict[str, Any]:

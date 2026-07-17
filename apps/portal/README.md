@@ -1,6 +1,7 @@
-# Public SaaS portal
+# Static plan and tenant-account portal POC
 
-This dependency-free static application is the public and tenant-account surface for
+This dependency-free static application is the unauthenticated-plan and tenant-account
+POC surface for
 the working modular-monolith slice. It reads the public, versioned plan catalog without
 authentication and can read subscription/entitlement state with a scoped tenant token.
 

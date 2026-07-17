@@ -35,7 +35,7 @@ class RouteSpec(RecordMixin):
 _ROUTES = (
     RouteSpec("GET", "/healthz", "health", "Process liveness", 200, False, tags=("operations",)),
     RouteSpec("GET", "/readyz", "readiness", "Dependency readiness", 200, False, tags=("operations",)),
-    RouteSpec("GET", "/v1/public/plans", "listPublicPlans", "List public SaaS plans", 200, False, tags=("portal",)),
+    RouteSpec("GET", "/v1/public/plans", "listPublicPlans", "List public plan catalog for the portal POC", 200, False, tags=("portal",)),
     RouteSpec("GET", "/v1/me", "getPrincipal", "Get current API principal", 200, tags=("identity",)),
     RouteSpec("GET", "/v1/graphs", "listGraphs", "List tenant graph mounts", 200, True, "graph:read", tags=("graph",)),
     RouteSpec("GET", "/v1/epochs", "listEpochs", "List immutable graph epochs", 200, True, "graph:read", tags=("graph",)),

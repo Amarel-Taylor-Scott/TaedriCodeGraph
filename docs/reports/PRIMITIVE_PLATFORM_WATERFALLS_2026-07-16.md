@@ -20,7 +20,7 @@ microservice.
 | Primitive search | Adaptive exact → sparse → semantic → structural retrieval with fast/balanced/deep/auto policy and stage receipts | Live embeddings/ANN relevance and load gates |
 | Search triggering | User, deterministic, classifier, and model tiers with fixed precedence, privacy guards, cooldowns, and intent revalidation | Hosted hook/plugin session study |
 | Client digestion | Bounded selective/thin packs, digest and path verification, role allowlists, atomic writes, and receipts | Signed-pack trust policy and cross-language clients |
-| Public SaaS | Public portal, plan catalog, append-only subscriptions, replay-safe billing events, entitlements, scoped APIs, and generated OpenAPI | OIDC+PKCE and a real billing test adapter |
+| Static portal and plan contracts | Static portal POC, plan catalog, append-only subscriptions, replay-safe billing-event contracts, entitlements, scoped APIs, and generated OpenAPI | OIDC+PKCE and a real billing test adapter |
 | Source to primitive | Replay-safe PyPI/GitHub discovery contracts, bounded acquisition, non-executing extraction, candidate generation, and shared API/worker operation catalog | Hostile-code isolated verifier, additional language runtimes, and signed release evidence |
 | Matched benchmark | Frozen experiment identities, matched-lane contracts, failure-inclusive reporting, and claim gate | Real model, sealed tasks, and an isolated verifier |
 
@@ -42,7 +42,7 @@ all four families plus multi-parent lineage project without a schema migration.
 | Complete primitive release | One 12-role/13-payload reference primitive executed six cases and passed all 12 acceptance proofs and 14 release proofs |
 | Deterministic reuse | Two active releases, 12 evidence-bound edges, four typed ports, one exact wire, two verified packs, and `"  Straße  " → "strasse"` with zero model calls or rewritten code |
 | Evidence reproducibility | Repeated reference-release and deterministic-route generation produced byte-identical reports, receipts, CSV, and pack files |
-| Production HTTP boundary | Gunicorn socket returned `health=ok` and `ready=ready` |
+| Gunicorn process-manager loopback smoke | A local Gunicorn socket returned `health=ok` and `ready=ready`; this proves process/socket behavior only, not production readiness |
 | MCP protocol | Real stdio initialize, tools/list, and adaptive primitive-search round trip passed |
 | Installable package | Wheel built, installed into a clean virtual environment, imported; current catalog exposes 41 operations across 37 paths |
 | Wheel digest | `sha256:7910589a6d6012391c6346c86ac1a219832728211be329f8adecdc21d4d7dd31` (239,973 bytes) |
@@ -90,7 +90,7 @@ GraphML, Mermaid, CSV, JSON, and backup artifacts.
 ## Readiness snapshot
 
 The validated architecture manifest declares 32 components: 22 working in their named
-local/transitional scope, seven partial, two conformance-only, and one deployment POC.
+local/transitional scope, eight partial, one conformance-only, and one deployment POC.
 “Working” is scope-qualified by `architecture/component-readiness.v1.json`; it is not a
 claim of hosted durability, security, or SLOs.
 

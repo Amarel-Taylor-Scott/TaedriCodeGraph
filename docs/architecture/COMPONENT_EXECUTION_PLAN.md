@@ -57,7 +57,7 @@ local scope while still having production promotion gates.
 | MCP integration | Protocol-tested local/remote stdio tools with optional session receipts | Hosted harness evaluation and OIDC identity | MCP-capable test harness/model |
 | Agent integrations | Instructions and local search skill | Installable plugin/hooks and hosted harness evaluation | Target harness environments |
 | Explorer | Static authenticated operations console | OIDC sign-in, tenant admin, graph/provenance visualization, browser E2E | OIDC and deployed staging API |
-| Deployment | Hardened containers, Compose, Fly POC manifests, CI definition | Green hosted CI, Fly smoke, managed stores, restore/incident drill | GitHub Actions, Fly, PostgreSQL, S3 |
+| Deployment | Baseline container hardening controls, Compose, Fly POC manifests, CI definition | Green hosted CI, Fly smoke, managed stores, restore/incident drill | GitHub Actions, Fly, PostgreSQL, S3 |
 | Evaluation | Real-package static evidence and deterministic benchmark fixtures | Sealed executable tasks, real-model lanes, longitudinal thresholds | Model, sandbox, repeatable hosted runners |
 
 ## Minimum access matrix

@@ -354,7 +354,11 @@ def build_parser() -> argparse.ArgumentParser:
     )
 
     components = subcommands.add_parser(
-        "components", help="validate and report every monorepo component readiness gate"
+        "components",
+        help=(
+            "validate component inventory evidence; this does not authorize a "
+            "product release"
+        ),
     )
     components.add_argument("--root", type=Path, default=Path("."))
 

@@ -1,0 +1,165 @@
+{
+  "arms": [
+    {
+      "attempt_index": 1,
+      "error_code": "provider_modelprovidererror",
+      "format_version": "1.0.0",
+      "identity": {
+        "canonical_key": {
+          "attempt_index": 1,
+          "error_code": "provider_modelprovidererror",
+          "format_version": "1.0.0",
+          "interception": null,
+          "max_completion_tokens": 128,
+          "model_requested": "mistral-large-latest",
+          "pair_order": 1,
+          "provider_id": "mistral",
+          "request_digest": "sha256:ecf840876de1b70db47a27d7ff646fe2df2dfca28fcff13a5cfed3176a7336aa",
+          "retrieval_arm": "full_catalog",
+          "seed": 0,
+          "status": "provider_failed",
+          "step_index": 1,
+          "task_id": "warehouse_load.flatten_events",
+          "trajectory_id": "warehouse_load",
+          "verification": null
+        },
+        "id": "uceg:v1:prompt_interception_campaign_arm_receipt:poutmhoeajpjpjkrglgtlnpvwcjswqw73gx5b2y2p33c2b4rfxtq",
+        "kind": "prompt_interception_campaign_arm_receipt"
+      },
+      "interception": null,
+      "max_completion_tokens": 128,
+      "model_requested": "mistral-large-latest",
+      "pair_order": 1,
+      "provider_id": "mistral",
+      "request_digest": "sha256:ecf840876de1b70db47a27d7ff646fe2df2dfca28fcff13a5cfed3176a7336aa",
+      "retrieval_arm": "full_catalog",
+      "seed": 0,
+      "status": "provider_failed",
+      "step_index": 1,
+      "task_id": "warehouse_load.flatten_events",
+      "trajectory_id": "warehouse_load",
+      "verification": null
+    },
+    {
+      "attempt_index": 1,
+      "error_code": "provider_modelprovidererror",
+      "format_version": "1.0.0",
+      "identity": {
+        "canonical_key": {
+          "attempt_index": 1,
+          "error_code": "provider_modelprovidererror",
+          "format_version": "1.0.0",
+          "interception": null,
+          "max_completion_tokens": 128,
+          "model_requested": "mistral-large-latest",
+          "pair_order": 2,
+          "provider_id": "mistral",
+          "request_digest": "sha256:ecf840876de1b70db47a27d7ff646fe2df2dfca28fcff13a5cfed3176a7336aa",
+          "retrieval_arm": "deterministic_shortlist",
+          "seed": 0,
+          "status": "provider_failed",
+          "step_index": 1,
+          "task_id": "warehouse_load.flatten_events",
+          "trajectory_id": "warehouse_load",
+          "verification": null
+        },
+        "id": "uceg:v1:prompt_interception_campaign_arm_receipt:cizvciwvgoh5jtdyjpd63zmchti6tqblzqyabgiy4qxzw4wovfpq",
+        "kind": "prompt_interception_campaign_arm_receipt"
+      },
+      "interception": null,
+      "max_completion_tokens": 128,
+      "model_requested": "mistral-large-latest",
+      "pair_order": 2,
+      "provider_id": "mistral",
+      "request_digest": "sha256:ecf840876de1b70db47a27d7ff646fe2df2dfca28fcff13a5cfed3176a7336aa",
+      "retrieval_arm": "deterministic_shortlist",
+      "seed": 0,
+      "status": "provider_failed",
+      "step_index": 1,
+      "task_id": "warehouse_load.flatten_events",
+      "trajectory_id": "warehouse_load",
+      "verification": null
+    }
+  ],
+  "catalog_digest": "sha256:4c7416d1761d777be078f56f0f89a72c8e8ff0e79824bfe2063c92c9420c76a6",
+  "claim_scope": "provider-native token counts and independently executed hidden-case outcomes; causal savings require separate token_savings integrity evaluation",
+  "format_version": "1.0.0",
+  "identity": {
+    "canonical_key": {
+      "arm_ids": [
+        "uceg:v1:prompt_interception_campaign_arm_receipt:poutmhoeajpjpjkrglgtlnpvwcjswqw73gx5b2y2p33c2b4rfxtq",
+        "uceg:v1:prompt_interception_campaign_arm_receipt:cizvciwvgoh5jtdyjpd63zmchti6tqblzqyabgiy4qxzw4wovfpq"
+      ],
+      "catalog_digest": "sha256:4c7416d1761d777be078f56f0f89a72c8e8ff0e79824bfe2063c92c9420c76a6",
+      "claim_scope": "provider-native token counts and independently executed hidden-case outcomes; causal savings require separate token_savings integrity evaluation",
+      "format_version": "1.0.0",
+      "matched_pair_ids": [
+        "uceg:v1:matched_prompt_interception_pair:r64rlajfdasxr4uwc7glwxd2mkpmyzcywazn73vnaxmuxuudd6cq"
+      ],
+      "max_completion_tokens": 128,
+      "model_requested": "mistral-large-latest",
+      "provider_id": "mistral",
+      "seeds": [
+        0
+      ],
+      "shortlist_limit": 4,
+      "task_set_digest": "sha256:47b50b3a55af6ff7b849c84a48981fb22639f72adc7511d759781220e000d83a"
+    },
+    "id": "uceg:v1:prompt_interception_campaign_receipt:kdqgjsbajlbhan2jfexyidy5ptgwfbzlj4j6arqfj44v5hl72peq",
+    "kind": "prompt_interception_campaign_receipt"
+  },
+  "matched_pairs": [
+    {
+      "attempt_index": 1,
+      "format_version": "1.0.0",
+      "full_catalog_accepted": false,
+      "full_catalog_arm_id": "uceg:v1:prompt_interception_campaign_arm_receipt:poutmhoeajpjpjkrglgtlnpvwcjswqw73gx5b2y2p33c2b4rfxtq",
+      "full_catalog_usage": null,
+      "full_catalog_verifier_id": null,
+      "identity": {
+        "canonical_key": {
+          "attempt_index": 1,
+          "format_version": "1.0.0",
+          "full_catalog_accepted": false,
+          "full_catalog_arm_id": "uceg:v1:prompt_interception_campaign_arm_receipt:poutmhoeajpjpjkrglgtlnpvwcjswqw73gx5b2y2p33c2b4rfxtq",
+          "full_catalog_usage": null,
+          "full_catalog_verifier_id": null,
+          "max_completion_tokens": 128,
+          "model_requested": "mistral-large-latest",
+          "provider_id": "mistral",
+          "request_digest": "sha256:ecf840876de1b70db47a27d7ff646fe2df2dfca28fcff13a5cfed3176a7336aa",
+          "seed": 0,
+          "shortlist_accepted": false,
+          "shortlist_arm_id": "uceg:v1:prompt_interception_campaign_arm_receipt:cizvciwvgoh5jtdyjpd63zmchti6tqblzqyabgiy4qxzw4wovfpq",
+          "shortlist_usage": null,
+          "shortlist_verifier_id": null,
+          "step_index": 1,
+          "task_id": "warehouse_load.flatten_events",
+          "trajectory_id": "warehouse_load"
+        },
+        "id": "uceg:v1:matched_prompt_interception_pair:r64rlajfdasxr4uwc7glwxd2mkpmyzcywazn73vnaxmuxuudd6cq",
+        "kind": "matched_prompt_interception_pair"
+      },
+      "max_completion_tokens": 128,
+      "model_requested": "mistral-large-latest",
+      "provider_id": "mistral",
+      "request_digest": "sha256:ecf840876de1b70db47a27d7ff646fe2df2dfca28fcff13a5cfed3176a7336aa",
+      "seed": 0,
+      "shortlist_accepted": false,
+      "shortlist_arm_id": "uceg:v1:prompt_interception_campaign_arm_receipt:cizvciwvgoh5jtdyjpd63zmchti6tqblzqyabgiy4qxzw4wovfpq",
+      "shortlist_usage": null,
+      "shortlist_verifier_id": null,
+      "step_index": 1,
+      "task_id": "warehouse_load.flatten_events",
+      "trajectory_id": "warehouse_load"
+    }
+  ],
+  "max_completion_tokens": 128,
+  "model_requested": "mistral-large-latest",
+  "provider_id": "mistral",
+  "seeds": [
+    0
+  ],
+  "shortlist_limit": 4,
+  "task_set_digest": "sha256:47b50b3a55af6ff7b849c84a48981fb22639f72adc7511d759781220e000d83a"
+}

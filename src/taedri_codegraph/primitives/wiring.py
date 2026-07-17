@@ -174,6 +174,82 @@ class ExactPrimitiveWirePlanner:
                 "both interfaces declare deterministic behavior" if deterministic else "determinism is not established for both interfaces",
             )
         )
+        for dimension, producer_value, consumer_value in (
+            ("taedri.wire.language", producer.language, consumer.language),
+            (
+                "taedri.wire.runtime_version",
+                producer.runtime_version,
+                consumer.runtime_version,
+            ),
+        ):
+            matches = producer_value == consumer_value
+            dimensions.append(
+                WireDimensionAssessment(
+                    dimension,
+                    WireVerdict.COMPATIBLE if matches else WireVerdict.INCOMPATIBLE,
+                    producer_value,
+                    consumer_value,
+                    (
+                        "authoritative interface values match"
+                        if matches
+                        else "authoritative interface values differ; no runtime adapter is declared"
+                    ),
+                )
+            )
+        execution_model_matches = producer.execution_model == consumer.execution_model
+        dimensions.append(
+            WireDimensionAssessment(
+                "taedri.wire.execution_model",
+                (
+                    WireVerdict.COMPATIBLE
+                    if execution_model_matches
+                    and producer.execution_model == "in_process_call"
+                    else (
+                        WireVerdict.UNKNOWN
+                        if execution_model_matches
+                        else WireVerdict.INCOMPATIBLE
+                    )
+                ),
+                producer.execution_model,
+                consumer.execution_model,
+                (
+                    "both interfaces use the supported in-process execution model"
+                    if execution_model_matches
+                    and producer.execution_model == "in_process_call"
+                    else (
+                        "matching execution model is outside the local adapter-free executor"
+                        if execution_model_matches
+                        else "execution models differ; an explicit adapter is required"
+                    )
+                ),
+            )
+        )
+        network_matches = producer.network == consumer.network
+        dimensions.append(
+            WireDimensionAssessment(
+                "taedri.wire.network",
+                (
+                    WireVerdict.COMPATIBLE
+                    if network_matches and producer.network == "denied"
+                    else (
+                        WireVerdict.UNKNOWN
+                        if network_matches
+                        else WireVerdict.INCOMPATIBLE
+                    )
+                ),
+                producer.network,
+                consumer.network,
+                (
+                    "both interfaces explicitly deny network access"
+                    if network_matches and producer.network == "denied"
+                    else (
+                        "matching network policy needs an explicit execution authorization"
+                        if network_matches
+                        else "network policies differ; no implicit policy coercion is allowed"
+                    )
+                ),
+            )
+        )
         safe_execution = (
             producer.execution_model == consumer.execution_model == "in_process_call"
             and producer.network == consumer.network == "denied"
