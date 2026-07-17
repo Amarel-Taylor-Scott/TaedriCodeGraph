@@ -1851,6 +1851,10 @@ def run_prompt_interception_campaign(
         request_timeout_ms=request_timeout_ms,
         max_response_bytes=max_response_bytes,
     )
+    # A checked campaign is evidence, not a best-effort portability exercise.
+    # Validate the exact runtime contract before constructing an interceptor or
+    # spending a provider call; an unsupported host must fail without side effects.
+    _validate_execution_policy(execution_policy.to_dict())
     interceptor = PromptInterceptor(
         catalog, provider, shortlist_limit=shortlist_limit
     )

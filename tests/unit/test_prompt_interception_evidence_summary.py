@@ -15,6 +15,7 @@ from taedri_codegraph.prompt_interception import (
     load_natural_primitive_tasks,
     run_prompt_interception_campaign,
 )
+from tests.primitive_fixtures import requires_checked_campaign_runtime
 from tests.prompt_interception_fakes import SemanticFakeChatProvider
 
 
@@ -53,6 +54,7 @@ class FailingProvider:
         raise RuntimeError("bounded test provider failure")
 
 
+@requires_checked_campaign_runtime
 class EvidenceSummaryTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:

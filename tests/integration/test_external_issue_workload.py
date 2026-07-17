@@ -19,6 +19,7 @@ from taedri_codegraph.prompt_interception import (
     load_natural_primitive_tasks,
     run_prompt_interception_campaign,
 )
+from tests.primitive_fixtures import requires_checked_campaign_runtime
 from tests.prompt_interception_fakes import SemanticFakeChatProvider
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -140,6 +141,7 @@ class ExternalIssueWorkloadIntegrationTests(unittest.TestCase):
                     evidence,
                 )
 
+    @requires_checked_campaign_runtime
     def test_local_matched_campaign_selects_and_executes_expected_primitives(self) -> None:
         expected_names = {
             item.task.task_id: item.expected_primitive.name

@@ -20,6 +20,7 @@ from taedri_codegraph.prompt_interception import (
     run_prompt_interception_campaign,
     validate_prompt_interception_campaign_document,
 )
+from tests.primitive_fixtures import requires_checked_campaign_runtime
 from tests.prompt_interception_fakes import SemanticFakeChatProvider
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -129,6 +130,7 @@ class PromptInterceptionCampaignIntegrationTests(unittest.TestCase):
         cls.catalog = ReleasedPrimitiveCatalog.load_checked_cohort(COHORT)
         cls.tasks = load_natural_primitive_tasks(TASKS)
 
+    @requires_checked_campaign_runtime
     def test_matched_arms_execute_selected_checked_packs(self) -> None:
         provider = SemanticFakeChatProvider()
         selected_tasks = (self.tasks[0], self.tasks[5])
@@ -191,6 +193,7 @@ class PromptInterceptionCampaignIntegrationTests(unittest.TestCase):
             for case in task.hidden_cases:
                 self.assertNotIn(json.dumps(case.input_value), output)
 
+    @requires_checked_campaign_runtime
     def test_wrong_teacher_selection_fails_only_after_real_pack_execution(self) -> None:
         task = self.tasks[0]
         provider = SemanticFakeChatProvider(forced_name="normalize-text")
@@ -224,6 +227,7 @@ class PromptInterceptionCampaignIntegrationTests(unittest.TestCase):
         )
         self.assertTrue(all(item.error_code == "output_mismatch" for item in verification.cases))
 
+    @requires_checked_campaign_runtime
     def test_arm_order_is_counterbalanced_across_seed_attempts(self) -> None:
         campaign = run_prompt_interception_campaign(
             catalog=self.catalog,
@@ -247,6 +251,7 @@ class PromptInterceptionCampaignIntegrationTests(unittest.TestCase):
             by_attempt[2][0].retrieval_arm,
         )
 
+    @requires_checked_campaign_runtime
     def test_strict_parser_rejects_verifier_transplant_and_cloned_pair_ref(self) -> None:
         campaign = run_prompt_interception_campaign(
             catalog=self.catalog,
@@ -292,6 +297,7 @@ class PromptInterceptionCampaignIntegrationTests(unittest.TestCase):
         with self.assertRaisesRegex(PromptInterceptionError, "occurrence"):
             validate_prompt_interception_campaign_document(cloned_ref)
 
+    @requires_checked_campaign_runtime
     def test_strict_parser_rejects_omitted_task_and_pair(self) -> None:
         campaign = run_prompt_interception_campaign(
             catalog=self.catalog,
@@ -323,6 +329,7 @@ class PromptInterceptionCampaignIntegrationTests(unittest.TestCase):
         with self.assertRaisesRegex(PromptInterceptionError, "matched-pair matrix"):
             validate_prompt_interception_campaign_document(omitted_pair)
 
+    @requires_checked_campaign_runtime
     def test_strict_parser_rejects_wrong_task_case_and_pack_binding(self) -> None:
         original = run_prompt_interception_campaign(
             catalog=self.catalog,
@@ -354,6 +361,7 @@ class PromptInterceptionCampaignIntegrationTests(unittest.TestCase):
                 with self.assertRaises(PromptInterceptionError):
                     validate_prompt_interception_campaign_document(campaign)
 
+    @requires_checked_campaign_runtime
     def test_pair_rejects_different_reported_provider_deployments(self) -> None:
         with self.assertRaisesRegex(
             PromptInterceptionError, "concrete provider deployment differs"

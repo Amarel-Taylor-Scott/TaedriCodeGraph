@@ -42,7 +42,7 @@ all four families plus multi-parent lineage project without a schema migration.
 | Complete primitive release | One 12-role/13-payload reference primitive executed six cases and passed all 12 acceptance proofs and 14 release proofs |
 | Deterministic reuse | Two active releases, 12 evidence-bound edges, four typed ports, one exact wire, two verified packs, and `"  Straße  " → "strasse"` with zero model calls or rewritten code |
 | Evidence reproducibility | Repeated reference-release and deterministic-route generation produced byte-identical reports, receipts, CSV, and pack files |
-| Production HTTP boundary | Gunicorn socket returned `health=ok` and `ready=ready` |
+| Gunicorn process-manager loopback smoke | A local Gunicorn socket returned `health=ok` and `ready=ready`; this proves process/socket behavior only, not production readiness |
 | MCP protocol | Real stdio initialize, tools/list, and adaptive primitive-search round trip passed |
 | Installable package | Wheel built, installed into a clean virtual environment, imported; current catalog exposes 41 operations across 37 paths |
 | Wheel digest | `sha256:7910589a6d6012391c6346c86ac1a219832728211be329f8adecdc21d4d7dd31` (239,973 bytes) |

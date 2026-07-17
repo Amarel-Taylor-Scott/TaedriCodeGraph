@@ -24,6 +24,10 @@ class ComponentReadinessTests(unittest.TestCase):
         )
         self.assertFalse(report["product_readiness"]["serves_truth"])
         self.assertFalse(report["product_readiness"]["public_paid_saas_ready"])
+        self.assertEqual(
+            report["release_authority"],
+            "inventory_only_no_product_promotion_authority",
+        )
         architecture = json.loads(
             (ROOT / "architecture/components.json").read_text("utf-8")
         )
@@ -78,7 +82,67 @@ class ComponentReadinessTests(unittest.TestCase):
             (root / "architecture/components.json").write_text(
                 json.dumps(components), "utf-8"
             )
-            with self.assertRaisesRegex(ReadinessError, "requires acceptance evidence"):
+            with self.assertRaisesRegex(
+                ReadinessError, "cannot authorize product promotion"
+            ):
+                load_component_readiness(root)
+
+    def test_existing_file_cannot_self_promote_static_manifests(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "architecture").mkdir()
+            components = json.loads(
+                (ROOT / "architecture/components.json").read_text("utf-8")
+            )
+            readiness = json.loads(
+                (ROOT / "architecture/component-readiness.v1.json").read_text(
+                    "utf-8"
+                )
+            )
+            for document in (components, readiness):
+                document["product_readiness"].update(
+                    {
+                        "classification": "single_node_private_alpha_candidate",
+                        "serves_truth": True,
+                        "public_paid_saas_ready": True,
+                        "production_acceptance_evidence": ["README.md"],
+                    }
+                )
+            (root / "README.md").write_text("not release evidence\n", "utf-8")
+            (root / "architecture/components.json").write_text(
+                json.dumps(components), "utf-8"
+            )
+            (root / "architecture/component-readiness.v1.json").write_text(
+                json.dumps(readiness), "utf-8"
+            )
+            with self.assertRaisesRegex(
+                ReadinessError, "cannot authorize product promotion"
+            ):
+                load_component_readiness(root)
+
+    def test_static_inventory_rejects_promoted_classification(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "architecture").mkdir()
+            components = json.loads(
+                (ROOT / "architecture/components.json").read_text("utf-8")
+            )
+            readiness = json.loads(
+                (ROOT / "architecture/component-readiness.v1.json").read_text(
+                    "utf-8"
+                )
+            )
+            for document in (components, readiness):
+                document["product_readiness"]["classification"] = "public_paid_ga"
+            (root / "architecture/components.json").write_text(
+                json.dumps(components), "utf-8"
+            )
+            (root / "architecture/component-readiness.v1.json").write_text(
+                json.dumps(readiness), "utf-8"
+            )
+            with self.assertRaisesRegex(
+                ReadinessError, "static inventory cannot declare"
+            ):
                 load_component_readiness(root)
 
 

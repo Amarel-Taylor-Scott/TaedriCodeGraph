@@ -32,11 +32,14 @@ mode; the smoke does not prove a production deployment. Today `/readyz` checks S
 integrity and reports the tenant count. It does not check PostgreSQL, object storage,
 provider connectivity, evaluator isolation, billing, or backup recoverability.
 
-`.github/workflows/ci.yml` runs the complete Python suite on 3.12 and 3.13, applies the
-PostgreSQL DDL twice to catch non-idempotent migrations, verifies all 44 declared
-tables, and builds both backend and explorer images without publishing them. The first
-green hosted run is still an acceptance gate; a committed workflow is not evidence
-that GitHub runners or registry permissions work.
+`.github/workflows/ci.yml` installs, compiles, and runs the cross-version-safe Python
+suite on 3.12 and 3.13. Exact checked-cohort execution and campaign-proof tests run
+only on their declared Python 3.12 worker runtime; Python 3.13 skips those tests rather
+than fabricating 3.12 execution evidence. CI also applies the PostgreSQL DDL twice to
+catch non-idempotent migrations, verifies all 44 declared tables, and builds both
+backend and explorer images without publishing them. A green hosted run is a release
+gate; a committed workflow alone is not evidence that runners or registry permissions
+work.
 
 ## Deployment truth
 

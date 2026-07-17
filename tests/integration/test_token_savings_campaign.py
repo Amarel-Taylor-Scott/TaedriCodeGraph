@@ -17,6 +17,7 @@ from taedri_codegraph.token_savings import (
     measure_prompt_interception_campaign,
     measure_prompt_interception_campaign_file,
 )
+from tests.primitive_fixtures import requires_checked_campaign_runtime
 from tests.prompt_interception_fakes import SemanticFakeChatProvider
 
 
@@ -31,6 +32,7 @@ LEGACY_LIVE = (
 
 
 class TokenSavingsCampaignAdapterTests(unittest.TestCase):
+    @requires_checked_campaign_runtime
     def test_serialized_campaign_is_measured_without_self_promotion(self) -> None:
         catalog = ReleasedPrimitiveCatalog.load_checked_cohort(COHORT)
         task = load_natural_primitive_tasks(TASKS)[0]

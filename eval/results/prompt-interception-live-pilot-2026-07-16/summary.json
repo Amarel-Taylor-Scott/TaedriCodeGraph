@@ -8,6 +8,7 @@
     "executed_case_count": 150,
     "failed_case_count": 0,
     "failure_count": 5,
+    "legacy_nonclaimable_campaign_count": 6,
     "locally_selected_descriptions_total_tokens": 15611,
     "matched_condition_pair_count": 40,
     "observed_delta_ppm_of_all_descriptions": 603932,
@@ -16,6 +17,7 @@
     "provider_usage_comparable_campaign_count": 5,
     "provider_usage_comparable_pair_count": 39,
     "provider_usage_noncomparable_campaign_count": 1,
+    "strict_v2_campaign_count": 0,
     "token_totals_scope": "only matched pairs with provider usage receipts for both conditions"
   },
   "campaigns": [
@@ -140,8 +142,31 @@
       "seeds": [
         0
       ],
+      "source_format_version": "1.0.0",
       "status_counts": {
         "provider_failed": 2
+      },
+      "strict_validation": {
+        "arm_count": 2,
+        "arm_matrix_complete": true,
+        "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:kdqgjsbajlbhan2jfexyidy5ptgwfbzlj4j6arqfj44v5hl72peq",
+        "claimable_independent_execution": false,
+        "concrete_deployment_bound": false,
+        "format_version": "1.0.0",
+        "identity_chain_valid": true,
+        "legacy": true,
+        "limitations": [
+          "legacy format has no declared task manifest, so omitted whole tasks cannot be detected",
+          "legacy verifier receipts do not bind interception, A/B arm, attempt, or occurrence",
+          "duplicate legacy verifier IDs are deterministic content matches, not independent-execution evidence",
+          "legacy campaign context does not bind harness, disclosure, provider-boundary, or executor policy versions"
+        ],
+        "manifest_complete": false,
+        "matched_pair_count": 1,
+        "pair_matrix_complete": true,
+        "provider_receipts_unique": true,
+        "task_count": 1,
+        "verification_occurrences_bound": false
       },
       "task_count": 1,
       "task_ids": [
@@ -276,9 +301,32 @@
       "seeds": [
         0
       ],
+      "source_format_version": "1.0.0",
       "status_counts": {
         "accepted": 17,
         "teacher_rejected": 1
+      },
+      "strict_validation": {
+        "arm_count": 18,
+        "arm_matrix_complete": true,
+        "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:upf5wjctfw4l6rrdnewnywzuwmhsbygsqv47pkw6xqv6pmommrca",
+        "claimable_independent_execution": false,
+        "concrete_deployment_bound": false,
+        "format_version": "1.0.0",
+        "identity_chain_valid": true,
+        "legacy": true,
+        "limitations": [
+          "legacy format has no declared task manifest, so omitted whole tasks cannot be detected",
+          "legacy verifier receipts do not bind interception, A/B arm, attempt, or occurrence",
+          "duplicate legacy verifier IDs are deterministic content matches, not independent-execution evidence",
+          "legacy campaign context does not bind harness, disclosure, provider-boundary, or executor policy versions"
+        ],
+        "manifest_complete": false,
+        "matched_pair_count": 9,
+        "pair_matrix_complete": true,
+        "provider_receipts_unique": true,
+        "task_count": 9,
+        "verification_occurrences_bound": false
       },
       "task_count": 9,
       "task_ids": [
@@ -421,9 +469,32 @@
       "seeds": [
         0
       ],
+      "source_format_version": "1.0.0",
       "status_counts": {
         "accepted": 17,
         "teacher_rejected": 1
+      },
+      "strict_validation": {
+        "arm_count": 18,
+        "arm_matrix_complete": true,
+        "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:jrkaqpwra2yylf2h2ciu3dim42cswexsre2cyaeyvmmnqlod2jjq",
+        "claimable_independent_execution": false,
+        "concrete_deployment_bound": false,
+        "format_version": "1.0.0",
+        "identity_chain_valid": true,
+        "legacy": true,
+        "limitations": [
+          "legacy format has no declared task manifest, so omitted whole tasks cannot be detected",
+          "legacy verifier receipts do not bind interception, A/B arm, attempt, or occurrence",
+          "duplicate legacy verifier IDs are deterministic content matches, not independent-execution evidence",
+          "legacy campaign context does not bind harness, disclosure, provider-boundary, or executor policy versions"
+        ],
+        "manifest_complete": false,
+        "matched_pair_count": 9,
+        "pair_matrix_complete": true,
+        "provider_receipts_unique": true,
+        "task_count": 9,
+        "verification_occurrences_bound": false
       },
       "task_count": 9,
       "task_ids": [
@@ -552,8 +623,31 @@
       "seeds": [
         0
       ],
+      "source_format_version": "1.0.0",
       "status_counts": {
         "accepted": 18
+      },
+      "strict_validation": {
+        "arm_count": 18,
+        "arm_matrix_complete": true,
+        "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:cr7z5tpvenpwkjudfur5c27gc2ulqpm3f3rniio2q7g2fs46ucta",
+        "claimable_independent_execution": false,
+        "concrete_deployment_bound": false,
+        "format_version": "1.0.0",
+        "identity_chain_valid": true,
+        "legacy": true,
+        "limitations": [
+          "legacy format has no declared task manifest, so omitted whole tasks cannot be detected",
+          "legacy verifier receipts do not bind interception, A/B arm, attempt, or occurrence",
+          "duplicate legacy verifier IDs are deterministic content matches, not independent-execution evidence",
+          "legacy campaign context does not bind harness, disclosure, provider-boundary, or executor policy versions"
+        ],
+        "manifest_complete": false,
+        "matched_pair_count": 9,
+        "pair_matrix_complete": true,
+        "provider_receipts_unique": true,
+        "task_count": 9,
+        "verification_occurrences_bound": false
       },
       "task_count": 9,
       "task_ids": [
@@ -700,9 +794,32 @@
       "seeds": [
         0
       ],
+      "source_format_version": "1.0.0",
       "status_counts": {
         "accepted": 17,
         "teacher_rejected": 1
+      },
+      "strict_validation": {
+        "arm_count": 18,
+        "arm_matrix_complete": true,
+        "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:kxw2wiexams3x4zocp2smjv75aasdwqnvz2to22xugbn2at66eyq",
+        "claimable_independent_execution": false,
+        "concrete_deployment_bound": false,
+        "format_version": "1.0.0",
+        "identity_chain_valid": true,
+        "legacy": true,
+        "limitations": [
+          "legacy format has no declared task manifest, so omitted whole tasks cannot be detected",
+          "legacy verifier receipts do not bind interception, A/B arm, attempt, or occurrence",
+          "duplicate legacy verifier IDs are deterministic content matches, not independent-execution evidence",
+          "legacy campaign context does not bind harness, disclosure, provider-boundary, or executor policy versions"
+        ],
+        "manifest_complete": false,
+        "matched_pair_count": 9,
+        "pair_matrix_complete": true,
+        "provider_receipts_unique": true,
+        "task_count": 9,
+        "verification_occurrences_bound": false
       },
       "task_count": 9,
       "task_ids": [
@@ -831,8 +948,31 @@
       "seeds": [
         0
       ],
+      "source_format_version": "1.0.0",
       "status_counts": {
         "accepted": 6
+      },
+      "strict_validation": {
+        "arm_count": 6,
+        "arm_matrix_complete": true,
+        "campaign_id": "uceg:v1:prompt_interception_campaign_receipt:3cxsb6bvw5ejf22ujnrgv44muuo5v3waudndjit2mfuzgw4tbz5q",
+        "claimable_independent_execution": false,
+        "concrete_deployment_bound": false,
+        "format_version": "1.0.0",
+        "identity_chain_valid": true,
+        "legacy": true,
+        "limitations": [
+          "legacy format has no declared task manifest, so omitted whole tasks cannot be detected",
+          "legacy verifier receipts do not bind interception, A/B arm, attempt, or occurrence",
+          "duplicate legacy verifier IDs are deterministic content matches, not independent-execution evidence",
+          "legacy campaign context does not bind harness, disclosure, provider-boundary, or executor policy versions"
+        ],
+        "manifest_complete": false,
+        "matched_pair_count": 3,
+        "pair_matrix_complete": true,
+        "provider_receipts_unique": true,
+        "task_count": 3,
+        "verification_occurrences_bound": false
       },
       "task_count": 3,
       "task_ids": [
@@ -851,13 +991,14 @@
       }
     }
   ],
-  "claim_gate": "A separate token_savings integrity evaluation with its trusted evidence resolver must decide claimability.",
+  "claim_gate": "A separate token_savings integrity evaluation with its trusted evidence resolver must decide claimability; legacy campaigns cannot supply independent-execution occurrence evidence.",
   "claimable_token_savings": false,
   "classification": "provider_native_observation_only",
-  "format_version": "1.0.0",
+  "format_version": "2.0.0",
   "scope": {
     "cohort": "constructed_in_catalog_natural_tasks",
     "execution": "actual_checked_tcgpack_execution",
+    "intervention": "deterministic local retrieval plus reduced and rank-reordered primitive-card disclosure; candidate route handles are scoped to the disclosed order",
     "measurement_stage": "selector_and_context_stage_only_not_complete_coding_session",
     "production_status": "not_organic_production_traffic",
     "token_source": "provider_native_receipts",

@@ -3,13 +3,19 @@ from __future__ import annotations
 import json
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
+from taedri_codegraph import prompt_interception as prompt_interception_module
+from taedri_codegraph.canonical import canonical_json_bytes, sha256_digest
 from taedri_codegraph.prompt_interception import (
+    CampaignExecutionPolicy,
     DeterministicBM25Shortlister,
+    PromptInterceptionError,
     PromptInterceptor,
     ReleasedPrimitiveCatalog,
     RetrievalArm,
     load_natural_primitive_tasks,
+    run_prompt_interception_campaign,
 )
 from tests.prompt_interception_fakes import SemanticFakeChatProvider
 
@@ -113,7 +119,47 @@ class PromptInterceptionUnitTests(unittest.TestCase):
             receipt.error_code, "teacher_selection_outside_candidates"
         )
 
+    def test_strict_campaign_policy_rejects_python_313_runtime(self) -> None:
+        policy = CampaignExecutionPolicy.create(
+            request_timeout_ms=60_000,
+            max_response_bytes=1_048_576,
+        ).to_dict()
+        policy["python_runtime_version"] = "3.13.0"
+        policy["verifier_runtime_digest"] = sha256_digest(
+            canonical_json_bytes(
+                {
+                    "verifier_version": policy["verifier_version"],
+                    "executor_version": policy["executor_version"],
+                    "python_runtime_version": policy["python_runtime_version"],
+                }
+            )
+        )
+        with self.assertRaisesRegex(
+            PromptInterceptionError, "requires a Python 3.12 runtime"
+        ):
+            prompt_interception_module._validate_execution_policy(policy)
+
+    def test_campaign_rejects_unsupported_runtime_before_provider_call(self) -> None:
+        provider = SemanticFakeChatProvider()
+        with patch(
+            "taedri_codegraph.prompt_interception.platform.python_version",
+            return_value="3.13.0",
+        ):
+            with self.assertRaisesRegex(
+                PromptInterceptionError, "requires a Python 3.12 runtime"
+            ):
+                run_prompt_interception_campaign(
+                    catalog=self.catalog,
+                    tasks=(self.tasks[0],),
+                    provider=provider,
+                    provider_id="fake",
+                    model="fake-model",
+                    seeds=(0,),
+                    max_completion_tokens=64,
+                    shortlist_limit=4,
+                )
+        self.assertEqual(provider.calls, [])
+
 
 if __name__ == "__main__":
     unittest.main()
-

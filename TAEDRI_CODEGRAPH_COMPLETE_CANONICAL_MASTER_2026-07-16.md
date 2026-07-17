@@ -1,13 +1,25 @@
 # TaedriCodeGraph Complete Canonical Master
 
+> **STOP-SHIP — NOT APPROVED FOR PUBLIC OR PAID PRODUCTION SAAS.** This
+> repository is a single-node private-alpha *candidate*, not an activated service or
+> a general-availability release. `serves_truth=false` and
+> `public_paid_saas_ready=false` remain controlling until the separately defined
+> gates in Part 0 pass on the exact deployed revision.
+
 ## Product, universal code graph, primitive universe, RouterMesh, SaaS architecture, research atlas, and executable build program
 
-**Status:** empirical implementation state, complete primitive/evidence record, launch plan, and expanded research atlas
+**Status:** empirical implementation state, document-coverage master, launch plan, and expanded research atlas
 **Date:** 2026-07-16
 **Project:** TaedriCodeGraph / Teleon / AIDevObserver
 **Parent:** AI Done Right
 **Scale target:** 5 million minimum; 20–50 million primary target; architecture stress-tested toward 100 million entities and beyond
 **Governing doctrine:** describe freely, retrieve cheaply, materialize selectively, reuse before rewriting, verify independently, and retain exact receipts
+
+**Meaning of “Complete” in this title:** document coverage only. It means this file
+combines the supplied research, architecture alternatives, current checkout records,
+evidence summaries, and build backlog in one navigable artifact. It does **not** mean
+that the implementation, evidence, feature set, deployment, security program, or SaaS
+launch is complete or approved.
 
 # Part 0 — Empirical implementation state (controlling)
 
@@ -36,23 +48,32 @@ public SaaS hid those distinctions.
 
 The repository has now been hardened and measured as a **single-node private-alpha
 candidate**. It must not be advertised as a public paid production SaaS. This is not a
-documentation preference; it is the release gate encoded in both architecture
-manifests and checked by tests:
+documentation preference. Both architecture inventories record the false state, and
+the repository validator now rejects every positive promotion attempt because static
+checkout files have no release authority:
 
 ```text
 classification=single_node_private_alpha_candidate
 serves_truth=false
 public_paid_saas_ready=false
+release_authority=inventory_only_no_product_promotion_authority
 ```
+
+An arbitrary existing path cannot promote these flags. A separately trusted,
+digest-, commit-, artifact-, environment-, expiry-, and approver-bound release
+authority remains a P0 build item; until it exists, the only accepted product
+classification is the candidate classification above.
 
 ## 0.2 Current checkpoint
 
 | Item | Current evidence-backed state |
 |---|---|
-| Canonical repository / branch | `Amarel-Taylor-Scott/TaedriCodeGraph`, `main` (there is no `master` branch) |
-| Implementation checkpoint | `6058a4a29f454ea74456f0d014b5ea78c458865f` |
-| Local validation | 322 tests passed; one optional MCP protocol test skipped because the optional `agents` dependency was absent |
-| Package build | Wheel built successfully; 305,329 bytes; SHA-256 `e19d7583a4e9a4294581dfca6c7ed2f695cfd3e40185b8f364a1dde5f4b65420` |
+| Canonical repository / default branch | `Amarel-Taylor-Scott/TaedriCodeGraph`, `main` (there is no `master` branch) |
+| Proposed publication branch | `codex/strict-v2-token-evidence`; pending review and merge, so this document must not be read as the current contents of `main` |
+| Evidence-bearing implementation checkpoint | `6058a4a29f454ea74456f0d014b5ea78c458865f` on the proposed publication branch; this is not a claim that the commit is already on `main` |
+| Hosted CI on final proposed head | `HOSTED_CI_PENDING_FINAL_RUN` |
+| Local validation | 326 tests passed; one optional MCP protocol test skipped because the optional `agents` dependency was absent |
+| Package build | Wheel built successfully; 305,801 bytes; SHA-256 `50f7b60be5a12c9e3c6582ba7ac2a003f489d10e7c760a80120dc717e9127e01` |
 | Product truth | Private-alpha candidate; `serves_truth=false`; not a public paid SaaS launch |
 | Component manifest | 32 components: 22 `working`, 8 `partial`, 1 `conformance_only`, 1 `poc_only` |
 | Released primitive database | 11 handles, 11 revisions, 11 releases, 11 current refs, 11 packs, 0 revocations |
@@ -65,6 +86,19 @@ public_paid_saas_ready=false
 | Credential/privacy scan | 1,705 repository files and the assembled master scanned clean across 16 high-risk credential/private-key/JWT families; 24 live-evidence files contained no raw prompt, response, message, content, authorization, header, or bearer fields/literals |
 | Failed live portability attempts | 6 Ollama and 6 OpenRouter calls failed before usable usage/execution receipts; failures remain in the evidence |
 | Claim status | `savings_claimable=false`; the measured selector-stage difference is real operator-captured evidence, not a trusted end-to-end savings claim |
+
+The component counts above are **checkout-local implementation/test classifications**,
+not deployment-readiness labels. In particular, `working` means that the exact bounded
+surface named in the component manifest has executable local evidence; it does not mean
+hosted, hardened, multi-tenant, operated, supported, or generally available. `partial`,
+`conformance_only`, and `poc_only` are likewise transitional engineering scopes.
+
+The credential/privacy result is a bounded, pattern-based scan of the files and live-
+evidence surfaces available to the scanner. It lowers the chance of obvious plaintext
+leakage; it does not prove absence from external provider systems, runtime environments,
+unreachable Git objects, opaque or encrypted archives, novel encodings, fragmented
+values, future telemetry, or data outside the scanned checkout. It is not an
+authorization, key-validity, or production-secrets-management audit.
 
 The exact full-suite command was:
 
@@ -150,15 +184,16 @@ This is not yet a general fan-in/fan-out, branching, stateful, effect-aware rout
 compiler. That boundary is important: exact unary composition works; arbitrary
 multi-primitive synthesis does not yet have production evidence.
 
-### Single-node SaaS path
+### Local authenticated multi-process preview path
 
 The authenticated local API and worker path supports tenant-scoped hashed API keys,
 mounts, jobs, leases, heartbeats, cancellation, audit chains, quota admission, usage
 receipts, prompt-session ledgers, primitive release/search/pack operations, portal plan
 and entitlement contracts, and restart/tenant-isolation tests. It uses a local SQLite
 control plane and local object paths. It is appropriate for controlled private-alpha
-operation with trusted-source execution disabled or tightly scoped, not public hostile
-multi-tenant production.
+operation with trusted-source execution disabled or tightly scoped. This is transitional
+single-node preview machinery, not public hostile multi-tenant production and not an
+activated private-alpha service by itself.
 
 ### Routing and retrieval path
 
@@ -272,9 +307,37 @@ small, manually curated, and has no repository patch or must-abstain negative ca
 | `numeric-median` | `[7,1,3]` | `3.0` |
 | `zscore-standardize` | `[1,2,3]` | approximately `[-1.224744871,0,1.224744871]` |
 
-## 0.8 Public-SaaS blockers and executable next program
+## 0.8 Launch gates by product and claim boundary
 
-The following are launch gates, not optional polish.
+These are separate gates. Passing one does not silently pass another, and an optional
+feature gate does not become a blanket statement about the whole product.
+
+### 0.8.1 Controlled private-alpha activation gate
+
+**Current decision: NOT APPROVED / NOT ACTIVATED.** Candidate status only means the
+bounded local system may be prepared for this gate. Before even a controlled private
+alpha is activated, all of the following must be recorded against the exact revision
+and deployment:
+
+- the proposal is merged and hosted CI is green on the exact head
+  (`HOSTED_CI_PENDING_FINAL_RUN` until replaced by the final run record);
+- an owner-signed activation record pins the commit, configuration, enabled features,
+  host, participants, data classes, quotas, retention, deletion, rollback, and stop
+  authority; this record must be verified by a trust root outside the candidate
+  checkout, not merely added beside the code;
+- participants and data sources are invited and allowlisted; public self-service,
+  billing, general savings claims, and hostile third-party execution remain disabled;
+- any code execution is either trusted-source-only and explicitly granted or runs in
+  an approved outer isolation boundary; the local subprocess runner is not that
+  boundary;
+- tenant-denial, restart, backup/restore, quota, audit, redaction, deletion, and manual
+  rollback checks pass on the deployed instance;
+- monitoring, a human incident contact, a kill switch, and a documented manual
+  recovery procedure are active.
+
+### 0.8.2 Core public-SaaS GA gates
+
+These gates block a public or paid multi-tenant GA release of the core hosted service.
 
 | Priority / work item | Build | Acceptance evidence required |
 |---|---|---|
@@ -285,27 +348,51 @@ The following are launch gates, not optional polish.
 | P0-05 Billing and entitlement convergence | Implement signed webhook verification, replay protection, subscription reconciliation, invoices, refunds/cancellations, and fail-closed entitlements. | Provider sandbox E2E; replay/out-of-order tests; reconciliation job; financial-event audit; entitlement convergence SLO. |
 | P0-06 Operations | Add OpenTelemetry traces/metrics/logs with redaction, dashboards, alerts, error budgets, capacity tests, runbooks, staged deployment, and rollback. | Load/soak/noisy-neighbor results; alert drills; deploy/rollback evidence; SLO report; no-secret telemetry scan. |
 | P0-07 Supply chain | Pin release dependencies and actions immutably, generate SBOM/provenance, scan dependencies/secrets/images, and sign releases/packs. | CI gates, verified signatures, provenance verification, vulnerability policy and exception workflow. |
+| P0-13 Release/deployment integrity | Operate real staging and production deployments whose tested source, tree, wheel/image, configuration, and deployed artifact digests are identical and immutable. | Protected-main merge; exact hosted checks; signed artifact/SBOM/provenance; HTTPS deployment observation; canary and rollback drills; runtime version endpoint matching the deployed digest. |
+| P0-14 Privacy, governance, legal, and support | Define data flows, encryption, retention/deletion/legal-hold/export, prompt/source handling, terms, privacy notice, DPA/subprocessors, acceptable-use policy, distribution license, support channel, and security contact. | Policy review; tenant data-lifecycle E2E; deletion/export receipts; subprocessor inventory; approved release license and operational contacts. |
+| P0-15 Disaster recovery | Automate backups and restore into a clean environment; exercise database, object-store, key-compromise, and service-failure recovery. | Measured RPO/RTO; clean-environment restore; integrity reconciliation; failure and key-compromise drill receipts. |
+| P0-16 Independent promotion authority | Derive product status from current, signed, digest-bound, commit-, artifact-, deployment-, environment-, expiry-, revocation-, and approver-bound gate receipts. Static repository manifests remain inventory-only. | External policy/trust roots; independent role approvals; mutation tests rejecting missing, stale, duplicated, wrong-commit/environment, self-approved, path-only, or self-promoting evidence; runtime fail-closed enforcement. |
+
+### 0.8.3 Marketing-claim gates
+
+These gates block public claims of general token, cost, quality, or coding-session
+savings even if a narrower service is otherwise operable. Until both pass,
+`savings_claimable=false` is controlling.
+
+| Priority / work item | Build | Acceptance evidence required |
+|---|---|---|
 | P0-08 Sealed coding benchmark | Add rights-cleared real repositories, positive and must-abstain tasks, full patch trajectories, independent tests, multiple models, seeds, and repeated runs. | Pre-registered promotion thresholds; paired non-inferiority; full overhead ledger; trusted isolated attestation; reproducible receipts. |
-| P0-09 General route compiler | Extend exact unary wiring to multi-input, branching, effect/state/authority constraints, adapter witnesses, rollback, and replay. | Soundness fixtures; poison/unknown tests; exact multi-primitive prompt→route→accepted result on real tasks. |
-| P0-10 Production model router | Connect the deterministic decision library to live model/provider execution, health/price telemetry, retries/fallbacks, budgets, and outcome feedback. | Failure-inclusive route receipts; budget enforcement; fallback chaos tests; calibration and cost/quality regression suite. |
 | P0-11 Provenance binding | Bind external source-manifest digests, retrieval index versions, task derivations, and oracle governance into campaign manifests. | Mutation tests that reject source, index, derivation, or oracle substitution. |
-| P0-12 Premium interceptor | Add explicit tenant opt-in, disclosure policy, encrypted artifacts, spend reservation, regional/provider policy, deletion, and teacher/student outcome joins. | Tenant E2E with audit; privacy/redaction tests; budget reconciliation; independently verified outcome study; default-off proof. |
+
+### 0.8.4 Feature and premium-tier activation gates
+
+Each row blocks only the corresponding advertised or enabled capability. A narrower GA
+offering may omit the feature, but must not imply that the disabled capability exists.
+
+| Priority / work item | Feature blocked until the gate passes | Acceptance evidence required |
+|---|---|---|
+| P0-09 General route compiler | General multi-input, branching, effect/state/authority-aware primitive composition. | Soundness fixtures; poison/unknown tests; exact multi-primitive prompt→route→accepted result on real tasks. |
+| P0-10 Production model router | Live cost/health-aware multi-provider routing with retries, fallbacks, budgets, and outcome calibration. | Failure-inclusive route receipts; budget enforcement; fallback chaos tests; calibration and cost/quality regression suite. |
+| P0-12 Premium interceptor | The opt-in server-side prompt interceptor or super-premium optimization tier. | Tenant E2E with audit; privacy/redaction tests; budget reconciliation; independently verified outcome study; default-off proof. |
 
 ### Promotion sequence
 
-1. **Private alpha:** deploy the current trusted-source, single-node system to a small
-   invited cohort; disable hostile execution and paid claims; collect operational
-   failures and real requests.
-2. **Production foundation:** complete P0-01 through P0-07 and run recovery, isolation,
-   and load evidence in staging.
-3. **Evidence foundation:** complete P0-08 and P0-11 before marketing general token or
-   quality savings.
-4. **Capability expansion:** complete P0-09 and P0-10, then evaluate the premium
-   interceptor under P0-12.
-5. **Public launch decision:** promote only if product manifests, CI gates, hosted
-   telemetry, billing reconciliation, recovery, security, capacity, and sealed
-   evaluation all agree. Promotion evidence must be external to the manifests it
-   changes.
+1. **Merge and reproduce:** merge only after the final hosted checks pass, then reproduce
+   the checked local evidence from the exact merged revision.
+2. **Controlled private alpha:** pass the activation gate in 0.8.1 for one pinned,
+   trusted-source deployment; activation is a separate operator decision, not a Git
+   merge side effect.
+3. **Core GA foundation:** complete P0-01 through P0-07 and P0-13 through P0-16,
+   then run recovery, isolation, authorization, billing, supply-chain, privacy,
+   independent-promotion, and load evidence in staging.
+4. **Marketing claims:** complete P0-08 and P0-11 before making general token, cost,
+   quality, or coding-session claims.
+5. **Feature expansion:** enable P0-09, P0-10, or P0-12 only after that feature's own
+   gate passes; otherwise keep it absent or fail-closed.
+6. **Public launch decision:** promote the scoped offering only if product manifests,
+   CI, hosted telemetry, billing reconciliation, recovery, security, capacity, and the
+   gates for every advertised claim/feature agree. Promotion evidence must be external
+   to the manifests it changes.
 
 ### Stop/rollback rules
 
@@ -319,7 +406,7 @@ The following are launch gates, not optional polish.
 - A component may be labeled `working` only for the exact scope its evidence executes.
   Public-SaaS promotion is a separate product-level decision.
 
-## 0.9 Historical five-primitive handoff
+## 0.9 Mixed-origin historical five-primitive handoff (not checkout evidence)
 
 The user-supplied 2026-07-16 handoff describes five different reported historical
 primitives: workflow permission minimization, permission verification, deterministic
@@ -327,11 +414,21 @@ test-run comparison, JUnit normalization, and authorized pytest execution. It re
 one 7/7-versus-7/7 comparison of 137,485 versus 85,954 model tokens (51,531 fewer,
 37.48%) and several deterministic multi-primitive routes.
 
-Those five source trees, packs, catalog database, raw attempts, and verifier receipts
-are not present in implementation checkpoint `6058a4a`. The arithmetic is preserved,
-but the claims cannot be reproduced from this checkout and do not count among the 11
-current releases. The full handoff is retained later in this Part under an explicit
-historical-evidence warning. Its “Deterministic test-run diff” section appears once.
+This is a **mixed-origin narrative**, not one five-primitive experiment or one coherent
+current catalog snapshot. The reported token comparison concerns one historical
+workflow-permission generation; the other primitive and route statements report
+separate deterministic work. Some statements reference different materialization
+generations.
+
+The five source trees, packs, catalog database, raw attempts, retained solutions,
+verifier receipts, and repository-relative path map are not present in implementation
+checkpoint `6058a4a`. No download location in this checkout resolves those materials.
+The arithmetic is preserved, but the claims cannot be reproduced from this checkout,
+do not count among the 11 current releases, and are not combined with strict-v2
+evidence. References in the source text to artifacts being “retained” mean reported as
+retained in an unavailable prior environment. The full handoff is preserved later in
+this Part under an explicit historical-evidence warning. Its “Deterministic test-run
+diff” section appears once.
 
 ## 0.10 Evidence precedence
 
@@ -826,18 +923,24 @@ The campaign files are immutable sanitized outputs. Their exact SHA-256 values a
 
 ------------------------------------------------------------------------
 
-> **Historical evidence warning:** The following handoff is preserved verbatim except for heading depth.
-> Its five primitives and raw proof materials are not present in implementation checkpoint `6058a4a`.
-> Treat its implementation and token statements as reported historical claims, not current releases or reproducible strict-v2 evidence.
-## 0.14 Full user-supplied historical five-primitive handoff
+> **MIXED-ORIGIN HISTORICAL EVIDENCE — NOT REPRODUCIBLE FROM THIS CHECKOUT.**
+> The following handoff is preserved verbatim except for heading depth and local
+> warning labels. Its five source trees, packs, catalog database, raw attempts,
+> retained solutions, verifier receipts, and path map are absent from implementation
+> checkpoint `6058a4a`. “Current,” “now,” “working,” “complete,” “proven,” and
+> “retained” below describe the unavailable source environment's claims, not this
+> checkout. Do not count the five items as current releases or combine their reported
+> token arithmetic with strict-v2 evidence.
 
-**Historical source status (not current):** canonical implementation and evaluation doctrine
+## 0.14 Full user-supplied mixed-origin historical handoff
+
+**Historical source's self-described status (not current or independently reproduced here):** “canonical implementation and evaluation doctrine”
 **Date:** 2026-07-16
-**Historical source scope (not current):** the source document's then-current checkout and future provider-neutral implementations
+**Historical source scope (not current):** an unavailable prior checkout plus future provider-neutral proposals; exact repository-relative source/evidence paths were not supplied
 **Audience:** Taedri implementers, coding-agent integrators, design partners, evaluators, and operators
 **Governing rule:** reuse exact working code before authoring new code; retrieve broadly, compose by typed evidence, execute narrowly, and verify independently
 
-### 1. Executive conclusion
+### 1. Historical source executive conclusion
 
 Taedri is materially closer to proving its central mechanism.
 
@@ -916,7 +1019,7 @@ Normal agent reuse search may return a primitive only when all of these are true
 
 The 10,000 C0 descriptions remain research and prioritization inventory. They are never counted as reusable primitives.
 
-### 3. Current working system versus open work
+### 3. Historical source's claimed working system versus open work
 
 | System | Working now | Still open |
 |---|---|---|
@@ -1496,7 +1599,12 @@ one observed demand
 - [ ] Missing economic observations remain null.
 - [ ] Publication and production authorization remain separate.
 
-### 16. Current primitive case studies
+### 16. Historical primitive case studies (source paths absent here)
+
+> **Historical case-study scope:** Every “current” state, digest, path, case count, and
+> execution claim in §§16–17 belongs to the unavailable prior source environment. The
+> corresponding source trees and receipts are not repository-relative artifacts in
+> this checkout, so these case studies are narrative evidence only.
 
 #### 16.1 Workflow permission minimizer
 
@@ -1983,16 +2091,30 @@ The target is not an LLM that writes more code. It is a system that recognizes w
 
 ## How this combined edition is organized
 
-This file has two layers:
+This file has three layers:
 
-1.  **Canonical synthesis.** A deduplicated product, architecture, research, SaaS, and implementation blueprint that resolves terminology and states the recommended build sequence.
-2.  **Full technical annexes.** The detailed business doctrine, code-entity atlas, package-processing specification, source-acquisition atlas, RouterMesh and retrieval studies, edge subsystem, repository plans, alternatives, and audits from which the synthesis was derived.
+1.  **Controlling empirical state (Part 0).** What the named checkout and evidence
+    actually demonstrate, plus the gates that remain closed.
+2.  **Target-architecture synthesis (Parts I–XX).** A deduplicated product,
+    architecture, research, SaaS, and implementation blueprint that resolves
+    terminology and states the recommended build sequence. It is a plan, not an
+    assertion that every described component exists.
+3.  **Full technical annexes.** Detailed business doctrine, code-entity atlases,
+    package-processing specifications, source-acquisition research, RouterMesh and
+    retrieval studies, edge subsystems, repository plans, alternatives, and audits.
+    These retain source-era language and are non-controlling unless Part 0 cites
+    matching current evidence.
 
 The synthesis is normative only where it labels a statement an invariant or an accepted decision. Storage engines, model vendors, hosting providers, embedding models, orchestration tools, and physical service boundaries remain replaceable mechanisms unless a public versioned contract explicitly binds them.
 
 ------------------------------------------------------------------------
 
-# Part I — Executive synthesis
+# Part I — Target architecture: executive synthesis
+
+> **TARGET ARCHITECTURE / RESEARCH — NOT CURRENT PRODUCT STATE.** Parts I–XX
+> describe the intended system, alternatives, and build program. A present-tense
+> sentence here is not implementation or deployment evidence. Part 0 controls every
+> current-state, launch, primitive-count, and token-savings claim.
 
 ## 1. The product in one sentence
 
@@ -2063,9 +2185,14 @@ The current naming and responsibility map is:
 
 These may deploy together as a modular monolith initially. Logical contracts must not be confused with a requirement for separate microservices or repositories.
 
-## 4. Current evidence and its limits
+## 4. Historical source-era evidence narrative and its limits
 
-The current work includes selected maintenance experiments in which exact Taedri primitives and baseline model outputs passed the same executable oracles. The exact-treatment lanes used zero model calls for those selected cells. A local mixed-origin SaaS proof also demonstrates a body-free route involving private tenant candidates and an external PyPI reference.
+Earlier supplied source material described selected maintenance experiments in which
+exact Taedri primitives and baseline model outputs passed the same executable oracles.
+It also described a local mixed-origin route involving private tenant candidates and
+an external PyPI reference. Those five maintenance primitives, their source tree, the
+mixed-origin script, and its cited receipt are absent from this checkout, so this
+paragraph is preserved as historical input and is not current empirical evidence.
 
 These results establish feasibility for those exact tasks, artifacts, environments, and receipts. They do not establish a universal token-savings rate, customer savings, energy savings, broad coding performance, or production authorization. The combined program therefore keeps observed evidence, estimates, simulations, and goals explicitly separate.
 
@@ -2087,7 +2214,10 @@ schema-validated RequestEnvelope
   -> operational trace + provenance + outcome receipt
 ```
 
-The next implementation extension should carry the existing mixed-origin route through real package/thin-pack materialization, digest validation, local execution, verification, rollback, and replay-condition recording.
+A future implementation may reconstruct that mixed-origin route from source and then
+carry it through real package/thin-pack materialization, digest validation, local
+execution, verification, rollback, and replay-condition recording. The route must not
+be called existing until those artifacts are present and reproducible.
 
 ------------------------------------------------------------------------
 
@@ -3332,9 +3462,9 @@ Periodically reserve exploration budget for:
 
 ------------------------------------------------------------------------
 
-# Part VIII — Production SaaS and 5M → 50M → 100M architecture
+# Part VIII — Target architecture: production SaaS and 5M → 50M → 100M
 
-## 51. Production architecture decision
+## 51. Target production-architecture decision
 
 Build Taedri as a canonical registry with independently rebuildable projections:
 
@@ -6532,7 +6662,7 @@ The point of the hundred-item atlas is controlled optionality. It prevents the i
 
 ------------------------------------------------------------------------
 
-# Part XX — Decision-ready implementation overlay
+# Part XX — Target implementation overlay and decision program
 
 ## 217. The smallest system that tests the whole thesis
 
@@ -6723,6 +6853,10 @@ Globally unique external symbol URIs solve collision and tracing problems withou
 The near-term product is therefore precise: a code-capability compiler that turns an existing package release into a searchable, composable and verifiable graph; turns a user demand into a small typed route; and proves exactly what was reused, executed, observed and accepted at materially lower context and model cost.
 
 # Taedri business model, reuse economics, and coding-agent execution guide
+
+> **ANNEX STATUS — TARGET BUSINESS/PRODUCT DOCTRINE.** This source-era guide is
+> preserved for design coverage. It is not evidence of an activated tier, validated
+> pricing, production operation, or customer outcome; Part 0 controls those claims.
 
 **Status:** living canonical doctrine, product-market-fit thesis, and mechanism-neutral implementation guide
 **Date:** 2026-07-16
@@ -8011,13 +8145,17 @@ The broader product implementation program is integrated into Part 0.8 and Part 
 this file. The earlier source volume referenced a standalone
 `TAEDRI-IMPLEMENTATION-CHECKLIST-2026-07-16.md`, which is not bundled separately.
 
-## 20. Current implementation snapshot and nonbinding priorities
+## 20. Historical source-era snapshot and nonbinding target priorities
 
-The following records the present repository path and next useful experiments. It is not the permanent technology or rollout contract. A conforming implementation may reach the same goals with different stores, indexes, models, harnesses, tools, workers, plan languages, or deployment topology.
+The following is retained from an earlier supplied source narrative. It is not a
+snapshot of this checkout and is not the permanent technology or rollout contract. A
+conforming implementation may reach the same goals with different stores, indexes,
+models, harnesses, tools, workers, plan languages, or deployment topology.
 
-### 20.1 Local mixed-origin SaaS proof now available
+### 20.1 Historical mixed-origin POC claim — artifacts absent here
 
-The focused local unit and HTTP journey now prove this candidate-only path:
+The source narrative reported that a focused local unit and HTTP journey proved this
+candidate-only path:
 
 ``` text
 tenant:address:normalize
@@ -8027,21 +8165,24 @@ tenant:address:normalize
 
 The two tenant cards are private candidates. The middle card is a body-free PyPI external reference for `usaddress==0.5.16`. Exact typed graph-frontier expansion retains the lexically invisible middle step, deterministic composition finds the route, no selector-model call is required, no implementation body enters compose context, and an explicit tenant get returns a digest-bound private payload.
 
-Executable proof:
+Reported executable path, **absent from this checkout**:
 
 ``` bash
 PYTHONPATH=. python3 -m scripts.saas_primitive_assembly_poc
 ```
 
-Secret-free receipt:
+Reported receipt path, **absent from this checkout**:
 
 ``` text
 artifacts/receipts/saas/primitive-assembly-local-2026-07-16.json
 ```
 
-This is a local HTTP transport/composition POC. It does not materialize or execute the PyPI external reference, authorize any candidate for production, or claim token savings.
+Because neither path resolves in this repository, this POC cannot be reproduced or
+counted as current evidence. Even as reported, it was only a local HTTP
+transport/composition POC: it did not materialize or execute the PyPI external
+reference, authorize any candidate for production, or claim token savings.
 
-### 20.2 Current next sequence
+### 20.2 Nonbinding target sequence
 
 1.  Finish the repository migration and obtain a green or exactly blocked clean-checkout release receipt.
 2.  Publish the minimal unified request-to-outcome contract suite.
@@ -8148,6 +8289,10 @@ Required output for each increment:
 The desired end state is not an LLM that writes more code. It is a system in which the agent recognizes what is already solved, expresses the remaining work compactly, materializes only what it needs, and proves that the assembled result actually satisfies the request.
 
 # Taedri CodeGraph
+
+> **ANNEX STATUS — SOURCE-ERA SPECIFICATION AND IMPLEMENTATION SNAPSHOT.** Read
+> present-tense statements only within their explicitly cited local evidence scope.
+> They do not override the current branch, launch, or readiness state in Part 0.
 
 **Repo:** `taedri-codegraph`
 **Tagline:** Turn existing code into a language-neutral, evidence-backed graph that agents can search, trace, verify, and safely reuse.
@@ -10659,6 +10804,10 @@ existing package bytes
 The most important implementation decision is to keep truth, search, compatibility, and generated descriptions separate but linkable. That makes it possible to add hundreds of future description types, compatibility axes, analyzers, fingerprint families, embedding models, languages, and domain schemas without weakening identity or making old results unreplayable.
 
 # Taedri CodeGraph: Exhaustive Code Entity Description Atlas
+
+> **ANNEX STATUS — TARGET DESCRIPTION ARCHITECTURE.** This is an extensible design
+> registry, not proof that every descriptor, model, index, edge, or language adapter is
+> implemented. Part 0 names the current executable subset.
 
 **Status:** architecture and implementation registry
 **Date:** 2026-07-15
@@ -13359,6 +13508,10 @@ exact identity and facts
 ```
 
 # Taedri source-acquisition and primitive-mining atlas
+
+> **ANNEX STATUS — TARGET ACQUISITION RESEARCH.** Packages, corpora, templates,
+> benchmarks, and workers listed here are candidates or plans unless Part 0 identifies
+> a checked-in, executed artifact.
 
 **Date:** 2026-07-16
 **Revision:** 2 — long-tail capability, worker, template and benchmark expansion
@@ -16242,6 +16395,10 @@ The practical first build is the eight-worker Esoteric Capability Worker Pack ab
 
 # Taedri RouterMesh and Code Entity Graph
 
+> **ANNEX STATUS — TARGET ROUTING ARCHITECTURE.** The router portfolio, harness
+> integrations, learning loop, and scale design are research/build targets. They are
+> not a claim that a production routing fleet or self-optimizing service is operating.
+
 **Deep research on cheap model routing, harness integration, universal code-entity representation, package-scale indexing, and execution-grounded learning**
 
 **Research current through 2026-07-15**
@@ -17960,6 +18117,10 @@ The first product proof remains narrow: **Python/PyPI graph + typed demand + det
 - [TwinRouterBench](https://arxiv.org/abs/2605.18859)
 
 # Taedri token-minimizing retrieval and composition waterfall
+
+> **ANNEX STATUS — TARGET RETRIEVAL/COMPOSITION ARCHITECTURE.** The waterfall and
+> its alternatives define experiments and intended controls. Only the narrower
+> evidence summarized in Part 0 is implemented and measured in the current proposal.
 
 **Date:** 2026-07-15
 **Scope:** query understanding, candidate retrieval, fusion, route compilation, escalation, token/cost accounting, 5M/40M-corpus scaling, experiments, and build backlog
@@ -20258,6 +20419,10 @@ That is both stronger and more defensible than “we use a smaller LLM to write 
 
 # Alternatives to Every Component in the Taedri First Vertical Slice
 
+> **ANNEX STATUS — ALTERNATIVE DESIGN ATLAS.** “Recommended” means a design choice
+> for evaluation, not a current feature or launch commitment. Part 0 remains the
+> implementation and evidence authority.
+
 **Architecture decision addendum — 2026-07-15**
 
 ## Executive answer
@@ -22339,6 +22504,10 @@ The original vertical slice remains a good centerline. The most important improv
 
 # Taedri CodeGraph Extension: First-Class Searchable Edges and Compatibility Signatures
 
+> **ANNEX STATUS — TARGET EXTENSION SPECIFICATION.** The full edge/signature model
+> is a design surface; current compatibility behavior is limited to the exact evidence
+> and routes named in Part 0.
+
 ## Outcome
 
 Taedri CodeGraph should treat a relationship as a searchable, versioned, evidence-bearing object in its own right. An edge is not merely two entity IDs and a predicate hidden inside an adjacency list. It can have source and target ports, call-site occurrences, bindings, conditions, direction, cardinality, control semantics, effect interactions, runtime observations, confidence calibration, policy labels, validity intervals, costs, failures, supporting and refuting evidence, and searchable descriptions.
@@ -23451,6 +23620,10 @@ Make edges richly searchable, but keep search and truth separate. Make signature
 
 # Taedri CodeGraph: First-Class Searchable Edge Subsystem
 
+> **ANNEX STATUS — TARGET SUBSYSTEM SPECIFICATION.** This section describes the
+> intended complete edge service and scale strategy, not a deployed production
+> subsystem.
+
 ## Purpose
 
 The edge subsystem makes relationships—not only nodes—addressable, searchable, rankable, explainable, composable, and verifiable. It supports two different objects without conflating them:
@@ -24190,6 +24363,10 @@ Use exhaustive all-pairs solving only on small benchmark shards to create an ora
 The subsystem succeeds when an agent can ask “what existing output can safely feed this input?” or “what verified route connects these boundaries?” and receive a small, typed, evidence-backed answer without an LLM reading the corpus or the platform enumerating every possible edge.
 
 # Searchable Code-Graph Edges: Primary Research, Failure Boundaries, and Implementation Recommendations
+
+> **ANNEX STATUS — RESEARCH AND RECOMMENDATIONS.** External research supports design
+> choices; it is not empirical proof that the corresponding Taedri components are
+> implemented or production-ready.
 
 **Prepared:** 2026-07-15
 **Scope:** Existing-code ingestion, similarity blocking, graph-edge retrieval, code embeddings, typed API compatibility, and hybrid search for a language-neutral code entity graph.
@@ -25020,6 +25197,9 @@ That separation simultaneously improves recall, reduces token use, preserves det
 
 # Taedri CodeGraph: Implementation-Grade Repository Blueprint
 
+> **ANNEX STATUS — TARGET REPOSITORY BLUEPRINT.** “Must support” and “first release”
+> are requirements and milestones, not evidence that those jobs already pass.
+
 ## Recommended project and repository name
 
 **Project:** Taedri CodeGraph
@@ -25842,6 +26022,10 @@ No analyzer, embedding, model, database, or new edge family is “done” merely
 The graph is not a giant LLM-generated description of source code. It is a versioned evidence system in which exact identity, source coordinates, static facts, runtime observations, documentation claims, heuristics, and model inferences remain distinguishable. That distinction is what makes the system safe to search at PyPI scale, cheap enough to use before a frontier model, and precise enough for an agent to reuse or modify code without reading an entire package or hallucinating relationships.
 
 # Taedri Architecture Atlas
+
+> **ANNEX STATUS — TARGET ARCHITECTURE ATLAS.** This responsibility and alternatives
+> inventory intentionally exceeds the current implementation. Nothing in it promotes a
+> component beyond Part 0's scoped evidence.
 
 **A 450+ responsibility, alternative-rich design for cheap retrieval, composition, execution, and proof at 5M–50M+ primitives**
 **Research and architecture expansion — 2026-07-15**
@@ -27162,6 +27346,10 @@ Build the exact/evidence/contract spine first, make every later mechanism an arm
 
 # Taedri master plan: deep-research audit and executable build blueprint
 
+> **ANNEX STATUS — HISTORICAL AUDIT AND TARGET BUILD BLUEPRINT.** Its verdicts and
+> proposed program remain useful, but source-era “current” claims do not supersede Part
+> 0 or establish launch readiness.
+
 **Audit date:** 2026-07-15
 **Source audited:** `Pasted text(85).txt`, 1,387 lines
 **Scope:** product thesis, evidence boundaries, value economics, 12-stage maturity pipeline, 22 component choices, 38-step prompt-to-proof flow, progressive disclosure, graph proof, 30 benchmark proposals, 170 backlog items, operating metrics, and stop rules.
@@ -28301,6 +28489,10 @@ Prove that before proving “Taedri supports every graph.”
 - [SPACE developer productivity](https://queue.acm.org/detail.cfm?id=3454124), [DORA research](https://dora.dev/research/), [GitHub Copilot experiment](https://arxiv.org/abs/2302.06590), and [METR developer study](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/)
 
 # Existing-Code Architecture Notes for the Taedri Specification
+
+> **ANNEX STATUS — TARGET ARCHITECTURE NOTES.** Names, schemas, analyzers, services,
+> and rollout steps here are design proposals unless the controlling empirical state in
+> Part 0 identifies matching current evidence.
 
 ## Recommended project and repository name
 

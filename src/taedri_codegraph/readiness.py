@@ -11,6 +11,9 @@ from typing import Any, Mapping
 READINESS_STATUSES = frozenset(
     {"working", "partial", "conformance_only", "poc_only", "scaffolded"}
 )
+INVENTORY_PRODUCT_CLASSIFICATIONS = frozenset(
+    {"single_node_private_alpha_candidate"}
+)
 
 
 class ReadinessError(ValueError):
@@ -51,19 +54,10 @@ def load_component_readiness(
     if readiness_product["serves_truth"] or readiness_product[
         "public_paid_saas_ready"
     ]:
-        production_evidence = _string_list(
-            readiness_product.get("production_acceptance_evidence", []),
-            "product_readiness.production_acceptance_evidence",
+        raise ReadinessError(
+            "static component inventories cannot authorize product promotion; "
+            "a separately trusted release authority is not implemented"
         )
-        if not production_evidence:
-            raise ReadinessError(
-                "production truth promotion requires acceptance evidence"
-            )
-        for relative in production_evidence:
-            if not (root / relative).exists():
-                raise ReadinessError(
-                    f"product readiness references missing evidence {relative!r}"
-                )
     expected = {
         item["id"] for item in _mapping_list(architecture.get("components"), "components")
     }
@@ -95,6 +89,8 @@ def load_component_readiness(
         "component_count": len(records),
         "status_counts": dict(sorted(statuses.items())),
         "working_fraction_ppm": statuses["working"] * 1_000_000 // len(records),
+        "working_fraction_scope": "declared local or transitional component scope only",
+        "release_authority": "inventory_only_no_product_promotion_authority",
         "definition_of_done": definitions,
         "product_readiness": readiness_product,
         "components": records,
@@ -136,6 +132,11 @@ def _product_readiness(value: Any, name: str) -> Mapping[str, Any]:
     paid_ready = value.get("public_paid_saas_ready")
     if not isinstance(classification, str) or not classification:
         raise ReadinessError(f"{name} product classification must be non-empty")
+    if classification not in INVENTORY_PRODUCT_CLASSIFICATIONS:
+        raise ReadinessError(
+            f"{name} static inventory cannot declare product classification "
+            f"{classification!r}"
+        )
     if not isinstance(serves_truth, bool) or not isinstance(paid_ready, bool):
         raise ReadinessError(f"{name} product truth flags must be booleans")
     return value

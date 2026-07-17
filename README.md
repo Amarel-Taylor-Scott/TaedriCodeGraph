@@ -1,5 +1,10 @@
 # Taedri CodeGraph
 
+> **STOP-SHIP — NOT APPROVED FOR PUBLIC OR PAID PRODUCTION SAAS.** The runnable
+> surfaces in this repository are a local developer preview and a candidate for a
+> separately approved, controlled single-node private alpha. They are not an activated
+> service or a GA deployment; `serves_truth=false` remains controlling.
+
 Taedri CodeGraph is a language-neutral code-knowledge and reusable-component database.
 It ingests immutable snapshots from packages, Git repositories, and other codebases;
 stores exact entities, relationships, evidence, and search representations; and can
@@ -48,11 +53,11 @@ This repository currently contains the first executable vertical slice:
   then resolves and executes the selected pack against cases withheld from the model;
 - fail-closed token accounting that keeps synthetic, reported-historical, live measured,
   and trusted-attested evidence classes separate instead of promoting a JSON label;
-- a persistent, single-node SaaS-shaped control-plane POC with tenants, hashed scoped
+- a persistent, single-node authenticated control-plane POC with tenants, hashed scoped
   API keys,
   graph mounts, append-only audit chains, content-addressed job payloads, leases,
   atomic tenant quotas, and immutable usage receipts;
-- an authenticated HTTP search/context/graph/job API plus a source-mounted worker that
+- a local authenticated HTTP search/context/graph/job API plus a source-mounted worker that
   can publish a new immutable epoch without importing or executing target Python;
 - a locally runnable browser explorer and API/worker/frontend container definitions
   with baseline hardening controls;
@@ -115,11 +120,11 @@ PYTHONPATH=src python tools/prove_token_savings.py \
 PYTHONPATH=src python tools/generate_component_inventory.py
 ```
 
-## Runnable authenticated SaaS slice
+## Local authenticated multi-process preview
 
 The local cloud-shaped path uses one SQLite control database and local immutable graph
-store. It is a real multi-process POC, not the horizontally scalable production
-adapter.
+store. It is a runnable multi-process POC, not an activated private alpha, a
+horizontally scalable production adapter, or a public SaaS service.
 
 ```bash
 # Create the tenant and print a scoped API token once.
@@ -148,10 +153,12 @@ for the trust boundary and Fly.io promotion gates, and the
 [`validation report`](docs/reports/AUTHENTICATED_SAAS_VERTICAL_SLICE_2026-07-16.md)
 for the executed test and HTTP evidence.
 
-The ordered production program and least-privilege environment matrix are in the
+The target production program and least-privilege environment matrix are in the
 [`component execution plan`](docs/architecture/COMPONENT_EXECUTION_PLAN.md). Current
-claims and open gates are machine-readable in
-[`component-readiness.v1.json`](architecture/component-readiness.v1.json). The dated,
+checkout-local component claims and open gates are machine-readable in
+[`component-readiness.v1.json`](architecture/component-readiness.v1.json). This is an
+inventory, not a release authority: the validator rejects any positive product
+promotion from static repository files. The dated,
 superseded
 [`working-system checkpoint`](docs/reports/WORKING_SYSTEM_CHECKPOINT_2026-07-16.md)
 records its earlier 175-test acceptance pass, Gunicorn loopback-socket smoke, database
@@ -166,10 +173,11 @@ It includes the regression that proved new license, integer, character, and vect
 facets can receive their declared projections without a ledger migration.
 The dated, superseded
 [`primitive-platform acceptance report`](docs/reports/PRIMITIVE_PLATFORM_WATERFALLS_2026-07-16.md)
-records its historical 233-test acceptance pass. The current contract has 41 API operations across
-37 paths and 44 PostgreSQL tables, including proof-gated releases and revocations; the
-report also links the installable wheel, component inventory, CSV/JSON evidence, and
-explicit hosted gates.
+records its historical 233-test acceptance pass. The current design contract declares
+41 API operations across 37 paths and DDL for 44 PostgreSQL tables, including
+proof-gated releases and revocations; these counts do not mean a production PostgreSQL
+deployment is running. The report also links the installable wheel, component
+inventory, CSV/JSON evidence, and explicit hosted gates.
 
 No third-party runtime dependency is required for the graph core. Install
 `taedri-codegraph[agents]` for the optional MCP server. The supported baseline is
@@ -386,7 +394,8 @@ for any one of these gates.
 
 ## Project status
 
-Working developer preview / controlled private-alpha candidate. The current slice
+Working local developer preview / controlled private-alpha candidate; not approved or
+activated as a public or paid service. The current slice
 proves the identity/evidence/ingestion/publication/query
 spine, the universal representation extension mechanism, real-source primitive
 candidate generation, a complete Git-hostable custom primitive, proof-gated Python
@@ -398,7 +407,7 @@ PostgreSQL repository and object-store adapters, production embedding/ANN provid
 OIDC browser sessions, independent hostile-code sandbox verification, calibrated fusion, a live
 billing-provider adapter, and broad compatibility/adapter/branching routing remain
 explicit later milestones. Exact adapter-free unary Python wiring is implemented.
-Tenant authorization and a
-persistent HTTP/worker path now execute with the single-node SQLite adapter.
+Tenant authorization and a local persistent HTTP/worker path execute with the
+single-node SQLite adapter.
 
 No project license has been selected yet; all rights are reserved until one is added.
