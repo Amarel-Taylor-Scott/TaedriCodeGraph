@@ -11,7 +11,7 @@ from taedri_codegraph.primitives.authoring import (
     build_primitive_files,
     render_primitive_directory,
 )
-from tools.generate_data_primitive_capsules import COHORT
+from tools.generate_data_primitive_capsules import COHORT, check, generate
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[2]
 
 class PrimitiveAuthoringTests(unittest.TestCase):
     def test_checked_in_data_cohort_is_exactly_reproducible(self) -> None:
-        self.assertEqual(len(COHORT), 9)
+        self.assertEqual(len(COHORT), 11)
         for spec in COHORT:
             expected = build_primitive_files(spec)
             directory = ROOT / "examples/primitives" / spec.category / spec.name
@@ -53,6 +53,25 @@ class PrimitiveAuthoringTests(unittest.TestCase):
                 spec = dataclasses.replace(COHORT[0], source_code=source)
                 with self.assertRaises(PrimitiveAuthoringError):
                     build_primitive_files(spec)
+
+    def test_generator_check_detects_byte_drift_without_rewriting_it(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            destination = Path(temporary) / "primitives"
+            generated = generate(destination)
+            checked = check(destination)
+            self.assertEqual(generated, checked)
+            source = (
+                destination
+                / COHORT[0].category
+                / COHORT[0].name
+                / COHORT[0].source_path
+            )
+            source.write_bytes(source.read_bytes() + b"\n")
+            with self.assertRaisesRegex(
+                PrimitiveAuthoringError, "generated primitive content drift"
+            ):
+                check(destination)
+            self.assertTrue(source.read_bytes().endswith(b"\n\n"))
 
 
 if __name__ == "__main__":

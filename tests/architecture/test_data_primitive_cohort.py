@@ -24,16 +24,16 @@ class DataPrimitiveCohortArchitectureTests(unittest.TestCase):
         ) as stream:
             compatibility = list(csv.DictReader(stream))
         self.assertEqual(run["status"], "passed")
-        self.assertEqual(run["primitive_count"], 11)
-        self.assertEqual(run["new_data_primitive_count"], 9)
-        self.assertEqual(len(catalog), 11)
-        self.assertEqual(run["executed_case_count"], 66)
-        self.assertEqual(run["capsule_payload_count"], 143)
-        self.assertEqual(run["evidence_edge_count"], 66)
-        self.assertEqual(run["typed_port_count"], 22)
-        self.assertEqual(run["search_exact_selection_count"], 11)
-        self.assertEqual(run["digested_pack_count"], 11)
-        self.assertEqual(run["digested_file_count"], 132)
+        self.assertEqual(run["primitive_count"], 13)
+        self.assertEqual(run["new_data_primitive_count"], 11)
+        self.assertEqual(len(catalog), 13)
+        self.assertEqual(run["executed_case_count"], 78)
+        self.assertEqual(run["capsule_payload_count"], 169)
+        self.assertEqual(run["evidence_edge_count"], 78)
+        self.assertEqual(run["typed_port_count"], 26)
+        self.assertEqual(run["search_exact_selection_count"], 13)
+        self.assertEqual(run["digested_pack_count"], 13)
+        self.assertEqual(run["digested_file_count"], 156)
         self.assertTrue(
             all(
                 item["digestion_omitted_roles"] == ["verifier"]
@@ -41,13 +41,19 @@ class DataPrimitiveCohortArchitectureTests(unittest.TestCase):
             )
         )
         self.assertEqual(len(compatibility), run["compatibility_edge_count"])
-        self.assertEqual(run["compatibility_edge_count"], 18)
+        self.assertEqual(run["compatibility_edge_count"], 31)
         self.assertEqual(run["model_calls"], 0)
         self.assertEqual(run["generated_route_code_bytes"], 0)
         self.assertEqual(run["text_route"]["output"], "customer_strasse")
         self.assertEqual(run["numeric_route"]["output"], 0.5)
+        self.assertEqual(
+            run["datetime_route"]["output"], "2026-07-17T12:30:00Z"
+        )
+        self.assertIsNone(run["null_route"]["output"])
         self.assertEqual(run["text_route"]["receipt"]["executed_stage_count"], 4)
         self.assertEqual(run["numeric_route"]["receipt"]["executed_stage_count"], 2)
+        self.assertEqual(run["datetime_route"]["receipt"]["executed_stage_count"], 2)
+        self.assertEqual(run["null_route"]["receipt"]["executed_stage_count"], 2)
 
     def test_persistent_registry_and_download_packs_are_real(self) -> None:
         database = RESULTS / "data-primitive-registry.sqlite"
@@ -60,16 +66,16 @@ class DataPrimitiveCohortArchitectureTests(unittest.TestCase):
             )
             self.assertEqual(
                 connection.execute("SELECT COUNT(*) FROM primitive_release").fetchone()[0],
-                11,
+                13,
             )
             self.assertEqual(
                 connection.execute("SELECT COUNT(*) FROM primitive_blob").fetchone()[0],
-                109,
+                129,
             )
         finally:
             connection.close()
         packs = sorted((RESULTS / "packs").glob("*.tcgpack"))
-        self.assertEqual(len(packs), 11)
+        self.assertEqual(len(packs), 13)
         self.assertTrue(all(path.stat().st_size > 3_000 for path in packs))
 
     def test_graph_chart_and_console_are_self_contained(self) -> None:

@@ -100,9 +100,13 @@ tcg primitive validate examples/primitives/casefold-text
 # Release, search, download, and compose two real primitives without an LLM.
 PYTHONPATH=src python tools/run_deterministic_primitive_pipeline.py
 
-# Regenerate and execute the complete 11-release reusable data cohort.
+# Regenerate, byte-check, and execute the complete 13-release reusable data cohort.
 PYTHONPATH=src python tools/generate_data_primitive_capsules.py
+PYTHONPATH=src python tools/generate_data_primitive_capsules.py --check
 PYTHONPATH=src python tools/run_data_primitive_cohort.py
+
+# Compare legacy BM25 with the versioned, budgeted primitive retrieval program.
+PYTHONPATH=src python tools/benchmark_primitive_retrieval_program.py
 
 # Preview a bounded comparison without making provider calls. The model would see all
 # 11 descriptions in condition A and at most four locally selected descriptions in B.
@@ -258,18 +262,21 @@ and distribution boundaries are useful.
 
 The executable POC implements immutable revisions, optimistic branch updates, immutable
 tags, cross-namespace forks, merges, role-selective packs, cached-blob omission, and
-append-only revocation. Eleven repository-native primitives contain executable source,
+append-only revocation. Thirteen repository-native primitives contain executable source,
 contract, descriptor, examples, test vectors, verifier policy, evidence-backed interface
 graphs, documentation, runtime locks, license evidence, and source provenance. They remain
 hidden while staged, then pass real local execution before release, search, and download.
-The checked-in data cohort adds nine common cleaning, engineering, and science utilities,
-serves 11 exact targeted searches, identifies 18 blocked exact compatibility edges, and
-executes both a four-stage text route and a two-stage numeric route from downloaded packs
-without a model call, generated code, or rewritten primitive bytes.
+The checked-in data cohort adds 11 common cleaning, engineering, and science utilities,
+serves 13 exact targeted searches, identifies 31 blocked exact compatibility edges, and
+executes text, numeric, timezone-normalization, and null-marker routes from downloaded
+packs without a model call, generated code, or rewritten primitive bytes. A versioned
+retrieval program then evaluates exact, labels, BM25, blocking, nonsemantic lexical-hash,
+and optional true-semantic paths under explicit lifecycle and cost policy.
 
 ![Reusable data primitive cohort](eval/results/data-primitive-cohort-2026-07-16/primitive-cohort-summary.svg)
 
 Read the [data primitive library guide](docs/guides/DATA_PRIMITIVE_LIBRARY.md),
+the [primitive retrieval program guide](docs/guides/PRIMITIVE_RETRIEVAL_PROGRAMS.md),
 the [interactive cohort console](eval/results/data-primitive-cohort-2026-07-16/index.html),
 the [primitive truth and release policy](docs/architecture/PRIMITIVE_TRUTH_RELEASE_AND_LANGUAGE_SCOPE.md),
 the [one-at-a-time authoring guide](docs/guides/PRIMITIVE_AUTHORING.md),

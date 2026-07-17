@@ -1,0 +1,23 @@
+{
+  "summary": "Normalize common textual missing-value markers to a JSON null value.",
+  "keywords": [
+    "missing values",
+    "null marker",
+    "data cleaning",
+    "sentinel normalization"
+  ],
+  "use_cases": [
+    "normalize CSV missing-value sentinels before type conversion",
+    "map blank strings and common null labels to one value",
+    "prepare nullable text fields for deterministic comparison"
+  ],
+  "limitations": [
+    "The marker set is fixed to blank, NA, N/A, null, and none.",
+    "Whitespace and case are ignored only when testing for a marker.",
+    "Non-marker strings are returned byte-for-byte unchanged."
+  ],
+  "references": [
+    "https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html",
+    "https://docs.python.org/3.12/library/stdtypes.html#str.casefold"
+  ]
+}

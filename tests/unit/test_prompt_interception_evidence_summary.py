@@ -39,7 +39,7 @@ class FullCatalogAbstainProvider:
         prepared = tuple(messages)
         payload = json.loads(prepared[-1].content)
         forced = None
-        if len(payload["primitive_cards"]) == 11:
+        if len(payload["primitive_cards"]) == 13:
             forced = (
                 '{"reason_code":"no_suitable_candidate",'
                 '"selected_route_handle":null}'

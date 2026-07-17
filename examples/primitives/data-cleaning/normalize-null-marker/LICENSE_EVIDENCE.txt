@@ -1,0 +1,2 @@
+This primitive follows the repository's current licensing status: all rights reserved.
+No public open-source license or redistribution grant is asserted by this capsule.

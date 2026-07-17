@@ -96,7 +96,7 @@ class DifferingReportedModelProvider:
         payload = json.loads(prepared[-1].content)
         reported = (
             "deployment-full"
-            if len(payload["primitive_cards"]) == 11
+            if len(payload["primitive_cards"]) == 13
             else "deployment-local"
         )
         receipt = result.receipt

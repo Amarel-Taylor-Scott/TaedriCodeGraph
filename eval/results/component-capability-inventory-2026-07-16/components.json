@@ -187,7 +187,7 @@
         "src/taedri_codegraph/primitives/authoring.py"
       ],
       "kind": "library",
-      "measured_records": "Data cohort: 11 public releases / 109 blobs / 11 downloadable packs",
+      "measured_records": "Data cohort: 13 public releases / 129 blobs / 13 downloadable packs",
       "next_gates": [
         "signed packs",
         "PostgreSQL metadata and object-store repository adapter",
@@ -371,7 +371,9 @@
         "query planning",
         "sparse and LSH retrieval",
         "bounded vector scoring",
-        "fusion receipts"
+        "fusion receipts",
+        "versioned cost-budgeted primitive retrieval programs",
+        "representation lifecycle and path receipts"
       ],
       "folder": "packages/retrieval",
       "id": "retrieval",
@@ -381,7 +383,7 @@
         "src/taedri_codegraph/fingerprints.py"
       ],
       "kind": "library",
-      "measured_records": "36 retained real-package hybrid query receipts",
+      "measured_records": "36 retained real-package hybrid query receipts; primitive-card program: 31 deterministic cases / 26/26 positive rank-1 hits / 5/5 unsupported abstentions / 83→34 returned candidates",
       "next_gates": [
         "real embedding provider adapters",
         "ANN service adapter",
@@ -412,7 +414,7 @@
         "src/taedri_codegraph/primitives/wiring.py"
       ],
       "kind": "library",
-      "measured_records": "Data cohort: 66 evidence edges / 22 typed ports / 18 blocked exact compatibility edges / 2 executed routes",
+      "measured_records": "Data cohort: 78 evidence edges / 26 typed ports / 31 blocked exact compatibility edges / 4 executed routes",
       "next_gates": [
         "persistent corpus-scale signatures",
         "bounded candidate blocking",
@@ -483,7 +485,8 @@
         "paired metrics",
         "body-free primitive prompt interception and checked execution",
         "campaign-v2 task manifests, exact arm matrices, and occurrence-bound verification receipts",
-        "trusted-evidence interfaces and fail-closed token claim evaluation"
+        "trusted-evidence interfaces and fail-closed token claim evaluation",
+        "deterministic primitive retrieval benchmarks"
       ],
       "folder": "packages/benchmarking",
       "id": "benchmarking",
@@ -498,7 +501,7 @@
         "tools/prove_token_savings.py"
       ],
       "kind": "library",
-      "measured_records": "16 deterministic worker-conformance receipts plus 13 checked live campaign documents (7 strict v2; 6 legacy non-claimable v1); 192 provider-call attempts / 96 matched-pair observations / 346 case-execution observations; strict-v2 usage-complete observation 50,369→20,248 across 50 pairs; legacy-v1 observation 39,415→15,611 across 39 pairs; claimable_token_savings=false",
+      "measured_records": "16 deterministic worker-conformance receipts plus 1 primitive retrieval program benchmark / 31 cases; 13 checked live campaign documents (7 strict v2; 6 legacy non-claimable v1); 192 provider-call attempts / 96 matched-pair observations / 346 case-execution observations; strict-v2 usage-complete observation 50,369→20,248 across 50 pairs; legacy-v1 observation 39,415→15,611 across 39 pairs; claimable_token_savings=false",
       "next_gates": [
         "trusted isolated runtime and verifier attestation plus complete retrieval, selection, verification, repair, cache, and tool overhead receipts",
         "sealed representative coding tasks with unsupported-task abstention and repository patch outcomes",
@@ -687,7 +690,7 @@
         "services/primitive-worker"
       ],
       "kind": "service",
-      "measured_records": "347 candidates plus 11 locally acceptance-verified released primitives",
+      "measured_records": "347 candidates plus 13 locally acceptance-verified released primitives",
       "next_gates": [
         "hostile-code isolated verification",
         "non-Python generators and verifiers",
@@ -778,7 +781,7 @@
         "services/registry-api/README.md"
       ],
       "kind": "service",
-      "measured_records": "Data cohort: 11 public releases; 0 candidate rows serving as primitives",
+      "measured_records": "Data cohort: 13 public releases; 0 candidate rows serving as primitives",
       "next_gates": [
         "reviewed merge command",
         "signed packs",
@@ -951,6 +954,7 @@
         "bounded live-provider primitive-selection observations",
         "strict campaign-v2 integrity summaries",
         "external issue-derived positive retrieval workload",
+        "versioned primitive retrieval program receipts",
         "token-savings proof classification",
         "reports"
       ],
@@ -972,7 +976,7 @@
         "tools/prove_token_savings.py"
       ],
       "kind": "evaluation",
-      "measured_records": "3 real PyPI packages + 2 real usaddress sources + 11 real custom releases + 2 no-model routes + 9 constructed tasks/18 cases + 5 external issue-derived positive tasks/10 cases + 13 checked live campaign documents (7 strict v2; 6 legacy non-claimable v1); 192 provider-call attempts / 96 matched-pair observations / 346 case-execution observations; strict-v2 usage-complete observation 50,369→20,248 across 50 pairs; legacy-v1 observation 39,415→15,611 across 39 pairs; claimable_token_savings=false",
+      "measured_records": "3 real PyPI packages + 2 real usaddress sources + 13 real custom releases + 4 no-model routes + 31 primitive retrieval cases + 9 constructed tasks/18 cases + 5 external issue-derived positive tasks/10 cases + 13 checked live campaign documents (7 strict v2; 6 legacy non-claimable v1); 192 provider-call attempts / 96 matched-pair observations / 346 case-execution observations; strict-v2 usage-complete observation 50,369→20,248 across 50 pairs; legacy-v1 observation 39,415→15,611 across 39 pairs; claimable_token_savings=false",
       "next_gates": [
         "representative sealed repository-level coding tasks including must-abstain negatives",
         "trusted isolated runtime evidence and complete failure-inclusive overhead accounting",
@@ -983,9 +987,24 @@
       "status": "partial"
     }
   ],
+  "data_primitive_evidence": {
+    "blob_count": 129,
+    "executed_route_count": 4,
+    "pack_count": 13,
+    "release_count": 13
+  },
   "json_schema_count": 19,
   "live_database_note": "No production database is checked into Git. Counts are explicitly tied to immutable evaluation receipts or marked stateless/absent.",
   "postgres_table_count": 44,
+  "primitive_retrieval_evidence": {
+    "case_count": 31,
+    "negative_abstentions": 5,
+    "negative_case_count": 5,
+    "positive_case_count": 26,
+    "positive_rank1_hits": 26,
+    "program_digest": "sha256:3c965b0726e289a14d676eba2b59b3472d779adde6afc3c939f0804dc5a683a7",
+    "returned_candidate_count": 34
+  },
   "product_readiness": {
     "classification": "single_node_private_alpha_candidate",
     "not_validated": "Public multi-tenant production operation, managed PostgreSQL/object-store runtime use, hostile-code isolation, OIDC/RBAC, live billing and webhook reconciliation, production observability, full-service backup/restore, retention operations, and staged deploy/rollback.",

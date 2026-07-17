@@ -183,6 +183,9 @@ def main() -> None:
     data_cohort = read_json(
         "eval/results/data-primitive-cohort-2026-07-16/run.json"
     )
+    retrieval_program = read_json(
+        "eval/results/primitive-retrieval-program-2026-07-17/run.json"
+    )
     benchmark = read_json(
         "eval/results/benchmark-worker-2026-07-16/conformance-report.json"
     )
@@ -217,6 +220,10 @@ def main() -> None:
     pipeline_edges = int(data_cohort["compatibility_edge_count"])
     evidence_edges = int(data_cohort["evidence_edge_count"])
     pipeline_ports = int(data_cohort["typed_port_count"])
+    primitive_route_count = sum(
+        key in data_cohort
+        for key in ("text_route", "numeric_route", "datetime_route", "null_route")
+    )
     benchmark_runs = int(benchmark["completed_run_count"])
     natural_task_count, natural_case_count = _task_fixture_counts(
         "fixtures/prompt-interception/natural-tasks.json"
@@ -259,10 +266,24 @@ def main() -> None:
         "analyzer-python": f"Real PyPI evidence: {total_entities:,} entities / {total_relations:,} relations across 140 files",
         "analyzer-polyglot": "No dedicated durable rows; working file-inventory boundary, semantic adapters not claimed",
         "storage": f"5 real published evaluation epochs; usaddress runs: {mount_entities:,} entities / {mount_variants:,} typed variants",
-        "retrieval": "36 retained real-package hybrid query receipts",
-        "compatibility": f"Data cohort: {evidence_edges} evidence edges / {pipeline_ports} typed ports / {pipeline_edges} blocked exact compatibility edges / 2 executed routes",
+        "retrieval": (
+            "36 retained real-package hybrid query receipts; primitive-card program: "
+            f"{retrieval_program['fixture_case_count']} deterministic cases / "
+            f"{retrieval_program['program_metrics']['positive_hits_at_1']}/"
+            f"{retrieval_program['positive_case_count']} positive rank-1 hits / "
+            f"{retrieval_program['program_metrics']['negative_abstentions']}/"
+            f"{retrieval_program['negative_case_count']} unsupported abstentions / "
+            f"{retrieval_program['legacy_metrics']['returned_candidate_count']}→"
+            f"{retrieval_program['program_metrics']['returned_candidate_count']} "
+            "returned candidates"
+        ),
+        "compatibility": f"Data cohort: {evidence_edges} evidence edges / {pipeline_ports} typed ports / {pipeline_edges} blocked exact compatibility edges / {primitive_route_count} executed routes",
         "session-ledger": "Reference factory evidence: 1 digest-only session / 7 events / 0 model calls",
-        "benchmarking": f"{benchmark_runs} deterministic worker-conformance receipts plus {live_campaign_summary}",
+        "benchmarking": (
+            f"{benchmark_runs} deterministic worker-conformance receipts plus 1 "
+            f"primitive retrieval program benchmark / "
+            f"{retrieval_program['fixture_case_count']} cases; {live_campaign_summary}"
+        ),
         "saas-control-plane": "Real acquisition evidence: 1 tenant / 2 succeeded jobs / 4 audit events",
         "worker-runtime": "Real acquisition evidence: 2 leased and succeeded network jobs",
         "benchmark-worker": f"{benchmark_runs} deterministic fixture receipts; 0 live campaigns executed by the durable worker service",
@@ -277,7 +298,7 @@ def main() -> None:
         "explorer-app": "Static application; records are read from authenticated APIs",
         "portal-app": "Static application + versioned plan/subscription contracts; no checked-in customer rows",
         "deployment": f"{sql_tables} PostgreSQL tables; Docker/Compose and one-Machine Fly POC",
-        "evaluation": f"3 real PyPI packages + 2 real usaddress sources + {released} real custom releases + 2 no-model routes + {natural_task_count} constructed tasks/{natural_case_count} cases + {external_task_count} external issue-derived positive tasks/{external_case_count} cases + {live_campaign_summary}",
+        "evaluation": f"3 real PyPI packages + 2 real usaddress sources + {released} real custom releases + {primitive_route_count} no-model routes + {retrieval_program['fixture_case_count']} primitive retrieval cases + {natural_task_count} constructed tasks/{natural_case_count} cases + {external_task_count} external issue-derived positive tasks/{external_case_count} cases + {live_campaign_summary}",
     }
     records: list[dict[str, Any]] = []
     for component in architecture["components"]:
@@ -307,6 +328,27 @@ def main() -> None:
         "json_schema_count": schema_count,
         "api_operation_count": route_count,
         "api_path_count": path_count,
+        "data_primitive_evidence": {
+            "release_count": released,
+            "blob_count": release_blobs,
+            "pack_count": int(data_cohort["pack_count"]),
+            "executed_route_count": primitive_route_count,
+        },
+        "primitive_retrieval_evidence": {
+            "case_count": int(retrieval_program["fixture_case_count"]),
+            "positive_rank1_hits": int(
+                retrieval_program["program_metrics"]["positive_hits_at_1"]
+            ),
+            "positive_case_count": int(retrieval_program["positive_case_count"]),
+            "negative_abstentions": int(
+                retrieval_program["program_metrics"]["negative_abstentions"]
+            ),
+            "negative_case_count": int(retrieval_program["negative_case_count"]),
+            "returned_candidate_count": int(
+                retrieval_program["program_metrics"]["returned_candidate_count"]
+            ),
+            "program_digest": retrieval_program["program_digest"],
+        },
         "prompt_interception_evidence": campaigns,
         "live_database_note": "No production database is checked into Git. Counts are explicitly tied to immutable evaluation receipts or marked stateless/absent.",
         "components": records,
@@ -389,7 +431,7 @@ def render_markdown(result: dict[str, Any]) -> str:
             "",
             "## Primitive truth boundary",
             "",
-            "The factory's candidate rows are not primitive releases. Public primitive search, resolution, and pack delivery read only `primitive_release`, whose rows require the complete capsule and all executable acceptance proofs. The checked-in data cohort has 11 active releases; the 347 static candidates remain candidate-only.",
+            f"The factory's candidate rows are not primitive releases. Public primitive search, resolution, and pack delivery read only `primitive_release`, whose rows require the complete capsule and all executable acceptance proofs. The checked-in data cohort has {result['data_primitive_evidence']['release_count']} active releases; the 347 static candidates remain candidate-only.",
             "",
             "## Prompt-interception evidence boundary",
             "",

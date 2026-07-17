@@ -10,7 +10,13 @@ from textwrap import dedent
 
 from taedri_codegraph.primitives.authoring import (
     PrimitiveAuthoringSpec,
+    PrimitiveAuthoringError,
+    build_primitive_files,
     render_primitive_directory,
+)
+from taedri_codegraph.primitives.bundle import (
+    InspectedPrimitiveDirectory,
+    inspect_primitive_directory,
 )
 
 
@@ -520,6 +526,172 @@ COHORT = (
         ),
     ),
     _spec(
+        category="data-cleaning",
+        name="normalize-null-marker",
+        function_name="normalize_null_marker",
+        source_code=_source(
+            '''
+            """Normalize common textual missing-value markers to JSON null."""
+
+
+            _NULL_MARKERS = frozenset(("", "na", "n/a", "null", "none"))
+
+
+            def normalize_null_marker(value: str) -> str | None:
+                """Return None for a fixed missing-value marker, otherwise value."""
+
+                if not isinstance(value, str):
+                    raise TypeError("value must be a string")
+                if value.strip().casefold() in _NULL_MARKERS:
+                    return None
+                return value
+            '''
+        ),
+        summary="Normalize common textual missing-value markers to a JSON null value.",
+        keywords=(
+            "missing values",
+            "null marker",
+            "data cleaning",
+            "sentinel normalization",
+        ),
+        use_cases=(
+            "normalize CSV missing-value sentinels before type conversion",
+            "map blank strings and common null labels to one value",
+            "prepare nullable text fields for deterministic comparison",
+        ),
+        limitations=(
+            "The marker set is fixed to blank, NA, N/A, null, and none.",
+            "Whitespace and case are ignored only when testing for a marker.",
+            "Non-marker strings are returned byte-for-byte unchanged.",
+        ),
+        input_name="value",
+        input_schema=STRING_SCHEMA,
+        output_schema={"type": ["string", "null"]},
+        errors=({"type": "TypeError", "when": "value is not a string"},),
+        examples=(
+            _case("positive", " N/A ", expected=None),
+            _case("boundary", "", expected=None),
+            _case("negative", 0, error="TypeError"),
+        ),
+        tests=(
+            _case("positive", "  NULL\t", expected=None),
+            _case("boundary", "none such", expected="none such"),
+            _case("negative", None, error="TypeError"),
+        ),
+        group_id="taedri.group.data_cleaning_missing_values",
+        group_labels=(
+            "normalize null markers",
+            "clean missing value sentinels",
+            "map blank text to null",
+        ),
+        documentation=(
+            "matches a small documented set of common missing-value strings after "
+            "stripping and case folding, returning `None` for matches and preserving "
+            "every non-marker string exactly."
+        ),
+        references=(
+            "https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html",
+            "https://docs.python.org/3.12/library/stdtypes.html#str.casefold",
+        ),
+    ),
+    _spec(
+        category="data-engineering",
+        name="normalize-iso-datetime",
+        function_name="normalize_iso_datetime",
+        source_code=_source(
+            '''
+            """Normalize one timezone-aware ISO 8601 timestamp to canonical UTC."""
+
+            from datetime import datetime, timezone
+
+
+            def normalize_iso_datetime(value: str) -> str:
+                """Return a timezone-aware timestamp in UTC with a trailing Z."""
+
+                if not isinstance(value, str):
+                    raise TypeError("value must be a string")
+                candidate = value.strip()
+                if candidate.endswith("Z"):
+                    candidate = candidate[:-1] + "+00:00"
+                try:
+                    parsed = datetime.fromisoformat(candidate)
+                except ValueError as exc:
+                    raise ValueError("value must be an ISO 8601 timestamp") from exc
+                if parsed.tzinfo is None or parsed.utcoffset() is None:
+                    raise ValueError("value must include a UTC offset")
+                normalized = parsed.astimezone(timezone.utc)
+                timespec = "microseconds" if normalized.microsecond else "seconds"
+                return normalized.isoformat(timespec=timespec).removesuffix("+00:00") + "Z"
+            '''
+        ),
+        summary="Convert one timezone-aware ISO 8601 timestamp to canonical UTC text.",
+        keywords=(
+            "datetime parsing",
+            "ISO 8601",
+            "timestamp normalization",
+            "UTC",
+        ),
+        use_cases=(
+            "normalize timestamps from APIs with different UTC offsets",
+            "create stable UTC text before sorting or deduplication",
+            "reject timezone-ambiguous event timestamps during ingestion",
+        ),
+        limitations=(
+            "Timezone-naive inputs are rejected rather than assigned an implicit zone.",
+            "Accepted syntax follows Python 3.12 `datetime.fromisoformat`.",
+            "Named timezone identifiers and leap seconds are not accepted.",
+        ),
+        input_name="value",
+        input_schema=STRING_SCHEMA,
+        output_schema=STRING_SCHEMA,
+        errors=(
+            {"type": "TypeError", "when": "value is not a string"},
+            {"type": "ValueError", "when": "value is invalid or lacks a UTC offset"},
+        ),
+        examples=(
+            _case(
+                "positive",
+                "2026-07-17T08:30:00-04:00",
+                expected="2026-07-17T12:30:00Z",
+            ),
+            _case(
+                "boundary",
+                "2000-01-01T00:00:00.123456+00:00",
+                expected="2000-01-01T00:00:00.123456Z",
+            ),
+            _case("negative", "2026-07-17T12:30:00", error="ValueError"),
+        ),
+        tests=(
+            _case(
+                "positive",
+                "2026-07-17T12:30:00Z",
+                expected="2026-07-17T12:30:00Z",
+            ),
+            _case(
+                "boundary",
+                "1970-01-01T05:30:00+05:30",
+                expected="1970-01-01T00:00:00Z",
+            ),
+            _case("negative", 1_234, error="TypeError"),
+        ),
+        group_id="taedri.group.data_engineering_datetime_normalization",
+        group_labels=(
+            "normalize ISO datetime to UTC",
+            "parse timezone aware timestamp",
+            "canonical event time",
+        ),
+        documentation=(
+            "parses a timezone-aware ISO 8601 timestamp with the Python 3.12 standard "
+            "library, converts it to UTC, and emits seconds or six-digit microseconds "
+            "with a trailing `Z`."
+        ),
+        references=(
+            "https://docs.python.org/3.12/library/datetime.html#datetime.datetime.fromisoformat",
+            "https://www.rfc-editor.org/rfc/rfc3339",
+        ),
+        allowed_imports=("datetime",),
+    ),
+    _spec(
         category="data-science",
         name="numeric-mean",
         function_name="numeric_mean",
@@ -834,6 +1006,8 @@ SEARCH_QUERIES = {
     "stable-deduplicate": "stable duplicate removal",
     "flatten-record": "flatten nested record",
     "chunk-sequence": "batch sequence chunks",
+    "normalize-null-marker": "normalize null markers",
+    "normalize-iso-datetime": "normalize ISO datetime to UTC",
     "numeric-mean": "arithmetic mean numeric vector",
     "numeric-median": "robust median numeric vector",
     "minmax-scale": "scale numeric vector zero one",
@@ -841,29 +1015,72 @@ SEARCH_QUERIES = {
 }
 
 
+def _record(
+    spec: PrimitiveAuthoringSpec,
+    path: Path,
+    inspected: InspectedPrimitiveDirectory,
+) -> dict[str, object]:
+    return {
+        "category": spec.category,
+        "namespace": spec.namespace,
+        "name": spec.name,
+        "path": (
+            path.relative_to(ROOT).as_posix()
+            if path.is_relative_to(ROOT)
+            else path.as_posix()
+        ),
+        "tree_id": inspected.tree_id,
+        "source_digest": inspected.artifacts.source_digest,
+        "executed_case_count": (
+            inspected.artifacts.example_count
+            + inspected.artifacts.test_case_count
+        ),
+        "edge_count": inspected.artifacts.interface_edge_count,
+        "port_count": inspected.artifacts.interface_port_count,
+        "group_count": inspected.artifacts.capability_group_count,
+        "search_query": SEARCH_QUERIES[spec.name],
+    }
+
+
 def generate(destination: Path) -> tuple[dict[str, object], ...]:
     records: list[dict[str, object]] = []
     for spec in COHORT:
         path = destination / spec.category / spec.name
         inspected = render_primitive_directory(spec, path)
-        records.append(
-            {
-                "category": spec.category,
-                "namespace": spec.namespace,
-                "name": spec.name,
-                "path": path.relative_to(ROOT).as_posix() if path.is_relative_to(ROOT) else path.as_posix(),
-                "tree_id": inspected.tree_id,
-                "source_digest": inspected.artifacts.source_digest,
-                "executed_case_count": (
-                    inspected.artifacts.example_count
-                    + inspected.artifacts.test_case_count
-                ),
-                "edge_count": inspected.artifacts.interface_edge_count,
-                "port_count": inspected.artifacts.interface_port_count,
-                "group_count": inspected.artifacts.capability_group_count,
-                "search_query": SEARCH_QUERIES[spec.name],
-            }
-        )
+        records.append(_record(spec, path, inspected))
+    return tuple(records)
+
+
+def check(destination: Path) -> tuple[dict[str, object], ...]:
+    """Verify checked-in capsules match their strict specifications byte-for-byte."""
+
+    records: list[dict[str, object]] = []
+    for spec in COHORT:
+        path = destination / spec.category / spec.name
+        expected = build_primitive_files(spec)
+        if not path.is_dir() or path.is_symlink():
+            raise PrimitiveAuthoringError(
+                f"generated primitive directory is missing or unsafe: {path}"
+            )
+        actual_paths = {
+            item.relative_to(path).as_posix()
+            for item in path.rglob("*")
+            if item.is_file() or item.is_symlink()
+        }
+        if actual_paths != set(expected):
+            missing = sorted(set(expected) - actual_paths)
+            unexpected = sorted(actual_paths - set(expected))
+            raise PrimitiveAuthoringError(
+                f"generated primitive tree drift for {spec.name}; "
+                f"missing={missing!r}; unexpected={unexpected!r}"
+            )
+        for relative, content in expected.items():
+            target = path / relative
+            if target.is_symlink() or target.read_bytes() != content:
+                raise PrimitiveAuthoringError(
+                    f"generated primitive content drift: {spec.name}/{relative}"
+                )
+        records.append(_record(spec, path, inspect_primitive_directory(path)))
     return tuple(records)
 
 
@@ -874,13 +1091,20 @@ def main() -> None:
         type=Path,
         default=ROOT / "examples/primitives",
     )
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="verify generated capsules exactly without rewriting them",
+    )
     arguments = parser.parse_args()
     destination = arguments.destination.resolve()
-    records = generate(destination)
+    records = check(destination) if arguments.check else generate(destination)
     print(
         json.dumps(
             {
-                "status": "generated-and-validated",
+                "status": (
+                    "checked-exact" if arguments.check else "generated-and-validated"
+                ),
                 "primitive_count": len(records),
                 "records": records,
             },

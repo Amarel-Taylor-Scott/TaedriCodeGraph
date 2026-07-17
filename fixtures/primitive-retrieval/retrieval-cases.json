@@ -1,0 +1,192 @@
+{
+  "schema_version": "1.0.0",
+  "description": "Deterministic primitive-card retrieval cases. Positive cases measure catalog selection only; negative cases measure grounded abstention.",
+  "cases": [
+    {
+      "case_id": "casefold.exact",
+      "kind": "exact",
+      "query": "casefold-text",
+      "expected_name": "casefold-text"
+    },
+    {
+      "case_id": "casefold.paraphrase",
+      "kind": "paraphrase",
+      "query": "Fold Unicode letter case for caseless text comparison.",
+      "expected_name": "casefold-text"
+    },
+    {
+      "case_id": "normalize_text.exact",
+      "kind": "exact",
+      "query": "normalize-text",
+      "expected_name": "normalize-text"
+    },
+    {
+      "case_id": "normalize_text.paraphrase",
+      "kind": "paraphrase",
+      "query": "Trim surrounding Unicode whitespace from a user-entered text field.",
+      "expected_name": "normalize-text"
+    },
+    {
+      "case_id": "whitespace.exact",
+      "kind": "exact",
+      "query": "collapse-whitespace",
+      "expected_name": "collapse-whitespace"
+    },
+    {
+      "case_id": "whitespace.paraphrase",
+      "kind": "paraphrase",
+      "query": "Squeeze tabs, newlines, and repeated spaces into single spaces.",
+      "expected_name": "collapse-whitespace"
+    },
+    {
+      "case_id": "column_name.exact",
+      "kind": "exact",
+      "query": "normalize-column-name",
+      "expected_name": "normalize-column-name"
+    },
+    {
+      "case_id": "column_name.paraphrase",
+      "kind": "paraphrase",
+      "query": "Clean spreadsheet headers into stable underscored field identifiers.",
+      "expected_name": "normalize-column-name"
+    },
+    {
+      "case_id": "deduplicate.exact",
+      "kind": "exact",
+      "query": "stable-deduplicate",
+      "expected_name": "stable-deduplicate"
+    },
+    {
+      "case_id": "deduplicate.paraphrase",
+      "kind": "paraphrase",
+      "query": "Retain first occurrences while removing repeated JSON values.",
+      "expected_name": "stable-deduplicate"
+    },
+    {
+      "case_id": "flatten.exact",
+      "kind": "exact",
+      "query": "flatten-record",
+      "expected_name": "flatten-record"
+    },
+    {
+      "case_id": "flatten.paraphrase",
+      "kind": "paraphrase",
+      "query": "Turn nested dictionaries into one level with dotted paths.",
+      "expected_name": "flatten-record"
+    },
+    {
+      "case_id": "chunk.exact",
+      "kind": "exact",
+      "query": "chunk-sequence",
+      "expected_name": "chunk-sequence"
+    },
+    {
+      "case_id": "chunk.paraphrase",
+      "kind": "paraphrase",
+      "query": "Split a list into fixed-size contiguous upload batches.",
+      "expected_name": "chunk-sequence"
+    },
+    {
+      "case_id": "null_marker.exact",
+      "kind": "exact",
+      "query": "normalize-null-marker",
+      "expected_name": "normalize-null-marker"
+    },
+    {
+      "case_id": "null_marker.paraphrase",
+      "kind": "paraphrase",
+      "query": "Map blank and N/A sentinel strings to a missing value.",
+      "expected_name": "normalize-null-marker"
+    },
+    {
+      "case_id": "datetime.exact",
+      "kind": "exact",
+      "query": "normalize-iso-datetime",
+      "expected_name": "normalize-iso-datetime"
+    },
+    {
+      "case_id": "datetime.paraphrase",
+      "kind": "paraphrase",
+      "query": "Convert an offset timestamp into universal UTC time.",
+      "expected_name": "normalize-iso-datetime"
+    },
+    {
+      "case_id": "mean.exact",
+      "kind": "exact",
+      "query": "numeric-mean",
+      "expected_name": "numeric-mean"
+    },
+    {
+      "case_id": "mean.paraphrase",
+      "kind": "paraphrase",
+      "query": "Average a non-empty finite list of numbers.",
+      "expected_name": "numeric-mean"
+    },
+    {
+      "case_id": "median.exact",
+      "kind": "exact",
+      "query": "numeric-median",
+      "expected_name": "numeric-median"
+    },
+    {
+      "case_id": "median.paraphrase",
+      "kind": "paraphrase",
+      "query": "Find a robust center for unsorted finite numeric observations.",
+      "expected_name": "numeric-median"
+    },
+    {
+      "case_id": "minmax.exact",
+      "kind": "exact",
+      "query": "minmax-scale",
+      "expected_name": "minmax-scale"
+    },
+    {
+      "case_id": "minmax.paraphrase",
+      "kind": "paraphrase",
+      "query": "Rescale numeric features to the closed zero-to-one interval.",
+      "expected_name": "minmax-scale"
+    },
+    {
+      "case_id": "zscore.exact",
+      "kind": "exact",
+      "query": "zscore-standardize",
+      "expected_name": "zscore-standardize"
+    },
+    {
+      "case_id": "zscore.paraphrase",
+      "kind": "paraphrase",
+      "query": "Center features at zero with unit population variance.",
+      "expected_name": "zscore-standardize"
+    },
+    {
+      "case_id": "negative.astronomy",
+      "kind": "negative",
+      "query": "Quasar xylophone astrophysics orbital spectroscopy.",
+      "expected_name": null
+    },
+    {
+      "case_id": "negative.image",
+      "kind": "negative",
+      "query": "Render a photorealistic sunset image with volumetric clouds.",
+      "expected_name": null
+    },
+    {
+      "case_id": "negative.network",
+      "kind": "negative",
+      "query": "Open a websocket and stream cryptocurrency exchange prices.",
+      "expected_name": null
+    },
+    {
+      "case_id": "negative.music",
+      "kind": "negative",
+      "query": "Transpose a polyphonic MIDI score into a different musical key.",
+      "expected_name": null
+    },
+    {
+      "case_id": "negative.geometry",
+      "kind": "negative",
+      "query": "Triangulate a three-dimensional mesh and compute surface normals.",
+      "expected_name": null
+    }
+  ]
+}

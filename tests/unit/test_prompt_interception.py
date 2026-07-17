@@ -10,6 +10,7 @@ from taedri_codegraph.canonical import canonical_json_bytes, sha256_digest
 from taedri_codegraph.prompt_interception import (
     CampaignExecutionPolicy,
     DeterministicBM25Shortlister,
+    DeterministicRetrievalProgramShortlister,
     PromptInterceptionError,
     PromptInterceptor,
     ReleasedPrimitiveCatalog,
@@ -31,7 +32,7 @@ class PromptInterceptionUnitTests(unittest.TestCase):
         cls.tasks = load_natural_primitive_tasks(TASKS)
 
     def test_checked_cards_bind_exact_releases_and_pack_handles(self) -> None:
-        self.assertEqual(len(self.catalog.cards), 11)
+        self.assertEqual(len(self.catalog.cards), 13)
         for card in self.catalog.cards:
             self.assertTrue(card.primitive_id.startswith("uceg:v1:primitive:"))
             self.assertTrue(card.release_id.startswith("uceg:v1:primitive_release:"))
@@ -70,6 +71,24 @@ class PromptInterceptionUnitTests(unittest.TestCase):
             "quasar xylophone astrophysics orbital spectroscopy", 4
         )
         self.assertEqual(unsupported, ())
+
+    def test_default_interceptor_uses_versioned_multi_path_retrieval(self) -> None:
+        interceptor = PromptInterceptor(
+            self.catalog, SemanticFakeChatProvider(), shortlist_limit=4
+        )
+        self.assertIsInstance(
+            interceptor.shortlister, DeterministicRetrievalProgramShortlister
+        )
+        execution = interceptor.shortlister.execute(
+            "map blank and N/A sentinel strings to a missing value", 4
+        )
+        self.assertEqual(
+            self.catalog.card(execution.candidates[0].primitive_id).name,
+            "normalize-null-marker",
+        )
+        self.assertEqual(len(execution.path_receipts), 6)
+        self.assertNotIn("map blank", json.dumps(execution.to_dict()))
+        execution.identity.validate()
 
     def test_teacher_can_explicitly_abstain_and_usage_is_retained(self) -> None:
         provider = SemanticFakeChatProvider(

@@ -1,0 +1,25 @@
+{
+  "cases": [
+    {
+      "kind": "positive",
+      "args": [
+        "  NULL\t"
+      ],
+      "expected": null
+    },
+    {
+      "kind": "boundary",
+      "args": [
+        "none such"
+      ],
+      "expected": "none such"
+    },
+    {
+      "kind": "negative",
+      "args": [
+        null
+      ],
+      "expected_error": "TypeError"
+    }
+  ]
+}

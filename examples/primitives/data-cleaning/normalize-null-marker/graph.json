@@ -1,0 +1,225 @@
+{
+  "schema_version": "1.1.0",
+  "interface_id": "taedri.data.cleaning.normalize-null-marker.v1",
+  "nodes": [
+    {
+      "id": "implementation.normalize_null_marker",
+      "kind": "implementation",
+      "path": "src/normalize_null_marker.py",
+      "symbol": "normalize_null_marker"
+    },
+    {
+      "id": "contract.normalize_null_marker",
+      "kind": "contract",
+      "path": "contract.json"
+    },
+    {
+      "id": "port.input.value",
+      "kind": "input_port",
+      "path": "contract.json",
+      "json_pointer": "#/inputs/0"
+    },
+    {
+      "id": "port.output.result",
+      "kind": "output_port",
+      "path": "contract.json",
+      "json_pointer": "#/output"
+    },
+    {
+      "id": "examples.normalize_null_marker",
+      "kind": "example_set",
+      "path": "examples.json"
+    },
+    {
+      "id": "tests.normalize_null_marker",
+      "kind": "test_set",
+      "path": "tests.json"
+    },
+    {
+      "id": "runtime.python312",
+      "kind": "runtime",
+      "path": "runtime.json"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.implements_contract",
+      "source": "implementation.normalize_null_marker",
+      "predicate": "taedri.predicate.implements_contract",
+      "target": "contract.normalize_null_marker",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "src/normalize_null_marker.py",
+          "digest": "sha256:3cd63c745fe30fa014712faea037a3e6d5984253c56449f0be4aef898a7c604f"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:d767c8e15a2c17f26d445e6e8f92abf3c1a31d65e2b116d86dd8863f98e07628"
+        }
+      ]
+    },
+    {
+      "id": "edge.accepts_value",
+      "source": "implementation.normalize_null_marker",
+      "predicate": "taedri.predicate.accepts_port",
+      "target": "port.input.value",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:d767c8e15a2c17f26d445e6e8f92abf3c1a31d65e2b116d86dd8863f98e07628"
+        }
+      ]
+    },
+    {
+      "id": "edge.produces_result",
+      "source": "implementation.normalize_null_marker",
+      "predicate": "taedri.predicate.produces_port",
+      "target": "port.output.result",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:d767c8e15a2c17f26d445e6e8f92abf3c1a31d65e2b116d86dd8863f98e07628"
+        }
+      ]
+    },
+    {
+      "id": "edge.demonstrated_by_examples",
+      "source": "examples.normalize_null_marker",
+      "predicate": "taedri.predicate.demonstrates",
+      "target": "implementation.normalize_null_marker",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "examples.json",
+          "digest": "sha256:e1da124f1daa45f06c136edda8ccd4d6cf8cc56f3876ba549184d00d1163fb1e"
+        }
+      ]
+    },
+    {
+      "id": "edge.verified_by_tests",
+      "source": "tests.normalize_null_marker",
+      "predicate": "taedri.predicate.verifies",
+      "target": "implementation.normalize_null_marker",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "tests.json",
+          "digest": "sha256:58d67a0963ce9626462b13420d2b860a7f15b6360cb167c145007fafc324815b"
+        }
+      ]
+    },
+    {
+      "id": "edge.runs_on_python312",
+      "source": "implementation.normalize_null_marker",
+      "predicate": "taedri.predicate.runs_on",
+      "target": "runtime.python312",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "runtime.json",
+          "digest": "sha256:6a6fc5bc3bd684fef6a6c62d63f916e25f835e21adfcfb96efca7c71bfc54482"
+        }
+      ]
+    }
+  ],
+  "ports": [
+    {
+      "id": "port.input.value",
+      "owner": "implementation.normalize_null_marker",
+      "direction": "input",
+      "name": "value",
+      "schema": {
+        "type": "string"
+      },
+      "schema_digest": "sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03",
+      "schema_ref": "contract.json#/inputs/0/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native",
+        "text"
+      ]
+    },
+    {
+      "id": "port.output.result",
+      "owner": "implementation.normalize_null_marker",
+      "direction": "output",
+      "name": "result",
+      "schema": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "schema_digest": "sha256:9c391ac2188b5e4522a894c8bb93953261884822933d8ab99f9a48076f79c739",
+      "schema_ref": "contract.json#/output/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native"
+      ]
+    }
+  ],
+  "compatibility": {
+    "language": "python",
+    "runtime_version": "3.12",
+    "execution_model": "in_process_call",
+    "deterministic": true,
+    "purity": "pure",
+    "network": "denied",
+    "effects": [],
+    "dimensions": {
+      "taedri.compatibility.call_style": "sync",
+      "taedri.compatibility.language": "python",
+      "taedri.compatibility.runtime_major_minor": "3.12",
+      "taedri.compatibility.value_transport": "python_native"
+    },
+    "required_dimensions": [
+      "taedri.compatibility.call_style",
+      "taedri.compatibility.language",
+      "taedri.compatibility.runtime_major_minor",
+      "taedri.compatibility.value_transport"
+    ]
+  },
+  "groups": [
+    {
+      "id": "taedri.group.data_cleaning_missing_values",
+      "kind": "capability",
+      "labels": [
+        "normalize null markers",
+        "clean missing value sentinels",
+        "map blank text to null"
+      ],
+      "member_nodes": [
+        "implementation.normalize_null_marker"
+      ],
+      "evidence": [
+        {
+          "path": "descriptor.json",
+          "digest": "sha256:0ec499f1906c1b49a9d54aa613aa4b57955478739f9521023a345a9ca29113d8"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:d767c8e15a2c17f26d445e6e8f92abf3c1a31d65e2b116d86dd8863f98e07628"
+        }
+      ]
+    }
+  ]
+}

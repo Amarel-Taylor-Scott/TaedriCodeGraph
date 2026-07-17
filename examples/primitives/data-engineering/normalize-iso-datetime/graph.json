@@ -1,0 +1,223 @@
+{
+  "schema_version": "1.1.0",
+  "interface_id": "taedri.data.engineering.normalize-iso-datetime.v1",
+  "nodes": [
+    {
+      "id": "implementation.normalize_iso_datetime",
+      "kind": "implementation",
+      "path": "src/normalize_iso_datetime.py",
+      "symbol": "normalize_iso_datetime"
+    },
+    {
+      "id": "contract.normalize_iso_datetime",
+      "kind": "contract",
+      "path": "contract.json"
+    },
+    {
+      "id": "port.input.value",
+      "kind": "input_port",
+      "path": "contract.json",
+      "json_pointer": "#/inputs/0"
+    },
+    {
+      "id": "port.output.result",
+      "kind": "output_port",
+      "path": "contract.json",
+      "json_pointer": "#/output"
+    },
+    {
+      "id": "examples.normalize_iso_datetime",
+      "kind": "example_set",
+      "path": "examples.json"
+    },
+    {
+      "id": "tests.normalize_iso_datetime",
+      "kind": "test_set",
+      "path": "tests.json"
+    },
+    {
+      "id": "runtime.python312",
+      "kind": "runtime",
+      "path": "runtime.json"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.implements_contract",
+      "source": "implementation.normalize_iso_datetime",
+      "predicate": "taedri.predicate.implements_contract",
+      "target": "contract.normalize_iso_datetime",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "src/normalize_iso_datetime.py",
+          "digest": "sha256:2bdc908151dc6f9d820145d2b6180884c909dee3aaa3c3003c01f1c2a5665898"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:555b759f5ae9fd5fea2e6dc7158bccbc290e072ab3943a4f415f4be057d0acc5"
+        }
+      ]
+    },
+    {
+      "id": "edge.accepts_value",
+      "source": "implementation.normalize_iso_datetime",
+      "predicate": "taedri.predicate.accepts_port",
+      "target": "port.input.value",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:555b759f5ae9fd5fea2e6dc7158bccbc290e072ab3943a4f415f4be057d0acc5"
+        }
+      ]
+    },
+    {
+      "id": "edge.produces_result",
+      "source": "implementation.normalize_iso_datetime",
+      "predicate": "taedri.predicate.produces_port",
+      "target": "port.output.result",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:555b759f5ae9fd5fea2e6dc7158bccbc290e072ab3943a4f415f4be057d0acc5"
+        }
+      ]
+    },
+    {
+      "id": "edge.demonstrated_by_examples",
+      "source": "examples.normalize_iso_datetime",
+      "predicate": "taedri.predicate.demonstrates",
+      "target": "implementation.normalize_iso_datetime",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "examples.json",
+          "digest": "sha256:8362ebe1613e4f640e0b09e98cb851047368c26fd870ee38c670aa696fa4d8d7"
+        }
+      ]
+    },
+    {
+      "id": "edge.verified_by_tests",
+      "source": "tests.normalize_iso_datetime",
+      "predicate": "taedri.predicate.verifies",
+      "target": "implementation.normalize_iso_datetime",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "tests.json",
+          "digest": "sha256:5d827e935cbac7bbc9e65ea8b1af3076861fc57de639faf3893a1e8c35d91ace"
+        }
+      ]
+    },
+    {
+      "id": "edge.runs_on_python312",
+      "source": "implementation.normalize_iso_datetime",
+      "predicate": "taedri.predicate.runs_on",
+      "target": "runtime.python312",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "runtime.json",
+          "digest": "sha256:06a9994475862ea5e4852ffe76508c771db5a8e826ac9a489cb3ec9a26b3addc"
+        }
+      ]
+    }
+  ],
+  "ports": [
+    {
+      "id": "port.input.value",
+      "owner": "implementation.normalize_iso_datetime",
+      "direction": "input",
+      "name": "value",
+      "schema": {
+        "type": "string"
+      },
+      "schema_digest": "sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03",
+      "schema_ref": "contract.json#/inputs/0/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native",
+        "text"
+      ]
+    },
+    {
+      "id": "port.output.result",
+      "owner": "implementation.normalize_iso_datetime",
+      "direction": "output",
+      "name": "result",
+      "schema": {
+        "type": "string"
+      },
+      "schema_digest": "sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03",
+      "schema_ref": "contract.json#/output/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native",
+        "text"
+      ]
+    }
+  ],
+  "compatibility": {
+    "language": "python",
+    "runtime_version": "3.12",
+    "execution_model": "in_process_call",
+    "deterministic": true,
+    "purity": "pure",
+    "network": "denied",
+    "effects": [],
+    "dimensions": {
+      "taedri.compatibility.call_style": "sync",
+      "taedri.compatibility.language": "python",
+      "taedri.compatibility.runtime_major_minor": "3.12",
+      "taedri.compatibility.value_transport": "python_native"
+    },
+    "required_dimensions": [
+      "taedri.compatibility.call_style",
+      "taedri.compatibility.language",
+      "taedri.compatibility.runtime_major_minor",
+      "taedri.compatibility.value_transport"
+    ]
+  },
+  "groups": [
+    {
+      "id": "taedri.group.data_engineering_datetime_normalization",
+      "kind": "capability",
+      "labels": [
+        "normalize ISO datetime to UTC",
+        "parse timezone aware timestamp",
+        "canonical event time"
+      ],
+      "member_nodes": [
+        "implementation.normalize_iso_datetime"
+      ],
+      "evidence": [
+        {
+          "path": "descriptor.json",
+          "digest": "sha256:a758af186677cb748807b4b7c7b06bd5d19cc83ce91f797229fb66fad38a4d60"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:555b759f5ae9fd5fea2e6dc7158bccbc290e072ab3943a4f415f4be057d0acc5"
+        }
+      ]
+    }
+  ]
+}

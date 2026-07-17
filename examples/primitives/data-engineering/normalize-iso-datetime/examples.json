@@ -1,0 +1,25 @@
+{
+  "examples": [
+    {
+      "kind": "positive",
+      "args": [
+        "2026-07-17T08:30:00-04:00"
+      ],
+      "expected": "2026-07-17T12:30:00Z"
+    },
+    {
+      "kind": "boundary",
+      "args": [
+        "2000-01-01T00:00:00.123456+00:00"
+      ],
+      "expected": "2000-01-01T00:00:00.123456Z"
+    },
+    {
+      "kind": "negative",
+      "args": [
+        "2026-07-17T12:30:00"
+      ],
+      "expected_error": "ValueError"
+    }
+  ]
+}

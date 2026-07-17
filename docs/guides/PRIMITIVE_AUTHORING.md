@@ -35,7 +35,7 @@ The graph schema is intentionally composition-grade. It requires:
   effects, and required compatibility dimensions; and
 - at least one evidence-backed capability group with searchable labels.
 
-The working repository cohort contains 11 complete primitives:
+The working repository cohort contains 13 complete primitives:
 
 - `examples/primitives/normalize-text`
 - `examples/primitives/casefold-text`
@@ -43,7 +43,7 @@ The working repository cohort contains 11 complete primitives:
 - `examples/primitives/data-engineering/*`
 - `examples/primitives/data-science/*`
 
-The nine data utilities are generated from strict typed specifications by
+The 11 data utilities are generated from strict typed specifications by
 `tools/generate_data_primitive_capsules.py`. The compiler in
 `src/taedri_codegraph/primitives/authoring.py` reduces repetitive metadata work but
 rejects placeholders, undeclared imports, invalid cases, missing description facets,
@@ -53,8 +53,12 @@ Regenerate and then execute the whole current cohort with:
 
 ```bash
 PYTHONPATH=src python tools/generate_data_primitive_capsules.py
+PYTHONPATH=src python tools/generate_data_primitive_capsules.py --check
 PYTHONPATH=src python tools/run_data_primitive_cohort.py
 ```
+
+The `--check` form is read-only: it recompiles every declared file in memory and fails
+on any missing, unexpected, symlinked, or byte-drifted capsule content.
 
 ## Validate without executing
 

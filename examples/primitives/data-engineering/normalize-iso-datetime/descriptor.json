@@ -1,0 +1,23 @@
+{
+  "summary": "Convert one timezone-aware ISO 8601 timestamp to canonical UTC text.",
+  "keywords": [
+    "datetime parsing",
+    "ISO 8601",
+    "timestamp normalization",
+    "UTC"
+  ],
+  "use_cases": [
+    "normalize timestamps from APIs with different UTC offsets",
+    "create stable UTC text before sorting or deduplication",
+    "reject timezone-ambiguous event timestamps during ingestion"
+  ],
+  "limitations": [
+    "Timezone-naive inputs are rejected rather than assigned an implicit zone.",
+    "Accepted syntax follows Python 3.12 `datetime.fromisoformat`.",
+    "Named timezone identifiers and leap seconds are not accepted."
+  ],
+  "references": [
+    "https://docs.python.org/3.12/library/datetime.html#datetime.datetime.fromisoformat",
+    "https://www.rfc-editor.org/rfc/rfc3339"
+  ]
+}

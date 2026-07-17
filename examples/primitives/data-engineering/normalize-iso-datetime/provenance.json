@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0",
+  "implementation_producer_id": "taedri.data.author.normalize-iso-datetime.v1",
+  "source_uri": "https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/tree/main/examples/primitives/data-engineering/normalize-iso-datetime",
+  "source_revision": "sha256:97541e0942fe57a1dd784685a1bfc92ca6495a3a9607bcb7fb05712af4903b78",
+  "source_digest": "sha256:97541e0942fe57a1dd784685a1bfc92ca6495a3a9607bcb7fb05712af4903b78"
+}

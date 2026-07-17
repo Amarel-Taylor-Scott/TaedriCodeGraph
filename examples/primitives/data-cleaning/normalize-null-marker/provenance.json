@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0",
+  "implementation_producer_id": "taedri.data.author.normalize-null-marker.v1",
+  "source_uri": "https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/tree/main/examples/primitives/data-cleaning/normalize-null-marker",
+  "source_revision": "sha256:caa567f84dfa1703e6a4a067591432cf2cc1d45ecfed54744cb355788f0a2093",
+  "source_digest": "sha256:caa567f84dfa1703e6a4a067591432cf2cc1d45ecfed54744cb355788f0a2093"
+}

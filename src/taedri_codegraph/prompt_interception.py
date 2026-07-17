@@ -25,6 +25,14 @@ from .identity import IdentityRecord
 from .model_providers import ChatMessage, ChatProvider, ModelUsageReceipt
 from .primitive_capsules import decode_primitive_pack
 from .primitives.edges import PrimitiveInterface, validate_primitive_graph
+from .primitives.retrieval_program import (
+    PrimitiveRetrievalIndex,
+    RetrievalDocument,
+    RetrievalProgram,
+    RetrievalProgramExecution,
+    SemanticPrimitiveRetriever,
+    default_primitive_retrieval_program,
+)
 from .primitives.wiring import (
     ExactPrimitiveWirePlanner,
     LocalDeterministicPythonPipelineExecutor,
@@ -429,6 +437,66 @@ class DeterministicBM25Shortlister:
         return result
 
 
+class DeterministicRetrievalProgramShortlister:
+    """Run the default versioned multi-path program over body-free cards."""
+
+    VERSION = "versioned-primitive-retrieval-program-v1"
+
+    def __init__(
+        self,
+        cards: Sequence[PrimitiveCard],
+        *,
+        program: RetrievalProgram | None = None,
+        semantic_retriever: SemanticPrimitiveRetriever | None = None,
+        capabilities: Sequence[str] = (),
+    ) -> None:
+        self.cards = tuple(sorted(cards, key=lambda item: item.primitive_id))
+        if not self.cards:
+            raise PromptInterceptionError("shortlister requires primitive cards")
+        documents = tuple(
+            RetrievalDocument(
+                card.primitive_id,
+                card.namespace,
+                card.name,
+                card.summary,
+                card.keywords,
+                card.use_cases,
+            )
+            for card in self.cards
+        )
+        self.program = program or default_primitive_retrieval_program()
+        self.index = PrimitiveRetrievalIndex(
+            documents, semantic_retriever=semantic_retriever
+        )
+        self.capabilities = tuple(capabilities)
+
+    def full_catalog(self) -> tuple[RankedCandidate, ...]:
+        return tuple(
+            RankedCandidate(f"c{index:03d}", card.primitive_id, index, None)
+            for index, card in enumerate(self.cards, start=1)
+        )
+
+    def execute(self, request: str, limit: int) -> RetrievalProgramExecution:
+        return self.index.execute(
+            request,
+            self.program,
+            limit=limit,
+            capabilities=self.capabilities,
+        )
+
+    def shortlist(self, request: str, limit: int) -> tuple[RankedCandidate, ...]:
+        execution = self.execute(request, limit)
+        return tuple(
+            RankedCandidate(
+                f"c{candidate.rank:03d}",
+                candidate.primitive_id,
+                candidate.rank,
+                candidate.score_microunits,
+            )
+            for candidate in execution.candidates
+        )
+
+
 @dataclass(frozen=True, slots=True)
 class CandidateRejection(RecordMixin):
     primitive_id: str
@@ -531,6 +599,11 @@ class PromptInterceptor:
         provider: ChatProvider,
         *,
         shortlist_limit: int = 4,
+        shortlister: (
+            DeterministicBM25Shortlister
+            | DeterministicRetrievalProgramShortlister
+            | None
+        ) = None,
     ) -> None:
         if isinstance(shortlist_limit, bool) or not 1 <= shortlist_limit < len(catalog.cards):
             raise PromptInterceptionError(
@@ -539,7 +612,9 @@ class PromptInterceptor:
         self.catalog = catalog
         self.provider = provider
         self.shortlist_limit = shortlist_limit
-        self.shortlister = DeterministicBM25Shortlister(catalog.cards)
+        self.shortlister = shortlister or DeterministicRetrievalProgramShortlister(
+            catalog.cards
+        )
 
     def messages(
         self, task: "NaturalPrimitiveTask", retrieval_arm: RetrievalArm
@@ -1856,7 +1931,10 @@ def run_prompt_interception_campaign(
     # spending a provider call; an unsupported host must fail without side effects.
     _validate_execution_policy(execution_policy.to_dict())
     interceptor = PromptInterceptor(
-        catalog, provider, shortlist_limit=shortlist_limit
+        catalog,
+        provider,
+        shortlist_limit=shortlist_limit,
+        shortlister=DeterministicBM25Shortlister(catalog.cards),
     )
     verifier = IndependentPackVerifier(catalog)
     arms: list[CampaignArmReceipt] = []

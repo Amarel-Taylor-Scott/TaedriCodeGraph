@@ -21,6 +21,11 @@
       <data key="label">normalize-column-name</data>
       <data key="category">data-cleaning</data>
     </node>
+    <node id="primitive:normalize-null-marker">
+      <data key="kind">primitive</data>
+      <data key="label">normalize-null-marker</data>
+      <data key="category">data-cleaning</data>
+    </node>
     <node id="primitive:stable-deduplicate">
       <data key="kind">primitive</data>
       <data key="label">stable-deduplicate</data>
@@ -34,6 +39,11 @@
     <node id="primitive:flatten-record">
       <data key="kind">primitive</data>
       <data key="label">flatten-record</data>
+      <data key="category">data-engineering</data>
+    </node>
+    <node id="primitive:normalize-iso-datetime">
+      <data key="kind">primitive</data>
+      <data key="label">normalize-iso-datetime</data>
       <data key="category">data-engineering</data>
     </node>
     <node id="primitive:minmax-scale">
@@ -71,6 +81,11 @@
       <data key="label">taedri.group.data_cleaning_deduplication</data>
       <data key="category">group</data>
     </node>
+    <node id="group:taedri.group.data_cleaning_missing_values">
+      <data key="kind">capability_group</data>
+      <data key="label">taedri.group.data_cleaning_missing_values</data>
+      <data key="category">group</data>
+    </node>
     <node id="group:taedri.group.data_cleaning_whitespace">
       <data key="kind">capability_group</data>
       <data key="label">taedri.group.data_cleaning_whitespace</data>
@@ -79,6 +94,11 @@
     <node id="group:taedri.group.data_engineering_batching">
       <data key="kind">capability_group</data>
       <data key="label">taedri.group.data_engineering_batching</data>
+      <data key="category">group</data>
+    </node>
+    <node id="group:taedri.group.data_engineering_datetime_normalization">
+      <data key="kind">capability_group</data>
+      <data key="label">taedri.group.data_engineering_datetime_normalization</data>
       <data key="category">group</data>
     </node>
     <node id="group:taedri.group.data_engineering_record_reshape">
@@ -131,6 +151,11 @@
       <data key="label">sha256:8ecf3d632644ab0b6d6be1027aa5ded42f51c2d7aff281a3a650d368295cfff0</data>
       <data key="category">schema</data>
     </node>
+    <node id="schema:sha256:9c391ac2188b5e4522a894c8bb93953261884822933d8ab99f9a48076f79c739">
+      <data key="kind">schema</data>
+      <data key="label">sha256:9c391ac2188b5e4522a894c8bb93953261884822933d8ab99f9a48076f79c739</data>
+      <data key="category">schema</data>
+    </node>
     <node id="schema:sha256:af2ee54631778f1722c1bea167696865e3db32697b66252d0998ae96a73e099a">
       <data key="kind">schema</data>
       <data key="label">sha256:af2ee54631778f1722c1bea167696865e3db32697b66252d0998ae96a73e099a</data>
@@ -170,183 +195,259 @@
       <data key="relation">produces_schema</data>
       <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
     </edge>
-    <edge id="e7" source="schema:sha256:af2ee54631778f1722c1bea167696865e3db32697b66252d0998ae96a73e099a" target="primitive:stable-deduplicate">
+    <edge id="e7" source="schema:sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03" target="primitive:normalize-null-marker">
+      <data key="relation">accepts_schema</data>
+      <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
+    </edge>
+    <edge id="e8" source="primitive:normalize-null-marker" target="schema:sha256:9c391ac2188b5e4522a894c8bb93953261884822933d8ab99f9a48076f79c739">
+      <data key="relation">produces_schema</data>
+      <data key="schema_digest">sha256:9c391ac2188b5e4522a894c8bb93953261884822933d8ab99f9a48076f79c739</data>
+    </edge>
+    <edge id="e9" source="schema:sha256:af2ee54631778f1722c1bea167696865e3db32697b66252d0998ae96a73e099a" target="primitive:stable-deduplicate">
       <data key="relation">accepts_schema</data>
       <data key="schema_digest">sha256:af2ee54631778f1722c1bea167696865e3db32697b66252d0998ae96a73e099a</data>
     </edge>
-    <edge id="e8" source="primitive:stable-deduplicate" target="schema:sha256:af2ee54631778f1722c1bea167696865e3db32697b66252d0998ae96a73e099a">
+    <edge id="e10" source="primitive:stable-deduplicate" target="schema:sha256:af2ee54631778f1722c1bea167696865e3db32697b66252d0998ae96a73e099a">
       <data key="relation">produces_schema</data>
       <data key="schema_digest">sha256:af2ee54631778f1722c1bea167696865e3db32697b66252d0998ae96a73e099a</data>
     </edge>
-    <edge id="e9" source="schema:sha256:8ecf3d632644ab0b6d6be1027aa5ded42f51c2d7aff281a3a650d368295cfff0" target="primitive:chunk-sequence">
+    <edge id="e11" source="schema:sha256:8ecf3d632644ab0b6d6be1027aa5ded42f51c2d7aff281a3a650d368295cfff0" target="primitive:chunk-sequence">
       <data key="relation">accepts_schema</data>
       <data key="schema_digest">sha256:8ecf3d632644ab0b6d6be1027aa5ded42f51c2d7aff281a3a650d368295cfff0</data>
     </edge>
-    <edge id="e10" source="primitive:chunk-sequence" target="schema:sha256:87cf9c5d25911ca1334b850dd6f4552a4afc9e32e56402babbc9bef8c16dde33">
+    <edge id="e12" source="primitive:chunk-sequence" target="schema:sha256:87cf9c5d25911ca1334b850dd6f4552a4afc9e32e56402babbc9bef8c16dde33">
       <data key="relation">produces_schema</data>
       <data key="schema_digest">sha256:87cf9c5d25911ca1334b850dd6f4552a4afc9e32e56402babbc9bef8c16dde33</data>
     </edge>
-    <edge id="e11" source="schema:sha256:f51f5eff1f9e0c554fa93fc78d830c67bb9b3c06eab1b144b1638e05fb85305c" target="primitive:flatten-record">
+    <edge id="e13" source="schema:sha256:f51f5eff1f9e0c554fa93fc78d830c67bb9b3c06eab1b144b1638e05fb85305c" target="primitive:flatten-record">
       <data key="relation">accepts_schema</data>
       <data key="schema_digest">sha256:f51f5eff1f9e0c554fa93fc78d830c67bb9b3c06eab1b144b1638e05fb85305c</data>
     </edge>
-    <edge id="e12" source="primitive:flatten-record" target="schema:sha256:db13a804b68016157da85c711411fb9f45e65eb6a5adb2ac8878d5de824b048d">
+    <edge id="e14" source="primitive:flatten-record" target="schema:sha256:db13a804b68016157da85c711411fb9f45e65eb6a5adb2ac8878d5de824b048d">
       <data key="relation">produces_schema</data>
       <data key="schema_digest">sha256:db13a804b68016157da85c711411fb9f45e65eb6a5adb2ac8878d5de824b048d</data>
     </edge>
-    <edge id="e13" source="schema:sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c" target="primitive:minmax-scale">
+    <edge id="e15" source="schema:sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03" target="primitive:normalize-iso-datetime">
+      <data key="relation">accepts_schema</data>
+      <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
+    </edge>
+    <edge id="e16" source="primitive:normalize-iso-datetime" target="schema:sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03">
+      <data key="relation">produces_schema</data>
+      <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
+    </edge>
+    <edge id="e17" source="schema:sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c" target="primitive:minmax-scale">
       <data key="relation">accepts_schema</data>
       <data key="schema_digest">sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c</data>
     </edge>
-    <edge id="e14" source="primitive:minmax-scale" target="schema:sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c">
+    <edge id="e18" source="primitive:minmax-scale" target="schema:sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c">
       <data key="relation">produces_schema</data>
       <data key="schema_digest">sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c</data>
     </edge>
-    <edge id="e15" source="schema:sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c" target="primitive:numeric-mean">
+    <edge id="e19" source="schema:sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c" target="primitive:numeric-mean">
       <data key="relation">accepts_schema</data>
       <data key="schema_digest">sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c</data>
     </edge>
-    <edge id="e16" source="primitive:numeric-mean" target="schema:sha256:2ca93d3dd1e9283742144fc34570a933bcf56093e081410670168506dbb77f47">
+    <edge id="e20" source="primitive:numeric-mean" target="schema:sha256:2ca93d3dd1e9283742144fc34570a933bcf56093e081410670168506dbb77f47">
       <data key="relation">produces_schema</data>
       <data key="schema_digest">sha256:2ca93d3dd1e9283742144fc34570a933bcf56093e081410670168506dbb77f47</data>
     </edge>
-    <edge id="e17" source="schema:sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c" target="primitive:numeric-median">
+    <edge id="e21" source="schema:sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c" target="primitive:numeric-median">
       <data key="relation">accepts_schema</data>
       <data key="schema_digest">sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c</data>
     </edge>
-    <edge id="e18" source="primitive:numeric-median" target="schema:sha256:2ca93d3dd1e9283742144fc34570a933bcf56093e081410670168506dbb77f47">
+    <edge id="e22" source="primitive:numeric-median" target="schema:sha256:2ca93d3dd1e9283742144fc34570a933bcf56093e081410670168506dbb77f47">
       <data key="relation">produces_schema</data>
       <data key="schema_digest">sha256:2ca93d3dd1e9283742144fc34570a933bcf56093e081410670168506dbb77f47</data>
     </edge>
-    <edge id="e19" source="schema:sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c" target="primitive:zscore-standardize">
+    <edge id="e23" source="schema:sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c" target="primitive:zscore-standardize">
       <data key="relation">accepts_schema</data>
       <data key="schema_digest">sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c</data>
     </edge>
-    <edge id="e20" source="primitive:zscore-standardize" target="schema:sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c">
+    <edge id="e24" source="primitive:zscore-standardize" target="schema:sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c">
       <data key="relation">produces_schema</data>
       <data key="schema_digest">sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c</data>
     </edge>
-    <edge id="e21" source="schema:sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03" target="primitive:normalize-text">
+    <edge id="e25" source="schema:sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03" target="primitive:normalize-text">
       <data key="relation">accepts_schema</data>
       <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
     </edge>
-    <edge id="e22" source="primitive:normalize-text" target="schema:sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03">
+    <edge id="e26" source="primitive:normalize-text" target="schema:sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03">
       <data key="relation">produces_schema</data>
       <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
     </edge>
-    <edge id="e23" source="primitive:casefold-text" target="group:taedri.group.text_case_normalization">
+    <edge id="e27" source="primitive:casefold-text" target="group:taedri.group.text_case_normalization">
       <data key="relation">member_of</data>
       <data key="schema_digest" />
     </edge>
-    <edge id="e24" source="primitive:collapse-whitespace" target="group:taedri.group.data_cleaning_whitespace">
+    <edge id="e28" source="primitive:collapse-whitespace" target="group:taedri.group.data_cleaning_whitespace">
       <data key="relation">member_of</data>
       <data key="schema_digest" />
     </edge>
-    <edge id="e25" source="primitive:normalize-column-name" target="group:taedri.group.data_cleaning_column_names">
+    <edge id="e29" source="primitive:normalize-column-name" target="group:taedri.group.data_cleaning_column_names">
       <data key="relation">member_of</data>
       <data key="schema_digest" />
     </edge>
-    <edge id="e26" source="primitive:stable-deduplicate" target="group:taedri.group.data_cleaning_deduplication">
+    <edge id="e30" source="primitive:normalize-null-marker" target="group:taedri.group.data_cleaning_missing_values">
       <data key="relation">member_of</data>
       <data key="schema_digest" />
     </edge>
-    <edge id="e27" source="primitive:chunk-sequence" target="group:taedri.group.data_engineering_batching">
+    <edge id="e31" source="primitive:stable-deduplicate" target="group:taedri.group.data_cleaning_deduplication">
       <data key="relation">member_of</data>
       <data key="schema_digest" />
     </edge>
-    <edge id="e28" source="primitive:flatten-record" target="group:taedri.group.data_engineering_record_reshape">
+    <edge id="e32" source="primitive:chunk-sequence" target="group:taedri.group.data_engineering_batching">
       <data key="relation">member_of</data>
       <data key="schema_digest" />
     </edge>
-    <edge id="e29" source="primitive:minmax-scale" target="group:taedri.group.data_science_feature_scaling">
+    <edge id="e33" source="primitive:flatten-record" target="group:taedri.group.data_engineering_record_reshape">
       <data key="relation">member_of</data>
       <data key="schema_digest" />
     </edge>
-    <edge id="e30" source="primitive:numeric-mean" target="group:taedri.group.data_science_descriptive_statistics">
+    <edge id="e34" source="primitive:normalize-iso-datetime" target="group:taedri.group.data_engineering_datetime_normalization">
       <data key="relation">member_of</data>
       <data key="schema_digest" />
     </edge>
-    <edge id="e31" source="primitive:numeric-median" target="group:taedri.group.data_science_descriptive_statistics">
+    <edge id="e35" source="primitive:minmax-scale" target="group:taedri.group.data_science_feature_scaling">
       <data key="relation">member_of</data>
       <data key="schema_digest" />
     </edge>
-    <edge id="e32" source="primitive:zscore-standardize" target="group:taedri.group.data_science_feature_scaling">
+    <edge id="e36" source="primitive:numeric-mean" target="group:taedri.group.data_science_descriptive_statistics">
       <data key="relation">member_of</data>
       <data key="schema_digest" />
     </edge>
-    <edge id="e33" source="primitive:normalize-text" target="group:taedri.group.text_normalization">
+    <edge id="e37" source="primitive:numeric-median" target="group:taedri.group.data_science_descriptive_statistics">
       <data key="relation">member_of</data>
       <data key="schema_digest" />
     </edge>
-    <edge id="e34" source="primitive:minmax-scale" target="primitive:numeric-mean">
+    <edge id="e38" source="primitive:zscore-standardize" target="group:taedri.group.data_science_feature_scaling">
+      <data key="relation">member_of</data>
+      <data key="schema_digest" />
+    </edge>
+    <edge id="e39" source="primitive:normalize-text" target="group:taedri.group.text_normalization">
+      <data key="relation">member_of</data>
+      <data key="schema_digest" />
+    </edge>
+    <edge id="e40" source="primitive:minmax-scale" target="primitive:numeric-mean">
       <data key="relation">exactly_compatible</data>
       <data key="schema_digest">sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c</data>
     </edge>
-    <edge id="e35" source="primitive:minmax-scale" target="primitive:numeric-median">
+    <edge id="e41" source="primitive:minmax-scale" target="primitive:numeric-median">
       <data key="relation">exactly_compatible</data>
       <data key="schema_digest">sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c</data>
     </edge>
-    <edge id="e36" source="primitive:minmax-scale" target="primitive:zscore-standardize">
+    <edge id="e42" source="primitive:minmax-scale" target="primitive:zscore-standardize">
       <data key="relation">exactly_compatible</data>
       <data key="schema_digest">sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c</data>
     </edge>
-    <edge id="e37" source="primitive:zscore-standardize" target="primitive:minmax-scale">
+    <edge id="e43" source="primitive:zscore-standardize" target="primitive:minmax-scale">
       <data key="relation">exactly_compatible</data>
       <data key="schema_digest">sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c</data>
     </edge>
-    <edge id="e38" source="primitive:zscore-standardize" target="primitive:numeric-mean">
+    <edge id="e44" source="primitive:zscore-standardize" target="primitive:numeric-mean">
       <data key="relation">exactly_compatible</data>
       <data key="schema_digest">sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c</data>
     </edge>
-    <edge id="e39" source="primitive:zscore-standardize" target="primitive:numeric-median">
+    <edge id="e45" source="primitive:zscore-standardize" target="primitive:numeric-median">
       <data key="relation">exactly_compatible</data>
       <data key="schema_digest">sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c</data>
     </edge>
-    <edge id="e40" source="primitive:casefold-text" target="primitive:normalize-text">
+    <edge id="e46" source="primitive:casefold-text" target="primitive:normalize-text">
       <data key="relation">exactly_compatible</data>
       <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
     </edge>
-    <edge id="e41" source="primitive:casefold-text" target="primitive:collapse-whitespace">
+    <edge id="e47" source="primitive:casefold-text" target="primitive:collapse-whitespace">
       <data key="relation">exactly_compatible</data>
       <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
     </edge>
-    <edge id="e42" source="primitive:casefold-text" target="primitive:normalize-column-name">
+    <edge id="e48" source="primitive:casefold-text" target="primitive:normalize-column-name">
       <data key="relation">exactly_compatible</data>
       <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
     </edge>
-    <edge id="e43" source="primitive:normalize-text" target="primitive:casefold-text">
+    <edge id="e49" source="primitive:casefold-text" target="primitive:normalize-null-marker">
       <data key="relation">exactly_compatible</data>
       <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
     </edge>
-    <edge id="e44" source="primitive:normalize-text" target="primitive:collapse-whitespace">
+    <edge id="e50" source="primitive:casefold-text" target="primitive:normalize-iso-datetime">
       <data key="relation">exactly_compatible</data>
       <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
     </edge>
-    <edge id="e45" source="primitive:normalize-text" target="primitive:normalize-column-name">
+    <edge id="e51" source="primitive:normalize-text" target="primitive:casefold-text">
       <data key="relation">exactly_compatible</data>
       <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
     </edge>
-    <edge id="e46" source="primitive:collapse-whitespace" target="primitive:casefold-text">
+    <edge id="e52" source="primitive:normalize-text" target="primitive:collapse-whitespace">
       <data key="relation">exactly_compatible</data>
       <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
     </edge>
-    <edge id="e47" source="primitive:collapse-whitespace" target="primitive:normalize-text">
+    <edge id="e53" source="primitive:normalize-text" target="primitive:normalize-column-name">
       <data key="relation">exactly_compatible</data>
       <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
     </edge>
-    <edge id="e48" source="primitive:collapse-whitespace" target="primitive:normalize-column-name">
+    <edge id="e54" source="primitive:normalize-text" target="primitive:normalize-null-marker">
       <data key="relation">exactly_compatible</data>
       <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
     </edge>
-    <edge id="e49" source="primitive:normalize-column-name" target="primitive:casefold-text">
+    <edge id="e55" source="primitive:normalize-text" target="primitive:normalize-iso-datetime">
       <data key="relation">exactly_compatible</data>
       <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
     </edge>
-    <edge id="e50" source="primitive:normalize-column-name" target="primitive:normalize-text">
+    <edge id="e56" source="primitive:collapse-whitespace" target="primitive:casefold-text">
       <data key="relation">exactly_compatible</data>
       <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
     </edge>
-    <edge id="e51" source="primitive:normalize-column-name" target="primitive:collapse-whitespace">
+    <edge id="e57" source="primitive:collapse-whitespace" target="primitive:normalize-text">
+      <data key="relation">exactly_compatible</data>
+      <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
+    </edge>
+    <edge id="e58" source="primitive:collapse-whitespace" target="primitive:normalize-column-name">
+      <data key="relation">exactly_compatible</data>
+      <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
+    </edge>
+    <edge id="e59" source="primitive:collapse-whitespace" target="primitive:normalize-null-marker">
+      <data key="relation">exactly_compatible</data>
+      <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
+    </edge>
+    <edge id="e60" source="primitive:collapse-whitespace" target="primitive:normalize-iso-datetime">
+      <data key="relation">exactly_compatible</data>
+      <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
+    </edge>
+    <edge id="e61" source="primitive:normalize-column-name" target="primitive:casefold-text">
+      <data key="relation">exactly_compatible</data>
+      <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
+    </edge>
+    <edge id="e62" source="primitive:normalize-column-name" target="primitive:normalize-text">
+      <data key="relation">exactly_compatible</data>
+      <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
+    </edge>
+    <edge id="e63" source="primitive:normalize-column-name" target="primitive:collapse-whitespace">
+      <data key="relation">exactly_compatible</data>
+      <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
+    </edge>
+    <edge id="e64" source="primitive:normalize-column-name" target="primitive:normalize-null-marker">
+      <data key="relation">exactly_compatible</data>
+      <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
+    </edge>
+    <edge id="e65" source="primitive:normalize-column-name" target="primitive:normalize-iso-datetime">
+      <data key="relation">exactly_compatible</data>
+      <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
+    </edge>
+    <edge id="e66" source="primitive:normalize-iso-datetime" target="primitive:casefold-text">
+      <data key="relation">exactly_compatible</data>
+      <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
+    </edge>
+    <edge id="e67" source="primitive:normalize-iso-datetime" target="primitive:normalize-text">
+      <data key="relation">exactly_compatible</data>
+      <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
+    </edge>
+    <edge id="e68" source="primitive:normalize-iso-datetime" target="primitive:collapse-whitespace">
+      <data key="relation">exactly_compatible</data>
+      <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
+    </edge>
+    <edge id="e69" source="primitive:normalize-iso-datetime" target="primitive:normalize-column-name">
+      <data key="relation">exactly_compatible</data>
+      <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
+    </edge>
+    <edge id="e70" source="primitive:normalize-iso-datetime" target="primitive:normalize-null-marker">
       <data key="relation">exactly_compatible</data>
       <data key="schema_digest">sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03</data>
     </edge>
