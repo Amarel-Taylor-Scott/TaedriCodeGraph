@@ -69,9 +69,10 @@ classification is the candidate classification above.
 | Item | Current evidence-backed state |
 |---|---|
 | Canonical repository / default branch | `Amarel-Taylor-Scott/TaedriCodeGraph`, `main` (there is no `master` branch) |
-| Proposed publication branch | `codex/strict-v2-token-evidence`; pending review and merge, so this document must not be read as the current contents of `main` |
-| Evidence-bearing implementation checkpoint | `2b4693df49f2e62c0fcd4f65bc333f76766aab7f` on the proposed publication branch; this is not a claim that the commit is already on `main` |
+| Merged publication | [PR #2](https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/pull/2), final reviewed head `baefd6c3f6d3a0444fd4093fdb6514e292619eca`, merged into `main` as `83a7bbd1a837a2153a7663c110822e666776bae0` |
+| Evidence-bearing implementation checkpoint | `2b4693df49f2e62c0fcd4f65bc333f76766aab7f`, now reachable from `main` through the merge above |
 | Hosted CI on implementation checkpoint | [GitHub Actions run 29560962009](https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/actions/runs/29560962009): Python 3.12, Python 3.13, PostgreSQL DDL, and container-build jobs all passed. Python 3.12 ran 326 tests; Python 3.13 ran the same discovery set with 13 exact-runtime campaign tests explicitly skipped. Both jobs reproduced evidence, ran the socket smoke, and validated inventory-only release authority. |
+| Hosted CI on final reviewed PR head | [GitHub Actions run 29561400308](https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/actions/runs/29561400308): all four jobs and every downstream evidence-reproduction, socket-smoke, readiness, DDL, and container-build step passed before merge. |
 | Local validation | 326 tests passed; one optional MCP protocol test skipped because the optional `agents` dependency was absent |
 | Package build | Wheel built successfully; 305,859 bytes; SHA-256 `c7786f96f669a351c4f923e73728864c56e111941c0e8cb846ba9f00d4c74fb3` |
 | Product truth | Private-alpha candidate; `serves_truth=false`; not a public paid SaaS launch |
@@ -326,10 +327,10 @@ bounded local system may be prepared for this gate. Before even a controlled pri
 alpha is activated, all of the following must be recorded against the exact revision
 and deployment:
 
-- the proposal is merged and hosted CI is green on the exact head; run
-  [29560962009](https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/actions/runs/29560962009)
-  is green for implementation checkpoint `2b4693df`, but merge remains a separate
-  gate at this document checkpoint;
+- the proposal is merged and hosted CI is green on the exact head: [PR #2](https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/pull/2)
+  merged as `83a7bbd1`, and final-head run
+  [29561400308](https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/actions/runs/29561400308)
+  passed; this closes the code-publication gate only and does not activate a service;
 - an owner-signed activation record pins the commit, configuration, enabled features,
   host, participants, data classes, quotas, retention, deletion, rollback, and stop
   authority; this record must be verified by a trust root outside the candidate
