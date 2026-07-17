@@ -1,0 +1,29 @@
+{
+  "cases": [
+    {
+      "kind": "positive",
+      "args": [
+        "{\"outer\":{\"x\":true}}"
+      ],
+      "expected": {
+        "outer": {
+          "x": true
+        }
+      }
+    },
+    {
+      "kind": "negative",
+      "args": [
+        "{\"a\":1,\"a\":2}"
+      ],
+      "expected_error": "ValueError"
+    },
+    {
+      "kind": "negative",
+      "args": [
+        null
+      ],
+      "expected_error": "TypeError"
+    }
+  ]
+}

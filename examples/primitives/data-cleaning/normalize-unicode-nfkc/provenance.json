@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0",
+  "implementation_producer_id": "taedri.data.author.normalize-unicode-nfkc.v1",
+  "source_uri": "https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/tree/main/examples/primitives/data-cleaning/normalize-unicode-nfkc",
+  "source_revision": "sha256:97ddcfc30b5edf8d062b1bf3a91a20b41743919e31c0e1aff6261c6bea8f9628",
+  "source_digest": "sha256:97ddcfc30b5edf8d062b1bf3a91a20b41743919e31c0e1aff6261c6bea8f9628"
+}

@@ -1,0 +1,222 @@
+{
+  "schema_version": "1.1.0",
+  "interface_id": "taedri.data.engineering.format-compact-number.v1",
+  "nodes": [
+    {
+      "id": "implementation.format_compact_number",
+      "kind": "implementation",
+      "path": "src/format_compact_number.py",
+      "symbol": "format_compact_number"
+    },
+    {
+      "id": "contract.format_compact_number",
+      "kind": "contract",
+      "path": "contract.json"
+    },
+    {
+      "id": "port.input.value",
+      "kind": "input_port",
+      "path": "contract.json",
+      "json_pointer": "#/inputs/0"
+    },
+    {
+      "id": "port.output.result",
+      "kind": "output_port",
+      "path": "contract.json",
+      "json_pointer": "#/output"
+    },
+    {
+      "id": "examples.format_compact_number",
+      "kind": "example_set",
+      "path": "examples.json"
+    },
+    {
+      "id": "tests.format_compact_number",
+      "kind": "test_set",
+      "path": "tests.json"
+    },
+    {
+      "id": "runtime.python312",
+      "kind": "runtime",
+      "path": "runtime.json"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.implements_contract",
+      "source": "implementation.format_compact_number",
+      "predicate": "taedri.predicate.implements_contract",
+      "target": "contract.format_compact_number",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "src/format_compact_number.py",
+          "digest": "sha256:9ec84733c34a6bcf2fe76b54f2bd204c587f832e09e6471f748ace26b86cf921"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:9427bfed27a495aa97da027452b58cb38998d2d3fb15924e64f2d067135313b9"
+        }
+      ]
+    },
+    {
+      "id": "edge.accepts_value",
+      "source": "implementation.format_compact_number",
+      "predicate": "taedri.predicate.accepts_port",
+      "target": "port.input.value",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:9427bfed27a495aa97da027452b58cb38998d2d3fb15924e64f2d067135313b9"
+        }
+      ]
+    },
+    {
+      "id": "edge.produces_result",
+      "source": "implementation.format_compact_number",
+      "predicate": "taedri.predicate.produces_port",
+      "target": "port.output.result",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:9427bfed27a495aa97da027452b58cb38998d2d3fb15924e64f2d067135313b9"
+        }
+      ]
+    },
+    {
+      "id": "edge.demonstrated_by_examples",
+      "source": "examples.format_compact_number",
+      "predicate": "taedri.predicate.demonstrates",
+      "target": "implementation.format_compact_number",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "examples.json",
+          "digest": "sha256:47770e174d8b9ce386550927ca2579af07bb57529ed15eed7128245b06d36d1b"
+        }
+      ]
+    },
+    {
+      "id": "edge.verified_by_tests",
+      "source": "tests.format_compact_number",
+      "predicate": "taedri.predicate.verifies",
+      "target": "implementation.format_compact_number",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "tests.json",
+          "digest": "sha256:94af837bc51de3f902ce640de4bdfd3ec71d752c2afa0622589886189314dd1d"
+        }
+      ]
+    },
+    {
+      "id": "edge.runs_on_python312",
+      "source": "implementation.format_compact_number",
+      "predicate": "taedri.predicate.runs_on",
+      "target": "runtime.python312",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "runtime.json",
+          "digest": "sha256:ed852a719124c67831ab092ba57aba60a31a96acc5c073cfb79facbd31c15a9c"
+        }
+      ]
+    }
+  ],
+  "ports": [
+    {
+      "id": "port.input.value",
+      "owner": "implementation.format_compact_number",
+      "direction": "input",
+      "name": "value",
+      "schema": {
+        "type": "number"
+      },
+      "schema_digest": "sha256:2ca93d3dd1e9283742144fc34570a933bcf56093e081410670168506dbb77f47",
+      "schema_ref": "contract.json#/inputs/0/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native"
+      ]
+    },
+    {
+      "id": "port.output.result",
+      "owner": "implementation.format_compact_number",
+      "direction": "output",
+      "name": "result",
+      "schema": {
+        "type": "string"
+      },
+      "schema_digest": "sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03",
+      "schema_ref": "contract.json#/output/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native",
+        "text"
+      ]
+    }
+  ],
+  "compatibility": {
+    "language": "python",
+    "runtime_version": "3.12",
+    "execution_model": "in_process_call",
+    "deterministic": true,
+    "purity": "pure",
+    "network": "denied",
+    "effects": [],
+    "dimensions": {
+      "taedri.compatibility.call_style": "sync",
+      "taedri.compatibility.language": "python",
+      "taedri.compatibility.runtime_major_minor": "3.12",
+      "taedri.compatibility.value_transport": "python_native"
+    },
+    "required_dimensions": [
+      "taedri.compatibility.call_style",
+      "taedri.compatibility.language",
+      "taedri.compatibility.runtime_major_minor",
+      "taedri.compatibility.value_transport"
+    ]
+  },
+  "groups": [
+    {
+      "id": "taedri.group.data_engineering_numeric_formatting",
+      "kind": "capability",
+      "labels": [
+        "compact finite number formatting",
+        "serialize numeric value to JSON text",
+        "format computed number without locale"
+      ],
+      "member_nodes": [
+        "implementation.format_compact_number"
+      ],
+      "evidence": [
+        {
+          "path": "descriptor.json",
+          "digest": "sha256:28ba1654f97554bde3206f050c0cfeff4882e7538c5a060584c1a04ce0a22f0b"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:9427bfed27a495aa97da027452b58cb38998d2d3fb15924e64f2d067135313b9"
+        }
+      ]
+    }
+  ]
+}

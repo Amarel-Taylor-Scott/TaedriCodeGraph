@@ -1,0 +1,222 @@
+{
+  "schema_version": "1.1.0",
+  "interface_id": "taedri.data.engineering.parse-json-object.v1",
+  "nodes": [
+    {
+      "id": "implementation.parse_json_object",
+      "kind": "implementation",
+      "path": "src/parse_json_object.py",
+      "symbol": "parse_json_object"
+    },
+    {
+      "id": "contract.parse_json_object",
+      "kind": "contract",
+      "path": "contract.json"
+    },
+    {
+      "id": "port.input.value",
+      "kind": "input_port",
+      "path": "contract.json",
+      "json_pointer": "#/inputs/0"
+    },
+    {
+      "id": "port.output.result",
+      "kind": "output_port",
+      "path": "contract.json",
+      "json_pointer": "#/output"
+    },
+    {
+      "id": "examples.parse_json_object",
+      "kind": "example_set",
+      "path": "examples.json"
+    },
+    {
+      "id": "tests.parse_json_object",
+      "kind": "test_set",
+      "path": "tests.json"
+    },
+    {
+      "id": "runtime.python312",
+      "kind": "runtime",
+      "path": "runtime.json"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.implements_contract",
+      "source": "implementation.parse_json_object",
+      "predicate": "taedri.predicate.implements_contract",
+      "target": "contract.parse_json_object",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "src/parse_json_object.py",
+          "digest": "sha256:85f6372dadbd56d9293f878e762bf7e0cc5748f19b64b365098c552680c52391"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:895e81ce22a6395369ab14bf05b5fc82e6b6b0969e4a574baf41bce897960dd2"
+        }
+      ]
+    },
+    {
+      "id": "edge.accepts_value",
+      "source": "implementation.parse_json_object",
+      "predicate": "taedri.predicate.accepts_port",
+      "target": "port.input.value",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:895e81ce22a6395369ab14bf05b5fc82e6b6b0969e4a574baf41bce897960dd2"
+        }
+      ]
+    },
+    {
+      "id": "edge.produces_result",
+      "source": "implementation.parse_json_object",
+      "predicate": "taedri.predicate.produces_port",
+      "target": "port.output.result",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:895e81ce22a6395369ab14bf05b5fc82e6b6b0969e4a574baf41bce897960dd2"
+        }
+      ]
+    },
+    {
+      "id": "edge.demonstrated_by_examples",
+      "source": "examples.parse_json_object",
+      "predicate": "taedri.predicate.demonstrates",
+      "target": "implementation.parse_json_object",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "examples.json",
+          "digest": "sha256:232982000d08a1d0fcf20b4140396989f3da5fc905a1c94e9acf445612082333"
+        }
+      ]
+    },
+    {
+      "id": "edge.verified_by_tests",
+      "source": "tests.parse_json_object",
+      "predicate": "taedri.predicate.verifies",
+      "target": "implementation.parse_json_object",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "tests.json",
+          "digest": "sha256:c6bfebc6d1b4ff6ad20080b9a2ca196e6032f98efb6956400c2144a3d1cd4be6"
+        }
+      ]
+    },
+    {
+      "id": "edge.runs_on_python312",
+      "source": "implementation.parse_json_object",
+      "predicate": "taedri.predicate.runs_on",
+      "target": "runtime.python312",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "runtime.json",
+          "digest": "sha256:e8e60a404b06c9b5217a8d1cd1f4d213aab7ee6f52b487888f4d5696cf9021dd"
+        }
+      ]
+    }
+  ],
+  "ports": [
+    {
+      "id": "port.input.value",
+      "owner": "implementation.parse_json_object",
+      "direction": "input",
+      "name": "value",
+      "schema": {
+        "type": "string"
+      },
+      "schema_digest": "sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03",
+      "schema_ref": "contract.json#/inputs/0/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native",
+        "text"
+      ]
+    },
+    {
+      "id": "port.output.result",
+      "owner": "implementation.parse_json_object",
+      "direction": "output",
+      "name": "result",
+      "schema": {
+        "type": "object"
+      },
+      "schema_digest": "sha256:db13a804b68016157da85c711411fb9f45e65eb6a5adb2ac8878d5de824b048d",
+      "schema_ref": "contract.json#/output/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native"
+      ]
+    }
+  ],
+  "compatibility": {
+    "language": "python",
+    "runtime_version": "3.12",
+    "execution_model": "in_process_call",
+    "deterministic": true,
+    "purity": "pure",
+    "network": "denied",
+    "effects": [],
+    "dimensions": {
+      "taedri.compatibility.call_style": "sync",
+      "taedri.compatibility.language": "python",
+      "taedri.compatibility.runtime_major_minor": "3.12",
+      "taedri.compatibility.value_transport": "python_native"
+    },
+    "required_dimensions": [
+      "taedri.compatibility.call_style",
+      "taedri.compatibility.language",
+      "taedri.compatibility.runtime_major_minor",
+      "taedri.compatibility.value_transport"
+    ]
+  },
+  "groups": [
+    {
+      "id": "taedri.group.data_engineering_json_parsing",
+      "kind": "capability",
+      "labels": [
+        "strict JSON object parser",
+        "deserialize JSON text to record",
+        "parse object and reject duplicate keys"
+      ],
+      "member_nodes": [
+        "implementation.parse_json_object"
+      ],
+      "evidence": [
+        {
+          "path": "descriptor.json",
+          "digest": "sha256:121ccf9c416eae55b18a686ecc08c9bdffcaf7495f69cb27f4ce816e946885bd"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:895e81ce22a6395369ab14bf05b5fc82e6b6b0969e4a574baf41bce897960dd2"
+        }
+      ]
+    }
+  ]
+}

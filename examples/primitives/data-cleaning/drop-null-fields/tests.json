@@ -1,0 +1,40 @@
+{
+  "cases": [
+    {
+      "kind": "positive",
+      "args": [
+        {
+          "zero": 0,
+          "false": false,
+          "none": null
+        }
+      ],
+      "expected": {
+        "zero": 0,
+        "false": false
+      }
+    },
+    {
+      "kind": "boundary",
+      "args": [
+        {
+          "nested": {
+            "x": null
+          }
+        }
+      ],
+      "expected": {
+        "nested": {
+          "x": null
+        }
+      }
+    },
+    {
+      "kind": "negative",
+      "args": [
+        null
+      ],
+      "expected_error": "TypeError"
+    }
+  ]
+}

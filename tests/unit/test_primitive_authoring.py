@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[2]
 
 class PrimitiveAuthoringTests(unittest.TestCase):
     def test_checked_in_data_cohort_is_exactly_reproducible(self) -> None:
-        self.assertEqual(len(COHORT), 11)
+        self.assertEqual(len(COHORT), 21)
         for spec in COHORT:
             expected = build_primitive_files(spec)
             directory = ROOT / "examples/primitives" / spec.category / spec.name

@@ -1,0 +1,224 @@
+{
+  "schema_version": "1.1.0",
+  "interface_id": "taedri.data.science.numeric-sum.v1",
+  "nodes": [
+    {
+      "id": "implementation.numeric_sum",
+      "kind": "implementation",
+      "path": "src/numeric_sum.py",
+      "symbol": "numeric_sum"
+    },
+    {
+      "id": "contract.numeric_sum",
+      "kind": "contract",
+      "path": "contract.json"
+    },
+    {
+      "id": "port.input.values",
+      "kind": "input_port",
+      "path": "contract.json",
+      "json_pointer": "#/inputs/0"
+    },
+    {
+      "id": "port.output.result",
+      "kind": "output_port",
+      "path": "contract.json",
+      "json_pointer": "#/output"
+    },
+    {
+      "id": "examples.numeric_sum",
+      "kind": "example_set",
+      "path": "examples.json"
+    },
+    {
+      "id": "tests.numeric_sum",
+      "kind": "test_set",
+      "path": "tests.json"
+    },
+    {
+      "id": "runtime.python312",
+      "kind": "runtime",
+      "path": "runtime.json"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.implements_contract",
+      "source": "implementation.numeric_sum",
+      "predicate": "taedri.predicate.implements_contract",
+      "target": "contract.numeric_sum",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "src/numeric_sum.py",
+          "digest": "sha256:011f97c8c3b9c50392a9d9684c56fd1dc701070124d10f884781956b701f0d8e"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:ff0f5eb9ffdbeae5d01bbe9d9941bb42f882a7b23fc904552ae388c1348940d0"
+        }
+      ]
+    },
+    {
+      "id": "edge.accepts_values",
+      "source": "implementation.numeric_sum",
+      "predicate": "taedri.predicate.accepts_port",
+      "target": "port.input.values",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:ff0f5eb9ffdbeae5d01bbe9d9941bb42f882a7b23fc904552ae388c1348940d0"
+        }
+      ]
+    },
+    {
+      "id": "edge.produces_result",
+      "source": "implementation.numeric_sum",
+      "predicate": "taedri.predicate.produces_port",
+      "target": "port.output.result",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:ff0f5eb9ffdbeae5d01bbe9d9941bb42f882a7b23fc904552ae388c1348940d0"
+        }
+      ]
+    },
+    {
+      "id": "edge.demonstrated_by_examples",
+      "source": "examples.numeric_sum",
+      "predicate": "taedri.predicate.demonstrates",
+      "target": "implementation.numeric_sum",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "examples.json",
+          "digest": "sha256:e3ddca1b1fbcb331e1acb3126f1101afeab3f144b7cafaec9a96b6da45054cd6"
+        }
+      ]
+    },
+    {
+      "id": "edge.verified_by_tests",
+      "source": "tests.numeric_sum",
+      "predicate": "taedri.predicate.verifies",
+      "target": "implementation.numeric_sum",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "tests.json",
+          "digest": "sha256:84c226190d10e9f136a8704d43484982a91fa16f9f8135256c9cd490c12f3353"
+        }
+      ]
+    },
+    {
+      "id": "edge.runs_on_python312",
+      "source": "implementation.numeric_sum",
+      "predicate": "taedri.predicate.runs_on",
+      "target": "runtime.python312",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "runtime.json",
+          "digest": "sha256:cb8e5f4f1261f8796b342f84c2da6ce412a0b691a1fd4e800b5cdb3ed91b65b6"
+        }
+      ]
+    }
+  ],
+  "ports": [
+    {
+      "id": "port.input.values",
+      "owner": "implementation.numeric_sum",
+      "direction": "input",
+      "name": "values",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      },
+      "schema_digest": "sha256:26d29367d6385c222aa3e3fdc1b9deb05208fc4dceaa0d6b30bb1e8701111b5c",
+      "schema_ref": "contract.json#/inputs/0/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native"
+      ]
+    },
+    {
+      "id": "port.output.result",
+      "owner": "implementation.numeric_sum",
+      "direction": "output",
+      "name": "result",
+      "schema": {
+        "type": "number"
+      },
+      "schema_digest": "sha256:2ca93d3dd1e9283742144fc34570a933bcf56093e081410670168506dbb77f47",
+      "schema_ref": "contract.json#/output/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native"
+      ]
+    }
+  ],
+  "compatibility": {
+    "language": "python",
+    "runtime_version": "3.12",
+    "execution_model": "in_process_call",
+    "deterministic": true,
+    "purity": "pure",
+    "network": "denied",
+    "effects": [],
+    "dimensions": {
+      "taedri.compatibility.call_style": "sync",
+      "taedri.compatibility.language": "python",
+      "taedri.compatibility.runtime_major_minor": "3.12",
+      "taedri.compatibility.value_transport": "python_native"
+    },
+    "required_dimensions": [
+      "taedri.compatibility.call_style",
+      "taedri.compatibility.language",
+      "taedri.compatibility.runtime_major_minor",
+      "taedri.compatibility.value_transport"
+    ]
+  },
+  "groups": [
+    {
+      "id": "taedri.group.data_science_numeric_aggregation",
+      "kind": "capability",
+      "labels": [
+        "accurate finite numeric sum",
+        "aggregate numeric vector total",
+        "floating point fsum reduction"
+      ],
+      "member_nodes": [
+        "implementation.numeric_sum"
+      ],
+      "evidence": [
+        {
+          "path": "descriptor.json",
+          "digest": "sha256:5a29dac1e6a610d8c6da1aecca3e434f4d86fe5fbb093b052669efdc44944377"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:ff0f5eb9ffdbeae5d01bbe9d9941bb42f882a7b23fc904552ae388c1348940d0"
+        }
+      ]
+    }
+  ]
+}

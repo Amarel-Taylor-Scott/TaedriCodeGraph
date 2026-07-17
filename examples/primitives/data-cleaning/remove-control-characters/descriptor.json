@@ -1,0 +1,24 @@
+{
+  "summary": "Remove Unicode Cc control characters while preserving visible text.",
+  "keywords": [
+    "control characters",
+    "unicode",
+    "C0",
+    "C1",
+    "data cleaning"
+  ],
+  "use_cases": [
+    "remove embedded NUL and terminal control bytes from decoded text",
+    "prepare imported text for single-line storage",
+    "sanitize control-category characters before deterministic comparison"
+  ],
+  "limitations": [
+    "Removes tabs, newlines, and carriage returns as well as hidden controls.",
+    "Does not remove Unicode format characters in category Cf.",
+    "Input must already be decoded as a Python string."
+  ],
+  "references": [
+    "https://docs.python.org/3.12/library/unicodedata.html#unicodedata.category",
+    "https://www.unicode.org/reports/tr44/"
+  ]
+}

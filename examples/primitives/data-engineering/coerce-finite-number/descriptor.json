@@ -1,0 +1,23 @@
+{
+  "summary": "Parse a finite numeric string, preserving exact integer syntax as int.",
+  "keywords": [
+    "numeric coercion",
+    "parse number",
+    "finite",
+    "string adapter"
+  ],
+  "use_cases": [
+    "convert a cleaned CSV scalar into a numeric primitive input",
+    "reject NaN and infinity during schema adaptation",
+    "preserve integer values while accepting decimal and exponent syntax"
+  ],
+  "limitations": [
+    "Decimal and exponent syntax is represented as a binary float.",
+    "Does not accept thousands separators, currency symbols, or locale formats.",
+    "Very large finite-looking values can overflow and are rejected."
+  ],
+  "references": [
+    "https://docs.python.org/3.12/library/functions.html#float",
+    "https://docs.python.org/3.12/library/math.html#math.isfinite"
+  ]
+}

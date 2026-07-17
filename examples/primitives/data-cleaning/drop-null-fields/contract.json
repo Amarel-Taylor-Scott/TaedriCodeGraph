@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "inputs": [
+    {
+      "name": "value",
+      "schema": {
+        "type": "object"
+      }
+    }
+  ],
+  "output": {
+    "schema": {
+      "type": "object"
+    }
+  },
+  "errors": [
+    {
+      "type": "TypeError",
+      "when": "value is not an object or keys are not strings"
+    }
+  ],
+  "effects": []
+}

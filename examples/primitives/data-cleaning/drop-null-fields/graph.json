@@ -1,0 +1,221 @@
+{
+  "schema_version": "1.1.0",
+  "interface_id": "taedri.data.cleaning.drop-null-fields.v1",
+  "nodes": [
+    {
+      "id": "implementation.drop_null_fields",
+      "kind": "implementation",
+      "path": "src/drop_null_fields.py",
+      "symbol": "drop_null_fields"
+    },
+    {
+      "id": "contract.drop_null_fields",
+      "kind": "contract",
+      "path": "contract.json"
+    },
+    {
+      "id": "port.input.value",
+      "kind": "input_port",
+      "path": "contract.json",
+      "json_pointer": "#/inputs/0"
+    },
+    {
+      "id": "port.output.result",
+      "kind": "output_port",
+      "path": "contract.json",
+      "json_pointer": "#/output"
+    },
+    {
+      "id": "examples.drop_null_fields",
+      "kind": "example_set",
+      "path": "examples.json"
+    },
+    {
+      "id": "tests.drop_null_fields",
+      "kind": "test_set",
+      "path": "tests.json"
+    },
+    {
+      "id": "runtime.python312",
+      "kind": "runtime",
+      "path": "runtime.json"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.implements_contract",
+      "source": "implementation.drop_null_fields",
+      "predicate": "taedri.predicate.implements_contract",
+      "target": "contract.drop_null_fields",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "src/drop_null_fields.py",
+          "digest": "sha256:2073ac7543aeb89298dc1be5a4b5d38439b6495681fb36082612a30d7b9f5757"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:088b2287d0321b5f1568c97ac71057ee3589f0edb21939c8ee4f164a2945ba09"
+        }
+      ]
+    },
+    {
+      "id": "edge.accepts_value",
+      "source": "implementation.drop_null_fields",
+      "predicate": "taedri.predicate.accepts_port",
+      "target": "port.input.value",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:088b2287d0321b5f1568c97ac71057ee3589f0edb21939c8ee4f164a2945ba09"
+        }
+      ]
+    },
+    {
+      "id": "edge.produces_result",
+      "source": "implementation.drop_null_fields",
+      "predicate": "taedri.predicate.produces_port",
+      "target": "port.output.result",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:088b2287d0321b5f1568c97ac71057ee3589f0edb21939c8ee4f164a2945ba09"
+        }
+      ]
+    },
+    {
+      "id": "edge.demonstrated_by_examples",
+      "source": "examples.drop_null_fields",
+      "predicate": "taedri.predicate.demonstrates",
+      "target": "implementation.drop_null_fields",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "examples.json",
+          "digest": "sha256:af5adf98af0749b14369fe37e892563ccebb7dc97a8a5e0616ea8071660c6bae"
+        }
+      ]
+    },
+    {
+      "id": "edge.verified_by_tests",
+      "source": "tests.drop_null_fields",
+      "predicate": "taedri.predicate.verifies",
+      "target": "implementation.drop_null_fields",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "tests.json",
+          "digest": "sha256:22fb6b209de12c9480c41b22b4b2218a2d871fcd6da9d394c2c749885941973a"
+        }
+      ]
+    },
+    {
+      "id": "edge.runs_on_python312",
+      "source": "implementation.drop_null_fields",
+      "predicate": "taedri.predicate.runs_on",
+      "target": "runtime.python312",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "runtime.json",
+          "digest": "sha256:3f0f824f1f31ab97183cd7a52e56d5e4bcb6c5f6c104592f8bcc612d8a0b9ef6"
+        }
+      ]
+    }
+  ],
+  "ports": [
+    {
+      "id": "port.input.value",
+      "owner": "implementation.drop_null_fields",
+      "direction": "input",
+      "name": "value",
+      "schema": {
+        "type": "object"
+      },
+      "schema_digest": "sha256:db13a804b68016157da85c711411fb9f45e65eb6a5adb2ac8878d5de824b048d",
+      "schema_ref": "contract.json#/inputs/0/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native"
+      ]
+    },
+    {
+      "id": "port.output.result",
+      "owner": "implementation.drop_null_fields",
+      "direction": "output",
+      "name": "result",
+      "schema": {
+        "type": "object"
+      },
+      "schema_digest": "sha256:db13a804b68016157da85c711411fb9f45e65eb6a5adb2ac8878d5de824b048d",
+      "schema_ref": "contract.json#/output/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native"
+      ]
+    }
+  ],
+  "compatibility": {
+    "language": "python",
+    "runtime_version": "3.12",
+    "execution_model": "in_process_call",
+    "deterministic": true,
+    "purity": "pure",
+    "network": "denied",
+    "effects": [],
+    "dimensions": {
+      "taedri.compatibility.call_style": "sync",
+      "taedri.compatibility.language": "python",
+      "taedri.compatibility.runtime_major_minor": "3.12",
+      "taedri.compatibility.value_transport": "python_native"
+    },
+    "required_dimensions": [
+      "taedri.compatibility.call_style",
+      "taedri.compatibility.language",
+      "taedri.compatibility.runtime_major_minor",
+      "taedri.compatibility.value_transport"
+    ]
+  },
+  "groups": [
+    {
+      "id": "taedri.group.data_cleaning_null_fields",
+      "kind": "capability",
+      "labels": [
+        "drop top level null object fields",
+        "omit missing fields from record",
+        "remove none values from JSON object"
+      ],
+      "member_nodes": [
+        "implementation.drop_null_fields"
+      ],
+      "evidence": [
+        {
+          "path": "descriptor.json",
+          "digest": "sha256:076e2319fbeaa5f13cb28ba33472ae5dda0114c5143008e7248594b84c6605c2"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:088b2287d0321b5f1568c97ac71057ee3589f0edb21939c8ee4f164a2945ba09"
+        }
+      ]
+    }
+  ]
+}

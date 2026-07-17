@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0",
+  "implementation_producer_id": "taedri.data.author.remove-control-characters.v1",
+  "source_uri": "https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/tree/main/examples/primitives/data-cleaning/remove-control-characters",
+  "source_revision": "sha256:6ceff6e405ba1a0d01652abacc85671b131d6defb0eadb37e09c2b7f5ea363eb",
+  "source_digest": "sha256:6ceff6e405ba1a0d01652abacc85671b131d6defb0eadb37e09c2b7f5ea363eb"
+}

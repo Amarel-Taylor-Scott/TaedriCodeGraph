@@ -106,6 +106,15 @@ NUMBER_SCHEMA = {"type": "number"}
 NUMBER_ARRAY_SCHEMA = {"type": "array", "items": NUMBER_SCHEMA}
 JSON_ARRAY_SCHEMA = {"type": "array"}
 OBJECT_SCHEMA = {"type": "object"}
+FLATTEN_REQUEST_SCHEMA = {
+    "type": "object",
+    "required": ["record"],
+    "properties": {
+        "record": {"type": "object"},
+        "separator": {"type": "string"},
+    },
+    "additionalProperties": False,
+}
 
 
 COHORT = (
@@ -385,15 +394,7 @@ COHORT = (
             "The complete flattened record is materialized in memory.",
         ),
         input_name="request",
-        input_schema={
-            "type": "object",
-            "required": ["record"],
-            "properties": {
-                "record": {"type": "object"},
-                "separator": {"type": "string"},
-            },
-            "additionalProperties": False,
-        },
+        input_schema=FLATTEN_REQUEST_SCHEMA,
         output_schema=OBJECT_SCHEMA,
         errors=(
             {"type": "TypeError", "when": "request or record is not an object"},
@@ -997,6 +998,727 @@ COHORT = (
         references=(SKLEARN_STANDARD,),
         allowed_imports=("math",),
     ),
+    _spec(
+        category="data-cleaning",
+        name="normalize-unicode-nfkc",
+        function_name="normalize_unicode_nfkc",
+        source_code=_source(
+            '''
+            """Apply Unicode NFKC compatibility normalization to one string."""
+
+            import unicodedata
+
+
+            def normalize_unicode_nfkc(value: str) -> str:
+                """Return the Unicode NFKC normalization of value."""
+
+                if not isinstance(value, str):
+                    raise TypeError("value must be a string")
+                return unicodedata.normalize("NFKC", value)
+            '''
+        ),
+        summary="Apply Unicode NFKC compatibility normalization without changing case.",
+        keywords=("NFKC", "unicode", "compatibility normalization", "text cleanup"),
+        use_cases=(
+            "normalize full-width forms before field comparison",
+            "replace compatibility characters with canonical equivalents",
+            "prepare Unicode text for a later case or identifier operation",
+        ),
+        limitations=(
+            "Compatibility normalization can change presentation distinctions.",
+            "Does not trim, case-fold, transliterate, or remove control characters.",
+            "Uses the Unicode database bundled with the pinned Python runtime.",
+        ),
+        input_name="value",
+        input_schema=STRING_SCHEMA,
+        output_schema=STRING_SCHEMA,
+        errors=({"type": "TypeError", "when": "value is not a string"},),
+        examples=(
+            _case("positive", "Ｆｕｌｌ　Ｎａｍｅ", expected="Full Name"),
+            _case("boundary", "", expected=""),
+            _case("negative", 1, error="TypeError"),
+        ),
+        tests=(
+            _case("positive", "ﬁle", expected="file"),
+            _case("boundary", "Straße", expected="Straße"),
+            _case("negative", None, error="TypeError"),
+        ),
+        group_id="taedri.group.data_cleaning_unicode_normalization",
+        group_labels=(
+            "unicode NFKC compatibility normalization",
+            "normalize full width unicode text",
+            "compatibility character normalization",
+        ),
+        documentation=(
+            "applies the Unicode Normalization Form KC algorithm from the pinned "
+            "Python Unicode database and otherwise preserves the string."
+        ),
+        references=(
+            "https://docs.python.org/3.12/library/unicodedata.html#unicodedata.normalize",
+            "https://www.unicode.org/reports/tr15/",
+        ),
+        allowed_imports=("unicodedata",),
+    ),
+    _spec(
+        category="data-cleaning",
+        name="remove-control-characters",
+        function_name="remove_control_characters",
+        source_code=_source(
+            '''
+            """Remove Unicode control-category characters from one string."""
+
+            import unicodedata
+
+
+            def remove_control_characters(value: str) -> str:
+                """Return value without Unicode general category Cc characters."""
+
+                if not isinstance(value, str):
+                    raise TypeError("value must be a string")
+                return "".join(
+                    character
+                    for character in value
+                    if unicodedata.category(character) != "Cc"
+                )
+            '''
+        ),
+        summary="Remove Unicode Cc control characters while preserving visible text.",
+        keywords=("control characters", "unicode", "C0", "C1", "data cleaning"),
+        use_cases=(
+            "remove embedded NUL and terminal control bytes from decoded text",
+            "prepare imported text for single-line storage",
+            "sanitize control-category characters before deterministic comparison",
+        ),
+        limitations=(
+            "Removes tabs, newlines, and carriage returns as well as hidden controls.",
+            "Does not remove Unicode format characters in category Cf.",
+            "Input must already be decoded as a Python string.",
+        ),
+        input_name="value",
+        input_schema=STRING_SCHEMA,
+        output_schema=STRING_SCHEMA,
+        errors=({"type": "TypeError", "when": "value is not a string"},),
+        examples=(
+            _case("positive", "A\u0000B\u001fC", expected="ABC"),
+            _case("boundary", "", expected=""),
+            _case("negative", 1, error="TypeError"),
+        ),
+        tests=(
+            _case("positive", "line\nbreak\t", expected="linebreak"),
+            _case("boundary", "already visible", expected="already visible"),
+            _case("negative", None, error="TypeError"),
+        ),
+        group_id="taedri.group.data_cleaning_control_characters",
+        group_labels=(
+            "remove C0 C1 control characters",
+            "strip unicode control category text",
+            "delete embedded null and control characters",
+        ),
+        documentation=(
+            "filters characters whose Unicode general category is Cc; format, mark, "
+            "separator, symbol, punctuation, number, and letter categories remain."
+        ),
+        references=(
+            "https://docs.python.org/3.12/library/unicodedata.html#unicodedata.category",
+            "https://www.unicode.org/reports/tr44/",
+        ),
+        allowed_imports=("unicodedata",),
+    ),
+    _spec(
+        category="data-engineering",
+        name="parse-json-object",
+        function_name="parse_json_object",
+        source_code=_source(
+            '''
+            """Parse one strict JSON object without duplicate keys or non-finite values."""
+
+            import json
+
+
+            def _object(pairs: list[tuple[str, object]]) -> dict[str, object]:
+                result: dict[str, object] = {}
+                for key, value in pairs:
+                    if key in result:
+                        raise ValueError("JSON object contains a duplicate key")
+                    result[key] = value
+                return result
+
+
+            def _constant(value: str) -> object:
+                raise ValueError("JSON contains a non-finite number: " + value)
+
+
+            def parse_json_object(value: str) -> dict[str, object]:
+                """Return a strict top-level JSON object."""
+
+                if not isinstance(value, str):
+                    raise TypeError("value must be a string")
+                try:
+                    result = json.loads(
+                        value,
+                        object_pairs_hook=_object,
+                        parse_constant=_constant,
+                    )
+                except json.JSONDecodeError as exc:
+                    raise ValueError("value is not valid JSON") from exc
+                if not isinstance(result, dict):
+                    raise ValueError("JSON value must be an object")
+                return result
+            '''
+        ),
+        summary="Parse a strict top-level JSON object with duplicate-key rejection.",
+        keywords=("JSON parser", "object", "duplicate keys", "deserialization"),
+        use_cases=(
+            "turn a JSON object string into a record primitive can consume",
+            "reject duplicate object keys before data transformation",
+            "exclude non-finite JavaScript constants from portable JSON",
+        ),
+        limitations=(
+            "Only accepts a top-level object, not an array or scalar.",
+            "Loads the complete string into memory.",
+            "Does not validate the object against a domain schema.",
+        ),
+        input_name="value",
+        input_schema=STRING_SCHEMA,
+        output_schema=OBJECT_SCHEMA,
+        errors=(
+            {"type": "TypeError", "when": "value is not a string"},
+            {"type": "ValueError", "when": "JSON is invalid, duplicated, or not an object"},
+        ),
+        examples=(
+            _case("positive", '{"b":2,"a":1}', expected={"b": 2, "a": 1}),
+            _case("boundary", "{}", expected={}),
+            _case("negative", "[1,2]", error="ValueError"),
+        ),
+        tests=(
+            _case("positive", '{"outer":{"x":true}}', expected={"outer": {"x": True}}),
+            _case("negative", '{"a":1,"a":2}', error="ValueError"),
+            _case("negative", None, error="TypeError"),
+        ),
+        group_id="taedri.group.data_engineering_json_parsing",
+        group_labels=(
+            "strict JSON object parser",
+            "deserialize JSON text to record",
+            "parse object and reject duplicate keys",
+        ),
+        documentation=(
+            "uses the standard-library JSON decoder with hooks that reject duplicate "
+            "keys and non-finite constants, then requires a top-level object."
+        ),
+        references=("https://docs.python.org/3.12/library/json.html#json.loads",),
+        allowed_imports=("json",),
+    ),
+    _spec(
+        category="data-engineering",
+        name="canonical-json-object",
+        function_name="canonical_json_object",
+        source_code=_source(
+            '''
+            """Serialize one JSON-compatible object with stable key order and spacing."""
+
+            import json
+            import math
+
+
+            def _validate_json(value: object) -> None:
+                if value is None or isinstance(value, (str, bool, int)):
+                    return
+                if isinstance(value, float):
+                    if not math.isfinite(value):
+                        raise ValueError("value contains a non-finite number")
+                    return
+                if isinstance(value, list):
+                    for item in value:
+                        _validate_json(item)
+                    return
+                if isinstance(value, dict):
+                    if any(not isinstance(key, str) for key in value):
+                        raise ValueError("object keys must be strings")
+                    for item in value.values():
+                        _validate_json(item)
+                    return
+                raise ValueError("value contains a non-JSON type")
+
+
+            def canonical_json_object(value: dict[str, object]) -> str:
+                """Return compact UTF-8-preserving JSON with recursively sorted keys."""
+
+                if not isinstance(value, dict):
+                    raise TypeError("value must be an object")
+                _validate_json(value)
+                return json.dumps(
+                    value,
+                    ensure_ascii=False,
+                    sort_keys=True,
+                    separators=(",", ":"),
+                    allow_nan=False,
+                )
+            '''
+        ),
+        summary="Serialize a JSON-compatible object with stable keys and compact spacing.",
+        keywords=("canonical JSON", "serializer", "stable keys", "object"),
+        use_cases=(
+            "produce deterministic text after record transformations",
+            "create stable cache and comparison payloads",
+            "serialize Unicode object data without ASCII escaping",
+        ),
+        limitations=(
+            "This is stable JSON output, not the full RFC 8785 number format.",
+            "Only accepts a top-level dictionary.",
+            "Rejects non-JSON Python values and non-finite numbers.",
+        ),
+        input_name="value",
+        input_schema=OBJECT_SCHEMA,
+        output_schema=STRING_SCHEMA,
+        errors=(
+            {"type": "TypeError", "when": "value is not a dictionary"},
+            {"type": "ValueError", "when": "value is not portable finite JSON"},
+        ),
+        examples=(
+            _case("positive", {"b": 2, "a": 1}, expected='{"a":1,"b":2}'),
+            _case("boundary", {}, expected="{}"),
+            _case("negative", [], error="TypeError"),
+        ),
+        tests=(
+            _case("positive", {"z": {"b": 2, "a": 1}}, expected='{"z":{"a":1,"b":2}}'),
+            _case("boundary", {"text": "Straße"}, expected='{"text":"Straße"}'),
+            _case("negative", None, error="TypeError"),
+        ),
+        group_id="taedri.group.data_engineering_json_serialization",
+        group_labels=(
+            "canonical compact JSON object serializer",
+            "serialize record with stable sorted keys",
+            "deterministic JSON object text",
+        ),
+        documentation=(
+            "uses sorted recursive object keys, compact separators, UTF-8 characters, "
+            "and strict finite-number handling for stable JSON output."
+        ),
+        references=("https://docs.python.org/3.12/library/json.html#json.dumps",),
+        allowed_imports=("json", "math"),
+    ),
+    _spec(
+        category="data-cleaning",
+        name="drop-null-fields",
+        function_name="drop_null_fields",
+        source_code=_source(
+            '''
+            """Drop top-level record fields whose value is null."""
+
+
+            def drop_null_fields(value: dict[str, object]) -> dict[str, object]:
+                """Return a new object without top-level None values."""
+
+                if not isinstance(value, dict):
+                    raise TypeError("value must be an object")
+                if any(not isinstance(key, str) for key in value):
+                    raise TypeError("object keys must be strings")
+                return {key: item for key, item in value.items() if item is not None}
+            '''
+        ),
+        summary="Drop top-level object fields whose value is null while preserving others.",
+        keywords=("drop null fields", "record cleaning", "missing values", "object"),
+        use_cases=(
+            "remove absent optional fields before serialization",
+            "prepare sparse API objects that omit null values",
+            "clean one decoded JSON record without mutating the input",
+        ),
+        limitations=(
+            "Only removes top-level null values.",
+            "Does not remove empty strings, zero, false, empty objects, or empty arrays.",
+            "Requires string keys and returns a shallow copy.",
+        ),
+        input_name="value",
+        input_schema=OBJECT_SCHEMA,
+        output_schema=OBJECT_SCHEMA,
+        errors=(
+            {"type": "TypeError", "when": "value is not an object or keys are not strings"},
+        ),
+        examples=(
+            _case("positive", {"a": 1, "b": None}, expected={"a": 1}),
+            _case("boundary", {}, expected={}),
+            _case("negative", [], error="TypeError"),
+        ),
+        tests=(
+            _case("positive", {"zero": 0, "false": False, "none": None}, expected={"zero": 0, "false": False}),
+            _case("boundary", {"nested": {"x": None}}, expected={"nested": {"x": None}}),
+            _case("negative", None, error="TypeError"),
+        ),
+        group_id="taedri.group.data_cleaning_null_fields",
+        group_labels=(
+            "drop top level null object fields",
+            "omit missing fields from record",
+            "remove none values from JSON object",
+        ),
+        documentation=(
+            "constructs a new insertion-order-preserving dictionary containing every "
+            "top-level field except those whose value is exactly None."
+        ),
+        references=("https://docs.python.org/3.12/library/stdtypes.html#dict",),
+    ),
+    _spec(
+        category="data-engineering",
+        name="coerce-finite-number",
+        function_name="coerce_finite_number",
+        source_code=_source(
+            '''
+            """Parse one finite decimal or scientific-notation string as a number."""
+
+            import math
+            import re
+
+
+            _INTEGER = re.compile(r"^[+-]?[0-9]+$")
+            _NUMBER = re.compile(
+                r"^[+-]?(?:[0-9]+(?:\\.[0-9]+)?|\\.[0-9]+)(?:[eE][+-]?[0-9]+)?$"
+            )
+
+
+            def coerce_finite_number(value: str) -> int | float:
+                """Return an integer when exact integer syntax is used, otherwise float."""
+
+                if not isinstance(value, str):
+                    raise TypeError("value must be a string")
+                text = value.strip()
+                if not text:
+                    raise ValueError("value is empty")
+                if not _NUMBER.fullmatch(text):
+                    raise ValueError("value is not numeric")
+                if _INTEGER.fullmatch(text):
+                    return int(text)
+                try:
+                    number = float(text)
+                except ValueError as exc:
+                    raise ValueError("value is not numeric") from exc
+                if not math.isfinite(number):
+                    raise ValueError("value must be finite")
+                return number
+            '''
+        ),
+        summary="Parse a finite numeric string, preserving exact integer syntax as int.",
+        keywords=("numeric coercion", "parse number", "finite", "string adapter"),
+        use_cases=(
+            "convert a cleaned CSV scalar into a numeric primitive input",
+            "reject NaN and infinity during schema adaptation",
+            "preserve integer values while accepting decimal and exponent syntax",
+        ),
+        limitations=(
+            "Decimal and exponent syntax is represented as a binary float.",
+            "Does not accept thousands separators, currency symbols, or locale formats.",
+            "Very large finite-looking values can overflow and are rejected.",
+        ),
+        input_name="value",
+        input_schema=STRING_SCHEMA,
+        output_schema=NUMBER_SCHEMA,
+        errors=(
+            {"type": "TypeError", "when": "value is not a string"},
+            {"type": "ValueError", "when": "value is empty, non-numeric, or non-finite"},
+        ),
+        examples=(
+            _case("positive", " 1.25 ", expected=1.25),
+            _case("boundary", "-0", expected=0),
+            _case("negative", "nan", error="ValueError"),
+        ),
+        tests=(
+            _case("positive", "+12", expected=12),
+            _case("boundary", "1e3", expected=1000.0),
+            _case("negative", None, error="TypeError"),
+        ),
+        group_id="taedri.group.data_engineering_numeric_coercion",
+        group_labels=(
+            "finite numeric string coercion",
+            "parse decimal text to number",
+            "convert CSV scalar to finite numeric value",
+        ),
+        documentation=(
+            "strips surrounding whitespace, preserves integer syntax with int, parses "
+            "other accepted syntax with float, and rejects every non-finite result."
+        ),
+        references=(
+            "https://docs.python.org/3.12/library/functions.html#float",
+            "https://docs.python.org/3.12/library/math.html#math.isfinite",
+        ),
+        allowed_imports=("math", "re"),
+    ),
+    _spec(
+        category="data-engineering",
+        name="wrap-flatten-request",
+        function_name="wrap_flatten_request",
+        source_code=_source(
+            '''
+            """Adapt one JSON object to the explicit flatten-record request schema."""
+
+
+            def wrap_flatten_request(value: dict[str, object]) -> dict[str, object]:
+                """Return a request that flattens value with the default separator."""
+
+                if not isinstance(value, dict):
+                    raise TypeError("value must be an object")
+                if any(not isinstance(key, str) for key in value):
+                    raise TypeError("object keys must be strings")
+                return {"record": value}
+            '''
+        ),
+        summary="Adapt a JSON object to the explicit flatten-record request contract.",
+        keywords=("adapter", "flatten request", "record wrapper", "schema conversion"),
+        use_cases=(
+            "connect a generic parsed JSON object to flatten-record",
+            "make the default dotted separator choice explicit in a recipe",
+            "avoid generated glue for one common record-schema transition",
+        ),
+        limitations=(
+            "Always selects flatten-record's default dot separator.",
+            "Does not copy nested values and does not itself flatten the object.",
+            "Requires top-level string keys.",
+        ),
+        input_name="value",
+        input_schema=OBJECT_SCHEMA,
+        output_schema=FLATTEN_REQUEST_SCHEMA,
+        errors=(
+            {"type": "TypeError", "when": "value is not an object or keys are not strings"},
+        ),
+        examples=(
+            _case("positive", {"user": {"id": 7}}, expected={"record": {"user": {"id": 7}}}),
+            _case("boundary", {}, expected={"record": {}}),
+            _case("negative", [], error="TypeError"),
+        ),
+        tests=(
+            _case("positive", {"a": 1}, expected={"record": {"a": 1}}),
+            _case("boundary", {"record": 1}, expected={"record": {"record": 1}}),
+            _case("negative", None, error="TypeError"),
+        ),
+        group_id="taedri.group.data_engineering_flatten_adapter",
+        group_labels=(
+            "wrap object for flatten record",
+            "adapt parsed JSON to flatten request",
+            "record schema adapter for flattening",
+        ),
+        documentation=(
+            "wraps a generic object in flatten-record's required request envelope so "
+            "the schema transition is a versioned tested primitive rather than glue."
+        ),
+        references=(
+            "https://pandas.pydata.org/docs/reference/api/pandas.json_normalize.html",
+        ),
+    ),
+    _spec(
+        category="data-engineering",
+        name="format-compact-number",
+        function_name="format_compact_number",
+        source_code=_source(
+            '''
+            """Serialize one finite Python number to compact JSON number text."""
+
+            import json
+            import math
+
+
+            def format_compact_number(value: int | float) -> str:
+                """Return compact JSON number syntax for one finite number."""
+
+                if isinstance(value, bool) or not isinstance(value, (int, float)):
+                    raise TypeError("value must be a number")
+                if isinstance(value, float) and not math.isfinite(value):
+                    raise ValueError("value must be finite")
+                return json.dumps(value, allow_nan=False, separators=(",", ":"))
+            '''
+        ),
+        summary="Format one finite int or float as compact JSON number text.",
+        keywords=("format number", "JSON number", "serialization", "numeric adapter"),
+        use_cases=(
+            "convert a computed number into a portable text field",
+            "serialize numeric pipeline output without surrounding whitespace",
+            "reject non-finite values before text output",
+        ),
+        limitations=(
+            "Uses Python's pinned JSON float representation, not locale formatting.",
+            "Does not add units, precision padding, or thousands separators.",
+            "Boolean values are rejected even though bool subclasses int in Python.",
+        ),
+        input_name="value",
+        input_schema=NUMBER_SCHEMA,
+        output_schema=STRING_SCHEMA,
+        errors=(
+            {"type": "TypeError", "when": "value is not an int or float"},
+            {"type": "ValueError", "when": "value is not finite"},
+        ),
+        examples=(
+            _case("positive", 1.25, expected="1.25"),
+            _case("boundary", 0, expected="0"),
+            _case("negative", True, error="TypeError"),
+        ),
+        tests=(
+            _case("positive", -3, expected="-3"),
+            _case("boundary", 1.0, expected="1.0"),
+            _case("negative", "1", error="TypeError"),
+        ),
+        group_id="taedri.group.data_engineering_numeric_formatting",
+        group_labels=(
+            "compact finite number formatting",
+            "serialize numeric value to JSON text",
+            "format computed number without locale",
+        ),
+        documentation=(
+            "validates the Python numeric type and finiteness, then uses the pinned "
+            "standard-library JSON encoder to produce one compact number token."
+        ),
+        references=("https://docs.python.org/3.12/library/json.html#json.dumps",),
+        allowed_imports=("json", "math"),
+    ),
+    _spec(
+        category="data-science",
+        name="numeric-sum",
+        function_name="numeric_sum",
+        source_code=_source(
+            '''
+            """Accurately sum one non-empty finite numeric vector."""
+
+            import math
+
+
+            def numeric_sum(values: list[int | float]) -> float:
+                """Return math.fsum over a validated finite numeric list."""
+
+                if not isinstance(values, list):
+                    raise TypeError("values must be a list")
+                if not values:
+                    raise ValueError("values cannot be empty")
+                numbers: list[float] = []
+                for value in values:
+                    if isinstance(value, bool) or not isinstance(value, (int, float)):
+                        raise TypeError("values must contain numbers")
+                    try:
+                        number = float(value)
+                    except OverflowError as exc:
+                        raise ValueError("values must be finite") from exc
+                    if not math.isfinite(number):
+                        raise ValueError("values must be finite")
+                    numbers.append(number)
+                return math.fsum(numbers)
+            '''
+        ),
+        summary="Accurately sum a non-empty finite numeric vector with math.fsum.",
+        keywords=("numeric sum", "aggregation", "fsum", "data science"),
+        use_cases=(
+            "aggregate a validated numeric vector",
+            "reduce floating-point error relative to repeated addition",
+            "compute a deterministic total before formatting or comparison",
+        ),
+        limitations=(
+            "Returns a float even when every input is an integer.",
+            "Rejects empty, Boolean, and non-finite values.",
+            "Processes one in-memory list and does not stream.",
+        ),
+        input_name="values",
+        input_schema=NUMBER_ARRAY_SCHEMA,
+        output_schema=NUMBER_SCHEMA,
+        errors=(
+            {"type": "TypeError", "when": "values is not a numeric list"},
+            {"type": "ValueError", "when": "values is empty or non-finite"},
+        ),
+        examples=(
+            _case("positive", [1, 2, 3], expected=6.0),
+            _case("boundary", [0], expected=0.0),
+            _case("negative", [], error="ValueError"),
+        ),
+        tests=(
+            _case("positive", [-1, 1], expected=0.0),
+            _case("boundary", [0.1, 0.2, 0.3], expected=0.6),
+            _case("negative", [1, True], error="TypeError"),
+        ),
+        group_id="taedri.group.data_science_numeric_aggregation",
+        group_labels=(
+            "accurate finite numeric sum",
+            "aggregate numeric vector total",
+            "floating point fsum reduction",
+        ),
+        documentation=(
+            "validates a non-empty finite numeric list and applies math.fsum for a "
+            "more accurate deterministic total than repeated binary addition."
+        ),
+        references=("https://docs.python.org/3.12/library/math.html#math.fsum",),
+        allowed_imports=("math",),
+    ),
+    _spec(
+        category="data-science",
+        name="l2-normalize",
+        function_name="l2_normalize",
+        source_code=_source(
+            '''
+            """Normalize one finite numeric vector to unit Euclidean length."""
+
+            import math
+
+
+            def l2_normalize(values: list[int | float]) -> list[float]:
+                """Return a unit-L2 vector, or deterministic zeros for a zero vector."""
+
+                if not isinstance(values, list):
+                    raise TypeError("values must be a list")
+                if not values:
+                    raise ValueError("values cannot be empty")
+                numbers: list[float] = []
+                for value in values:
+                    if isinstance(value, bool) or not isinstance(value, (int, float)):
+                        raise TypeError("values must contain numbers")
+                    try:
+                        number = float(value)
+                    except OverflowError as exc:
+                        raise ValueError("values must be finite") from exc
+                    if not math.isfinite(number):
+                        raise ValueError("values must be finite")
+                    numbers.append(number)
+                norm = math.sqrt(math.fsum(value * value for value in numbers))
+                if norm == 0.0:
+                    return [0.0 for _ in numbers]
+                return [value / norm for value in numbers]
+            '''
+        ),
+        summary="Normalize a finite numeric vector to unit Euclidean length.",
+        keywords=("L2 normalization", "unit vector", "Euclidean norm", "data science"),
+        use_cases=(
+            "normalize one feature or embedding vector before cosine comparison",
+            "convert a nonzero vector to unit Euclidean length",
+            "handle an all-zero vector without division by zero",
+        ),
+        limitations=(
+            "Does not center features or retain a fitted transformer.",
+            "A zero vector remains a zero vector rather than becoming unit length.",
+            "Processes one non-empty in-memory vector.",
+        ),
+        input_name="values",
+        input_schema=NUMBER_ARRAY_SCHEMA,
+        output_schema=NUMBER_ARRAY_SCHEMA,
+        errors=(
+            {"type": "TypeError", "when": "values is not a numeric list"},
+            {"type": "ValueError", "when": "values is empty or non-finite"},
+        ),
+        examples=(
+            _case("positive", [3, 4], expected=[0.6, 0.8]),
+            _case("boundary", [0, 0], expected=[0.0, 0.0]),
+            _case("negative", [], error="ValueError"),
+        ),
+        tests=(
+            _case("positive", [-5], expected=[-1.0]),
+            _case("boundary", [1, 0], expected=[1.0, 0.0]),
+            _case("negative", [1, True], error="TypeError"),
+        ),
+        group_id="taedri.group.data_science_vector_normalization",
+        group_labels=(
+            "unit L2 vector normalization",
+            "normalize vector Euclidean length",
+            "prepare vector for cosine similarity",
+        ),
+        documentation=(
+            "validates finite numeric values, computes the Euclidean norm with fsum, "
+            "divides nonzero vectors by that norm, and preserves zero vectors."
+        ),
+        references=(
+            "https://docs.python.org/3.12/library/math.html#math.fsum",
+            "https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.normalize.html",
+        ),
+        allowed_imports=("math",),
+    ),
 )
 
 
@@ -1012,6 +1734,16 @@ SEARCH_QUERIES = {
     "numeric-median": "robust median numeric vector",
     "minmax-scale": "scale numeric vector zero one",
     "zscore-standardize": "z score standardize vector",
+    "normalize-unicode-nfkc": "unicode NFKC compatibility normalization",
+    "remove-control-characters": "remove C0 C1 control characters",
+    "parse-json-object": "strict JSON object parser",
+    "canonical-json-object": "canonical compact JSON object serializer",
+    "drop-null-fields": "drop top level null object fields",
+    "coerce-finite-number": "finite numeric string coercion",
+    "wrap-flatten-request": "wrap object for flatten record",
+    "format-compact-number": "compact finite number formatting",
+    "numeric-sum": "accurate finite numeric sum",
+    "l2-normalize": "unit L2 vector normalization",
 }
 
 

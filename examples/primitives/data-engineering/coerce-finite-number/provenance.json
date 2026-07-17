@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0",
+  "implementation_producer_id": "taedri.data.author.coerce-finite-number.v1",
+  "source_uri": "https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/tree/main/examples/primitives/data-engineering/coerce-finite-number",
+  "source_revision": "sha256:82ba6e794bf197e4c67f48259c2d9d33a431fcdca668af27a4fd5a2f035c4e20",
+  "source_digest": "sha256:82ba6e794bf197e4c67f48259c2d9d33a431fcdca668af27a4fd5a2f035c4e20"
+}

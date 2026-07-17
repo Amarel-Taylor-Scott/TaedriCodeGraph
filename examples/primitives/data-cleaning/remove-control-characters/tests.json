@@ -1,0 +1,25 @@
+{
+  "cases": [
+    {
+      "kind": "positive",
+      "args": [
+        "line\nbreak\t"
+      ],
+      "expected": "linebreak"
+    },
+    {
+      "kind": "boundary",
+      "args": [
+        "already visible"
+      ],
+      "expected": "already visible"
+    },
+    {
+      "kind": "negative",
+      "args": [
+        null
+      ],
+      "expected_error": "TypeError"
+    }
+  ]
+}

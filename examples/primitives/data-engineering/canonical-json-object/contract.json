@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "inputs": [
+    {
+      "name": "value",
+      "schema": {
+        "type": "object"
+      }
+    }
+  ],
+  "output": {
+    "schema": {
+      "type": "string"
+    }
+  },
+  "errors": [
+    {
+      "type": "TypeError",
+      "when": "value is not a dictionary"
+    },
+    {
+      "type": "ValueError",
+      "when": "value is not portable finite JSON"
+    }
+  ],
+  "effects": []
+}

@@ -1,0 +1,22 @@
+{
+  "summary": "Accurately sum a non-empty finite numeric vector with math.fsum.",
+  "keywords": [
+    "numeric sum",
+    "aggregation",
+    "fsum",
+    "data science"
+  ],
+  "use_cases": [
+    "aggregate a validated numeric vector",
+    "reduce floating-point error relative to repeated addition",
+    "compute a deterministic total before formatting or comparison"
+  ],
+  "limitations": [
+    "Returns a float even when every input is an integer.",
+    "Rejects empty, Boolean, and non-finite values.",
+    "Processes one in-memory list and does not stream."
+  ],
+  "references": [
+    "https://docs.python.org/3.12/library/math.html#math.fsum"
+  ]
+}

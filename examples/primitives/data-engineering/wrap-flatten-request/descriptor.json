@@ -1,0 +1,22 @@
+{
+  "summary": "Adapt a JSON object to the explicit flatten-record request contract.",
+  "keywords": [
+    "adapter",
+    "flatten request",
+    "record wrapper",
+    "schema conversion"
+  ],
+  "use_cases": [
+    "connect a generic parsed JSON object to flatten-record",
+    "make the default dotted separator choice explicit in a recipe",
+    "avoid generated glue for one common record-schema transition"
+  ],
+  "limitations": [
+    "Always selects flatten-record's default dot separator.",
+    "Does not copy nested values and does not itself flatten the object.",
+    "Requires top-level string keys."
+  ],
+  "references": [
+    "https://pandas.pydata.org/docs/reference/api/pandas.json_normalize.html"
+  ]
+}

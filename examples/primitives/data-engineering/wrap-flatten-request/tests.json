@@ -1,0 +1,37 @@
+{
+  "cases": [
+    {
+      "kind": "positive",
+      "args": [
+        {
+          "a": 1
+        }
+      ],
+      "expected": {
+        "record": {
+          "a": 1
+        }
+      }
+    },
+    {
+      "kind": "boundary",
+      "args": [
+        {
+          "record": 1
+        }
+      ],
+      "expected": {
+        "record": {
+          "record": 1
+        }
+      }
+    },
+    {
+      "kind": "negative",
+      "args": [
+        null
+      ],
+      "expected_error": "TypeError"
+    }
+  ]
+}

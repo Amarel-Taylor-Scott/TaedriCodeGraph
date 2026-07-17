@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "inputs": [
+    {
+      "name": "values",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      }
+    }
+  ],
+  "output": {
+    "schema": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      }
+    }
+  },
+  "errors": [
+    {
+      "type": "TypeError",
+      "when": "values is not a numeric list"
+    },
+    {
+      "type": "ValueError",
+      "when": "values is empty or non-finite"
+    }
+  ],
+  "effects": []
+}

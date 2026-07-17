@@ -1,0 +1,22 @@
+{
+  "summary": "Drop top-level object fields whose value is null while preserving others.",
+  "keywords": [
+    "drop null fields",
+    "record cleaning",
+    "missing values",
+    "object"
+  ],
+  "use_cases": [
+    "remove absent optional fields before serialization",
+    "prepare sparse API objects that omit null values",
+    "clean one decoded JSON record without mutating the input"
+  ],
+  "limitations": [
+    "Only removes top-level null values.",
+    "Does not remove empty strings, zero, false, empty objects, or empty arrays.",
+    "Requires string keys and returns a shallow copy."
+  ],
+  "references": [
+    "https://docs.python.org/3.12/library/stdtypes.html#dict"
+  ]
+}

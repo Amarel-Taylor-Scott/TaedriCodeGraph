@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0",
+  "implementation_producer_id": "taedri.data.author.drop-null-fields.v1",
+  "source_uri": "https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/tree/main/examples/primitives/data-cleaning/drop-null-fields",
+  "source_revision": "sha256:e573e9f91f295b3a79859b96a3a2cec385ab664886859e1504e0ed6ed1a89063",
+  "source_digest": "sha256:e573e9f91f295b3a79859b96a3a2cec385ab664886859e1504e0ed6ed1a89063"
+}

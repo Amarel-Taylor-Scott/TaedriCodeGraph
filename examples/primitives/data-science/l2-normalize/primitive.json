@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0.0",
+  "namespace": "taedri.data.science",
+  "name": "l2-normalize",
+  "contract_path": "contract.json",
+  "ref_kind": "branch",
+  "ref_name": "main",
+  "message": "Release the complete l2-normalize data primitive.",
+  "policy_decision_id": "taedri.policy.data-primitives-v1",
+  "assurance_level": "standard",
+  "files": [
+    {
+      "path": "src/l2_normalize.py",
+      "role": "source",
+      "media_type": "text/x-python"
+    },
+    {
+      "path": "contract.json",
+      "role": "contract",
+      "media_type": "application/json"
+    },
+    {
+      "path": "descriptor.json",
+      "role": "descriptor",
+      "media_type": "application/json"
+    },
+    {
+      "path": "examples.json",
+      "role": "example",
+      "media_type": "application/json"
+    },
+    {
+      "path": "tests.json",
+      "role": "test",
+      "media_type": "application/json"
+    },
+    {
+      "path": "verifier.json",
+      "role": "verifier",
+      "media_type": "application/json"
+    },
+    {
+      "path": "dependencies.lock",
+      "role": "dependency_lock",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "runtime.json",
+      "role": "runtime",
+      "media_type": "application/json"
+    },
+    {
+      "path": "graph.json",
+      "role": "graph_delta",
+      "media_type": "application/json"
+    },
+    {
+      "path": "README.md",
+      "role": "documentation",
+      "media_type": "text/markdown"
+    },
+    {
+      "path": "LICENSE_EVIDENCE.txt",
+      "role": "documentation",
+      "media_type": "text/plain"
+    },
+    {
+      "path": "license.json",
+      "role": "license",
+      "media_type": "application/json"
+    },
+    {
+      "path": "provenance.json",
+      "role": "provenance",
+      "media_type": "application/json"
+    }
+  ]
+}

@@ -1,0 +1,222 @@
+{
+  "schema_version": "1.1.0",
+  "interface_id": "taedri.data.engineering.canonical-json-object.v1",
+  "nodes": [
+    {
+      "id": "implementation.canonical_json_object",
+      "kind": "implementation",
+      "path": "src/canonical_json_object.py",
+      "symbol": "canonical_json_object"
+    },
+    {
+      "id": "contract.canonical_json_object",
+      "kind": "contract",
+      "path": "contract.json"
+    },
+    {
+      "id": "port.input.value",
+      "kind": "input_port",
+      "path": "contract.json",
+      "json_pointer": "#/inputs/0"
+    },
+    {
+      "id": "port.output.result",
+      "kind": "output_port",
+      "path": "contract.json",
+      "json_pointer": "#/output"
+    },
+    {
+      "id": "examples.canonical_json_object",
+      "kind": "example_set",
+      "path": "examples.json"
+    },
+    {
+      "id": "tests.canonical_json_object",
+      "kind": "test_set",
+      "path": "tests.json"
+    },
+    {
+      "id": "runtime.python312",
+      "kind": "runtime",
+      "path": "runtime.json"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.implements_contract",
+      "source": "implementation.canonical_json_object",
+      "predicate": "taedri.predicate.implements_contract",
+      "target": "contract.canonical_json_object",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "src/canonical_json_object.py",
+          "digest": "sha256:97718e1463680c0643fa080a86e048a8666fbe5031ad4cdd4a6b66d81a09a0eb"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:501fff3f7592109a3d5f4f8d3c53508e8be956fbda0119d18a292893d1d87868"
+        }
+      ]
+    },
+    {
+      "id": "edge.accepts_value",
+      "source": "implementation.canonical_json_object",
+      "predicate": "taedri.predicate.accepts_port",
+      "target": "port.input.value",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:501fff3f7592109a3d5f4f8d3c53508e8be956fbda0119d18a292893d1d87868"
+        }
+      ]
+    },
+    {
+      "id": "edge.produces_result",
+      "source": "implementation.canonical_json_object",
+      "predicate": "taedri.predicate.produces_port",
+      "target": "port.output.result",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:501fff3f7592109a3d5f4f8d3c53508e8be956fbda0119d18a292893d1d87868"
+        }
+      ]
+    },
+    {
+      "id": "edge.demonstrated_by_examples",
+      "source": "examples.canonical_json_object",
+      "predicate": "taedri.predicate.demonstrates",
+      "target": "implementation.canonical_json_object",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "examples.json",
+          "digest": "sha256:78c4a23fd0cc381cc6c15bd9201b10ce4709c157aaaad9071d092a7f48612398"
+        }
+      ]
+    },
+    {
+      "id": "edge.verified_by_tests",
+      "source": "tests.canonical_json_object",
+      "predicate": "taedri.predicate.verifies",
+      "target": "implementation.canonical_json_object",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "tests.json",
+          "digest": "sha256:60233e1bc91008b0f92b9cf9a88be1068b8019ebfe95683d5e82eff82978c144"
+        }
+      ]
+    },
+    {
+      "id": "edge.runs_on_python312",
+      "source": "implementation.canonical_json_object",
+      "predicate": "taedri.predicate.runs_on",
+      "target": "runtime.python312",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "runtime.json",
+          "digest": "sha256:8f9294623f2583ecabdfa42032bcaa73c3c74059832f991e9f9e6e8cfa317634"
+        }
+      ]
+    }
+  ],
+  "ports": [
+    {
+      "id": "port.input.value",
+      "owner": "implementation.canonical_json_object",
+      "direction": "input",
+      "name": "value",
+      "schema": {
+        "type": "object"
+      },
+      "schema_digest": "sha256:db13a804b68016157da85c711411fb9f45e65eb6a5adb2ac8878d5de824b048d",
+      "schema_ref": "contract.json#/inputs/0/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native"
+      ]
+    },
+    {
+      "id": "port.output.result",
+      "owner": "implementation.canonical_json_object",
+      "direction": "output",
+      "name": "result",
+      "schema": {
+        "type": "string"
+      },
+      "schema_digest": "sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03",
+      "schema_ref": "contract.json#/output/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native",
+        "text"
+      ]
+    }
+  ],
+  "compatibility": {
+    "language": "python",
+    "runtime_version": "3.12",
+    "execution_model": "in_process_call",
+    "deterministic": true,
+    "purity": "pure",
+    "network": "denied",
+    "effects": [],
+    "dimensions": {
+      "taedri.compatibility.call_style": "sync",
+      "taedri.compatibility.language": "python",
+      "taedri.compatibility.runtime_major_minor": "3.12",
+      "taedri.compatibility.value_transport": "python_native"
+    },
+    "required_dimensions": [
+      "taedri.compatibility.call_style",
+      "taedri.compatibility.language",
+      "taedri.compatibility.runtime_major_minor",
+      "taedri.compatibility.value_transport"
+    ]
+  },
+  "groups": [
+    {
+      "id": "taedri.group.data_engineering_json_serialization",
+      "kind": "capability",
+      "labels": [
+        "canonical compact JSON object serializer",
+        "serialize record with stable sorted keys",
+        "deterministic JSON object text"
+      ],
+      "member_nodes": [
+        "implementation.canonical_json_object"
+      ],
+      "evidence": [
+        {
+          "path": "descriptor.json",
+          "digest": "sha256:011d2cab9e1385aaff02e6322c610075df438b55e5f894515f56d68b92555f5a"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:501fff3f7592109a3d5f4f8d3c53508e8be956fbda0119d18a292893d1d87868"
+        }
+      ]
+    }
+  ]
+}

@@ -32,7 +32,7 @@ from taedri_codegraph.prompt_interception import (
 )
 
 catalog = ReleasedPrimitiveCatalog.load_checked_cohort(
-    Path("eval/results/data-primitive-cohort-2026-07-16")
+    Path("eval/results/data-primitive-cohort-2026-07-17")
 )
 shortlister = DeterministicRetrievalProgramShortlister(catalog.cards)
 
@@ -78,4 +78,6 @@ positive cases and five unsupported cases. The program achieved 26/26 positive r
 hits and 5/5 unsupported abstentions while returning 34 candidates, versus 25/26,
 3/5, and 83 candidates for the legacy BM25-only shortlister. These are deterministic
 fixture results, not corpus-wide relevance, semantic quality, coding-success, or token
-savings claims.
+savings claims. That retrieval comparison remains bound to its original 13-release
+fixture. The expanded 23-release route benchmark separately records 20 retrieval
+executions against the larger catalog before compatibility planning.

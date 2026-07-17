@@ -1,0 +1,22 @@
+{
+  "summary": "Parse a strict top-level JSON object with duplicate-key rejection.",
+  "keywords": [
+    "JSON parser",
+    "object",
+    "duplicate keys",
+    "deserialization"
+  ],
+  "use_cases": [
+    "turn a JSON object string into a record primitive can consume",
+    "reject duplicate object keys before data transformation",
+    "exclude non-finite JavaScript constants from portable JSON"
+  ],
+  "limitations": [
+    "Only accepts a top-level object, not an array or scalar.",
+    "Loads the complete string into memory.",
+    "Does not validate the object against a domain schema."
+  ],
+  "references": [
+    "https://docs.python.org/3.12/library/json.html#json.loads"
+  ]
+}

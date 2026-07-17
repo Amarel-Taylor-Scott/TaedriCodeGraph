@@ -1,0 +1,22 @@
+{
+  "summary": "Serialize a JSON-compatible object with stable keys and compact spacing.",
+  "keywords": [
+    "canonical JSON",
+    "serializer",
+    "stable keys",
+    "object"
+  ],
+  "use_cases": [
+    "produce deterministic text after record transformations",
+    "create stable cache and comparison payloads",
+    "serialize Unicode object data without ASCII escaping"
+  ],
+  "limitations": [
+    "This is stable JSON output, not the full RFC 8785 number format.",
+    "Only accepts a top-level dictionary.",
+    "Rejects non-JSON Python values and non-finite numbers."
+  ],
+  "references": [
+    "https://docs.python.org/3.12/library/json.html#json.dumps"
+  ]
+}

@@ -1,0 +1,222 @@
+{
+  "schema_version": "1.1.0",
+  "interface_id": "taedri.data.engineering.coerce-finite-number.v1",
+  "nodes": [
+    {
+      "id": "implementation.coerce_finite_number",
+      "kind": "implementation",
+      "path": "src/coerce_finite_number.py",
+      "symbol": "coerce_finite_number"
+    },
+    {
+      "id": "contract.coerce_finite_number",
+      "kind": "contract",
+      "path": "contract.json"
+    },
+    {
+      "id": "port.input.value",
+      "kind": "input_port",
+      "path": "contract.json",
+      "json_pointer": "#/inputs/0"
+    },
+    {
+      "id": "port.output.result",
+      "kind": "output_port",
+      "path": "contract.json",
+      "json_pointer": "#/output"
+    },
+    {
+      "id": "examples.coerce_finite_number",
+      "kind": "example_set",
+      "path": "examples.json"
+    },
+    {
+      "id": "tests.coerce_finite_number",
+      "kind": "test_set",
+      "path": "tests.json"
+    },
+    {
+      "id": "runtime.python312",
+      "kind": "runtime",
+      "path": "runtime.json"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.implements_contract",
+      "source": "implementation.coerce_finite_number",
+      "predicate": "taedri.predicate.implements_contract",
+      "target": "contract.coerce_finite_number",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "src/coerce_finite_number.py",
+          "digest": "sha256:2e58dc7bbf3db5d94c638c2342dd956912f98156d070c4605c3cd5ced98e5845"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:9439690eccd37e486ed36242192a45b4102b21ce9ff7b4f63844e8eec2efe132"
+        }
+      ]
+    },
+    {
+      "id": "edge.accepts_value",
+      "source": "implementation.coerce_finite_number",
+      "predicate": "taedri.predicate.accepts_port",
+      "target": "port.input.value",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:9439690eccd37e486ed36242192a45b4102b21ce9ff7b4f63844e8eec2efe132"
+        }
+      ]
+    },
+    {
+      "id": "edge.produces_result",
+      "source": "implementation.coerce_finite_number",
+      "predicate": "taedri.predicate.produces_port",
+      "target": "port.output.result",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:9439690eccd37e486ed36242192a45b4102b21ce9ff7b4f63844e8eec2efe132"
+        }
+      ]
+    },
+    {
+      "id": "edge.demonstrated_by_examples",
+      "source": "examples.coerce_finite_number",
+      "predicate": "taedri.predicate.demonstrates",
+      "target": "implementation.coerce_finite_number",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "examples.json",
+          "digest": "sha256:340b0cebc88c664d66e6f833ff5b7bfd2beacb3da08f98560d54c4c08702798d"
+        }
+      ]
+    },
+    {
+      "id": "edge.verified_by_tests",
+      "source": "tests.coerce_finite_number",
+      "predicate": "taedri.predicate.verifies",
+      "target": "implementation.coerce_finite_number",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "tests.json",
+          "digest": "sha256:f02c805f0b8eef831f65164406817f9429c576db760a5d95149cd644d7bd887a"
+        }
+      ]
+    },
+    {
+      "id": "edge.runs_on_python312",
+      "source": "implementation.coerce_finite_number",
+      "predicate": "taedri.predicate.runs_on",
+      "target": "runtime.python312",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "runtime.json",
+          "digest": "sha256:5f696e1e7ff6c0b58d4c089a381871df13bcc438c942deb085ac718b5e503f39"
+        }
+      ]
+    }
+  ],
+  "ports": [
+    {
+      "id": "port.input.value",
+      "owner": "implementation.coerce_finite_number",
+      "direction": "input",
+      "name": "value",
+      "schema": {
+        "type": "string"
+      },
+      "schema_digest": "sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03",
+      "schema_ref": "contract.json#/inputs/0/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native",
+        "text"
+      ]
+    },
+    {
+      "id": "port.output.result",
+      "owner": "implementation.coerce_finite_number",
+      "direction": "output",
+      "name": "result",
+      "schema": {
+        "type": "number"
+      },
+      "schema_digest": "sha256:2ca93d3dd1e9283742144fc34570a933bcf56093e081410670168506dbb77f47",
+      "schema_ref": "contract.json#/output/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native"
+      ]
+    }
+  ],
+  "compatibility": {
+    "language": "python",
+    "runtime_version": "3.12",
+    "execution_model": "in_process_call",
+    "deterministic": true,
+    "purity": "pure",
+    "network": "denied",
+    "effects": [],
+    "dimensions": {
+      "taedri.compatibility.call_style": "sync",
+      "taedri.compatibility.language": "python",
+      "taedri.compatibility.runtime_major_minor": "3.12",
+      "taedri.compatibility.value_transport": "python_native"
+    },
+    "required_dimensions": [
+      "taedri.compatibility.call_style",
+      "taedri.compatibility.language",
+      "taedri.compatibility.runtime_major_minor",
+      "taedri.compatibility.value_transport"
+    ]
+  },
+  "groups": [
+    {
+      "id": "taedri.group.data_engineering_numeric_coercion",
+      "kind": "capability",
+      "labels": [
+        "finite numeric string coercion",
+        "parse decimal text to number",
+        "convert CSV scalar to finite numeric value"
+      ],
+      "member_nodes": [
+        "implementation.coerce_finite_number"
+      ],
+      "evidence": [
+        {
+          "path": "descriptor.json",
+          "digest": "sha256:c2beb128aaa7894ef86250dd5e88e4ca6d680d72ed518a323ae4b2131c270459"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:9439690eccd37e486ed36242192a45b4102b21ce9ff7b4f63844e8eec2efe132"
+        }
+      ]
+    }
+  ]
+}

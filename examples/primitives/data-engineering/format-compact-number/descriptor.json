@@ -1,0 +1,22 @@
+{
+  "summary": "Format one finite int or float as compact JSON number text.",
+  "keywords": [
+    "format number",
+    "JSON number",
+    "serialization",
+    "numeric adapter"
+  ],
+  "use_cases": [
+    "convert a computed number into a portable text field",
+    "serialize numeric pipeline output without surrounding whitespace",
+    "reject non-finite values before text output"
+  ],
+  "limitations": [
+    "Uses Python's pinned JSON float representation, not locale formatting.",
+    "Does not add units, precision padding, or thousands separators.",
+    "Boolean values are rejected even though bool subclasses int in Python."
+  ],
+  "references": [
+    "https://docs.python.org/3.12/library/json.html#json.dumps"
+  ]
+}

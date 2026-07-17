@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "inputs": [
+    {
+      "name": "value",
+      "schema": {
+        "type": "number"
+      }
+    }
+  ],
+  "output": {
+    "schema": {
+      "type": "string"
+    }
+  },
+  "errors": [
+    {
+      "type": "TypeError",
+      "when": "value is not an int or float"
+    },
+    {
+      "type": "ValueError",
+      "when": "value is not finite"
+    }
+  ],
+  "effects": []
+}

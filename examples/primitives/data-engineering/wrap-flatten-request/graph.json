@@ -1,0 +1,233 @@
+{
+  "schema_version": "1.1.0",
+  "interface_id": "taedri.data.engineering.wrap-flatten-request.v1",
+  "nodes": [
+    {
+      "id": "implementation.wrap_flatten_request",
+      "kind": "implementation",
+      "path": "src/wrap_flatten_request.py",
+      "symbol": "wrap_flatten_request"
+    },
+    {
+      "id": "contract.wrap_flatten_request",
+      "kind": "contract",
+      "path": "contract.json"
+    },
+    {
+      "id": "port.input.value",
+      "kind": "input_port",
+      "path": "contract.json",
+      "json_pointer": "#/inputs/0"
+    },
+    {
+      "id": "port.output.result",
+      "kind": "output_port",
+      "path": "contract.json",
+      "json_pointer": "#/output"
+    },
+    {
+      "id": "examples.wrap_flatten_request",
+      "kind": "example_set",
+      "path": "examples.json"
+    },
+    {
+      "id": "tests.wrap_flatten_request",
+      "kind": "test_set",
+      "path": "tests.json"
+    },
+    {
+      "id": "runtime.python312",
+      "kind": "runtime",
+      "path": "runtime.json"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.implements_contract",
+      "source": "implementation.wrap_flatten_request",
+      "predicate": "taedri.predicate.implements_contract",
+      "target": "contract.wrap_flatten_request",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "src/wrap_flatten_request.py",
+          "digest": "sha256:bae13b27fd36b2709b2d07772aede845da8e372f21b49aaa1340d224035b837f"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:4d367b7d431c74ff48356f63cba6b9b316fe90d5ceef44c3b19c1848d69ac110"
+        }
+      ]
+    },
+    {
+      "id": "edge.accepts_value",
+      "source": "implementation.wrap_flatten_request",
+      "predicate": "taedri.predicate.accepts_port",
+      "target": "port.input.value",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:4d367b7d431c74ff48356f63cba6b9b316fe90d5ceef44c3b19c1848d69ac110"
+        }
+      ]
+    },
+    {
+      "id": "edge.produces_result",
+      "source": "implementation.wrap_flatten_request",
+      "predicate": "taedri.predicate.produces_port",
+      "target": "port.output.result",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:4d367b7d431c74ff48356f63cba6b9b316fe90d5ceef44c3b19c1848d69ac110"
+        }
+      ]
+    },
+    {
+      "id": "edge.demonstrated_by_examples",
+      "source": "examples.wrap_flatten_request",
+      "predicate": "taedri.predicate.demonstrates",
+      "target": "implementation.wrap_flatten_request",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "examples.json",
+          "digest": "sha256:f0bd3f834820e0fcfd77e866be7358805569bf1dc08f3b9a368914dc203c47c8"
+        }
+      ]
+    },
+    {
+      "id": "edge.verified_by_tests",
+      "source": "tests.wrap_flatten_request",
+      "predicate": "taedri.predicate.verifies",
+      "target": "implementation.wrap_flatten_request",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "tests.json",
+          "digest": "sha256:4188ea0bd9a5eed1a740fecd1d065f335f6bfc32a2727fc9cd8dc88f3045f01c"
+        }
+      ]
+    },
+    {
+      "id": "edge.runs_on_python312",
+      "source": "implementation.wrap_flatten_request",
+      "predicate": "taedri.predicate.runs_on",
+      "target": "runtime.python312",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "runtime.json",
+          "digest": "sha256:4309c1a89a7b9af54c90fae6962e9930d2bf9d8fea8e8fd1c95b3d8a1d2f5a2c"
+        }
+      ]
+    }
+  ],
+  "ports": [
+    {
+      "id": "port.input.value",
+      "owner": "implementation.wrap_flatten_request",
+      "direction": "input",
+      "name": "value",
+      "schema": {
+        "type": "object"
+      },
+      "schema_digest": "sha256:db13a804b68016157da85c711411fb9f45e65eb6a5adb2ac8878d5de824b048d",
+      "schema_ref": "contract.json#/inputs/0/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native"
+      ]
+    },
+    {
+      "id": "port.output.result",
+      "owner": "implementation.wrap_flatten_request",
+      "direction": "output",
+      "name": "result",
+      "schema": {
+        "type": "object",
+        "required": [
+          "record"
+        ],
+        "properties": {
+          "record": {
+            "type": "object"
+          },
+          "separator": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "schema_digest": "sha256:f51f5eff1f9e0c554fa93fc78d830c67bb9b3c06eab1b144b1638e05fb85305c",
+      "schema_ref": "contract.json#/output/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native"
+      ]
+    }
+  ],
+  "compatibility": {
+    "language": "python",
+    "runtime_version": "3.12",
+    "execution_model": "in_process_call",
+    "deterministic": true,
+    "purity": "pure",
+    "network": "denied",
+    "effects": [],
+    "dimensions": {
+      "taedri.compatibility.call_style": "sync",
+      "taedri.compatibility.language": "python",
+      "taedri.compatibility.runtime_major_minor": "3.12",
+      "taedri.compatibility.value_transport": "python_native"
+    },
+    "required_dimensions": [
+      "taedri.compatibility.call_style",
+      "taedri.compatibility.language",
+      "taedri.compatibility.runtime_major_minor",
+      "taedri.compatibility.value_transport"
+    ]
+  },
+  "groups": [
+    {
+      "id": "taedri.group.data_engineering_flatten_adapter",
+      "kind": "capability",
+      "labels": [
+        "wrap object for flatten record",
+        "adapt parsed JSON to flatten request",
+        "record schema adapter for flattening"
+      ],
+      "member_nodes": [
+        "implementation.wrap_flatten_request"
+      ],
+      "evidence": [
+        {
+          "path": "descriptor.json",
+          "digest": "sha256:e77c188716a3a72e77e0f60fc2d53a5aa262a7bf12ded01dd6871b39cf84ac07"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:4d367b7d431c74ff48356f63cba6b9b316fe90d5ceef44c3b19c1848d69ac110"
+        }
+      ]
+    }
+  ]
+}

@@ -29,9 +29,12 @@ from taedri_codegraph.saas import SQLiteControlPlane, Tenant
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CREATED_AT = "2026-07-16T23:30:00Z"
-VERIFIED_AT = "2026-07-16T23:31:00Z"
-EXPECTED_PRIMITIVES = 13
+CREATED_AT = "2026-07-17T07:30:00Z"
+VERIFIED_AT = "2026-07-17T07:31:00Z"
+EXPECTED_PRIMITIVES = 23
+SEARCH_QUERY_OVERRIDES = {
+    "normalize-text": "remove surrounding whitespace without changing internal spacing",
+}
 
 
 def run(output: Path) -> Mapping[str, Any]:
@@ -143,7 +146,10 @@ def run(output: Path) -> Mapping[str, Any]:
                 for file in accepted.released.staged.tree.entries
                 if file.role is CapsuleRole.SOURCE
             ),
-            "search_query": interface.groups[0].labels[0],
+            "search_query": SEARCH_QUERY_OVERRIDES.get(
+                item.bundle.name,
+                interface.groups[0].labels[0],
+            ),
         }
         records.append(record)
         packs[item.bundle.name] = encoded
@@ -209,11 +215,39 @@ def run(output: Path) -> Mapping[str, Any]:
         tuple(packs[name] for name in null_names),
         "  N/A  ",
     )
+    json_names = (
+        "parse-json-object",
+        "drop-null-fields",
+        "wrap-flatten-request",
+        "flatten-record",
+        "canonical-json-object",
+    )
+    json_plan = planner.pipeline(tuple(interfaces[name] for name in json_names))
+    json_result = LocalDeterministicPythonPipelineExecutor().execute(
+        json_plan,
+        tuple(packs[name] for name in json_names),
+        '{"user":{"name":"Ada","age":37},"unused":null}',
+    )
+    number_adapter_names = (
+        "normalize-text",
+        "coerce-finite-number",
+        "format-compact-number",
+    )
+    number_adapter_plan = planner.pipeline(
+        tuple(interfaces[name] for name in number_adapter_names)
+    )
+    number_adapter_result = LocalDeterministicPythonPipelineExecutor().execute(
+        number_adapter_plan,
+        tuple(packs[name] for name in number_adapter_names),
+        " 1.25 ",
+    )
     if (
         text_result.output != "customer_strasse"
         or numeric_result.output != 0.5
         or datetime_result.output != "2026-07-17T12:30:00Z"
         or null_result.output is not None
+        or json_result.output != '{"user.age":37,"user.name":"Ada"}'
+        or number_adapter_result.output != "1.25"
     ):
         raise SystemExit("data primitive deterministic routes returned incorrect output")
 
@@ -262,7 +296,7 @@ def run(output: Path) -> Mapping[str, Any]:
         "status": "passed",
         "claim_scope": (
             f"{EXPECTED_PRIMITIVES} complete trusted-source Python 3.12 primitives; "
-            "local SQLite registry; exact blocked compatibility; four deterministic "
+            "local SQLite registry; exact blocked compatibility; six deterministic "
             "no-model routes"
         ),
         "primitive_count": len(records),
@@ -317,6 +351,21 @@ def run(output: Path) -> Mapping[str, Any]:
             "plan_id": null_plan.identity.id,
             "receipt": null_result.receipt.to_dict(),
         },
+        "json_route": {
+            "primitive_names": list(json_names),
+            "input": '{"user":{"name":"Ada","age":37},"unused":null}',
+            "output": json_result.output,
+            "plan_id": json_plan.identity.id,
+            "receipt": json_result.receipt.to_dict(),
+        },
+        "number_adapter_route": {
+            "primitive_names": list(number_adapter_names),
+            "input": " 1.25 ",
+            "output": number_adapter_result.output,
+            "plan_id": number_adapter_plan.identity.id,
+            "receipt": number_adapter_result.receipt.to_dict(),
+        },
+        "deterministic_route_count": 6,
         "model_calls": 0,
         "generated_route_code_bytes": 0,
         "records": records,
@@ -555,7 +604,7 @@ def _console_html(run: Mapping[str, Any]) -> str:
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Taedri data primitive cohort</title>
 <style>:root{{color-scheme:dark}}body{{margin:0;background:#07101d;color:#e5edf8;font:15px system-ui}}main{{max-width:1250px;margin:auto;padding:32px}}h1{{margin:0 0 8px;font-size:34px}}.sub{{color:#9fb0c7}}.metrics{{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:24px 0}}.card{{background:#101c2e;border:1px solid #263853;border-radius:14px;padding:16px}}.n{{font-size:28px;font-weight:750;color:#67e8f9}}input,select{{background:#0b1728;color:#fff;border:1px solid #334967;border-radius:9px;padding:10px;margin:0 8px 16px 0}}table{{width:100%;border-collapse:collapse;background:#0c1727}}th,td{{text-align:left;padding:10px;border-bottom:1px solid #20334c}}th{{position:sticky;top:0;background:#132139}}code{{font-size:12px;color:#a5f3fc}}.routes{{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}}@media(max-width:800px){{.metrics{{grid-template-columns:1fr 1fr}}.routes{{grid-template-columns:1fr}}table{{font-size:12px}}}}</style></head><body><main><h1>Taedri data primitive cohort</h1><div class="sub">Complete releases only · searchable SQLite registry · exact compatibility · deterministic no-model routes</div>
 <section class="metrics"><div class="card"><div class="n">{run['primitive_count']}</div>releases</div><div class="card"><div class="n">{run['executed_case_count']}</div>executed cases</div><div class="card"><div class="n">{run['evidence_edge_count']}</div>evidence edges</div><div class="card"><div class="n">{run['compatibility_edge_count']}</div>composition edges</div><div class="card"><div class="n">0</div>model calls</div></section>
-<section class="routes"><div class="card"><b>Text route</b><p><code>{html.escape(' → '.join(run['text_route']['primitive_names']))}</code></p><p>{html.escape(str(run['text_route']['input']))} → <b>{html.escape(str(run['text_route']['output']))}</b></p></div><div class="card"><b>Numeric route</b><p><code>{html.escape(' → '.join(run['numeric_route']['primitive_names']))}</code></p><p>{html.escape(str(run['numeric_route']['input']))} → <b>{run['numeric_route']['output']}</b></p></div><div class="card"><b>Datetime route</b><p><code>{html.escape(' → '.join(run['datetime_route']['primitive_names']))}</code></p><p>{html.escape(str(run['datetime_route']['input']))} → <b>{html.escape(str(run['datetime_route']['output']))}</b></p></div><div class="card"><b>Null route</b><p><code>{html.escape(' → '.join(run['null_route']['primitive_names']))}</code></p><p>{html.escape(str(run['null_route']['input']))} → <b>{html.escape(str(run['null_route']['output']))}</b></p></div></section>
+<section class="routes"><div class="card"><b>Text route</b><p><code>{html.escape(' → '.join(run['text_route']['primitive_names']))}</code></p><p>{html.escape(str(run['text_route']['input']))} → <b>{html.escape(str(run['text_route']['output']))}</b></p></div><div class="card"><b>Numeric route</b><p><code>{html.escape(' → '.join(run['numeric_route']['primitive_names']))}</code></p><p>{html.escape(str(run['numeric_route']['input']))} → <b>{run['numeric_route']['output']}</b></p></div><div class="card"><b>Datetime route</b><p><code>{html.escape(' → '.join(run['datetime_route']['primitive_names']))}</code></p><p>{html.escape(str(run['datetime_route']['input']))} → <b>{html.escape(str(run['datetime_route']['output']))}</b></p></div><div class="card"><b>Null route</b><p><code>{html.escape(' → '.join(run['null_route']['primitive_names']))}</code></p><p>{html.escape(str(run['null_route']['input']))} → <b>{html.escape(str(run['null_route']['output']))}</b></p></div><div class="card"><b>JSON adapter route</b><p><code>{html.escape(' → '.join(run['json_route']['primitive_names']))}</code></p><p>{html.escape(str(run['json_route']['input']))} → <b>{html.escape(str(run['json_route']['output']))}</b></p></div><div class="card"><b>Number adapter route</b><p><code>{html.escape(' → '.join(run['number_adapter_route']['primitive_names']))}</code></p><p>{html.escape(str(run['number_adapter_route']['input']))} → <b>{html.escape(str(run['number_adapter_route']['output']))}</b></p></div></section>
 <input id="q" placeholder="Filter name, capability, query"><select id="category"><option value="">All domains</option>{''.join(f'<option>{html.escape(name)}</option>' for name in run['categories'])}</select><span id="count"></span>
 <div style="overflow:auto;max-height:620px"><table><thead><tr><th>Domain</th><th>Primitive</th><th>Search query</th><th>Cases</th><th>Edges</th><th>Pack</th></tr></thead><tbody id="rows"></tbody></table></div>
 <script id="dataset" type="application/json">{data}</script><script>const d=JSON.parse(document.querySelector('#dataset').textContent),q=document.querySelector('#q'),c=document.querySelector('#category'),rows=document.querySelector('#rows'),count=document.querySelector('#count');function draw(){{const needle=q.value.toLowerCase(),cat=c.value;const found=d.records.filter(x=>(!cat||x.category===cat)&&(!needle||JSON.stringify(x).toLowerCase().includes(needle)));rows.innerHTML=found.map(x=>`<tr><td>${{x.category}}</td><td><b>${{x.namespace}}/${{x.name}}</b></td><td>${{x.search_query}}</td><td>${{x.executed_cases}}</td><td>${{x.evidence_edges}}</td><td>${{x.pack_bytes.toLocaleString()}} B</td></tr>`).join('');count.textContent=`${{found.length}} / ${{d.records.length}}`}}q.oninput=c.onchange=draw;draw();</script></main></body></html>'''
@@ -593,7 +642,7 @@ Schema-digest blocking followed by exact typed assessment produced
 {run['compatibility_edge_count']} directional composition edges without an unbounded
 global all-pairs operation.
 
-Four downloaded-pack routes executed without an LLM or generated glue code:
+Six downloaded-pack routes executed without an LLM or generated glue code:
 
 - Text: `{' → '.join(run['text_route']['primitive_names'])}` transformed
   `{run['text_route']['input']!r}` to `{run['text_route']['output']!r}`.
@@ -603,12 +652,16 @@ Four downloaded-pack routes executed without an LLM or generated glue code:
   `{run['datetime_route']['input']!r}` to `{run['datetime_route']['output']!r}`.
 - Null marker: `{' → '.join(run['null_route']['primitive_names'])}` transformed
   `{run['null_route']['input']!r}` to `{run['null_route']['output']!r}`.
+- JSON adapters: `{' → '.join(run['json_route']['primitive_names'])}` transformed
+  `{run['json_route']['input']!r}` to `{run['json_route']['output']!r}`.
+- Number adapters: `{' → '.join(run['number_adapter_route']['primitive_names'])}` transformed
+  `{run['number_adapter_route']['input']!r}` to `{run['number_adapter_route']['output']!r}`.
 
 | SQLite record type | Records |
 |---|---:|
 {database_rows}
 
-This proves a larger, queryable, reusable local database and four deterministic data
+This proves a larger, queryable, reusable local database and six deterministic data
 routes. It does not yet prove corpus-wide ranking quality, dependency-backed pandas or
 scikit-learn execution, distributed scale, or task-level token/cost savings.
 """
@@ -634,7 +687,7 @@ def main() -> None:
     parser.add_argument(
         "--output",
         type=Path,
-        default=ROOT / "eval/results/data-primitive-cohort-2026-07-16",
+        default=ROOT / "eval/results/data-primitive-cohort-2026-07-17",
     )
     arguments = parser.parse_args()
     record = run(arguments.output)

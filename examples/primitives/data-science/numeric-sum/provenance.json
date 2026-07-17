@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0",
+  "implementation_producer_id": "taedri.data.author.numeric-sum.v1",
+  "source_uri": "https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/tree/main/examples/primitives/data-science/numeric-sum",
+  "source_revision": "sha256:68b458ccdcf884e2a540a5857bb1ad91cfbf5fa56d7f07c339464f176173de9c",
+  "source_digest": "sha256:68b458ccdcf884e2a540a5857bb1ad91cfbf5fa56d7f07c339464f176173de9c"
+}

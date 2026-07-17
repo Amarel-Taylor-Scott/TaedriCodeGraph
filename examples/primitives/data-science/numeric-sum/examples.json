@@ -1,0 +1,31 @@
+{
+  "examples": [
+    {
+      "kind": "positive",
+      "args": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "expected": 6.0
+    },
+    {
+      "kind": "boundary",
+      "args": [
+        [
+          0
+        ]
+      ],
+      "expected": 0.0
+    },
+    {
+      "kind": "negative",
+      "args": [
+        []
+      ],
+      "expected_error": "ValueError"
+    }
+  ]
+}

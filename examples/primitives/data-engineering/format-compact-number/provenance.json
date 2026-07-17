@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0",
+  "implementation_producer_id": "taedri.data.author.format-compact-number.v1",
+  "source_uri": "https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/tree/main/examples/primitives/data-engineering/format-compact-number",
+  "source_revision": "sha256:348c979b1a0ad8b4744748aa1197aae3654d8956993a3f53bd65315c4693f77b",
+  "source_digest": "sha256:348c979b1a0ad8b4744748aa1197aae3654d8956993a3f53bd65315c4693f77b"
+}

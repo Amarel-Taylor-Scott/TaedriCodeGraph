@@ -1,0 +1,28 @@
+{
+  "examples": [
+    {
+      "kind": "positive",
+      "args": [
+        "{\"b\":2,\"a\":1}"
+      ],
+      "expected": {
+        "b": 2,
+        "a": 1
+      }
+    },
+    {
+      "kind": "boundary",
+      "args": [
+        "{}"
+      ],
+      "expected": {}
+    },
+    {
+      "kind": "negative",
+      "args": [
+        "[1,2]"
+      ],
+      "expected_error": "ValueError"
+    }
+  ]
+}

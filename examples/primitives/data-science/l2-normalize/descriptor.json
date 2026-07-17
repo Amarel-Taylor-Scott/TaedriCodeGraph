@@ -1,0 +1,23 @@
+{
+  "summary": "Normalize a finite numeric vector to unit Euclidean length.",
+  "keywords": [
+    "L2 normalization",
+    "unit vector",
+    "Euclidean norm",
+    "data science"
+  ],
+  "use_cases": [
+    "normalize one feature or embedding vector before cosine comparison",
+    "convert a nonzero vector to unit Euclidean length",
+    "handle an all-zero vector without division by zero"
+  ],
+  "limitations": [
+    "Does not center features or retain a fitted transformer.",
+    "A zero vector remains a zero vector rather than becoming unit length.",
+    "Processes one non-empty in-memory vector."
+  ],
+  "references": [
+    "https://docs.python.org/3.12/library/math.html#math.fsum",
+    "https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.normalize.html"
+  ]
+}

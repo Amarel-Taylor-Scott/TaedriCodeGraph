@@ -1,0 +1,223 @@
+{
+  "schema_version": "1.1.0",
+  "interface_id": "taedri.data.cleaning.remove-control-characters.v1",
+  "nodes": [
+    {
+      "id": "implementation.remove_control_characters",
+      "kind": "implementation",
+      "path": "src/remove_control_characters.py",
+      "symbol": "remove_control_characters"
+    },
+    {
+      "id": "contract.remove_control_characters",
+      "kind": "contract",
+      "path": "contract.json"
+    },
+    {
+      "id": "port.input.value",
+      "kind": "input_port",
+      "path": "contract.json",
+      "json_pointer": "#/inputs/0"
+    },
+    {
+      "id": "port.output.result",
+      "kind": "output_port",
+      "path": "contract.json",
+      "json_pointer": "#/output"
+    },
+    {
+      "id": "examples.remove_control_characters",
+      "kind": "example_set",
+      "path": "examples.json"
+    },
+    {
+      "id": "tests.remove_control_characters",
+      "kind": "test_set",
+      "path": "tests.json"
+    },
+    {
+      "id": "runtime.python312",
+      "kind": "runtime",
+      "path": "runtime.json"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge.implements_contract",
+      "source": "implementation.remove_control_characters",
+      "predicate": "taedri.predicate.implements_contract",
+      "target": "contract.remove_control_characters",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "src/remove_control_characters.py",
+          "digest": "sha256:435043047899e24bdfc29f968415b91886e6e80eca064bb0756a355d6dfe45fb"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:91a896dc7c5fb8da3173052551747a4a05029b4444d757fe3a81051abfb8aa53"
+        }
+      ]
+    },
+    {
+      "id": "edge.accepts_value",
+      "source": "implementation.remove_control_characters",
+      "predicate": "taedri.predicate.accepts_port",
+      "target": "port.input.value",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:91a896dc7c5fb8da3173052551747a4a05029b4444d757fe3a81051abfb8aa53"
+        }
+      ]
+    },
+    {
+      "id": "edge.produces_result",
+      "source": "implementation.remove_control_characters",
+      "predicate": "taedri.predicate.produces_port",
+      "target": "port.output.result",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "contract.json",
+          "digest": "sha256:91a896dc7c5fb8da3173052551747a4a05029b4444d757fe3a81051abfb8aa53"
+        }
+      ]
+    },
+    {
+      "id": "edge.demonstrated_by_examples",
+      "source": "examples.remove_control_characters",
+      "predicate": "taedri.predicate.demonstrates",
+      "target": "implementation.remove_control_characters",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "examples.json",
+          "digest": "sha256:9eae763d6d726539a95dcbcc67dbe2d115a70cc18a3d6881911c3a6460d395f3"
+        }
+      ]
+    },
+    {
+      "id": "edge.verified_by_tests",
+      "source": "tests.remove_control_characters",
+      "predicate": "taedri.predicate.verifies",
+      "target": "implementation.remove_control_characters",
+      "modality": "observed",
+      "quantifier": "one_or_more",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "tests.json",
+          "digest": "sha256:850e4777951b6beaee762c52c2e55fb17fcab869cf164884005ea8ff71f61687"
+        }
+      ]
+    },
+    {
+      "id": "edge.runs_on_python312",
+      "source": "implementation.remove_control_characters",
+      "predicate": "taedri.predicate.runs_on",
+      "target": "runtime.python312",
+      "modality": "asserted",
+      "quantifier": "exactly_one",
+      "confidence_ppm": 1000000,
+      "evidence": [
+        {
+          "path": "runtime.json",
+          "digest": "sha256:aa5d07c04349ebf30f38cbf5f0213c128112268d25ff660cff706e292200ccf8"
+        }
+      ]
+    }
+  ],
+  "ports": [
+    {
+      "id": "port.input.value",
+      "owner": "implementation.remove_control_characters",
+      "direction": "input",
+      "name": "value",
+      "schema": {
+        "type": "string"
+      },
+      "schema_digest": "sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03",
+      "schema_ref": "contract.json#/inputs/0/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native",
+        "text"
+      ]
+    },
+    {
+      "id": "port.output.result",
+      "owner": "implementation.remove_control_characters",
+      "direction": "output",
+      "name": "result",
+      "schema": {
+        "type": "string"
+      },
+      "schema_digest": "sha256:43b2bb5f628b455826f3dd62e2374cee879ade68e4447d354748230d2eaecc03",
+      "schema_ref": "contract.json#/output/schema",
+      "required": true,
+      "cardinality": "one",
+      "transports": [
+        "json",
+        "python_native",
+        "text"
+      ]
+    }
+  ],
+  "compatibility": {
+    "language": "python",
+    "runtime_version": "3.12",
+    "execution_model": "in_process_call",
+    "deterministic": true,
+    "purity": "pure",
+    "network": "denied",
+    "effects": [],
+    "dimensions": {
+      "taedri.compatibility.call_style": "sync",
+      "taedri.compatibility.language": "python",
+      "taedri.compatibility.runtime_major_minor": "3.12",
+      "taedri.compatibility.value_transport": "python_native"
+    },
+    "required_dimensions": [
+      "taedri.compatibility.call_style",
+      "taedri.compatibility.language",
+      "taedri.compatibility.runtime_major_minor",
+      "taedri.compatibility.value_transport"
+    ]
+  },
+  "groups": [
+    {
+      "id": "taedri.group.data_cleaning_control_characters",
+      "kind": "capability",
+      "labels": [
+        "remove C0 C1 control characters",
+        "strip unicode control category text",
+        "delete embedded null and control characters"
+      ],
+      "member_nodes": [
+        "implementation.remove_control_characters"
+      ],
+      "evidence": [
+        {
+          "path": "descriptor.json",
+          "digest": "sha256:7a5e04321f016e8dc003f8ce1dab5f8e745bc11b28caecf6f5b45f3183a29d46"
+        },
+        {
+          "path": "contract.json",
+          "digest": "sha256:91a896dc7c5fb8da3173052551747a4a05029b4444d757fe3a81051abfb8aa53"
+        }
+      ]
+    }
+  ]
+}

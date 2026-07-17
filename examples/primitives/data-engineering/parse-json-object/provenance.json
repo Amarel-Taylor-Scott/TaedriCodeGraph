@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0",
+  "implementation_producer_id": "taedri.data.author.parse-json-object.v1",
+  "source_uri": "https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/tree/main/examples/primitives/data-engineering/parse-json-object",
+  "source_revision": "sha256:d308765d9a652c4fe831b2e9503dbef59c1ac9dcdbfd636f87a03ddb5a63153a",
+  "source_digest": "sha256:d308765d9a652c4fe831b2e9503dbef59c1ac9dcdbfd636f87a03ddb5a63153a"
+}

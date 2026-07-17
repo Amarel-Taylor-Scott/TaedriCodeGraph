@@ -29,6 +29,10 @@ This repository currently contains the first executable vertical slice:
 - a reusable versioned mechanism runtime plus API/MCP-accessible adaptive exact → sparse
   → semantic → structural search with capability, budget, escalation, and abstention
   receipts;
+- bounded retrieval-nominated route discovery that intersects ordered capability steps
+  with exact input-schema blocks, runtime/effect policy, and authoritative wire checks;
+- exact verified-recipe reuse keyed by the structured route contract, catalog, and
+  execution environment, with changed catalogs or runtimes producing cache misses;
 - verified local-wheel ingestion with declared license provenance and distribution/import
   namespace separation;
 - registry-native primitive capsules with content-addressed trees, immutable revision
@@ -100,13 +104,16 @@ tcg primitive validate examples/primitives/casefold-text
 # Release, search, download, and compose two real primitives without an LLM.
 PYTHONPATH=src python tools/run_deterministic_primitive_pipeline.py
 
-# Regenerate, byte-check, and execute the complete 13-release reusable data cohort.
+# Regenerate, byte-check, and execute the complete 23-release reusable data cohort.
 PYTHONPATH=src python tools/generate_data_primitive_capsules.py
 PYTHONPATH=src python tools/generate_data_primitive_capsules.py --check
 PYTHONPATH=src python tools/run_data_primitive_cohort.py
 
 # Compare legacy BM25 with the versioned, budgeted primitive retrieval program.
 PYTHONPATH=src python tools/benchmark_primitive_retrieval_program.py
+
+# Retrieve, automatically compose, execute, and exactly reuse verified routes.
+PYTHONPATH=src python tools/benchmark_primitive_route_planner.py
 
 # Preview a bounded comparison without making provider calls. The model would see all
 # 11 descriptions in condition A and at most four locally selected descriptions in B.
@@ -262,22 +269,26 @@ and distribution boundaries are useful.
 
 The executable POC implements immutable revisions, optimistic branch updates, immutable
 tags, cross-namespace forks, merges, role-selective packs, cached-blob omission, and
-append-only revocation. Thirteen repository-native primitives contain executable source,
+append-only revocation. Twenty-three repository-native primitives contain executable source,
 contract, descriptor, examples, test vectors, verifier policy, evidence-backed interface
 graphs, documentation, runtime locks, license evidence, and source provenance. They remain
 hidden while staged, then pass real local execution before release, search, and download.
-The checked-in data cohort adds 11 common cleaning, engineering, and science utilities,
-serves 13 exact targeted searches, identifies 31 blocked exact compatibility edges, and
-executes text, numeric, timezone-normalization, and null-marker routes from downloaded
-packs without a model call, generated code, or rewritten primitive bytes. A versioned
-retrieval program then evaluates exact, labels, BM25, blocking, nonsemantic lexical-hash,
-and optional true-semantic paths under explicit lifecycle and cost policy.
+The expanded checked-in cohort adds 21 cleaning, engineering, and science utilities,
+serves 23 exact targeted searches, identifies 111 blocked exact compatibility edges, and
+executes six text, numeric, timezone, null, JSON, and numeric-adapter routes from
+downloaded packs without a model call, generated code, or rewritten primitive bytes.
+A versioned retrieval program then nominates bounded candidates; the route planner found
+and executed seven compatible routes across 20 requested steps, rejected three invalid
+contracts, and reused all seven exact recipes without another candidate expansion or
+wire assessment.
 
-![Reusable data primitive cohort](eval/results/data-primitive-cohort-2026-07-16/primitive-cohort-summary.svg)
+![Reusable data primitive cohort](eval/results/data-primitive-cohort-2026-07-17/primitive-cohort-summary.svg)
 
 Read the [data primitive library guide](docs/guides/DATA_PRIMITIVE_LIBRARY.md),
 the [primitive retrieval program guide](docs/guides/PRIMITIVE_RETRIEVAL_PROGRAMS.md),
-the [interactive cohort console](eval/results/data-primitive-cohort-2026-07-16/index.html),
+the [automatic route-planning guide](docs/guides/PRIMITIVE_ROUTE_PLANNING.md),
+the [linked knowledge-layer architecture](docs/architecture/LINKED_KNOWLEDGE_PRIMITIVE_LAYER.md),
+the [interactive cohort console](eval/results/data-primitive-cohort-2026-07-17/index.html),
 the [primitive truth and release policy](docs/architecture/PRIMITIVE_TRUTH_RELEASE_AND_LANGUAGE_SCOPE.md),
 the [one-at-a-time authoring guide](docs/guides/PRIMITIVE_AUTHORING.md),
 the [reuse proof status](docs/reports/PRIMITIVE_REUSE_PROOF_STATUS_2026-07-16.md),

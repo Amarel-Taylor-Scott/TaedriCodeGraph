@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0",
+  "implementation_producer_id": "taedri.data.author.l2-normalize.v1",
+  "source_uri": "https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/tree/main/examples/primitives/data-science/l2-normalize",
+  "source_revision": "sha256:d40f8d7a20fb80913974faf3ab2240bf628f897e53f87218b4b26745c2728fcd",
+  "source_digest": "sha256:d40f8d7a20fb80913974faf3ab2240bf628f897e53f87218b4b26745c2728fcd"
+}

@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0",
+  "implementation_producer_id": "taedri.data.author.canonical-json-object.v1",
+  "source_uri": "https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/tree/main/examples/primitives/data-engineering/canonical-json-object",
+  "source_revision": "sha256:99ccd74004fc0e29cea4c79655785be71ab812d614884cac2958de65faf381a3",
+  "source_digest": "sha256:99ccd74004fc0e29cea4c79655785be71ab812d614884cac2958de65faf381a3"
+}

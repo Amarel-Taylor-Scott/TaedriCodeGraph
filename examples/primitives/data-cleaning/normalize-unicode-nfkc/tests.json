@@ -1,0 +1,25 @@
+{
+  "cases": [
+    {
+      "kind": "positive",
+      "args": [
+        "ﬁle"
+      ],
+      "expected": "file"
+    },
+    {
+      "kind": "boundary",
+      "args": [
+        "Straße"
+      ],
+      "expected": "Straße"
+    },
+    {
+      "kind": "negative",
+      "args": [
+        null
+      ],
+      "expected_error": "TypeError"
+    }
+  ]
+}

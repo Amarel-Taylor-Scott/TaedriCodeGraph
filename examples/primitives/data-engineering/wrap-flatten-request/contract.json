@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "inputs": [
+    {
+      "name": "value",
+      "schema": {
+        "type": "object"
+      }
+    }
+  ],
+  "output": {
+    "schema": {
+      "type": "object",
+      "required": [
+        "record"
+      ],
+      "properties": {
+        "record": {
+          "type": "object"
+        },
+        "separator": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "errors": [
+    {
+      "type": "TypeError",
+      "when": "value is not an object or keys are not strings"
+    }
+  ],
+  "effects": []
+}

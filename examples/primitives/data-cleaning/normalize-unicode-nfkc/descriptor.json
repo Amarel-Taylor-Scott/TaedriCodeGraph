@@ -1,0 +1,23 @@
+{
+  "summary": "Apply Unicode NFKC compatibility normalization without changing case.",
+  "keywords": [
+    "NFKC",
+    "unicode",
+    "compatibility normalization",
+    "text cleanup"
+  ],
+  "use_cases": [
+    "normalize full-width forms before field comparison",
+    "replace compatibility characters with canonical equivalents",
+    "prepare Unicode text for a later case or identifier operation"
+  ],
+  "limitations": [
+    "Compatibility normalization can change presentation distinctions.",
+    "Does not trim, case-fold, transliterate, or remove control characters.",
+    "Uses the Unicode database bundled with the pinned Python runtime."
+  ],
+  "references": [
+    "https://docs.python.org/3.12/library/unicodedata.html#unicodedata.normalize",
+    "https://www.unicode.org/reports/tr15/"
+  ]
+}
