@@ -70,10 +70,10 @@ classification is the candidate classification above.
 |---|---|
 | Canonical repository / default branch | `Amarel-Taylor-Scott/TaedriCodeGraph`, `main` (there is no `master` branch) |
 | Proposed publication branch | `codex/strict-v2-token-evidence`; pending review and merge, so this document must not be read as the current contents of `main` |
-| Evidence-bearing implementation checkpoint | `6058a4a29f454ea74456f0d014b5ea78c458865f` on the proposed publication branch; this is not a claim that the commit is already on `main` |
-| Hosted CI on final proposed head | `HOSTED_CI_PENDING_FINAL_RUN` |
+| Evidence-bearing implementation checkpoint | `2b4693df49f2e62c0fcd4f65bc333f76766aab7f` on the proposed publication branch; this is not a claim that the commit is already on `main` |
+| Hosted CI on implementation checkpoint | [GitHub Actions run 29560962009](https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/actions/runs/29560962009): Python 3.12, Python 3.13, PostgreSQL DDL, and container-build jobs all passed. Python 3.12 ran 326 tests; Python 3.13 ran the same discovery set with 13 exact-runtime campaign tests explicitly skipped. Both jobs reproduced evidence, ran the socket smoke, and validated inventory-only release authority. |
 | Local validation | 326 tests passed; one optional MCP protocol test skipped because the optional `agents` dependency was absent |
-| Package build | Wheel built successfully; 305,801 bytes; SHA-256 `50f7b60be5a12c9e3c6582ba7ac2a003f489d10e7c760a80120dc717e9127e01` |
+| Package build | Wheel built successfully; 305,859 bytes; SHA-256 `c7786f96f669a351c4f923e73728864c56e111941c0e8cb846ba9f00d4c74fb3` |
 | Product truth | Private-alpha candidate; `serves_truth=false`; not a public paid SaaS launch |
 | Component manifest | 32 components: 22 `working`, 8 `partial`, 1 `conformance_only`, 1 `poc_only` |
 | Released primitive database | 11 handles, 11 revisions, 11 releases, 11 current refs, 11 packs, 0 revocations |
@@ -171,6 +171,13 @@ Strict campaign v2 validates the complete task × seed × two-condition matrix, 
 pairing, unique response receipts, concrete reported deployment, frozen prompt and
 policy digests, and arm-specific verifier occurrences. Legacy campaign v1 is readable
 but cannot establish the same completeness and remains non-claimable.
+
+Campaign execution is bound to the checked Python 3.12 runtime. The runner validates
+that policy before constructing the interceptor or making a provider call, so a Python
+3.13 host fails without spending tokens or fabricating 3.12 verifier evidence. Hosted
+3.13 CI still compiles, installs, validates saved evidence, runs the cross-version-safe
+suite and socket/readiness checks, and explicitly skips the 13 exact-runtime campaign
+tests.
 
 ### Deterministic composition path
 
@@ -319,8 +326,10 @@ bounded local system may be prepared for this gate. Before even a controlled pri
 alpha is activated, all of the following must be recorded against the exact revision
 and deployment:
 
-- the proposal is merged and hosted CI is green on the exact head
-  (`HOSTED_CI_PENDING_FINAL_RUN` until replaced by the final run record);
+- the proposal is merged and hosted CI is green on the exact head; run
+  [29560962009](https://github.com/Amarel-Taylor-Scott/TaedriCodeGraph/actions/runs/29560962009)
+  is green for implementation checkpoint `2b4693df`, but merge remains a separate
+  gate at this document checkpoint;
 - an owner-signed activation record pins the commit, configuration, enabled features,
   host, participants, data classes, quotas, retention, deletion, rollback, and stop
   authority; this record must be verified by a trust root outside the candidate
@@ -422,7 +431,7 @@ generations.
 
 The five source trees, packs, catalog database, raw attempts, retained solutions,
 verifier receipts, and repository-relative path map are not present in implementation
-checkpoint `6058a4a`. No download location in this checkout resolves those materials.
+checkpoint `2b4693df`. No download location in this checkout resolves those materials.
 The arithmetic is preserved, but the claims cannot be reproduced from this checkout,
 do not count among the 11 current releases, and are not combined with strict-v2
 evidence. References in the source text to artifacts being “retained” mean reported as
@@ -927,7 +936,7 @@ The campaign files are immutable sanitized outputs. Their exact SHA-256 values a
 > The following handoff is preserved verbatim except for heading depth and local
 > warning labels. Its five source trees, packs, catalog database, raw attempts,
 > retained solutions, verifier receipts, and path map are absent from implementation
-> checkpoint `6058a4a`. “Current,” “now,” “working,” “complete,” “proven,” and
+> checkpoint `2b4693df`. “Current,” “now,” “working,” “complete,” “proven,” and
 > “retained” below describe the unavailable source environment's claims, not this
 > checkout. Do not count the five items as current releases or combine their reported
 > token arithmetic with strict-v2 evidence.
