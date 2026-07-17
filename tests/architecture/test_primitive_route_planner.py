@@ -7,6 +7,7 @@ import unittest
 from pathlib import Path
 
 from tools.benchmark_primitive_route_planner import run
+from tests.primitive_fixtures import requires_checked_primitive_runtime
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -65,6 +66,7 @@ class PrimitiveRoutePlannerArchitectureTests(unittest.TestCase):
             all(item["route_count"] == 0 for item in record["negative_cases"])
         )
 
+    @requires_checked_primitive_runtime
     def test_benchmark_artifacts_are_exactly_reproducible(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             destination = Path(temporary) / "results"

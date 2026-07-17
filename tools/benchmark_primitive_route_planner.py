@@ -151,7 +151,16 @@ def run(*, cohort: Path, output: Path) -> Mapping[str, Any]:
         packs[entry.primitive_id] = encoded
         by_name[entry.name] = entry
     catalog = PrimitiveRouteCatalog(route_entries)
-    runtime = f"{sys.version_info.major}.{sys.version_info.minor}"
+    runtimes = {entry.interface.runtime_version for entry in route_entries}
+    if len(runtimes) != 1:
+        raise SystemExit("route benchmark cohort must pin exactly one runtime")
+    runtime = runtimes.pop()
+    local_runtime = f"{sys.version_info.major}.{sys.version_info.minor}"
+    if runtime != local_runtime:
+        raise SystemExit(
+            f"route benchmark cohort pins Python {runtime}; "
+            f"executor runs {local_runtime}"
+        )
     policy = PrimitiveRoutePolicy("python", runtime)
     planner = BoundedPrimitiveRoutePlanner(catalog)
     executor = LocalDeterministicPythonPipelineExecutor()

@@ -31,6 +31,11 @@ requires_checked_campaign_runtime = unittest.skipUnless(
     "checked campaign packs and strict execution receipts require Python 3.12",
 )
 
+requires_checked_primitive_runtime = unittest.skipUnless(
+    sys.version_info[:2] == (3, 12),
+    "checked primitive packs and strict execution receipts require Python 3.12",
+)
+
 
 def current_python_minor() -> str:
     return f"{sys.version_info.major}.{sys.version_info.minor}"

@@ -20,7 +20,9 @@ from taedri_codegraph.primitives.routes import (
 )
 from taedri_codegraph.primitives.wiring import (
     LocalDeterministicPythonPipelineExecutor,
+    PrimitiveWiringError,
 )
+from tests.primitive_fixtures import requires_checked_primitive_runtime
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -54,7 +56,11 @@ class PrimitiveRoutePlannerTests(unittest.TestCase):
             ).read_bytes()
         cls.catalog = PrimitiveRouteCatalog(entries)
         cls.planner = BoundedPrimitiveRoutePlanner(cls.catalog)
-        cls.runtime = f"{sys.version_info.major}.{sys.version_info.minor}"
+        runtimes = {entry.interface.runtime_version for entry in entries}
+        if len(runtimes) != 1:
+            raise AssertionError("checked route cohort must pin one runtime")
+        cls.runtime = runtimes.pop()
+        cls.local_runtime = f"{sys.version_info.major}.{sys.version_info.minor}"
         cls.policy = PrimitiveRoutePolicy("python", cls.runtime)
 
     def _step(self, name: str, query: str | None = None) -> PrimitiveRouteStep:
@@ -102,11 +108,13 @@ class PrimitiveRoutePlannerTests(unittest.TestCase):
             route.primitive_ids,
             tuple(self.entries_by_name[name].primitive_id for name in names),
         )
-        execution = LocalDeterministicPythonPipelineExecutor().execute(
-            route.plan,
-            tuple(self.packs_by_id[item] for item in route.primitive_ids),
-            "  Customer\t Straße  ",
-        )
+        executor = LocalDeterministicPythonPipelineExecutor()
+        packs = tuple(self.packs_by_id[item] for item in route.primitive_ids)
+        if self.runtime != self.local_runtime:
+            with self.assertRaisesRegex(PrimitiveWiringError, "pipeline pins Python"):
+                executor.execute(route.plan, packs, "  Customer\t Straße  ")
+            return
+        execution = executor.execute(route.plan, packs, "  Customer\t Straße  ")
         self.assertEqual(execution.output, "customer_strasse")
         self.assertEqual(execution.receipt.pack_digests, route.pack_digests)
 
@@ -149,6 +157,7 @@ class PrimitiveRoutePlannerTests(unittest.TestCase):
         )
         self.assertEqual(result.receipt.considered_candidate_count, 1)
 
+    @requires_checked_primitive_runtime
     def test_verified_recipe_reuse_skips_candidate_and_wire_search(self) -> None:
         names = ("minmax-scale", "numeric-mean")
         request = self._request(names)
@@ -182,6 +191,7 @@ class PrimitiveRoutePlannerTests(unittest.TestCase):
         self.assertEqual(reused.receipt.considered_candidate_count, 0)
         self.assertEqual(reused.receipt.wire_assessment_count, 0)
 
+    @requires_checked_primitive_runtime
     def test_recipe_registry_rejects_receipts_for_another_plan(self) -> None:
         numeric = self.planner.search(
             self._request(("minmax-scale", "numeric-mean"))
@@ -205,6 +215,7 @@ class PrimitiveRoutePlannerTests(unittest.TestCase):
                 verified_at="2026-07-17T07:00:00Z",
             )
 
+    @requires_checked_primitive_runtime
     def test_recipe_registry_rejects_stale_receipt_identity(self) -> None:
         route = self.planner.search(
             self._request(("normalize-text", "casefold-text"))

@@ -31,9 +31,11 @@ The current planner operates on ordered unary steps. Each step contains a capabi
 group and, normally, the primitive IDs nominated by a retrieval execution. Adapters are
 ordinary explicit steps rather than generated glue.
 
-```python
-import sys
+The policy must name the runtime declared by the selected release catalog. The
+isolated executor independently requires that exact runtime to match the host
+interpreter; route search never weakens or guesses across runtime versions.
 
+```python
 from taedri_codegraph.primitives.routes import (
     BoundedPrimitiveRoutePlanner,
     PrimitiveRoutePolicy,
@@ -41,9 +43,15 @@ from taedri_codegraph.primitives.routes import (
     PrimitiveRouteStep,
 )
 
+declared_runtimes = {
+    entry.interface.runtime_version for entry in route_catalog.entries
+}
+if len(declared_runtimes) != 1:
+    raise RuntimeError("route catalog must pin one runtime")
+
 policy = PrimitiveRoutePolicy(
     language="python",
-    runtime_version=f"{sys.version_info.major}.{sys.version_info.minor}",
+    runtime_version=next(iter(declared_runtimes)),
 )
 
 request = PrimitiveRouteRequest.create(
