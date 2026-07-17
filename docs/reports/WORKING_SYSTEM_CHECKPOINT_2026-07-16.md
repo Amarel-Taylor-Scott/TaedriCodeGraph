@@ -93,8 +93,10 @@ flowchart LR
 
 ![Component readiness counts](../../eval/results/saas-working-system-2026-07-16/component-readiness.svg)
 
-The authoritative row-level data is available in
-`architecture/component-readiness.v1.json` and the checkpoint CSV/JSON artifacts.
+This is a dated 26-component snapshot. Its checkpoint CSV/JSON artifacts preserve the
+row-level state measured at that time. The mutable
+`architecture/component-readiness.v1.json` now describes the later 32-component tree
+and supersedes this chart; it is not the source for the historical counts above.
 
 ## Remaining gates, in order
 

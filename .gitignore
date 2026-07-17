@@ -9,3 +9,9 @@ build/
 dist/
 .venv/
 .tcg/
+.env
+.env.*
+!.env.example
+.secrets/
+*.sqlite-wal
+*.sqlite-shm

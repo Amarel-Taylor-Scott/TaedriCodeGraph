@@ -33,6 +33,37 @@ def load_component_readiness(
     definitions = readiness.get("definition_of_done")
     if not isinstance(definitions, list) or len(definitions) < 5:
         raise ReadinessError("component readiness requires a substantive definition of done")
+    readiness_product = _product_readiness(
+        readiness.get("product_readiness"), "component readiness"
+    )
+    architecture_product = _product_readiness(
+        architecture.get("product_readiness"), "component architecture"
+    )
+    for field in ("classification", "serves_truth", "public_paid_saas_ready"):
+        if readiness_product[field] != architecture_product[field]:
+            raise ReadinessError(
+                f"product readiness manifests disagree on {field!r}"
+            )
+    if readiness_product["public_paid_saas_ready"] and not readiness_product[
+        "serves_truth"
+    ]:
+        raise ReadinessError("public paid SaaS readiness requires serves_truth")
+    if readiness_product["serves_truth"] or readiness_product[
+        "public_paid_saas_ready"
+    ]:
+        production_evidence = _string_list(
+            readiness_product.get("production_acceptance_evidence", []),
+            "product_readiness.production_acceptance_evidence",
+        )
+        if not production_evidence:
+            raise ReadinessError(
+                "production truth promotion requires acceptance evidence"
+            )
+        for relative in production_evidence:
+            if not (root / relative).exists():
+                raise ReadinessError(
+                    f"product readiness references missing evidence {relative!r}"
+                )
     expected = {
         item["id"] for item in _mapping_list(architecture.get("components"), "components")
     }
@@ -65,6 +96,7 @@ def load_component_readiness(
         "status_counts": dict(sorted(statuses.items())),
         "working_fraction_ppm": statuses["working"] * 1_000_000 // len(records),
         "definition_of_done": definitions,
+        "product_readiness": readiness_product,
         "components": records,
         "external_gates": readiness.get("external_gates", []),
     }
@@ -94,6 +126,19 @@ def _validate_record(root: Path, record: Mapping[str, Any]) -> None:
         raise ReadinessError(f"working component {identifier!r} lacks acceptance evidence")
     if status == "scaffolded" and evidence:
         raise ReadinessError(f"scaffolded component {identifier!r} cannot claim acceptance evidence")
+
+
+def _product_readiness(value: Any, name: str) -> Mapping[str, Any]:
+    if not isinstance(value, Mapping):
+        raise ReadinessError(f"{name} must declare product_readiness")
+    classification = value.get("classification")
+    serves_truth = value.get("serves_truth")
+    paid_ready = value.get("public_paid_saas_ready")
+    if not isinstance(classification, str) or not classification:
+        raise ReadinessError(f"{name} product classification must be non-empty")
+    if not isinstance(serves_truth, bool) or not isinstance(paid_ready, bool):
+        raise ReadinessError(f"{name} product truth flags must be booleans")
+    return value
 
 
 def _load_json(path: Path) -> dict[str, Any]:

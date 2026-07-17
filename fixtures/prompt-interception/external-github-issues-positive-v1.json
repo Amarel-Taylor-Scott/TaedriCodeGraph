@@ -1,0 +1,216 @@
+{
+  "schema_version": "1.0.0",
+  "workload_kind": "external_github_issue_derived_primitive_retrieval_positive_only",
+  "description": "Five manually bounded primitive-retrieval tasks derived from real public GitHub issues, with source snapshots separated from model-visible requests and independently authored hidden cases.",
+  "negative_oracle_support": "not_represented_in_v1",
+  "claim_limitations": [
+    "This is not a full coding benchmark and does not measure issue resolution or patch generation.",
+    "The five tasks are a manually selected positive workload and are not a representative sample of GitHub issues.",
+    "Each request deliberately bounds an issue-derived need to one capability implemented by the current eleven-primitive catalog.",
+    "Unsupported-task abstention is not scored because the version-one executable-case contract has no must-abstain oracle disposition."
+  ],
+  "tasks": [
+    {
+      "task_id": "github_pandas_9346.stable_unique",
+      "trajectory_id": "github_pandas_9346",
+      "step_index": 0,
+      "domain": "data_cleaning",
+      "request": "Remove duplicate finite JSON values from a sequence while preserving the first-seen order of each distinct value, including structurally equal records.",
+      "expected_primitive": {
+        "namespace": "taedri.data.cleaning",
+        "name": "stable-deduplicate"
+      },
+      "case_derivation": "independent_manual_cases_v1",
+      "source_provenance": {
+        "repository": "pandas-dev/pandas",
+        "issue_number": 9346,
+        "issue_title": "DOC/TST: is pd.unique and the order it returns API?",
+        "issue_url": "https://github.com/pandas-dev/pandas/issues/9346",
+        "accessed_on": "2026-07-16",
+        "source_excerpt": "Note that `Series.unique()` and `unique()` return values in order of appearance.",
+        "normalized_source_digest": "sha256:c89f7249c437a92fd095b6818111d536b2d1965285619e9492a06da40845665f",
+        "derivation_scope": "The task isolates stable first-occurrence deduplication; pandas Series/Index typing and API documentation are outside this retrieval case."
+      },
+      "hidden_cases": [
+        {
+          "case_id": "issue9346.scalars",
+          "input": ["west", "east", "west", null, "east", null],
+          "expected": ["west", "east", null]
+        },
+        {
+          "case_id": "issue9346.records",
+          "input": [
+            {"id": 2, "state": "new"},
+            {"state": "new", "id": 2},
+            {"id": 3, "state": "done"}
+          ],
+          "expected": [
+            {"id": 2, "state": "new"},
+            {"id": 3, "state": "done"}
+          ]
+        }
+      ]
+    },
+    {
+      "task_id": "github_more_itertools_980.chunk_rows",
+      "trajectory_id": "github_more_itertools_980",
+      "step_index": 0,
+      "domain": "data_engineering",
+      "request": "Split an in-memory sequence of database rows into deterministic contiguous upload batches of a positive requested size, keeping a smaller final batch without repeating rows.",
+      "expected_primitive": {
+        "namespace": "taedri.data.engineering",
+        "name": "chunk-sequence"
+      },
+      "case_derivation": "independent_manual_cases_v1",
+      "source_provenance": {
+        "repository": "more-itertools/more-itertools",
+        "issue_number": 980,
+        "issue_title": "ichunked function iterator does not iterate when I'm trying to split Cassandra results",
+        "issue_url": "https://github.com/more-itertools/more-itertools/issues/980",
+        "accessed_on": "2026-07-16",
+        "source_excerpt": "The iterator of iterators that `ichunked` returned new and new sub-iterators with same and same contents.",
+        "normalized_source_digest": "sha256:937655dcb0257b77cf60db590a698d1b47b2bf00704a3947ecd296ffce55231e",
+        "derivation_scope": "The task covers finite contiguous batching and no-repeat output; Cassandra access, laziness, concurrency, and the reported library regression are excluded."
+      },
+      "hidden_cases": [
+        {
+          "case_id": "issue980.remainder",
+          "input": {"items": [101, 102, 103, 104, 105, 106, 107], "size": 3},
+          "expected": [[101, 102, 103], [104, 105, 106], [107]]
+        },
+        {
+          "case_id": "issue980.pairs",
+          "input": {
+            "items": [
+              {"id": "a"},
+              {"id": "b"},
+              {"id": "c"},
+              {"id": "d"},
+              {"id": "e"}
+            ],
+            "size": 2
+          },
+          "expected": [
+            [{"id": "a"}, {"id": "b"}],
+            [{"id": "c"}, {"id": "d"}],
+            [{"id": "e"}]
+          ]
+        }
+      ]
+    },
+    {
+      "task_id": "github_pandas_12286.flatten_mapping",
+      "trajectory_id": "github_pandas_12286",
+      "step_index": 0,
+      "domain": "data_engineering",
+      "request": "Flatten one nested JSON event object into a single-level record using an explicit path separator while retaining its leaf values.",
+      "expected_primitive": {
+        "namespace": "taedri.data.engineering",
+        "name": "flatten-record"
+      },
+      "case_derivation": "independent_manual_cases_v1",
+      "source_provenance": {
+        "repository": "pandas-dev/pandas",
+        "issue_number": 12286,
+        "issue_title": "Feature suggestion: flexible hierarchical data (json) importer (will implement if interest exists)",
+        "issue_url": "https://github.com/pandas-dev/pandas/issues/12286",
+        "accessed_on": "2026-07-16",
+        "source_excerpt": "I recently wrote a very flexible module for flattening hierarchical (json) data into CSV.",
+        "normalized_source_digest": "sha256:8b9c2ab3c06fcac6355ea9f742071169ab3b0c2851fd3e27aa0be6b46c1f3f64",
+        "derivation_scope": "The task covers recursive mapping-key flattening only; list explosion, pattern languages, CSV conversion, indexes, and DataFrame construction are excluded."
+      },
+      "hidden_cases": [
+        {
+          "case_id": "issue12286.default_separator",
+          "input": {
+            "record": {
+              "profile": {"name": "Ada", "region": {"code": "NE"}},
+              "active": true
+            }
+          },
+          "expected": {
+            "profile.name": "Ada",
+            "profile.region.code": "NE",
+            "active": true
+          }
+        },
+        {
+          "case_id": "issue12286.custom_separator",
+          "input": {
+            "record": {"event": {"actor": {"id": 17}}, "tags": ["a", "b"]},
+            "separator": "__"
+          },
+          "expected": {"event__actor__id": 17, "tags": ["a", "b"]}
+        }
+      ]
+    },
+    {
+      "task_id": "github_sklearn_27987.minmax_constant",
+      "trajectory_id": "github_sklearn_27987",
+      "step_index": 0,
+      "domain": "data_science",
+      "request": "Scale a non-empty finite numeric feature vector so its minimum becomes zero and maximum becomes one, with a constant vector deterministically mapped to zeros.",
+      "expected_primitive": {
+        "namespace": "taedri.data.science",
+        "name": "minmax-scale"
+      },
+      "case_derivation": "independent_manual_cases_v1",
+      "source_provenance": {
+        "repository": "scikit-learn/scikit-learn",
+        "issue_number": 27987,
+        "issue_title": "`MinMaxScalar.fit_transform()` Returns Zero When All Elements Are Same",
+        "issue_url": "https://github.com/scikit-learn/scikit-learn/issues/27987",
+        "accessed_on": "2026-07-16",
+        "source_excerpt": "If all elements in a column are the same, the scaler transforms these elements to zeros.",
+        "normalized_source_digest": "sha256:9783e73c9b5f140ce5d9f482d1c8bdcc92aec7fd036a1d6b3c5b78682c2a43d2",
+        "derivation_scope": "The task adopts the issue's observed zero-for-constant behavior for one vector; multi-column estimator APIs, fit state, and alternate feature ranges are excluded."
+      },
+      "hidden_cases": [
+        {
+          "case_id": "issue27987.mixed_sign",
+          "input": [-8, -2, 4],
+          "expected": [0.0, 0.5, 1.0]
+        },
+        {
+          "case_id": "issue27987.constant",
+          "input": [7.25, 7.25, 7.25, 7.25],
+          "expected": [0.0, 0.0, 0.0, 0.0]
+        }
+      ]
+    },
+    {
+      "task_id": "github_sklearn_17794.zscore_constant",
+      "trajectory_id": "github_sklearn_17794",
+      "step_index": 0,
+      "domain": "data_science",
+      "request": "Standardize a non-empty finite numeric vector with its population mean and population variance, returning a zero vector when the population variance is zero.",
+      "expected_primitive": {
+        "namespace": "taedri.data.science",
+        "name": "zscore-standardize"
+      },
+      "case_derivation": "independent_manual_cases_v1",
+      "source_provenance": {
+        "repository": "scikit-learn/scikit-learn",
+        "issue_number": 17794,
+        "issue_title": " _handle_zeros_in_scale causing improper scaling when using StandardScaler()",
+        "issue_url": "https://github.com/scikit-learn/scikit-learn/issues/17794",
+        "accessed_on": "2026-07-16",
+        "source_excerpt": "Expected both scaled results to be zero vector since both are constant-valued vectors.",
+        "normalized_source_digest": "sha256:76bcf579c1c30a5f2df918a4deada721fdaa887f6395303d251483528262cced",
+        "derivation_scope": "The task covers one-vector population z-score behavior and the constant-vector boundary; estimator state, sparse arrays, and tolerance policy are excluded."
+      },
+      "hidden_cases": [
+        {
+          "case_id": "issue17794.symmetric",
+          "input": [-6, 6],
+          "expected": [-1.0, 1.0]
+        },
+        {
+          "case_id": "issue17794.constant",
+          "input": [9.5, 9.5, 9.5],
+          "expected": [0.0, 0.0, 0.0]
+        }
+      ]
+    }
+  ]
+}

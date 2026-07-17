@@ -146,6 +146,18 @@ class _AllowlistedRedirectHandler(urllib.request.HTTPRedirectHandler):
 
     def redirect_request(self, req, fp, code, msg, headers, newurl):  # noqa: ANN001
         self.policy.validate_url(newurl)
+        request_header_names = {
+            str(name).casefold()
+            for collection in (req.headers, req.unredirected_hdrs)
+            for name in collection
+        }
+        if "authorization" in request_header_names:
+            # urllib copies ordinary headers into its redirected Request.  Never let
+            # an acquisition credential follow a redirect, even when the target host
+            # is independently allowlisted.  Authenticated metadata calls fail closed;
+            # callers may make a new explicitly scoped request if a redirect is truly
+            # required.
+            return None
         return super().redirect_request(req, fp, code, msg, headers, newurl)
 
 

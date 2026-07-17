@@ -1,6 +1,7 @@
 # Authenticated SaaS vertical slice
 
-Status: executable single-node proof, production storage ports not yet promoted
+Status: executable single-node proof and controlled-private-alpha candidate; not public
+or paid production SaaS
 Date: 2026-07-16
 
 ## Outcome
@@ -22,6 +23,13 @@ This closes the gap between the existing graph algorithms and a usable service. 
 does not claim that SQLite plus a Machine volume is horizontally scalable production
 infrastructure.
 
+In this document, a **controlled private alpha** is a capped deployment on one host for
+known participants, operated by a person who controls data admission and can perform
+manual recovery. **Production SaaS** means unknown or paying tenants can rely on
+durable shared infrastructure, enforced identity/isolation/entitlements, monitored
+service objectives, tested recovery, and an incident/support process. The implemented
+path supports evaluation toward the first bar; it has not reached the second.
+
 ## Runtime boundaries
 
 | Boundary | Active implementation | State |
@@ -31,7 +39,7 @@ infrastructure.
 | Worker executor | `src/taedri_codegraph/job_runner.py` | Python AST and polyglot inventory |
 | Canonical graph/CAS | `storage.py` and immutable epoch directories | Existing active local adapter |
 | Browser | `apps/explorer/index.html` | Live API console |
-| Local deployment | `Dockerfile`, `compose.yaml` | API, worker, frontend |
+| Local deployment | `Dockerfile`, `compose.yaml` | API, worker, explorer, and portal POC with baseline hardening controls |
 | Fly proof | `deploy/fly/*.fly.toml` | Explicit single-Machine POC |
 | Production SQL contract | `deploy/postgres/001_control_plane.sql` | Schema defined; adapter pending |
 | Production object store | S3/Tigris port | Pending |
@@ -63,7 +71,7 @@ The PostgreSQL implementation must preserve the same behavior with a short
 | Method and path | Scope | Purpose |
 |---|---|---|
 | `GET /healthz` | Public | Process liveness |
-| `GET /readyz` | Public | Control-store integrity and migration readiness |
+| `GET /readyz` | Public | SQLite integrity and tenant-count check only |
 | `GET /openapi.json` | Public | Machine-readable API surface |
 | `GET /v1/me` | Authenticated | Tenant, key ID, and granted scopes |
 | `GET /v1/epochs` | `graph:read` | Candidate/published/current epoch inventory |
@@ -84,7 +92,8 @@ The frontend keeps its developer token in page memory rather than local storage.
 
 ## Worker safety and semantics
 
-The network API currently accepts only `extract` and `index` jobs. The executable
+The network API currently accepts `acquire`, `extract`, and `index` jobs through an
+allowlisted operation catalog. The executable
 operations are intentionally narrow:
 
 - `analyze_python_path`: full Python syntax graph using the established no-import
@@ -148,6 +157,12 @@ restart behavior, and browser-to-API traffic. It does not satisfy the production
 topology because a Fly volume is tied to a Machine/region and cannot be the durable,
 multi-process truth assumed by horizontal scaling.
 
+The static explorer and portal accept a scoped API token in page memory. That is useful
+for a developer/operator console, but it is not an OIDC browser session, organization
+membership model, or role-based administrative boundary. Likewise, the PostgreSQL DDL
+and object-store interfaces are contracts: the HTTP API and worker still construct the
+SQLite/local-store runtime path.
+
 ## Production promotion gates
 
 The next storage slice must pass the same tests using:
@@ -160,7 +175,12 @@ The next storage slice must pass the same tests using:
 6. a separate evaluator store and an ephemeral sandbox with no production credential;
 7. managed OIDC browser sessions while retaining scoped machine/API keys;
 8. envelope encryption for customer Git, Ollama, and other model-provider credentials;
-9. restore drills, rate limits, observability, and failure-injection evidence.
+9. restore drills, rate limits, observability, and failure-injection evidence;
+10. a real billing provider adapter, signed webhook verification, reconciliation, and
+    enforced subscription entitlements;
+11. full-service backup/restore, retention/deletion/legal-hold policy, incident drills,
+    staged deployment/rollback evidence, load/SLO tests, and a signed software supply
+    chain.
 
 Until those gates pass, the correct description is **working authenticated single-node
 SaaS POC**, not production SaaS.

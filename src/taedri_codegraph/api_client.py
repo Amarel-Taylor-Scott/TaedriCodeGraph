@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import base64
 import binascii
+import ipaddress
 import json
 import socket
 from dataclasses import dataclass
@@ -11,7 +12,7 @@ from pathlib import Path
 from typing import Any, Mapping, Protocol
 from urllib.error import HTTPError, URLError
 from urllib.parse import quote, urlencode, urlsplit, urlunsplit
-from urllib.request import Request, urlopen
+from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 from .primitives.digestion import (
     BlobCache,
@@ -46,6 +47,30 @@ class APITransport(Protocol):
     ) -> tuple[int, bytes]: ...
 
 
+class _RejectRedirects(HTTPRedirectHandler):
+    """Never forward authenticated headers to a redirected origin."""
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):  # noqa: ANN001
+        return None
+
+
+def is_https_or_loopback_url(value: str) -> bool:
+    """Return true for HTTPS or a narrowly scoped local-development HTTP origin."""
+
+    parsed = urlsplit(value)
+    if parsed.scheme == "https":
+        return True
+    if parsed.scheme != "http" or parsed.hostname is None:
+        return False
+    hostname = parsed.hostname.rstrip(".").casefold()
+    if hostname == "localhost":
+        return True
+    try:
+        return ipaddress.ip_address(hostname).is_loopback
+    except ValueError:
+        return False
+
+
 @dataclass(frozen=True, slots=True)
 class UrllibTransport:
     def request(
@@ -59,8 +84,9 @@ class UrllibTransport:
         max_response_bytes: int,
     ) -> tuple[int, bytes]:
         request = Request(url, data=body, headers=dict(headers), method=method)
+        opener = build_opener(_RejectRedirects())
         try:
-            with urlopen(request, timeout=timeout_seconds) as response:  # noqa: S310
+            with opener.open(request, timeout=timeout_seconds) as response:  # noqa: S310
                 content = response.read(max_response_bytes + 1)
                 status = int(response.status)
         except HTTPError as exc:
@@ -96,6 +122,10 @@ class TaedriClient:
             or parsed.fragment
         ):
             raise APIClientError("API base URL must be an http(s) origin without credentials")
+        if not is_https_or_loopback_url(base_url):
+            raise APIClientError(
+                "credentialed API base URL must use HTTPS or a loopback HTTP origin"
+            )
         if not token or any(character in token for character in "\r\n"):
             raise APIClientError("a non-empty bearer token is required")
         if not graph:
@@ -129,8 +159,21 @@ class TaedriClient:
         minimum_candidates: int = 8,
         entity_kind: str | None = None,
         facet_filters: Mapping[str, str] | None = None,
+        allow_semantic: bool = True,
+        allow_structural: bool = True,
+        maximum_seed_expansions: int = 3,
         cursor: str | None = None,
     ) -> dict[str, Any]:
+        if not isinstance(allow_semantic, bool) or not isinstance(
+            allow_structural, bool
+        ):
+            raise APIClientError("search lane policies must be booleans")
+        if isinstance(maximum_seed_expansions, bool) or not isinstance(
+            maximum_seed_expansions, int
+        ):
+            raise APIClientError("maximum seed expansions must be an integer")
+        if not 0 <= maximum_seed_expansions <= 20:
+            raise APIClientError("maximum seed expansions must be between 0 and 20")
         parameters: list[tuple[str, str | int]] = [
             ("q", query),
             ("limit", limit),
@@ -138,6 +181,9 @@ class TaedriClient:
             ("mode", mode),
             ("strategy", strategy),
             ("minimum_candidates", minimum_candidates),
+            ("semantic", "true" if allow_semantic else "false"),
+            ("structural", "true" if allow_structural else "false"),
+            ("maximum_seed_expansions", maximum_seed_expansions),
         ]
         if entity_kind:
             parameters.append(("kind", entity_kind))

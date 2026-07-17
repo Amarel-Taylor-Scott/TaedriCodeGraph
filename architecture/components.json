@@ -1,6 +1,13 @@
 {
   "schema_version": "1.0.0",
   "layout_state": "transitional",
+  "product_readiness": {
+    "classification": "single_node_private_alpha_candidate",
+    "serves_truth": false,
+    "public_paid_saas_ready": false,
+    "working_scope": "A runnable local and single-node reference system with tenant-scoped SQLite control-plane state, checked primitive execution, bounded provider adapters, and evidence tooling.",
+    "production_boundary": "This manifest does not claim a deployed, durable, publicly launchable paid SaaS. PostgreSQL and object-store runtime adapters, hostile-code isolation, OIDC/RBAC, live billing reconciliation, production telemetry, disaster recovery, retention operations, and staged deployment evidence remain external gates."
+  },
   "invariants": [
     "canonical facts never depend on disposable search indexes",
     "component dependencies form a directed acyclic graph",
@@ -257,18 +264,24 @@
       "id": "benchmarking",
       "path": "packages/benchmarking",
       "kind": "library",
-      "status": "conformance_only",
+      "status": "partial",
       "owns": [
+        "deterministic capability, privacy, cost, and latency model-arm routing",
+        "bounded Ollama, Mistral, OpenRouter, and OpenAI-compatible provider adapters",
         "matched-lane experiments",
-        "sealed task references",
+        "sealed-task reference contracts",
         "run receipts",
         "contamination strata",
         "paired metrics",
-        "claim eligibility"
+        "body-free primitive prompt interception and checked execution",
+        "campaign-v2 task manifests, exact arm matrices, and occurrence-bound verification receipts",
+        "trusted-evidence interfaces and fail-closed token claim evaluation"
       ],
       "depends_on": [
         "shared-kernel",
-        "shared-schemas"
+        "shared-schemas",
+        "primitive-capsules",
+        "compatibility"
       ]
     },
     {
@@ -533,6 +546,10 @@
         "ablation receipts",
         "promotion gates",
         "deterministic primitive-composition receipts",
+        "bounded live-provider primitive-selection observations",
+        "strict campaign-v2 integrity summaries",
+        "external issue-derived positive retrieval workload",
+        "token-savings proof classification",
         "reports"
       ],
       "depends_on": [
@@ -540,6 +557,7 @@
         "query-api",
         "registry-api",
         "agent-integrations",
+        "benchmarking",
         "benchmark-worker"
       ]
     }

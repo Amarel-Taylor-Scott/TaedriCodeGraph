@@ -15,10 +15,10 @@ storage,working,"local immutable CAS, typed long-table assertions, atomic epochs
 retrieval,working,"local adaptive exact, FTS5, facet, blocking, LSH, bounded-vector, metadata, and graph retrieval"
 compatibility,partial,exact directional dimensions plus evidence-backed ports and adapter-free unary planning/execution
 session-ledger,working,durable tenant-scoped privacy-aware SQLite ledger and API
-benchmarking,conformance_only,"matched-lane contracts, reporting, and bounded Ollama protocol adapter"
+benchmarking,partial,"deterministic model-arm routing, bounded provider adapters, body-free primitive-selection campaigns, strict campaign-v2 validation, and fail-closed token-savings proof evaluation"
 saas-control-plane,working,"single-node SQLite tenants, keys, mounts, jobs, audit, quotas, subscriptions, entitlements, and immutable receipts"
 worker-runtime,working,"persistent local leases, automatic heartbeats, cooperative cancellation, source jobs, and a trusted-source Python primitive verifier"
-benchmark-worker,conformance_only,deterministic non-claimable fixture
+benchmark-worker,conformance_only,"deterministic non-claimable worker fixture; the newer live campaign runner is a bounded library/tool path, not a production worker service"
 discovery-worker,partial,replay-safe allowlisted PyPI and GitHub discovery event routing
 ingestion-worker,working,local source-mounted and bounded public-artifact job execution
 primitive-worker,working,AST-only Python candidate generation plus complete-capsule trusted-source Python release verification
@@ -29,5 +29,5 @@ mcp-integration,working,optional local or authenticated-remote stdio server
 agent-integrations,partial,instructions and local search skill
 explorer-app,working,static authenticated local browser console
 portal-app,working,static public plan and authenticated tenant-account POC
-deployment,poc_only,Docker Compose and one-Machine Fly.io design
-evaluation,partial,"real-package static evaluation, real custom-primitive execution acceptance, deterministic no-model composition, and benchmark conformance"
+deployment,poc_only,"local Docker Compose and declared one-Machine Fly.io proof-of-concept; not a deployed production data plane"
+evaluation,partial,"real-package static evaluation, released-primitive execution, deterministic composition, bounded live-provider primitive selection, external issue-derived positive tasks, and strict non-claimable token-evidence analysis"

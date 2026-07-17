@@ -92,7 +92,13 @@ class MCPProtocolIntegrationTests(unittest.IsolatedAsyncioTestCase):
                 self.assertEqual(adaptive_payload["strategy"], "auto")
                 self.assertEqual(
                     [item["stage"] for item in adaptive_payload["stages"]],
-                    ["exact", "sparse", "semantic", "structural"],
+                    [
+                        "exact",
+                        "sparse",
+                        "lexical_hash_vector",
+                        "semantic",
+                        "structural",
+                    ],
                 )
 
 

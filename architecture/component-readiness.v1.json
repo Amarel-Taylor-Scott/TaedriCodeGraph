@@ -1,6 +1,14 @@
 {
   "schema_version": "1.0.0",
   "as_of": "2026-07-16",
+  "product_readiness": {
+    "classification": "single_node_private_alpha_candidate",
+    "serves_truth": false,
+    "public_paid_saas_ready": false,
+    "validated_scope": "Local and single-node reference operation, including tenant-scoped SQLite APIs and workers, checked primitive execution, deterministic routing, bounded live-provider experiments, and strict evidence validation.",
+    "not_validated": "Public multi-tenant production operation, managed PostgreSQL/object-store runtime use, hostile-code isolation, OIDC/RBAC, live billing and webhook reconciliation, production observability, full-service backup/restore, retention operations, and staged deploy/rollback.",
+    "release_label": "private alpha candidate; not a production SaaS launch"
+  },
   "definition_of_done": [
     "the component has an executable interface instead of documentation-only scaffolding",
     "stateful behavior is durable, idempotent, restart-safe, and tenant-isolated where applicable",
@@ -148,11 +156,11 @@
     },
     {
       "id": "benchmarking",
-      "status": "conformance_only",
-      "scope": "matched-lane contracts, reporting, and bounded Ollama protocol adapter",
-      "implemented_by": ["src/taedri_codegraph/benchmarking.py", "src/taedri_codegraph/model_providers.py"],
-      "acceptance_evidence": ["tests/unit/test_benchmarking.py", "tests/integration/test_ollama_provider.py", "eval/results/benchmark-worker-2026-07-16"],
-      "open_gates": ["live model run", "isolated sandbox/verifier", "sealed non-synthetic task suite"]
+      "status": "partial",
+      "scope": "deterministic model-arm routing, bounded provider adapters, body-free primitive-selection campaigns, strict campaign-v2 validation, and fail-closed token-savings proof evaluation",
+      "implemented_by": ["src/taedri_codegraph/benchmarking.py", "src/taedri_codegraph/model_providers.py", "src/taedri_codegraph/model_routing.py", "src/taedri_codegraph/prompt_interception.py", "src/taedri_codegraph/token_savings.py", "tools/run_prompt_interception_campaign.py", "tools/summarize_prompt_interception_evidence.py", "tools/prove_token_savings.py"],
+      "acceptance_evidence": ["tests/unit/test_benchmarking.py", "tests/unit/test_model_routing.py", "tests/unit/test_openai_compatible_providers.py", "tests/unit/test_prompt_interception.py", "tests/unit/test_prompt_interception_evidence_summary.py", "tests/unit/test_token_savings.py", "tests/integration/test_ollama_provider.py", "tests/integration/test_prompt_interception_campaign.py", "tests/integration/test_token_savings_campaign.py", "tests/integration/test_external_issue_workload.py", "eval/results/benchmark-worker-2026-07-16", "eval/results/prompt-interception-live-pilot-2026-07-16/README.md", "eval/results/prompt-interception-live-pilot-2026-07-16/summary.json", "eval/results/prompt-interception-live-v2-2026-07-16/README.md", "eval/results/prompt-interception-live-v2-2026-07-16/summary.json"],
+      "open_gates": ["trusted isolated runtime and verifier attestation plus complete retrieval, selection, verification, repair, cache, and tool overhead receipts", "sealed representative coding tasks with unsupported-task abstention and repository patch outcomes", "multi-task, multi-provider, multi-model, and multi-seed promotion study", "production router executor with live health and price telemetry, enforced fallback, and calibrated feedback", "tenant-authorized online interceptor integration and production operations"]
     },
     {
       "id": "saas-control-plane",
@@ -173,10 +181,10 @@
     {
       "id": "benchmark-worker",
       "status": "conformance_only",
-      "scope": "deterministic non-claimable fixture",
+      "scope": "deterministic non-claimable worker fixture; the newer live campaign runner is a bounded library/tool path, not a production worker service",
       "implemented_by": ["src/taedri_codegraph/benchmarking.py", "src/taedri_codegraph/model_providers.py", "tools/run_benchmark_worker_conformance.py", "tools/smoke_ollama_provider.py"],
       "acceptance_evidence": ["tests/unit/test_benchmarking.py", "tests/integration/test_ollama_provider.py", "eval/results/benchmark-worker-2026-07-16"],
-      "open_gates": ["live provider matched-lane execution", "real harness execution", "independent sealed verification"]
+      "open_gates": ["wire the strict campaign-v2 runner into durable worker jobs", "resource-isolated execution and trusted verifier attestation", "real harness traffic with tenant authorization and complete overhead accounting"]
     },
     {
       "id": "discovery-worker",
@@ -261,7 +269,7 @@
     {
       "id": "deployment",
       "status": "poc_only",
-      "scope": "Docker Compose and one-Machine Fly.io design",
+      "scope": "local Docker Compose and declared one-Machine Fly.io proof-of-concept; not a deployed production data plane",
       "implemented_by": ["Dockerfile", "compose.yaml", "deploy/fly", "deploy/postgres"],
       "acceptance_evidence": ["tests/architecture/test_saas_slice.py", "tools/smoke_production_server.py"],
       "open_gates": ["hosted container build in CI", "Fly deployment smoke", "managed PostgreSQL and object storage", "observability, backup, restore, and incident drills"]
@@ -269,10 +277,10 @@
     {
       "id": "evaluation",
       "status": "partial",
-      "scope": "real-package static evaluation, real custom-primitive execution acceptance, deterministic no-model composition, and benchmark conformance",
-      "implemented_by": ["eval", "tools/benchmark_real_packages.py", "tools/evaluate_hybrid_real_packages.py", "tools/run_reference_primitive_acceptance.py", "tools/run_deterministic_primitive_pipeline.py", "tools/run_data_primitive_cohort.py", "tools/run_benchmark_worker_conformance.py"],
-      "acceptance_evidence": ["eval/results/real-pypi-2026-07-15", "eval/results/hybrid-architecture-2026-07-15", "eval/results/reference-primitive-acceptance-2026-07-16", "eval/results/deterministic-primitive-pipeline-2026-07-16", "eval/results/data-primitive-cohort-2026-07-16", "eval/results/benchmark-worker-2026-07-16"],
-      "open_gates": ["real-model matched lanes", "sealed executable tasks", "promotion thresholds and longitudinal regression tracking"]
+      "scope": "real-package static evaluation, released-primitive execution, deterministic composition, bounded live-provider primitive selection, external issue-derived positive tasks, and strict non-claimable token-evidence analysis",
+      "implemented_by": ["eval", "fixtures/prompt-interception", "fixtures/token-savings", "src/taedri_codegraph/issue_workloads.py", "tools/benchmark_real_packages.py", "tools/evaluate_hybrid_real_packages.py", "tools/run_reference_primitive_acceptance.py", "tools/run_deterministic_primitive_pipeline.py", "tools/run_data_primitive_cohort.py", "tools/run_benchmark_worker_conformance.py", "tools/run_prompt_interception_campaign.py", "tools/summarize_prompt_interception_evidence.py", "tools/prove_token_savings.py"],
+      "acceptance_evidence": ["eval/results/real-pypi-2026-07-15", "eval/results/hybrid-architecture-2026-07-15", "eval/results/reference-primitive-acceptance-2026-07-16", "eval/results/deterministic-primitive-pipeline-2026-07-16", "eval/results/data-primitive-cohort-2026-07-16", "eval/results/benchmark-worker-2026-07-16", "eval/results/prompt-interception-live-pilot-2026-07-16/README.md", "eval/results/prompt-interception-live-pilot-2026-07-16/summary.json", "eval/results/prompt-interception-live-v2-2026-07-16/README.md", "eval/results/prompt-interception-live-v2-2026-07-16/summary.json", "tests/integration/test_external_issue_workload.py", "tests/integration/test_token_savings_campaign.py"],
+      "open_gates": ["representative sealed repository-level coding tasks including must-abstain negatives", "trusted isolated runtime evidence and complete failure-inclusive overhead accounting", "multi-provider, multi-model, multi-seed promotion thresholds and longitudinal regression tracking", "real online coding-session and production-traffic study"]
     }
   ],
   "external_gates": [

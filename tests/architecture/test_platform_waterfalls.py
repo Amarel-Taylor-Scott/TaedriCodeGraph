@@ -4,6 +4,7 @@ import csv
 import json
 import unittest
 import xml.etree.ElementTree as ET
+from collections import Counter
 from pathlib import Path
 
 
@@ -96,6 +97,10 @@ class PrimitivePlatformWaterfallArchitectureTests(unittest.TestCase):
             {item["id"]: len(item["stages"]) for item in waterfalls},
         )
         self.assertEqual(
+            {row["waterfall"]: row["status"] for row in waterfall_rows},
+            {item["id"]: item["status"] for item in waterfalls},
+        )
+        self.assertEqual(
             {row["component_id"] for row in component_rows},
             {item["id"] for item in readiness},
         )
@@ -108,6 +113,16 @@ class PrimitivePlatformWaterfallArchitectureTests(unittest.TestCase):
         )
         self.assertEqual(acceptance["waterfalls"]["total"], len(waterfalls))
         self.assertEqual(acceptance["component_readiness"]["total"], len(readiness))
+        readiness_counts = Counter(item["status"] for item in readiness)
+        for status in ("working", "partial", "conformance_only", "poc_only"):
+            self.assertEqual(
+                acceptance["component_readiness"][status],
+                readiness_counts[status],
+            )
+        self.assertEqual(
+            acceptance["component_readiness"]["working_fraction_ppm"],
+            readiness_counts["working"] * 1_000_000 // len(readiness),
+        )
         chart = ET.parse(result_root / "waterfall-readiness.svg")
         self.assertEqual(chart.getroot().tag, "{http://www.w3.org/2000/svg}svg")
 

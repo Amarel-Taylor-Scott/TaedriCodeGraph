@@ -20,10 +20,12 @@ class CompatibilityPoisonTests(unittest.TestCase):
             prohibited_values={},
         )
 
-    def signature(self, subject: str, **values: str) -> CompatibilitySignature:
+    def signature(
+        self, subject: str, *, orientation: str = "provides", **values: str
+    ) -> CompatibilitySignature:
         return CompatibilitySignature(
             subject,
-            "provides",
+            orientation,
             {
                 key: DimensionValue(value, True, (f"evidence:{key}:{value}",))
                 for key, value in values.items()
@@ -34,6 +36,7 @@ class CompatibilityPoisonTests(unittest.TestCase):
         producer = self.signature("producer", **{"uceg.compat.type": "int"})
         consumer = self.signature(
             "consumer",
+            orientation="requires",
             **{"uceg.compat.type": "int", "uceg.compat.async_mode": "sync"},
         )
         result = self.evaluator.evaluate(producer, consumer, self.requirements)
@@ -44,7 +47,9 @@ class CompatibilityPoisonTests(unittest.TestCase):
             "producer", **{"uceg.compat.type": "int", "uceg.compat.async_mode": "sync"}
         )
         consumer = self.signature(
-            "consumer", **{"uceg.compat.type": "str", "uceg.compat.async_mode": "sync"}
+            "consumer",
+            orientation="requires",
+            **{"uceg.compat.type": "str", "uceg.compat.async_mode": "sync"},
         )
         result = self.evaluator.evaluate(producer, consumer, self.requirements)
         self.assertEqual(result.verdict, CompatibilityVerdict.INCOMPATIBLE)
@@ -53,10 +58,27 @@ class CompatibilityPoisonTests(unittest.TestCase):
         dimensions = {"uceg.compat.type": "int", "uceg.compat.async_mode": "sync"}
         result = self.evaluator.evaluate(
             self.signature("producer", **dimensions),
-            self.signature("consumer", **dimensions),
+            self.signature("consumer", orientation="requires", **dimensions),
             self.requirements,
         )
         self.assertEqual(result.verdict, CompatibilityVerdict.COMPATIBLE)
+
+    def test_orientation_alone_is_unknown_without_a_required_dimension(self) -> None:
+        requirements = CompatibilityRequirementSet(
+            purpose="compose_output_to_input",
+            required_dimensions=(),
+            prohibited_values={},
+        )
+        result = self.evaluator.evaluate(
+            self.signature("producer"),
+            self.signature("consumer", orientation="requires"),
+            requirements,
+        )
+        self.assertEqual(result.verdict, CompatibilityVerdict.UNKNOWN)
+        self.assertEqual(
+            [item.dimension_key for item in result.dimensions],
+            ["uceg.compat.orientation", "uceg.compat.required_dimension"],
+        )
 
     def test_low_authority_cannot_create_incompatibility(self) -> None:
         producer = CompatibilitySignature(
@@ -68,10 +90,22 @@ class CompatibilityPoisonTests(unittest.TestCase):
             },
         )
         consumer = self.signature(
-            "consumer", **{"uceg.compat.type": "str", "uceg.compat.async_mode": "sync"}
+            "consumer",
+            orientation="requires",
+            **{"uceg.compat.type": "str", "uceg.compat.async_mode": "sync"},
         )
         result = self.evaluator.evaluate(producer, consumer, self.requirements)
         self.assertEqual(result.verdict, CompatibilityVerdict.UNKNOWN)
+
+    def test_reversed_orientation_is_incompatible_even_when_values_match(self) -> None:
+        dimensions = {"uceg.compat.type": "int", "uceg.compat.async_mode": "sync"}
+        result = self.evaluator.evaluate(
+            self.signature("producer", orientation="requires", **dimensions),
+            self.signature("consumer", orientation="provides", **dimensions),
+            self.requirements,
+        )
+        self.assertEqual(result.verdict, CompatibilityVerdict.INCOMPATIBLE)
+        self.assertEqual(result.dimensions[0].dimension_key, "uceg.compat.orientation")
 
 
 if __name__ == "__main__":

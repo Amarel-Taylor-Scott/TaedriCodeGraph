@@ -10,3 +10,8 @@ build
 dist
 eval/results
 upload
+.env
+.env.*
+.secrets
+*.sqlite-wal
+*.sqlite-shm

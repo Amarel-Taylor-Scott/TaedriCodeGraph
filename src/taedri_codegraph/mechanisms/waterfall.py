@@ -252,11 +252,13 @@ class WaterfallExecutor:
         receipts: list[StepReceipt] = []
         consumed = 0
         any_success = False
+        continued_stage_failure = False
         terminal_status: RunStatus | None = None
         stop_reason = "plan_complete"
 
         for stage in plan.stages:
             successes = 0
+            confidence_threshold_met = False
             for reference in stage.mechanism_refs:
                 definition, handler = self.registry.resolve(reference)
                 if definition.phase != stage.key:
@@ -362,31 +364,50 @@ class WaterfallExecutor:
                 any_success = True
                 if stage.mode is MechanismMode.FIRST_SUCCESS:
                     break
-                if (
-                    stage.mode is MechanismMode.UNTIL_CONFIDENCE
-                    and result.confidence_ppm is not None
-                    and result.confidence_ppm >= (stage.confidence_threshold_ppm or 0)
-                ):
-                    break
+                if stage.mode is MechanismMode.UNTIL_CONFIDENCE:
+                    if (
+                        result.confidence_ppm is not None
+                        and result.confidence_ppm
+                        >= (stage.confidence_threshold_ppm or 0)
+                    ):
+                        confidence_threshold_met = True
+                    if (
+                        confidence_threshold_met
+                        and successes >= stage.minimum_successes
+                    ):
+                        break
             if terminal_status is not None:
                 break
+            stage_failure_reason: str | None = None
             if successes < stage.minimum_successes:
+                stage_failure_reason = f"stage_minimum_not_met:{stage.key}"
+            elif (
+                stage.mode is MechanismMode.UNTIL_CONFIDENCE
+                and not confidence_threshold_met
+            ):
+                stage_failure_reason = f"stage_confidence_not_met:{stage.key}"
+            if stage_failure_reason is not None:
                 if stage.failure_policy is FailurePolicy.FAIL_CLOSED:
                     terminal_status = RunStatus.FAILED
-                    stop_reason = f"stage_minimum_not_met:{stage.key}"
+                    stop_reason = stage_failure_reason
                     break
                 if stage.failure_policy is FailurePolicy.ABSTAIN:
                     terminal_status = RunStatus.ABSTAINED
-                    stop_reason = f"stage_minimum_not_met:{stage.key}"
+                    stop_reason = stage_failure_reason
                     break
+                continued_stage_failure = True
 
         if terminal_status is None:
             skipped_or_failed = any(
                 item.status is not StepStatus.SUCCEEDED for item in receipts
             )
-            terminal_status = (
-                RunStatus.PARTIAL if skipped_or_failed and any_success else RunStatus.SUCCEEDED
-            )
+            if not any_success:
+                terminal_status = RunStatus.ABSTAINED
+                stop_reason = "no_mechanism_succeeded"
+            elif skipped_or_failed or continued_stage_failure:
+                terminal_status = RunStatus.PARTIAL
+            else:
+                terminal_status = RunStatus.SUCCEEDED
         frozen_outputs = MappingProxyType(
             {key: tuple(values) for key, values in sorted(outputs.items())}
         )

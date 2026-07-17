@@ -164,10 +164,11 @@ shown to contain or invoke the selected immutable revision under the declared po
 
 ### Token, latency, and cost efficiency
 
-Track provider-native input, cached input, output, reasoning when exposed, and tool
-tokens separately. Also track retrieval query tokens, disclosed context bytes, body
-bytes, tool-call count, model time, retrieval time, verifier time, queue time, wall
-time, provider cost, and infrastructure cost.
+Track operator-captured provider-response counters for input, cached input, output,
+reasoning when exposed, and tool tokens separately. Also track retrieval query tokens,
+disclosed context bytes, body bytes, tool-call count, model time, retrieval time,
+verifier time, queue time, wall time, provider cost, and infrastructure cost. Treat
+provider-signed attestations and billing records as separate evidence when available.
 
 The primary efficiency expressions are failure-inclusive:
 
@@ -225,7 +226,8 @@ never-tuned cold holdout for architectural decisions made after the first campai
 Promotion should require:
 
 1. complete matched blocks and retained failures;
-2. real provider/runtime usage receipts;
+2. non-fixture provider-response usage receipts and separately trusted runtime
+   attestations;
 3. independent deterministic verification;
 4. no detected contamination in the promoted stratum;
 5. success non-inferiority plus a material improvement in at least one declared
@@ -292,6 +294,6 @@ queueing, lane authorization, contamination rejection, aggregation, and reportin
 
 It deliberately uses provider `deterministic-contract-fixture` and model
 `not-a-model`. Its report sets `efficacy_claimable` to `false`; its zero token/success
-deltas are not product results. The first claimable result requires a real provider or
-local-model usage adapter, an isolated executable task suite, and actual verifier
-receipts.
+deltas are not product results. The first claimable result requires a non-fixture
+provider or local-model usage adapter, an isolated executable task suite, and actual
+verifier receipts.

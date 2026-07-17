@@ -18,6 +18,14 @@ from typing import Iterable
 
 from .contracts import RecordMixin
 from .identity import IdentityRecord
+from .token_savings import (
+    EvidenceIntegrityResult,
+    TokenEvidenceClass,
+    TokenSavingsError,
+    TokenSavingsInput,
+    TrustedEvidenceResolver,
+    TrustedEvidenceTrustRoot,
+)
 from .workers import JobKind, WorkerJob, WorkerQueue
 
 
@@ -414,6 +422,7 @@ class BenchmarkRunReceipt(RecordMixin):
     model_ms: int
     retrieval_ms: int
     verification_ms: int
+    verifier_cpu_ms: int
     provider_cost_microunits: int
     infrastructure_cost_microunits: int
     model_attempts: int
@@ -471,6 +480,7 @@ class BenchmarkRunReceipt(RecordMixin):
         model_ms: int = 0,
         retrieval_ms: int = 0,
         verification_ms: int = 0,
+        verifier_cpu_ms: int = 0,
         provider_cost_microunits: int = 0,
         infrastructure_cost_microunits: int = 0,
         model_attempts: int = 1,
@@ -522,6 +532,7 @@ class BenchmarkRunReceipt(RecordMixin):
             model_ms=model_ms,
             retrieval_ms=retrieval_ms,
             verification_ms=verification_ms,
+            verifier_cpu_ms=verifier_cpu_ms,
             provider_cost_microunits=provider_cost_microunits,
             infrastructure_cost_microunits=infrastructure_cost_microunits,
             model_attempts=model_attempts,
@@ -547,6 +558,8 @@ class BenchmarkRunReceipt(RecordMixin):
             raise BenchmarkError("completion token budget exceeded")
         if tool_calls > spec.budget.max_tool_calls or wall_ms > spec.budget.max_wall_ms:
             raise BenchmarkError("tool-call or wall-time budget exceeded")
+        if verifier_cpu_ms > spec.budget.max_verifier_cpu_ms:
+            raise BenchmarkError("verifier CPU budget exceeded")
         if evidence_class is RunEvidenceClass.REAL_MODEL and model_usage_receipt_ref is None:
             raise BenchmarkError("real-model runs require a provider/runtime usage receipt")
         exposed = set(refs["retrieved_refs"]) | set(refs["materialized_refs"])
@@ -605,6 +618,7 @@ class BenchmarkRunReceipt(RecordMixin):
                 "model_ms": model_ms,
                 "retrieval_ms": retrieval_ms,
                 "verification_ms": verification_ms,
+                "verifier_cpu_ms": verifier_cpu_ms,
                 "provider_cost_microunits": provider_cost_microunits,
                 "infrastructure_cost_microunits": infrastructure_cost_microunits,
                 "model_attempts": model_attempts,
@@ -656,6 +670,7 @@ class BenchmarkRunReceipt(RecordMixin):
             model_ms,
             retrieval_ms,
             verification_ms,
+            verifier_cpu_ms,
             provider_cost_microunits,
             infrastructure_cost_microunits,
             model_attempts,
@@ -798,11 +813,26 @@ class BenchmarkWorker:
         self.receipts[spec.identity.id] = receipt
         return receipt
 
-    def report(self, experiment_id: str) -> dict[str, object]:
+    def report(
+        self,
+        experiment_id: str,
+        *,
+        token_savings_source: TokenSavingsInput | None = None,
+        trusted_evidence_resolver: TrustedEvidenceResolver | None = None,
+        trusted_evidence_root: TrustedEvidenceTrustRoot | None = None,
+    ) -> dict[str, object]:
         experiment = self._experiment(experiment_id)
         specs = self._specs_for(experiment_id)
-        receipts = [self.receipts[spec.identity.id] for spec in specs if spec.identity.id in self.receipts]
-        missing = [spec.identity.id for spec in specs if spec.identity.id not in self.receipts]
+        receipts = [
+            self.receipts[spec.identity.id]
+            for spec in specs
+            if spec.identity.id in self.receipts
+        ]
+        missing = [
+            spec.identity.id
+            for spec in specs
+            if spec.identity.id not in self.receipts
+        ]
         by_lane = {
             lane: [receipt for receipt in receipts if receipt.lane is lane]
             for lane in experiment.lanes
@@ -822,6 +852,39 @@ class BenchmarkWorker:
         all_clean = bool(receipts) and all(
             receipt.contamination_state is ContaminationState.CLEAN for receipt in receipts
         )
+        integrity_result: EvidenceIntegrityResult | None = None
+        attested_proof = None
+        if (
+            trusted_evidence_resolver is not None
+            or trusted_evidence_root is not None
+        ) and token_savings_source is None:
+            raise BenchmarkError(
+                "trusted evidence runtime inputs require their exact token-savings source"
+            )
+        if token_savings_source is not None:
+            try:
+                attested_proof = token_savings_source.evaluate(
+                    trusted_resolver=trusted_evidence_resolver,
+                    trusted_root=trusted_evidence_root,
+                )
+                if attested_proof.evidence_integrity_verified:
+                    integrity_result = attested_proof.integrity_result()
+            except TokenSavingsError as exc:
+                raise BenchmarkError(
+                    "benchmark token-savings evidence failed closed"
+                ) from exc
+        expected_receipt_refs = tuple(sorted(receipt.identity.id for receipt in receipts))
+        integrity_verified = bool(
+            integrity_result is not None
+            and integrity_result.verified
+            and integrity_result.evidence_class
+            is TokenEvidenceClass.VERIFIED_REAL_MODEL
+            and integrity_result.subject_ref == experiment.identity.id
+            and integrity_result.covered_receipt_refs == expected_receipt_refs
+            and attested_proof is not None
+            and attested_proof.savings_claimable
+        )
+        efficacy_claimable = is_complete and all_real and all_clean and integrity_verified
         return {
             "schema_version": "1.0.0",
             "experiment_id": experiment.identity.id,
@@ -831,11 +894,27 @@ class BenchmarkWorker:
             "completed_run_count": len(receipts),
             "missing_run_spec_ids": missing,
             "is_complete": is_complete,
-            "efficacy_claimable": is_complete and all_real and all_clean,
+            "evidence_integrity_verified": integrity_verified,
+            "evidence_integrity_proof_digest": (
+                None if attested_proof is None else attested_proof.proof_digest
+            ),
+            "evidence_integrity_trust_domain": (
+                None if integrity_result is None else integrity_result.trust_domain
+            ),
+            "evidence_integrity_trust_key_id": (
+                None if integrity_result is None else integrity_result.trust_key_id
+            ),
+            "evidence_integrity_attestation_ref": (
+                None if integrity_result is None else integrity_result.attestation_ref
+            ),
+            "efficacy_claimable": efficacy_claimable,
             "claim_warning": (
                 None
-                if is_complete and all_real and all_clean
-                else "Incomplete, fixture, contaminated, or unknown-contamination data cannot support a SaaS efficacy or ROI claim."
+                if efficacy_claimable
+                else (
+                    "Incomplete, fixture, contaminated, unknown-contamination, or "
+                    "unresolved evidence cannot support a SaaS efficacy or ROI claim."
+                )
             ),
             "frozen_inputs": {
                 "provider_id": experiment.provider_id,

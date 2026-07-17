@@ -18,6 +18,12 @@ class ComponentReadinessTests(unittest.TestCase):
         self.assertEqual(sum(report["status_counts"].values()), 32)
         self.assertGreaterEqual(len(report["definition_of_done"]), 7)
         self.assertTrue(report["external_gates"])
+        self.assertEqual(
+            report["product_readiness"]["classification"],
+            "single_node_private_alpha_candidate",
+        )
+        self.assertFalse(report["product_readiness"]["serves_truth"])
+        self.assertFalse(report["product_readiness"]["public_paid_saas_ready"])
         architecture = json.loads(
             (ROOT / "architecture/components.json").read_text("utf-8")
         )
@@ -44,6 +50,35 @@ class ComponentReadinessTests(unittest.TestCase):
                 json.dumps(readiness), "utf-8"
             )
             with self.assertRaisesRegex(ReadinessError, "manifest mismatch"):
+                load_component_readiness(root)
+
+    def test_product_truth_mismatch_and_unproved_promotion_fail_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "architecture").mkdir()
+            components = json.loads(
+                (ROOT / "architecture/components.json").read_text("utf-8")
+            )
+            readiness = json.loads(
+                (ROOT / "architecture/component-readiness.v1.json").read_text(
+                    "utf-8"
+                )
+            )
+            readiness["product_readiness"]["serves_truth"] = True
+            (root / "architecture/components.json").write_text(
+                json.dumps(components), "utf-8"
+            )
+            (root / "architecture/component-readiness.v1.json").write_text(
+                json.dumps(readiness), "utf-8"
+            )
+            with self.assertRaisesRegex(ReadinessError, "disagree"):
+                load_component_readiness(root)
+
+            components["product_readiness"]["serves_truth"] = True
+            (root / "architecture/components.json").write_text(
+                json.dumps(components), "utf-8"
+            )
+            with self.assertRaisesRegex(ReadinessError, "requires acceptance evidence"):
                 load_component_readiness(root)
 
 
